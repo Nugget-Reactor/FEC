@@ -4,7 +4,7 @@ const qnas = {
   get: (req, res) => {
     axios.get(`${URL}/qa/questions?product_id=40343`)
       .then((result) => {
-        res.json(result.data)
+        res.status(200).json(result.data)
       })
       .catch(err => {
         console.log(err);
