@@ -1,8 +1,6 @@
-// import
-// import
-// import
-// import
-// controllers = {
+const ratings = require('./ratings.js');
 
-// }
-// export.controllers = controllers;
+
+module.exports = {
+  ratings,
+}
