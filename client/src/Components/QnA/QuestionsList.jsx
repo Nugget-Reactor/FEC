@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
 
 const QuestionsList = ({ questionsList }) => {
+
+  const [sortedQs, setSortedQs] = useEffect([]);
+
+  // useEffect(() => {
+
+  // }, [])
+
   return (
     <div>
       {questionsList.length > 2
