@@ -1,11 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const QuestionModal = () => {
   return (
     <>
-      <h3>Ask Your Question</h3>
+      <Heading4>Ask Your Question</Heading4>
       <h5>About the [Product Name Here]</h5>
-      <form>
+      <QuestionForm>
         <div>
           <label>Your Question*: </label>
           <input />
@@ -21,9 +22,19 @@ const QuestionModal = () => {
         <div>
           <button>Submit Question</button>
         </div>
-      </form>
+      </QuestionForm>
     </>
   )
 }
 
 export default QuestionModal;
+
+const Heading4 = styled.h4`
+  color: red;
+`;
+
+const QuestionForm = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

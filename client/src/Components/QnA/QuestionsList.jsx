@@ -3,10 +3,8 @@ import QuestionEntry from './QuestionEntry.jsx';
 
 const QuestionsList = ({ questionsList }) => {
 
-  const [sortedQs, setSortedQs] = useEffect([]);
-
   // useEffect(() => {
-
+  //   questionsList
   // }, [])
 
   return (
