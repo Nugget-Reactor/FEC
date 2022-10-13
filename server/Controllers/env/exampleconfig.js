@@ -8,4 +8,7 @@ const defaultOptions = {
 
 const authAxios = axios.create(defaultOptions);
 
-export default authAxios;
+const URL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
+
+module.exports.axios = authAxios;
+module.exports.URL = URL;
