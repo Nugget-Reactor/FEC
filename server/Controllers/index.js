@@ -5,6 +5,6 @@ const qnas = require('./qnas.js');
 
 module.exports = {
   ratings,
-  products
-  qnas,
+  products,
+  qnas
 }
