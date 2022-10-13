@@ -1,19 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const AnswersList = ({ answersObj }) => {
   return (
-    <div id="AnswersList">
-      <p>A: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-      <span>by [Username], Month DD, YYYY</span>
-      <span>Helpful?</span>
-      <a>Yes (#)</a>
-      <a>Report</a>
+    <div>
+      <Paragraph>A: {answersObj[3073699].body}</Paragraph>
+      <Span>by {answersObj[3073699].answerer_name}, {answersObj[3073699].date}</Span>
+      <Span>Helpful?</Span>
+      <Anchor>Yes ({answersObj[3073699].helpfulness})</Anchor>
+      <Anchor>Report</Anchor>
       <div>
-        <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/9/12/1/FN_Picky-Eaters-Chicken-Nuggets_s4x3.jpg.rend.hgtvcom.406.305.suffix/1383770571120.jpeg" width="200px" height="100px"></img>
-        <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/9/12/1/FN_Picky-Eaters-Chicken-Nuggets_s4x3.jpg.rend.hgtvcom.406.305.suffix/1383770571120.jpeg" width="200px" height="100px"></img>
-        <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/9/12/1/FN_Picky-Eaters-Chicken-Nuggets_s4x3.jpg.rend.hgtvcom.406.305.suffix/1383770571120.jpeg" width="200px" height="100px"></img>
+        {!answersObj[3073699].photos.length
+          ? null
+          : <Image src={answersObj[3073699].photos[0]}></Image>}
         <div>
-          <a>LOAD MORE ANSWERS</a>
+          <Anchor>LOAD MORE ANSWERS</Anchor>
         </div>
       </div>
     </div>
@@ -21,3 +22,20 @@ const AnswersList = ({ answersObj }) => {
 }
 
 export default AnswersList;
+
+const Paragraph = styled.p`
+  padding: 10px;
+`;
+
+const Span = styled.span`
+  padding: 10px;
+`;
+
+const Anchor = styled.a`
+  padding: 10px;
+`;
+
+const Image = styled.img`
+  height: 150px;
+  width: 200px;
+`;
