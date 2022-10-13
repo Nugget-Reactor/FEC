@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import SearchQnA from './SearchQnA.jsx';
+import QuestionsList from './QuestionsList.jsx';
 
 const QnA = () => {
 
@@ -14,6 +16,8 @@ const QnA = () => {
     <div id="QnA">
       <h2>QUESTIONS & ANSWERS</h2>
       <SearchQnA />
+      <QuestionsList />
+      <button>More Answered Questions</button><button>Add A Question</button>
     </div>
   )
 }
