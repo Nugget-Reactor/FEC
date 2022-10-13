@@ -4,15 +4,12 @@ import QnA from './QnA/QnA.jsx';
 import Ratings from './R&R/Ratings.jsx';
 
 const App = () => {
-
+  const [productId, setProductId] = useState(40343);
 
   return (
     <>
-      <div>
-        Hello World
-      </div>
       <QnA />
-      <Ratings />
+      <Ratings productId={productId} />
     </>
   )
 }
