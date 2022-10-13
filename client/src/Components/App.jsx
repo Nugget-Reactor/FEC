@@ -9,7 +9,6 @@ const App = () => {
   return (
     <div>
       <OverviewApp />
-      Hello World
       <Ratings />
     </div>
   )
