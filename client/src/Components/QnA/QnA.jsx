@@ -3,8 +3,11 @@ import axios from 'axios';
 
 import SearchQnA from './SearchQnA.jsx';
 import QuestionsList from './QuestionsList.jsx';
+import QuestionModal from './QuestionModal.jsx';
 
 const QnA = () => {
+
+  const [showQModal, setShowQModal] = useState(false);
 
   useEffect(() => {
     axios.get('/questions')
@@ -12,12 +15,18 @@ const QnA = () => {
       .catch(err => console.log('questions error', err))
   }, [])
 
+  const handleAddQ = (e) => {
+    e.preventDefault();
+    setShowQModal(!showQModal)
+  }
+
   return (
     <div id="QnA">
       <h2>QUESTIONS & ANSWERS</h2>
       <SearchQnA />
       <QuestionsList />
-      <button>More Answered Questions</button><button>Add A Question</button>
+      <button>More Answered Questions</button><button onClick={handleAddQ}>Add A Question</button>
+      {showQModal ? <QuestionModal /> : null}
     </div>
   )
 }
