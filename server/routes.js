@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const controllers = require('./Controllers');
 
-router.get('/products', (req, res) => {
-})
+router.get('/products', controllers.products.getAll);
+router.get('/products/:id', controllers.products.getOne)
+router.get('/products/:id/styles', controllers.products.getStyles)
 
 router.get('/reviews', controllers.ratings.get)
 
