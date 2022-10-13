@@ -1,10 +1,23 @@
 import React from 'react';
+import {format, parseISO} from 'date-fns';
 
 const Tile = ({ review }) => {
 
+  const createStars = () => {
+    let stars = '';
+    for(let i = 0; i < 5; i++) {
+      if(i < review.rating){
+        stars += '★';
+      } else {
+        stars += '☆';
+      }
+    }
+    return stars;
+  }
+
   return(
     <div>
-      <div>* * * * * {review.rating}</div> <span>{review.reviewer_name}{review.date}</span>
+      <div>{createStars()} <span>{review.reviewer_name}, {format(parseISO(review.date), 'MMMM d, yyyy')}</span></div>
       <h5>{review.summary}</h5>
       <p>{review.body}</p>
       {review.recommend && <div>I recommend this product!</div>}
