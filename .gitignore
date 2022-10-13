@@ -1,3 +1,4 @@
 node_modules
 client/dist
 server/Controllers/env/config.js
+sampledata.js
