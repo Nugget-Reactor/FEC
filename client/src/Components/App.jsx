@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import Ratings from './R&R/ratings.jsx';
 
 const App = () => {
 
@@ -7,6 +7,7 @@ const App = () => {
   return (
     <div>
       Hello World
+      <Ratings />
     </div>
   )
 }
