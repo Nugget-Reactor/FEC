@@ -4,11 +4,11 @@ import axios from 'axios';
 const Ratings = () => {
   useEffect(() => {
     axios.get('/reviews')
-    .then(res => console.log(res.data))
-    .catch(err => console.error(err));
+      .then(res => console.log('results from reviews get', res.data))
+      .catch(err => console.error('error getting reviews', err));
   }, []);
   //test
-  return(
+  return (
     <div>
 
     </div>

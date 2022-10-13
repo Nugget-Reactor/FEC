@@ -8,7 +8,7 @@ const QnA = () => {
 
   useEffect(() => {
     axios.get('/questions')
-      .then(results => console.log('results data', results.data))
+      .then(results => console.log('results data for questions component', results.data))
       .catch(err => console.log('questions error', err))
   }, [])
 
