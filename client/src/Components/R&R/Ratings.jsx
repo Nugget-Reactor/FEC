@@ -51,7 +51,7 @@ const Ratings = () => {
     setReviews(placeholder)
   }, []);
 
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <div>

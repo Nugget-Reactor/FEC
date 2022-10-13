@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
+// remove before push
 import sampleData from '../../../../sampledata.js';
+
 import SearchQnA from './SearchQnA.jsx';
 import QuestionsList from './QuestionsList.jsx';
 import QuestionModal from './QuestionModal.jsx';
 
+// remove before push
 console.log(sampleData);
 
 const QnA = () => {
