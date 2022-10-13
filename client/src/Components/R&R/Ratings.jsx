@@ -7,7 +7,7 @@ const Ratings = () => {
     .then(res => console.log(res.data))
     .catch(err => console.error(err));
   }, []);
-
+  //test
   return(
     <div>
 
