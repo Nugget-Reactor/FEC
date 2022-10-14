@@ -15,8 +15,8 @@ var testProduct = {
   "updated_at": "2021-08-13T14:38:44.509Z"
 };
 
-const RelatedItems = () => {
-  const [currentItem, setCurrentItem] = useState(testProduct);
+const RelatedItems = ({product}) => {
+  const [currentItem, setCurrentItem] = useState({product});
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedPrices, setRelatedPrices] = useState([]);
   const [relatedImages, setRelatedImages] = useState([]);
@@ -25,7 +25,7 @@ const RelatedItems = () => {
   useEffect(() => {
     axios.get(`/products/${currentItem.id}/related`) //actually want currentItem.id/related
     .then((results) => {
-      console.log('related', results);
+      console.log('related in Related Items', results);
       setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
     })
     .catch((err) => console.log('error', err));
