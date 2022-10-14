@@ -14,7 +14,7 @@ const App = () => {
   const [currentStyle, setCurrentStyle] = useState({})
 
   useEffect(() => {
-    axios.get('/products/40343')
+    axios.get('/products/40344')
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
   }, [])
@@ -45,6 +45,8 @@ const App = () => {
     <div>
       <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange}/>
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange}/>
+      {/* <RelatedItems /> */}
+
       <Ratings productID={product.id}/>
       <QnA product={product}/>
     </div>

@@ -25,22 +25,28 @@ const getRatings = (productID) => {
     var totalRatings = 0;
     var numberOfRatings = 0;
     var multiplier = 1; // each 1 star review is worth value 1, and 2 : 2, etc.
-    for (var ratingKey in product.data.ratings) {
-      var currentRatings = Number(product.data.ratings[ratingKey]);
-      totalRatings += (currentRatings * multiplier);
-      numberOfRatings += currentRatings;
-      multiplier++;
+    if (product.data.ratings) {
+
+      for (var ratingKey in product.data.ratings) {
+        var currentRatings = Number(product.data.ratings[ratingKey]);
+        totalRatings += (currentRatings * multiplier);
+        numberOfRatings += currentRatings;
+        multiplier++;
+      }
+      var averageStars = totalRatings/numberOfRatings;
+      var obj = {};  //haven't decided how to package this up yet, but this is one option
+      obj[productID] = {rating: totalRatings/numberOfRatings};
+      return obj;
+    } else {
+      return [];
     }
-    var averageStars = totalRatings/numberOfRatings;
-    var obj = {};  //haven't decided how to package this up yet, but this is one option
-    obj[productID] = {rating: totalRatings/numberOfRatings};
-    return obj;
   })
   .catch((err) => console.log('err in related items', err));
 };
 
 module.exports = {
   getRelated: (req, res) => {
+
     return axios.get(`${URL}/products/${req.params.id}/related`)
     .then((results) => {
       var array = [];
@@ -63,7 +69,7 @@ module.exports = {
       Promise.all(productArray)
       .then((results) => {
 
-        console.log('results in server/relatedItems', results[4].results[0].photos[0]);
+        // console.log('results in server/relatedItems', results[4].results[0].photos[0]);
         // maybe I can assemble the product here?
         res.json(results);
       })

@@ -3,6 +3,7 @@ import axios from 'axios';
 import RelatedItem from './RelatedItem.jsx';
 import styled from 'styled-components';
 
+
 var testProduct = {
   "id": 40344,
   "campus": "hr-rfp",
@@ -16,21 +17,20 @@ var testProduct = {
 };
 
 const RelatedItems = ({product}) => {
-  const [currentItem, setCurrentItem] = useState({product});
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedPrices, setRelatedPrices] = useState([]);
   const [relatedImages, setRelatedImages] = useState([]);
 
-  // var relatedObj = {};
   useEffect(() => {
-    axios.get(`/products/${currentItem.id}/related`) //actually want currentItem.id/related
-    .then((results) => {
-      console.log('related in Related Items', results);
-      setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
-    })
-    .catch((err) => console.log('error', err));
-
-  }, [currentItem]);
+    if (product.id) {
+      axios.get(`/products/${product.id}/related`) //actually want currentItem.id/related
+      .then((results) => {
+        console.log('related in Related Items', results);
+        setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
+      })
+      .catch((err) => console.log('error', err));
+    }
+  }, [product]);
 
 
   return (
