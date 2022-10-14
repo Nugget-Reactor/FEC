@@ -18,15 +18,30 @@ var testProduct = {
 const RelatedItems = () => {
   const [currentItem, setCurrentItem] = useState(testProduct);
   const [relatedItems, setRelatedItems] = useState([]);
+  const [relatedPrices, setRelatedPrices] = useState([]);
+  const [relatedImages, setRelatedImages] = useState([]);
 
-  // console.log('currentItem Id', currentItem.id);
+  // var relatedObj = {};
   useEffect(() => {
     axios.get(`/products/${currentItem.id}/related`) //actually want currentItem.id/related
     .then((results) => {
-      setRelatedItems(results.data);
-      // console.log('results in relatedItems', results.data)
+      console.log('related', results);
+      setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
     })
     .catch((err) => console.log('error', err));
+
+    axios.get(`/products/${currentItem.id}/styles`)
+      .then((results) => {
+        setRelatedPrices(results.data);
+      })
+      .catch((err) => console.log('error', err));
+
+    axios.get(`/products/${currentItem.id}/styles`)
+    .then((results) => {
+      setRelatedImages(results.data);
+    })
+    .catch((err) => console.log('error', err));
+
 
   }, [currentItem]);
 

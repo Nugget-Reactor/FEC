@@ -3,7 +3,7 @@ import RelatedItems from './RelatedItems.jsx';
 import styled from 'styled-components';
 
 const RelatedItem = ({relatedItem}) => {
-console.log('item in relatedItem mapped item', relatedItem)
+// console.log('item in relatedItem mapped item', relatedItem)
   //make onclick for card itself
 
   return (
