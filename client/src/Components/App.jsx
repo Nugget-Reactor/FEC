@@ -1,12 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Ratings from './R&R/Ratings.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
 import QnA from './QnA/QnA.jsx';
 import axios from 'axios';
-
-
-const {useState, useEffect} = React;
 
 const App = () => {
   const [product, setProduct] = useState({});
@@ -14,7 +11,7 @@ const App = () => {
   const [currentStyle, setCurrentStyle] = useState({})
 
   useEffect(() => {
-    axios.get('/products/40343')
+    axios.get('/products/40353')
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
   }, [])
