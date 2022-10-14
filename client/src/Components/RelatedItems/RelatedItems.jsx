@@ -17,6 +17,7 @@ var testProduct = {
 };
 
 const RelatedItems = ({product}) => {
+  const [characteristics, setCharacteristics] = useState([]);
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedPrices, setRelatedPrices] = useState([]);
   const [relatedImages, setRelatedImages] = useState([]);
@@ -29,6 +30,15 @@ const RelatedItems = ({product}) => {
         setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
       })
       .catch((err) => console.log('error', err));
+
+      //to do for modal
+      // axios.get(`/reviews/meta?product_id=${product.id}`) //actually want currentItem.id/related
+      // .then((results) => {
+      //   console.log('characteristics in Related Items', results);
+      //   setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
+      // })
+      // .catch((err) => console.log('error', err));
+
     }
   }, [product]);
 
