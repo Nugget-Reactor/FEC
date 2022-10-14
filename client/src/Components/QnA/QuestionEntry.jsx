@@ -16,10 +16,10 @@ const QuestionEntry = ({ entry }) => {
     <div>
       <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
       <QuestionHeading>Helpful?</QuestionHeading>
-      <Button>Yes</Button>
+      <HelpfulQ href="">Yes</HelpfulQ>
       <QuestionHeading>({entry && entry.question_helpfulness})</QuestionHeading>
       <QuestionHeading>|</QuestionHeading>
-      <Button onClick={e => handleAddAnswer(e)}>Add Answer</Button>
+      <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
       <AnswersList answersObj={entry.answers} />
       {showAModal && <AnswerModal handleClick={handleAddAnswer}></AnswerModal>}
     </div>
@@ -33,6 +33,9 @@ const QuestionHeading = styled.div`
   padding: 10px;
 `;
 
-const Button = styled.button`
+const HelpfulQ = styled.a`
+`;
+
+const AddAnswer = styled.a`
 
 `;

@@ -29,15 +29,15 @@ const AnswerModal = ({ handleClick }) => {
           <AnswerInput placeholder="Example: jack543!"></AnswerInput>
           <AnswerText>*Note: For privacy reasons, do not use your full name or email address*</AnswerText>
         </FormDiv>
-        <FormDiv>
+        <FormFooter>
           <AnswerFormPhotos onClick={handlePhotosClick}>Upload Your Photos</AnswerFormPhotos>
           <AddPhotos
             type="file"
             ref={hiddenFileInput}
             style={{ display: 'none' }}
           />
-        </FormDiv>
-        <AnswerFormSubmit onClick={e => handleClick(e)}>Submit Answer</AnswerFormSubmit>
+          <AnswerFormSubmit onClick={e => handleClick(e)}>Submit Answer</AnswerFormSubmit>
+        </FormFooter>
       </AnswerForm>
     </AnswerContainer>
   )
@@ -50,8 +50,11 @@ const AnswerContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: grey;
+  background: rgba(0, 0, 0, 0);
+  background-color: grey;
+  z-index: 200;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -62,6 +65,7 @@ const AnswerContainer = styled.div`
 
 const AnswerForm = styled.form`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -73,6 +77,11 @@ const AddPhotos = styled.input`
 `;
 
 const FormDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const FormFooter = styled.div`
   display: flex;
   flex-direction: column;
 `;
