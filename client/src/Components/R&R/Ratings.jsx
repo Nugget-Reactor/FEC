@@ -17,11 +17,7 @@ const placeholder = [{
   "photos": [{
       "id": 1,
       "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
-    },
-    {
-      "id": 2,
-      "url": "urlplaceholder/review_5_photo_number_2.jpg"
-    },
+    }
     // ...
   ]
 },
