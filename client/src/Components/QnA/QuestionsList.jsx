@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
+import styled from 'styled-components';
 
 const QuestionsList = ({ questionsList }) => {
 
@@ -8,7 +9,7 @@ const QuestionsList = ({ questionsList }) => {
   // }, [])
 
   return (
-    <div>
+    <QuestionListContainer>
       {questionsList.length > 2
         ? questionsList.map((question, index) => {
           if (index < 2) {
@@ -18,8 +19,13 @@ const QuestionsList = ({ questionsList }) => {
         : questionsList.map((question, index) => {
           return <QuestionEntry entry={question} key={index} />
         })}
-    </div>
+    </QuestionListContainer>
   )
 }
 
 export default QuestionsList;
+
+const QuestionListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

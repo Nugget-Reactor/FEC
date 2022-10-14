@@ -21,7 +21,7 @@ const QuestionEntry = ({ entry }) => {
       <QuestionHeading>|</QuestionHeading>
       <Button onClick={e => handleAddAnswer(e)}>Add Answer</Button>
       <AnswersList answersObj={entry.answers} />
-      {showAModal && <AnswerModal></AnswerModal>}
+      {showAModal && <AnswerModal handleClick={handleAddAnswer}></AnswerModal>}
     </div>
   )
 }

@@ -34,8 +34,8 @@ const QnA = ({ product }) => {
       <Heading2>Questions & Answers</Heading2>
       <SearchQnA />
       <QuestionsList questionsList={sampleData.results} />
-      <MoreAnsweredButton>More Answered Questions</MoreAnsweredButton>
-      <AddQButton onClick={handleAddQ}>Add A Question +</AddQButton>
+      <MoreAnsweredButton>MORE ANSWERED QUESTIONS</MoreAnsweredButton>
+      <AddQButton onClick={handleAddQ}>ADD A QUESTION +</AddQButton>
       {showQModal ? <QuestionModal /> : null}
     </QFeatureContainer>
   )
@@ -48,15 +48,19 @@ const Heading2 = styled.h2`
 `;
 
 const AddQButton = styled.button`
-  background-color: coral;
-  width: 200px;
-  height: 75px;
+  border-radius: 0;
+  padding: 15px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 10px;
 `;
 
 const MoreAnsweredButton = styled.button`
-  background-color: coral;
-  width: 200px;
-  height: 75px;
+  border-radius: 0;
+  padding: 15px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 10px;
 `;
 
 const QFeatureContainer = styled.div`
