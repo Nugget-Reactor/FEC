@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
 const RelatedItem = ({relatedItem}) => {
-  // console.log("related item in relatedItem line 7", relatedItem.ratings);
+  // console.log("related item in relatedItem line 7", relatedItem);
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
-  const [regPrice, setRegPrice] = ('');
-  const [salePrice, setSalePrice] = ('');
+  const [regPrice, setRegPrice] = useState('');
+  const [strikeRegPrice, setStrikeRegPrice] = useState('');
+  const [salePrice, setSalePrice] = useState('');
 
 // console.log('item in relatedItem mapped item', relatedItem)
   //make onclick for card itself
@@ -28,13 +29,21 @@ const RelatedItem = ({relatedItem}) => {
       currentStyle.photos.forEach((url) => { //set photo url to default photo
         setCurrentPhotoURL(url.thumbnail_url);
       });
-      //will need pricing state here
-
     }
+    if (currentStyle.sale_price) {
+      setStrikeRegPrice(currentStyle.original_price);
+      setSalePrice(currentStyle.sale_price)
+    } else {
+      setRegPrice(currentStyle.original_price);
+    }
+    //will need pricing state here
   }, [currentStyle]);
 
-// console.log('currentStyle in relatedItem mapped item', currentStyle);
-// console.log('currentStyle photos in relatedItem mapped item', currentStyle.ratings);
+  // console.log('salePrice in relatedItem mapped item', salePrice);
+  // console.log('salePrice in relatedItem mapped item', strikeRegPrice);
+  // console.log('salePrice in relatedItem mapped item', regPrice);
+
+console.log('currentStyle photos in relatedItem mapped item', currentStyle);
 
 
   return (
