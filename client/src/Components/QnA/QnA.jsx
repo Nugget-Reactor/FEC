@@ -28,30 +28,36 @@ const QnA = () => {
 
   return (
     <div>
-      <Heading2>Questions & Answers</Heading2>
-      <SearchQnA />
-      <QuestionsList questionsList={sampleData.results} />
-      <MoreAnsweredButton>More Answered Questions</MoreAnsweredButton>
-      <AddQButton onClick={handleAddQ}>Add A Question +</AddQButton>
-      {showQModal ? <QuestionModal /> : null}
+      <QFeatureContainer>
+        <Heading2>Questions & Answers</Heading2>
+        <SearchQnA />
+        <QuestionsList questionsList={sampleData.results} />
+        <MoreAnsweredButton>More Answered Questions</MoreAnsweredButton>
+        <AddQButton onClick={handleAddQ}>Add A Question +</AddQButton>
+        {showQModal ? <QuestionModal /> : null}
+      </QFeatureContainer>
     </div>
   )
 }
 
 export default QnA;
 
-export const Heading2 = styled.h2`
+const Heading2 = styled.h2`
   color: red;
 `;
 
-export const AddQButton = styled.button`
+const AddQButton = styled.button`
   background-color: coral;
   width: 200px;
   height: 75px;
 `;
 
-export const MoreAnsweredButton = styled.button`
+const MoreAnsweredButton = styled.button`
   background-color: coral;
   width: 200px;
   height: 75px;
+`;
+
+const QFeatureContainer = styled.div`
+
 `;
