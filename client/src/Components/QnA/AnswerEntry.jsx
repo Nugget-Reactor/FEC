@@ -10,10 +10,10 @@ const AnswerEntry = ({ entry }) => {
       <AnswerListFooter>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListFooter>
       <AnswerListFooter> | </AnswerListFooter>
       <AnswerListFooter>Helpful?</AnswerListFooter>
-      <AddAnswerButton>Yes</AddAnswerButton>
+      <AddAnswer href="">Yes</AddAnswer>
       <AnswerListFooter>({entry.helpfulness})</AnswerListFooter>
       <AnswerListFooter> | </AnswerListFooter>
-      <ReportButton>Report</ReportButton>
+      <Report href="">Report</Report>
       <div>
         {!entry.photos.length
           ? null
@@ -39,10 +39,10 @@ const AnswerEntryContainer = styled.div`
 
 `;
 
-const AddAnswerButton = styled.button`
+const AddAnswer = styled.a`
 `;
 
-const ReportButton = styled.button`
+const Report = styled.a`
 `;
 
 const Image = styled.img`

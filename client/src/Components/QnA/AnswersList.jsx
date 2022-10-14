@@ -10,10 +10,8 @@ const AnswersList = ({ answersObj }) => {
     answersArr.push(answersObj[key]);
   }
 
-  // console.log('answers list answer arr', answersArr);
-
   return (
-    <div>
+    <AnswersContainer>
       {answersArr.length > 2
         ? answersArr.map((answer, index) => {
           if (index < 2) {
@@ -23,14 +21,18 @@ const AnswersList = ({ answersObj }) => {
         : answersArr.map((answer, index) => {
           return <AnswerEntry entry={answer} key={index} />
         })}
-      {<LoadMoreAnswers>LOAD MORE ANSWERS</LoadMoreAnswers>}
-    </div>
+      {<LoadMoreAnswers href="">LOAD MORE ANSWERS</LoadMoreAnswers>}
+    </AnswersContainer>
   )
 }
 
 export default AnswersList;
 
-const LoadMoreAnswers = styled.button`
+const AnswersContainer = styled.div`
+  margin: 10px;
+`;
+
+const LoadMoreAnswers = styled.a`
   display: block;
   margin: 10px;
   font-size: 11px;
