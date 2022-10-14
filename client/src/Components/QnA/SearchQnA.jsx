@@ -3,22 +3,29 @@ import styled from 'styled-components';
 
 const SearchQnA = () => {
   return (
-    <div id="SearchQnA">
+    <SearchContainer>
       <Input placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
       <Button>Search Now!</Button>
-    </div>
+    </SearchContainer>
   );
 }
 
 export default SearchQnA;
 
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const Input = styled.input`
-  width: 100%;
+  z-index: 100;
+  width: 90%;
   display: flex;
 `;
 
 const Button = styled.button`
-  background-color: red;
+  z-index: 1;
   display: flex;
+  position: relative;
   border: none;
 `;

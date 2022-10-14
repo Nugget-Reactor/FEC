@@ -11,7 +11,10 @@ import QuestionModal from './QuestionModal.jsx';
 // remove before push
 console.log(sampleData);
 
-const QnA = () => {
+const QnA = ({ product }) => {
+  // const [product_id, setProductID] = useState(product.id);
+
+  // console.log('product prop from questions', product);
 
   const [showQModal, setShowQModal] = useState(false);
 

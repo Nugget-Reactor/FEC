@@ -15,7 +15,7 @@ const App = () => {
   const [currentStyle, setCurrentStyle] = useState({})
 
   useEffect(() => {
-    axios.get('/products/40343')
+    axios.get('/products/40353')
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
   }, [])

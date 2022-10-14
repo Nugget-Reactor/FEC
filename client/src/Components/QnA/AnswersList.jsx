@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { format, parseISO } from 'date-fns';
+
+import AnswerEntry from './AnswerEntry.jsx';
 
 const AnswersList = ({ answersObj }) => {
 
@@ -9,45 +10,28 @@ const AnswersList = ({ answersObj }) => {
     answersArr.push(answersObj[key]);
   }
 
+  // console.log('answers list answer arr', answersArr);
+
   return (
     <div>
-      <AnswerListHeader><b>A:</b> {answersArr[0].body}</AnswerListHeader>
-      <Span>by {answersArr[0].answerer_name}, {format(parseISO(answersArr[0].date), 'MMMM dd, yyy')}</Span>
-      <Span>Helpful?</Span>
-      <Anchor>Yes ({answersArr[0].helpfulness})</Anchor>
-      <Anchor>Report</Anchor>
-      <div>
-        {!answersArr[0].photos.length
-          ? null
-          : <Image src={answersArr[0].photos[0]}></Image>}
-        <div>
-          <Anchor>LOAD MORE ANSWERS</Anchor>
-        </div>
-      </div>
+      {answersArr.length > 2
+        ? answersArr.map((answer, index) => {
+          if (index < 2) {
+            return <AnswerEntry entry={answer} key={index} />
+          }
+        })
+        : answersArr.map((answer, index) => {
+          return <AnswerEntry entry={answer} key={index} />
+        })}
+      {<LoadMoreAnswers>LOAD MORE ANSWERS</LoadMoreAnswers>}
     </div>
   )
 }
 
 export default AnswersList;
 
-const AnswerListHeader = styled.div`
+const LoadMoreAnswers = styled.button`
   display: block;
   margin: 10px;
-`;
-
-const Paragraph = styled.p`
-  padding: 10px;
-`;
-
-const Span = styled.span`
-  padding: 10px;
-`;
-
-const Anchor = styled.a`
-  padding: 10px;
-`;
-
-const Image = styled.img`
-  height: 150px;
-  width: 200px;
+  font-size: 11px;
 `;
