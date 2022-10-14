@@ -1,12 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Ratings from './R&R/Ratings.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
 import QnA from './QnA/QnA.jsx';
 import axios from 'axios';
-
-
-const {useState, useEffect} = React;
 
 const App = () => {
   const [product, setProduct] = useState({});
@@ -15,7 +12,8 @@ const App = () => {
 
   useEffect(() => {
     // axios.get('/products/40344')
-    axios.get('/products/40480')
+    axios.get('/products/40480') //has related items with sale price
+    // axios.get('/products/40353')
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
   }, [])

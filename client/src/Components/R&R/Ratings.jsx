@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import List from './List.jsx';
+import ModalForm from './ModalForm.jsx';
 
 const placeholder = [{
   "review_id": 5,
-  "rating": 3,
+  "rating": 3.8,
   "summary": "I'm enjoying wearing these shades",
   "recommend": false,
   "response": null,
@@ -25,7 +27,7 @@ const placeholder = [{
 },
 {
   "review_id": 3,
-  "rating": 4,
+  "rating": 4.3,
   "summary": "I am liking these glasses",
   "recommend": true,
   "response": "Glad you're enjoying the product!",
@@ -36,10 +38,41 @@ const placeholder = [{
   "photos": [],
 },
 ]
-const Ratings = () => {
+const defaultMetadata = {
+  "product_id": "2",
+  "ratings": {
+    2: 10,
+    3: 1,
+    4: 2,
+    // ...
+  },
+  "recommended": {
+    0: 5
+    // ...
+  },
+  "characteristics": {
+    "Size": {
+      "id": 14,
+      "value": "4.0000"
+    },
+    "Width": {
+      "id": 15,
+      "value": "3.5000"
+    },
+    "Comfort": {
+      "id": 16,
+      "value": "4.0000"
+    },
+  }
+}
+
+const Ratings = ({ productID }) => {
 
   const [reviews, setReviews] = useState([]);
+  const [metadata, setMetadata] = useState({});
   const [sort, setSort] = useState('relevant');
+  const [showModal, setShowModal] = useState(false);
+  const sortRef = useRef();
 
   useEffect(() => {
     /* axios.get(`/reviews?product_id=${1}&sort=${sort}`)
@@ -48,17 +81,73 @@ const Ratings = () => {
       setReviews(res.data.results)
     })
     .catch(err => console.error(err)); */
+    /*
+    axios.get(`/reviews/meta?product_id=${1}`)
+    .then(res => {
+      console.log(res.data);
+      setMetadata(res.data);
+    })
+    */
     setReviews(placeholder)
+    setMetadata(defaultMetadata);
   }, []);
 
-  console.log(reviews);
+  const getReviewCount = () => {
+    let total = 0;
+
+    for(let count in metadata.ratings) {
+      total += metadata.ratings[count];
+    }
+    return total;
+
+  }
 
   return(
-    <div>
+    <Layout>
       <h2>Ratings & Reviews</h2>
-      <List reviews={reviews} />
-    </div>
+      <ColumnContainer>
+        <div>
+          overview
+        </div>
+        <div>
+          <ReviewTitle>{getReviewCount()} reviews, sorted by
+            <Dropdown ref={sortRef}>
+              <option value='relevant'>relevance</option>
+              <option value='helpful'>most helpful</option>
+              <option value='newest'>newest</option>
+            </Dropdown>
+          </ReviewTitle>
+          <List reviews={reviews} />
+
+          <BigButton>MORE REVIEWS</BigButton>
+          <BigButton onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
+        </div>
+      </ColumnContainer>
+      {showModal ? <ModalForm setShowModal={setShowModal} /> : null}
+    </Layout>
   );
 }
 
+const Layout = styled.div`
+  margin: 20px 100px;
+`
+
+const BigButton = styled.button`
+  border-radius: 0;
+  padding: 15px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 10px;
+`
+const ColumnContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+`
+const ReviewTitle = styled.h5`
+  font-size: 1.25rem;
+`
+const Dropdown = styled.select`
+
+`
 export default Ratings;
