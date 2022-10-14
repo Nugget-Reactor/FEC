@@ -44,7 +44,6 @@ const QnA = ({ product }) => {
 export default QnA;
 
 const Heading2 = styled.h2`
-  color: red;
 `;
 
 const AddQButton = styled.button`
