@@ -26,8 +26,8 @@ const RelatedItems = ({product}) => {
     if (product.id) {
       axios.get(`/products/${product.id}/related`) //actually want currentItem.id/related
       .then((results) => {
-        console.log('related in Related Items', results);
-        setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
+        // console.log('related in Related Items', results.data);
+        setRelatedItems(results.data);  //I want this to be an object with all of the properties I want
       })
       .catch((err) => console.log('error', err));
 

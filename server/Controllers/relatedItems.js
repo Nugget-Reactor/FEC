@@ -4,7 +4,6 @@ const _ = require('underscore');
 const getProduct = (productID) => {
   return axios.get(`${URL}/products/${productID}`)
   .then((product) => {
-    // console.log('product', product.data)
     return product.data;
   })
   .catch((err) => console.log('err in related items', err));
@@ -13,7 +12,7 @@ const getProduct = (productID) => {
 const getStyle = (productID) => {
   return axios.get(`${URL}/products/${productID}/styles`)
   .then((product) => {
-    // console.log('style data', product.data)
+
     return product.data;
   })
   .catch((err) => console.log('err in related items', err));
@@ -21,8 +20,6 @@ const getStyle = (productID) => {
 const getRelatedMeta = (productID) => {
   return axios.get(`${URL}/reviews/meta?product_id=${productID}`)
   .then((product) => {
-    // console.log('product data', product.data);
-  // return getRatings(product);
   return product.data;
 
   })
@@ -30,32 +27,32 @@ const getRelatedMeta = (productID) => {
 
 };
 
-const getRatings = (product) => {
-  //from meta I am going to need the:
-  //characteristics for the current item and for the related items
-  // return axios.get(`${URL}/reviews/meta?product_id=${productID}`)
-  // .then((product) => {
-    var totalRatings = 0;
-    var numberOfRatings = 0;
-    var multiplier = 1; // each 1 star review is worth value 1, and 2 : 2, etc.
-    var obj = {};  //haven't decided how to package this up yet, but this is one option
-    if (product.data.ratings) {
+// const getRatings = (product) => {
+//   //from meta I am going to need the:
+//   //characteristics for the current item and for the related items
+//   // return axios.get(`${URL}/reviews/meta?product_id=${productID}`)
+//   // .then((product) => {
+//     var totalRatings = 0;
+//     var numberOfRatings = 0;
+//     var multiplier = 1; // each 1 star review is worth value 1, and 2 : 2, etc.
+//     var obj = {};  //haven't decided how to package this up yet, but this is one option
+//     if (product.data.ratings) {
 
-      for (var ratingKey in product.data.ratings) {
-        var currentRatings = Number(product.data.ratings[ratingKey]);
-        totalRatings += (currentRatings * multiplier);
-        numberOfRatings += currentRatings;
-        multiplier++;
-      }
-      var averageStars = totalRatings/numberOfRatings;
-      obj.rating = totalRatings/numberOfRatings;
-    } else {
-      obj.rating = [];
-    }
-    return obj;
-  // })
-  // .catch((err) => console.log('err in related items', err));
-};
+//       for (var ratingKey in product.data.ratings) {
+//         var currentRatings = Number(product.data.ratings[ratingKey]);
+//         totalRatings += (currentRatings * multiplier);
+//         numberOfRatings += currentRatings;
+//         multiplier++;
+//       }
+//       var averageStars = totalRatings/numberOfRatings;
+//       obj.rating = totalRatings/numberOfRatings;
+//     } else {
+//       obj.rating = [];
+//     }
+//     return obj;
+//   // })
+//   // .catch((err) => console.log('err in related items', err));
+// };
 
 module.exports = {
   getRelated: (req, res) => {
