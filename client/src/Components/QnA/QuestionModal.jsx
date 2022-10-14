@@ -14,14 +14,14 @@ const QuestionModal = () => {
           </div>
           <div>
             <Label>What is your Nickname*: </Label>
-            <input />
+            <Input />
           </div>
           <div>
             <Label>Your Email*: </Label>
-            <input />
+            <Input />
           </div>
           <div>
-            <button>Submit Question</button>
+            <SubmitButton>Submit Question</SubmitButton>
           </div>
         </QuestionForm>
       </QuestionContainer>
@@ -33,10 +33,6 @@ export default QuestionModal;
 
 const QuestionContainer = styled.div`
   position: fixed;
-  /* width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0; */
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -70,4 +66,12 @@ const Label = styled.label`
 
 const TextField = styled.textarea`
   margin: 5px;
+`;
+
+const Input = styled.input`
+  margin: 5px;
+`;
+
+const SubmitButton = styled.button`
+  border: none;
 `;
