@@ -62,6 +62,8 @@ module.exports = {
     .then((productArray) => {
       Promise.all(productArray)
       .then((results) => {
+
+        console.log('results in server/relatedItems', results[4].results[0].photos[0]);
         // maybe I can assemble the product here?
         res.json(results);
       })

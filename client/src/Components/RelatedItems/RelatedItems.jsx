@@ -30,19 +30,6 @@ const RelatedItems = () => {
     })
     .catch((err) => console.log('error', err));
 
-    axios.get(`/products/${currentItem.id}/styles`)
-      .then((results) => {
-        setRelatedPrices(results.data);
-      })
-      .catch((err) => console.log('error', err));
-
-    axios.get(`/products/${currentItem.id}/styles`)
-    .then((results) => {
-      setRelatedImages(results.data);
-    })
-    .catch((err) => console.log('error', err));
-
-
   }, [currentItem]);
 
 
