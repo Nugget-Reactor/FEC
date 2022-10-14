@@ -7,6 +7,11 @@ const AnswerEntry = ({ entry }) => {
   return (
     <AnswerEntryContainer>
       <AnswerListHeader><b>A:</b> {entry.body}</AnswerListHeader>
+      <PhotoContainer>
+        {!entry.photos.length
+          ? null
+          : <Image src={entry.photos[0]}></Image>}
+      </PhotoContainer>
       <AnswerListFooter>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListFooter>
       <AnswerListFooter> | </AnswerListFooter>
       <AnswerListFooter>Helpful?</AnswerListFooter>
@@ -14,11 +19,6 @@ const AnswerEntry = ({ entry }) => {
       <AnswerListFooter>({entry.helpfulness})</AnswerListFooter>
       <AnswerListFooter> | </AnswerListFooter>
       <Report href="">Report</Report>
-      <div>
-        {!entry.photos.length
-          ? null
-          : <Image src={entry.photos[0]}></Image>}
-      </div>
     </AnswerEntryContainer>
   )
 }
@@ -28,21 +28,27 @@ export default AnswerEntry;
 const AnswerListHeader = styled.div`
   display: block;
   margin: 10px;
+  font-size: 1.1rem;
 `;
 
 const AnswerListFooter = styled.div`
   display: inline-block;
-  padding: 10px;
+  padding: 5px;
+  font-size: .9rem;
 `;
 
 const AnswerEntryContainer = styled.div`
+`;
 
+const PhotoContainer = styled.div`
 `;
 
 const AddAnswer = styled.a`
+  font-size: .9rem;
 `;
 
 const Report = styled.a`
+  font-size: .9rem;
 `;
 
 const Image = styled.img`
