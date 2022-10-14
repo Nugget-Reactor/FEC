@@ -21,8 +21,10 @@ const getStyle = (productID) => {
 const getRelatedMeta = (productID) => {
   return axios.get(`${URL}/reviews/meta?product_id=${productID}`)
   .then((product) => {
-    console.log('product data', product.data);
-  return getRatings(product);
+    // console.log('product data', product.data);
+  // return getRatings(product);
+  return product.data;
+
   })
   .catch((err) => console.log('err in related items', err));
 
