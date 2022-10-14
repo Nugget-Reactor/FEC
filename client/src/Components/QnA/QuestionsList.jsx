@@ -10,8 +10,14 @@ const QuestionsList = ({ questionsList }) => {
   return (
     <div>
       {questionsList.length > 2
-        ? <><QuestionEntry entry={questionsList[0]} /></>
-        : <QuestionEntry entry={questionsList[0]} />}
+        ? questionsList.map((question, index) => {
+          if (index < 2) {
+            return <QuestionEntry entry={question} key={index} />
+          }
+        })
+        : questionsList.map((question, index) => {
+          return <QuestionEntry entry={question} key={index} />
+        })}
     </div>
   )
 }

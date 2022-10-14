@@ -14,7 +14,7 @@ const QuestionEntry = ({ entry }) => {
 
   return (
     <div>
-      <QuestionHeading>Q: {entry && entry.question_body}</QuestionHeading>
+      <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
       <QuestionHeading>Helpful?</QuestionHeading>
       <Button>Yes</Button>
       <QuestionHeading>({entry && entry.question_helpfulness})</QuestionHeading>
@@ -30,9 +30,9 @@ export default QuestionEntry;
 
 const QuestionHeading = styled.div`
   display: inline-block;
-  padding: 5px;
+  padding: 10px;
 `;
 
 const Button = styled.button`
-  padding: 5px;
+
 `;
