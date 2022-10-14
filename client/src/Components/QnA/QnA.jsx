@@ -19,7 +19,7 @@ const QnA = ({ product }) => {
   const [showQModal, setShowQModal] = useState(false);
 
   useEffect(() => {
-    axios.get('/questions')
+    axios.get('/qa/questions')
       .then(results => console.log('results data for questions component', results.data))
       .catch(err => console.log('questions error', err))
   }, [])

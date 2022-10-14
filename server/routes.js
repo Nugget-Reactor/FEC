@@ -8,6 +8,6 @@ router.get('/products/:id/styles', controllers.products.getStyles);
 router.get('/products/:id/related', controllers.relatedItems.getRelated);
 router.get('/reviews', controllers.ratings.get);
 
-router.get('/questions', controllers.qnas.get);
+router.get('/qa/questions', controllers.qnas.get);
 
 module.exports = router;
