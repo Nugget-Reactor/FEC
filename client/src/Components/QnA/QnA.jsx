@@ -30,16 +30,14 @@ const QnA = ({ product }) => {
   }
 
   return (
-    <div>
-      <QFeatureContainer>
-        <Heading2>Questions & Answers</Heading2>
-        <SearchQnA />
-        <QuestionsList questionsList={sampleData.results} />
-        <MoreAnsweredButton>More Answered Questions</MoreAnsweredButton>
-        <AddQButton onClick={handleAddQ}>Add A Question +</AddQButton>
-        {showQModal ? <QuestionModal /> : null}
-      </QFeatureContainer>
-    </div>
+    <QFeatureContainer>
+      <Heading2>Questions & Answers</Heading2>
+      <SearchQnA />
+      <QuestionsList questionsList={sampleData.results} />
+      <MoreAnsweredButton>More Answered Questions</MoreAnsweredButton>
+      <AddQButton onClick={handleAddQ}>Add A Question +</AddQButton>
+      {showQModal ? <QuestionModal /> : null}
+    </QFeatureContainer>
   )
 }
 

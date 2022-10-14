@@ -3,29 +3,27 @@ import styled from 'styled-components';
 
 const QuestionModal = () => {
   return (
-    <>
-      <QuestionContainer>
-        <Heading4>Ask Your Question</Heading4>
-        <Heading5>About the [Product Name Here]</Heading5>
-        <QuestionForm>
-          <div>
-            <Label>Your Question*: </Label>
-            <TextField defaultValue="Type Question Here..."></TextField>
-          </div>
-          <div>
-            <Label>What is your Nickname*: </Label>
-            <Input />
-          </div>
-          <div>
-            <Label>Your Email*: </Label>
-            <Input />
-          </div>
-          <div>
-            <SubmitButton>Submit Question</SubmitButton>
-          </div>
-        </QuestionForm>
-      </QuestionContainer>
-    </>
+    <QuestionContainer>
+      <Heading4>Ask Your Question</Heading4>
+      <Heading5>About the [Product Name Here]</Heading5>
+      <QuestionForm>
+        <div>
+          <Label>Your Question*: </Label>
+          <TextField defaultValue="Type Question Here..."></TextField>
+        </div>
+        <div>
+          <Label>What is your Nickname*: </Label>
+          <Input />
+        </div>
+        <div>
+          <Label>Your Email*: </Label>
+          <Input />
+        </div>
+        <div>
+          <SubmitButton>Submit Question</SubmitButton>
+        </div>
+      </QuestionForm>
+    </QuestionContainer>
   )
 }
 
