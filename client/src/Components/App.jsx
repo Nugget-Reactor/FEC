@@ -26,7 +26,7 @@ const App = () => {
     }
   }, [product])
 
-  const handleProductChange = (productID) => {  //this will be for related Items onClick handler
+  const handleProductChange = (productID) => {  //this will be for related Items onClick handler.
     axios.get(`/products/${productID}`)
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))

@@ -46,16 +46,23 @@ const RelatedItems = ({product}) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
-        <div>
+        <RelatedItemsList>
           {relatedItems.map((relatedItem) =>
           <RelatedItem relatedItem={relatedItem} key={relatedItem.id}/>)}
-        </div>
+        </RelatedItemsList>
       </div>
   )
 
 }
 
 export default RelatedItems;
+
+const RelatedItemsList = styled.ul`
+display: inline-block;
+border-radius: 3px;
+border: 2px solid black;
+padding: 0.5rem 0;
+`
 
 
 

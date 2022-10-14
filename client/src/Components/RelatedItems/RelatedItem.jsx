@@ -36,27 +36,49 @@ const RelatedItem = ({relatedItem}) => {
     } else {
       setRegPrice(currentStyle.original_price);
     }
-    //will need pricing state here
   }, [currentStyle]);
 
-  // console.log('salePrice in relatedItem mapped item', salePrice);
-  // console.log('salePrice in relatedItem mapped item', strikeRegPrice);
-  // console.log('salePrice in relatedItem mapped item', regPrice);
 
-console.log('currentStyle photos in relatedItem mapped item', currentStyle);
+  // const RenderPrices = () => {
+  //  {salePrice} ? <salePricing>${salePrice}</salePricing><strikePricing>${strikeRegPrice}</strikePricing> :
+  //    <div>${regPrice}</div>;
+  // }
 
+// need action buttons and longer description
 
   return (
-    <div>
-      <img src={currentPhotoURL}/>
+    <RelatedItemListItem>
+      <RelatedImageDefault src={currentPhotoURL}/>
       <div className="item-category">{relatedItem.category}</div>
       <div className="item-name">{relatedItem.name}</div>
-      <div className="item-price">{relatedItem.default_price}</div>
+      <div className="item-price">${relatedItem.default_price}</div>
       <div>{createStars(ratings)}</div>
       <div className="reviews"></div>
-    </div>
+    </RelatedItemListItem>
   )
-}
+};
 
 export default RelatedItem;
 
+// const
+// const strikePrice = styled.
+const RelatedImageDefault = styled.img`
+height: 300px;
+width: auto;
+`
+
+const RelatedItemListItem = styled.li`
+display: inline-block;
+border-radius: 3px;
+margin: 2px;
+border: 2px solid black;
+padding: 0.5rem 0;
+`
+
+const salePricing = styled.div`
+color: red;
+`
+
+const strikePricing = styled.div`
+text:decoration: line-through;
+`
