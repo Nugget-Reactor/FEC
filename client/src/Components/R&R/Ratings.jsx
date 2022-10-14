@@ -6,7 +6,7 @@ import ModalForm from './ModalForm.jsx';
 
 const placeholder = [{
   "review_id": 5,
-  "rating": 3,
+  "rating": 3.8,
   "summary": "I'm enjoying wearing these shades",
   "recommend": false,
   "response": null,
@@ -27,7 +27,7 @@ const placeholder = [{
 },
 {
   "review_id": 3,
-  "rating": 4,
+  "rating": 4.3,
   "summary": "I am liking these glasses",
   "recommend": true,
   "response": "Glad you're enjoying the product!",
@@ -66,7 +66,7 @@ const defaultMetadata = {
   }
 }
 
-const Ratings = () => {
+const Ratings = ({ productID }) => {
 
   const [reviews, setReviews] = useState([]);
   const [metadata, setMetadata] = useState({});
@@ -92,7 +92,6 @@ const Ratings = () => {
     setMetadata(defaultMetadata);
   }, []);
 
-  // console.log(reviews);
   const getReviewCount = () => {
     let total = 0;
 
