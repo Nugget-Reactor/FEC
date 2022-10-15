@@ -16,7 +16,7 @@ var testProduct = {
   "updated_at": "2021-08-13T14:38:44.509Z"
 };
 
-const RelatedItems = ({product}) => {
+const RelatedItems = ({product, handleProductChange}) => {
   const [characteristics, setCharacteristics] = useState([]);
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedPrices, setRelatedPrices] = useState([]);
@@ -24,10 +24,9 @@ const RelatedItems = ({product}) => {
 
   useEffect(() => {
     if (product.id) {
-      axios.get(`/products/${product.id}/related`) //actually want currentItem.id/related
+      axios.get(`/products/${product.id}/related`)
       .then((results) => {
-        // console.log('related in Related Items', results.data);
-        setRelatedItems(results.data);  //I want this to be an object with all of the properties I want
+        setRelatedItems(results.data);
       })
       .catch((err) => console.log('error', err));
 
@@ -48,7 +47,7 @@ const RelatedItems = ({product}) => {
       <h2>Related Items</h2>
         <RelatedItemsList>
           {relatedItems.map((relatedItem) =>
-          <RelatedItem relatedItem={relatedItem} key={relatedItem.id}/>)}
+          <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id}/>)}
         </RelatedItemsList>
       </div>
   )

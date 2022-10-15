@@ -3,16 +3,15 @@ import RelatedItems from './RelatedItems.jsx';
 import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
-const RelatedItem = ({relatedItem}) => {
-  // console.log("related item in relatedItem line 7", relatedItem);
+const RelatedItem = ({relatedItem, handleProductChange}) => {
+  console.log("related item in relatedItem line 7", relatedItem);
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
   const [strikeRegPrice, setStrikeRegPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
 
-// console.log('item in relatedItem mapped item', relatedItem)
-  //make onclick for card itself
+  /** to set default style for card **/
   var ratings = getAverage(relatedItem.ratings);
   useEffect(() => {
     if (relatedItem.results.length > 0) {
@@ -24,9 +23,10 @@ const RelatedItem = ({relatedItem}) => {
     }
   }, []);
 
+  /** to set default photo and default price for related items card **/
   useEffect(() => {
     if (currentStyle.photos) {
-      currentStyle.photos.forEach((url) => { //set photo url to default photo
+      currentStyle.photos.forEach((url) => {
         setCurrentPhotoURL(url.thumbnail_url);
       });
     }
@@ -38,47 +38,63 @@ const RelatedItem = ({relatedItem}) => {
     }
   }, [currentStyle]);
 
-
-  // const RenderPrices = () => {
-  //  {salePrice} ? <salePricing>${salePrice}</salePricing><strikePricing>${strikeRegPrice}</strikePricing> :
-  //    <div>${regPrice}</div>;
-  // }
-
-// need action buttons and longer description
+  // need action buttons and onClick => change to that product
 
   return (
-    <RelatedItemListItem>
-      <RelatedImageDefault src={currentPhotoURL}/>
+    <RelatedItemListItem onClick={(event) => handleProductChange(relatedItem.id)}>
+      <RelatedImageDiv><RelatedImageDefault src={currentPhotoURL}/></RelatedImageDiv>
       <div className="item-category">{relatedItem.category}</div>
       <div className="item-name">{relatedItem.name}</div>
-      <div className="item-price">${relatedItem.default_price}</div>
+      <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
       <div>{createStars(ratings)}</div>
-      <div className="reviews"></div>
     </RelatedItemListItem>
   )
 };
 
 export default RelatedItem;
 
-// const
-// const strikePrice = styled.
+const Pricing = ({salePrice, regPrice, strikePrice}) => {
+  if (salePrice) {
+    return <SaleAndStrikeBlock><SalePricing>${salePrice}</SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>
+  } else {
+    return <div>${regPrice}</div>
+  }
+};
+
+const RelatedImageDiv = styled.div`
+  margin: 3px;
+  text-align: center;
+  height: 400px;
+  width: 250px;
+  word-wrap: normal;
+`
+
 const RelatedImageDefault = styled.img`
-height: 300px;
-width: auto;
+height: 100%;
+width: 100%;
+object-fit: cover;
 `
 
 const RelatedItemListItem = styled.li`
 display: inline-block;
 border-radius: 3px;
-margin: 2px;
+margin: 5px;
 border: 2px solid black;
-padding: 0.5rem 0;
+padding: 5px;
 `
 
-const salePricing = styled.div`
+const SaleAndStrikeBlock = styled.div`
+// display: inline;
+display: inline-block;
+`
+
+const SalePricing = styled.div`
 color: red;
+margin-right: 5px;
+display: inline-block;
 `
 
-const strikePricing = styled.div`
-text:decoration: line-through;
+const StrikePricing = styled.div`
+text-decoration: line-through;
+display: inline-block;
 `
