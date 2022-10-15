@@ -98,7 +98,7 @@ const Ratings = ({ productID, productName }) => {
 
   }
 
-  return(
+  return (
     <Layout>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>

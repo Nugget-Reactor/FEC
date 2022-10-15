@@ -13,6 +13,6 @@ router.get('/reviews', controllers.ratings.get);
 router.get('/reviews/meta', controllers.ratings.getMeta);
 
 //Questions Routes
-router.get('/questions', controllers.qnas.get);
+router.get('/qa/questions', controllers.qnas.get);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Ratings from './R&R/Ratings.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
@@ -11,7 +11,9 @@ const App = () => {
   const [currentStyle, setCurrentStyle] = useState({})
 
   useEffect(() => {
-    axios.get('/products/40353')
+    // axios.get('/products/40344')
+    axios.get('/products/40480') //has related items with sale price
+    // axios.get('/products/40353')
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
   }, [])
@@ -19,12 +21,12 @@ const App = () => {
   useEffect(() => {
     if (product.id) {
       axios.get(`/products/${product.id}/styles`)
-      .then(res => setProductStyles(res.data.results))
-      .catch(err => console.error(err))
+        .then(res => setProductStyles(res.data.results))
+        .catch(err => console.error(err))
     }
   }, [product])
 
-  const handleProductChange = (productID) => {
+  const handleProductChange = (productID) => {  //this will be for related Items onClick handler.
     axios.get(`/products/${productID}`)
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
@@ -40,10 +42,10 @@ const App = () => {
 
   return (
     <div>
-      <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange}/>
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange}/>
+      <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
       <Ratings productID={product.id} productName={product.name}/>
-      <QnA product={product}/>
+      <QnA product={product} />
     </div>
 
   )
