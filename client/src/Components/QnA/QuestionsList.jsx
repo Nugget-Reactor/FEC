@@ -28,4 +28,7 @@ export default QuestionsList;
 const QuestionListContainer = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  height: 96vh;
+  width: 96vw;
 `;

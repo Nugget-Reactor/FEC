@@ -12,13 +12,15 @@ const AnswerEntry = ({ entry }) => {
           ? null
           : <Image src={entry.photos[0]}></Image>}
       </PhotoContainer>
-      <AnswerListFooter>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListFooter>
-      <AnswerListFooter> | </AnswerListFooter>
-      <AnswerListFooter>Helpful?</AnswerListFooter>
-      <AddAnswer href="">Yes</AddAnswer>
-      <AnswerListFooter>({entry.helpfulness})</AnswerListFooter>
-      <AnswerListFooter> | </AnswerListFooter>
-      <Report href="">Report</Report>
+      <AnswerListFooter>
+        <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
+        <AnswerListDiv> | </AnswerListDiv>
+        <AnswerListDiv>Helpful?</AnswerListDiv>
+        <AddAnswer href="">Yes</AddAnswer>
+        <AnswerListDiv>({entry.helpfulness})</AnswerListDiv>
+        <AnswerListDiv> | </AnswerListDiv>
+        <Report href="">Report</Report>
+      </AnswerListFooter>
     </AnswerEntryContainer>
   )
 }
@@ -27,14 +29,20 @@ export default AnswerEntry;
 
 const AnswerListHeader = styled.div`
   display: block;
-  margin: 10px;
-  font-size: 1.1rem;
+  padding: 5px;
+  font-size: 1rem;
 `;
 
 const AnswerListFooter = styled.div`
-  display: inline-block;
-  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: .5rem .5rem 1.2rem 1.75rem;
   font-size: .9rem;
+`;
+
+const AnswerListDiv = styled.div`
+  padding: 5px;
 `;
 
 const AnswerEntryContainer = styled.div`
@@ -54,5 +62,5 @@ const Report = styled.a`
 const Image = styled.img`
   height: 150px;
   width: 200px;
-  margin: 10px;
+  padding: .5rem 1.75rem .5rem;
 `;

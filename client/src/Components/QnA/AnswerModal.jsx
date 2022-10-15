@@ -17,6 +17,9 @@ const AnswerModal = ({ handleClick }) => {
 
   return (
     <AnswerContainer>
+      <BtnDiv>
+        <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
+      </BtnDiv>
       <AnswerHeading4>Submit Your Answer</AnswerHeading4>
       <AnswerHeading5>[Product Name]: [Question Body]</AnswerHeading5>
       <AnswerForm>
@@ -74,6 +77,17 @@ const AnswerForm = styled.form`
 `;
 
 const AddPhotos = styled.input`
+`;
+
+const CloseBtn = styled.i`
+  position: fixed;
+  left: 58vw;
+  z-index: 1;
+  padding: 5px;
+`;
+
+const BtnDiv = styled.div`
+  display: flex;
 `;
 
 const FormDiv = styled.div`
