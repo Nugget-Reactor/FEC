@@ -62,7 +62,7 @@ const defaultMetadata = {
   }
 }
 
-const Ratings = ({ productID }) => {
+const Ratings = ({ productID, productName }) => {
 
   const [reviews, setReviews] = useState([]);
   const [metadata, setMetadata] = useState({});
@@ -71,28 +71,28 @@ const Ratings = ({ productID }) => {
   const sortRef = useRef();
 
   useEffect(() => {
-    /* axios.get(`/reviews?product_id=${1}&sort=${sort}`)
+    axios.get(`/reviews?product_id=${40344}&sort=${sort}`)
     .then(res => {
-      console.log(res.data)
+      console.log('--->',res.data)
       setReviews(res.data.results)
     })
-    .catch(err => console.error(err)); */
-    /*
-    axios.get(`/reviews/meta?product_id=${1}`)
+    .catch(err => console.error(err));
+
+    axios.get(`/reviews/meta?product_id=${40344}`)
     .then(res => {
       console.log(res.data);
       setMetadata(res.data);
     })
-    */
-    setReviews(placeholder)
-    setMetadata(defaultMetadata);
+
+    // setReviews(placeholder)
+    // setMetadata(defaultMetadata);
   }, []);
 
   const getReviewCount = () => {
     let total = 0;
 
     for(let count in metadata.ratings) {
-      total += metadata.ratings[count];
+      total += Number(metadata.ratings[count]);
     }
     return total;
 
@@ -102,8 +102,8 @@ const Ratings = ({ productID }) => {
     <Layout>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
-        <div>
-          overview
+        <div style={{width: "500px"}}>
+          awef
         </div>
         <div>
           <ReviewTitle>{getReviewCount()} reviews, sorted by
@@ -119,7 +119,7 @@ const Ratings = ({ productID }) => {
           <BigButton onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
         </div>
       </ColumnContainer>
-      {showModal ? <ModalForm setShowModal={setShowModal} /> : null}
+      {showModal ? <ModalForm setShowModal={setShowModal} productName={productName} /> : null}
     </Layout>
   );
 }

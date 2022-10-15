@@ -42,7 +42,7 @@ const App = () => {
     <div>
       <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange}/>
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange}/>
-      <Ratings productID={product.id}/>
+      <Ratings productID={product.id} productName={product.name}/>
       <QnA product={product}/>
     </div>
 

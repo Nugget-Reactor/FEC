@@ -5,24 +5,12 @@ import { createStars } from '../../Tools/createStars';
 
 const Tile = ({ review }) => {
 
-  /* const createStars = () => {
-    let stars = '';
-    for(let i = 0; i < 5; i++) {
-      if(i < review.rating){
-        stars += '★';
-      } else {
-        stars += '☆';
-      }
-    }
-    return stars;
-  } */
-
   return(
     <TileStyle>
 
       <div>{createStars(review.rating)} <span>{review.reviewer_name}, {format(parseISO(review.date), 'MMMM d, yyyy')}</span></div>
       <ReviewTitle>{review.summary}</ReviewTitle>
-      <p>{review.body}</p>
+      <ReviewBody>{review.body}</ReviewBody>
       {review.recommend && <div>I recommend this product!</div>}
       {review.response && <div>{review.reponse}</div>}
 
@@ -50,6 +38,10 @@ const SmallButton = styled.button`
 
 const ReviewTitle = styled.h5`
   font-size: 1.25rem;
+`
+
+const ReviewBody = styled.p`
+  word-break: break-word;
 `
 
 const Thumbnail = styled.img`

@@ -11,6 +11,17 @@ const ratings = {
       console.log(err);
       res.sendStatus(404)
     });
+  },
+
+  getMeta: (req, res) => {
+    axios.get(`${URL}/reviews/meta?product_id=${req.query.product_id}`)
+    .then((result) => {
+      res.json(result.data)
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(404);
+    })
   }
 };
 
