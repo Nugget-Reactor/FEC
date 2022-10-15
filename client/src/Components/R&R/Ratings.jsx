@@ -15,13 +15,13 @@ const placeholder = [{
   "reviewer_name": "shortandsweeet",
   "helpfulness": 5,
   "photos": [{
-      "id": 1,
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
-    },
-    {
-      "id": 2,
-      "url": "urlplaceholder/review_5_photo_number_2.jpg"
-    },
+    "id": 1,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
+  },
+  {
+    "id": 2,
+    "url": "urlplaceholder/review_5_photo_number_2.jpg"
+  },
     // ...
   ]
 },
@@ -95,14 +95,14 @@ const Ratings = ({ productID }) => {
   const getReviewCount = () => {
     let total = 0;
 
-    for(let count in metadata.ratings) {
+    for (let count in metadata.ratings) {
       total += metadata.ratings[count];
     }
     return total;
 
   }
 
-  return(
+  return (
     <Layout>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>

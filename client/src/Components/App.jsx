@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Ratings from './R&R/Ratings.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
@@ -21,8 +21,8 @@ const App = () => {
   useEffect(() => {
     if (product.id) {
       axios.get(`/products/${product.id}/styles`)
-      .then(res => setProductStyles(res.data.results))
-      .catch(err => console.error(err))
+        .then(res => setProductStyles(res.data.results))
+        .catch(err => console.error(err))
     }
   }, [product])
 
@@ -42,10 +42,10 @@ const App = () => {
 
   return (
     <div>
-      <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange}/>
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange}/>
-      <Ratings productID={product.id}/>
-      <QnA product={product}/>
+      <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
+      <Ratings productID={product.id} />
+      <QnA product={product} />
     </div>
 
   )
