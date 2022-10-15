@@ -8,5 +8,5 @@ module.exports = {
   ratings,
   qnas,
   relatedItems,
-  products,
+  products
 }
