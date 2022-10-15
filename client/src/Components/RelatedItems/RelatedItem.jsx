@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import RelatedItems from './RelatedItems.jsx';
 import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const RelatedItem = ({relatedItem, handleProductChange}) => {
-  console.log("related item in relatedItem line 7", relatedItem);
+  // console.log("related item in relatedItem line 7", relatedItem);
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
@@ -38,13 +40,14 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
     }
   }, [currentStyle]);
 
-  // need action buttons and onClick => change to that product
-
+  // need action button to look better and be functional => Compare modal
+  // also if no reviews, no star div
   return (
     <RelatedItemListItem onClick={(event) => handleProductChange(relatedItem.id)}>
-      <RelatedImageDiv><RelatedImageDefault src={currentPhotoURL}/></RelatedImageDiv>
-      <div className="item-category">{relatedItem.category}</div>
-      <div className="item-name">{relatedItem.name}</div>
+      <RelatedImageDiv><RelatedDefaultImage src={currentPhotoURL}/>
+        <ActionButtonRelatedIcon><ActionButtonRelated></ActionButtonRelated></ActionButtonRelatedIcon></RelatedImageDiv>
+      <h5>{relatedItem.category}</h5>
+      <h4>{relatedItem.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
       <div>{createStars(ratings)}</div>
     </RelatedItemListItem>
@@ -62,14 +65,41 @@ const Pricing = ({salePrice, regPrice, strikePrice}) => {
 };
 
 const RelatedImageDiv = styled.div`
+  position:relative;
   margin: 3px;
   text-align: center;
   height: 400px;
   width: 250px;
   word-wrap: normal;
 `
+const ActionButtonRelated = styled.button`
+  position:absolute;
+  right: 6px;
+  top: 6px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #f80;
+  &::after {
+    font-family: FontAwesome;
+    content: "\\f005";
+  }
+`
+const ActionButtonRelatedIcon = styled.button`
+  position:absolute;
+  font-size: 41px;
+  right: 0;
+  top: 0;
+  background: none;
+  border: none;
+  color: #000;
+  &::after {
+    font-family: FontAwesome;
+    content: "\\f005";
+  }
+`
 
-const RelatedImageDefault = styled.img`
+const RelatedDefaultImage = styled.img`
 height: 100%;
 width: 100%;
 object-fit: cover;
