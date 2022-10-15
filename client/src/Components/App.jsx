@@ -11,7 +11,9 @@ const App = () => {
   const [currentStyle, setCurrentStyle] = useState({})
 
   useEffect(() => {
-    axios.get('/products/40353')
+    // axios.get('/products/40344')
+    axios.get('/products/40480') //has related items with sale price
+    // axios.get('/products/40353')
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
   }, [])
@@ -24,7 +26,7 @@ const App = () => {
     }
   }, [product])
 
-  const handleProductChange = (productID) => {
+  const handleProductChange = (productID) => {  //this will be for related Items onClick handler.
     axios.get(`/products/${productID}`)
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
