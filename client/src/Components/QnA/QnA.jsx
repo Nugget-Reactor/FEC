@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 // remove before push
-import sampleData from '../../../../sampledata.js';
+import sampleData from '../../../../samplequestions.js';
 
 import SearchQnA from './SearchQnA.jsx';
 import QuestionsList from './QuestionsList.jsx';
 import QuestionModal from './QuestionModal.jsx';
 
 // remove before push
-console.log(sampleData);
+// console.log(sampleData);
 
 const QnA = ({ product }) => {
   // const [product_id, setProductID] = useState(product.id);
@@ -20,7 +20,7 @@ const QnA = ({ product }) => {
 
   useEffect(() => {
     axios.get('/qa/questions')
-      .then(results => console.log('results data for questions component', results.data))
+      .then(/*results => console.log('results data for questions component', results.data)*/)
       .catch(err => console.log('questions error', err))
   }, [])
 
