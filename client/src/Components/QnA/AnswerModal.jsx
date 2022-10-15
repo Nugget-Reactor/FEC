@@ -81,7 +81,7 @@ const AddPhotos = styled.input`
 
 const CloseBtn = styled.i`
   position: fixed;
-  left: 58vw;
+  left: 57vw;
   z-index: 1;
   padding: 5px;
 `;
