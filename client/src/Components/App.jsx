@@ -14,7 +14,7 @@ const App = () => {
   const [currentStyle, setCurrentStyle] = useState({})
 
   useEffect(() => {
-    axios.get('/products/40343')
+    axios.get('/products/40344')
       .then(res => setProduct(res.data))
       .catch(err => console.error(err))
   }, [])
@@ -26,6 +26,16 @@ const App = () => {
       .catch(err => console.error(err))
     }
   }, [product])
+
+  useEffect(() => {
+    if (productStyles.length > 0) {
+      productStyles.forEach((style) => {
+        if (style['default?']) {
+          setCurrentStyle(style)
+        }
+      })
+    }
+  })
 
   const handleProductChange = (productID) => {
     axios.get(`/products/${productID}`)
@@ -43,7 +53,10 @@ const App = () => {
 
   return (
     <div>
-      <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange}/>
+      {console.log('product', product)}
+      {console.log('productStyles', productStyles)}
+      {console.log('currentStyle', currentStyle)}
+      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange}/>
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange}/>
       <Ratings productID={product.id}/>
       <QnA product={product}/>

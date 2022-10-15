@@ -3,10 +3,12 @@ import styled from "styled-components"
 
 const {useState, useEffect} = React
 
-const ProductInfo = ({product, productStyles}) => {
+const ProductInfo = ({product, productStyles, currentStyle, handleStyleChange}) => {
 
   return (
-    <p>Hello World</p>
+    <div className="product-info-container">
+
+    </div>
   )
 }
 
@@ -14,3 +16,6 @@ export default ProductInfo;
 
 
 
+const ProductName = styled.h2`
+
+`
