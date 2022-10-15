@@ -30,6 +30,11 @@ export default AnswersList;
 
 const AnswersContainer = styled.div`
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 50vh;
+  width: 96vw;
 `;
 
 const LoadMoreAnswers = styled.a`
