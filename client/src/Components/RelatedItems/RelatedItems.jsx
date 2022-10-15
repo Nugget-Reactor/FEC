@@ -37,7 +37,6 @@ const RelatedItems = ({ product, handleProductChange }) => {
           <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
       </RelatedItemsList>
     </div>
-    </div >
   )
 }
 
