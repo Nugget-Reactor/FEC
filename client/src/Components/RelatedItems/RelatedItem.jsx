@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import RelatedItems from './RelatedItems.jsx';
 import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 const RelatedItem = ({relatedItem, handleProductChange}) => {

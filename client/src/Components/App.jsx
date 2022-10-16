@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Ratings from './R&R/Ratings.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
@@ -12,10 +13,9 @@ const App = () => {
 
   useEffect(() => {
     // axios.get('/products/40344')
-    axios.get('/products/40480') //has related items with sale price
+    // axios.get('/products/40480') //has related items with sale price
     // axios.get('/products/40353')
-      .then(res => setProduct(res.data))
-      .catch(err => console.error(err))
+    handleProductChange('40480');
   }, [])
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const App = () => {
     <div>
       <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <Ratings productID={product.id} />
+      <Ratings productID={product.id} productName={product.name}/>
       <QnA product={product} />
     </div>
 
