@@ -12,10 +12,9 @@ const App = () => {
 
   useEffect(() => {
     // axios.get('/products/40344')
-    axios.get('/products/40480') //has related items with sale price
+    // axios.get('/products/40480') //has related items with sale price
     // axios.get('/products/40353')
-      .then(res => setProduct(res.data))
-      .catch(err => console.error(err))
+    handleProductChange('40480');
   }, [])
 
   useEffect(() => {

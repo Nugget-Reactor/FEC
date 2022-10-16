@@ -13,9 +13,18 @@ const ModalForm = ({ setShowModal, productName }) => {
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
 
+  const escModal = (e) => {
+    if(e.key === 'Escape'){
+      setShowModal(false);
+    }
+  }
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return ()=> document.body.style.overflow = 'unset';
+    document.addEventListener('keydown', escModal, false);
+    return ()=> {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', escModal, false);
+    }
   }, []);
 
   const createStarInput = () => {
@@ -60,7 +69,7 @@ const ModalForm = ({ setShowModal, productName }) => {
   }
   return(
     <ModalContainer>
-      <Modal onSubmit={handleSubmit}>
+      <Modal onSubmit={handleSubmit} >
         <ModalHeader>
           <div>
             <h5>Write your review</h5>

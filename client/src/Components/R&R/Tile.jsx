@@ -16,7 +16,7 @@ const Tile = ({ review }) => {
 
       {review.photos.length
       && <div>
-        {review.photos.map(photo => <Thumbnail key={photo.id} src={photo.url} />)}
+        {review.photos.map(photo => <Thumbnail key={photo.id} imgLink={photo.url}  />)}
       </div> }
 
       <div>Helpful? <SmallButton>Yes</SmallButton>({review.helpfulness}) | <SmallButton>Report</SmallButton></div>
@@ -44,8 +44,16 @@ const ReviewBody = styled.p`
   word-break: break-word;
 `
 
-const Thumbnail = styled.img`
-  width: 150px;
+const Thumbnail = styled.a`
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-image: url(${props => props.imgLink});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  margin-right: 2px;
 `
 
 export default Tile;
