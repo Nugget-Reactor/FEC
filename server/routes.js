@@ -11,6 +11,7 @@ router.get('/products/:id/related', controllers.relatedItems.getRelated);
 //Reviews Routes
 router.get('/reviews', controllers.ratings.get);
 router.get('/reviews/meta', controllers.ratings.getMeta);
+router.put('/reviews/:review_id/helpful', controllers.ratings.helpful);
 
 //Questions Routes
 router.get('/qa/questions', controllers.qnas.get);

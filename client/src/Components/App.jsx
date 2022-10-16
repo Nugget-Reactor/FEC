@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Ratings from './R&R/Ratings.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx'

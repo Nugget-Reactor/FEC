@@ -22,6 +22,17 @@ const ratings = {
       console.log(err);
       res.sendStatus(404);
     })
+  },
+
+  helpful: (req, res) => {
+    axios.put(`${URL}/reviews/${req.params.review_id}/helpful`)
+    .then(result => {
+      res.sendStatus(204);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(404);
+    })
   }
 };
 

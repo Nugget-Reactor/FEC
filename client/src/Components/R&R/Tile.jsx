@@ -1,25 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { format, parseISO } from 'date-fns';
 import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
+import Modal from './Modal.jsx';
 
 const Tile = ({ review }) => {
+  const [showImgModal, setShowImgModal] = useState(false);
+  const [currentImage, setCurrentImage] = useState('');
+  const [showMore, setShowMore] = useState(false);
+  const [alreadyVoted, setAlreadyVoted] = useState(false);
 
+  const handleImgModal = (link) => {
+    setCurrentImage(link);
+    setShowImgModal(true);
+  }
+  const shortenBody = () => {
+    if(!showMore && review.body.length > 250) {
+      return review.body.substring(0, 250) + '...';
+    }
+    return review.body;
+  }
+  const voteHelpful = () => {
+    axios.put(`/reviews/${review.review_id}/helpful`)
+    .then((result) => {
+      setAlreadyVoted(true);
+    })
+    .catch(err => console.error(err));
+  }
   return(
     <TileStyle>
 
-      <div>{createStars(review.rating)} <span>{review.reviewer_name}, {format(parseISO(review.date), 'MMMM d, yyyy')}</span></div>
+      <ReviewHeader>
+        <span>{createStars(review.rating)}</span>
+        <span>{review.reviewer_name}, {format(parseISO(review.date), 'MMMM d, yyyy')}</span>
+      </ReviewHeader>
       <ReviewTitle>{review.summary}</ReviewTitle>
-      <ReviewBody>{review.body}</ReviewBody>
-      {review.recommend && <div>I recommend this product!</div>}
-      {review.response && <div>{review.reponse}</div>}
+      <ReviewBody>
+        {shortenBody()}
+        {!showMore && review.body.length > 250 ? <SmallButton onClick={()=>setShowMore(true)} color="blue">Show More</SmallButton>
+        : null}
+      </ReviewBody>
+      {review.recommend ? <div><i className="fa-solid fa-check"/> I recommend this product!</div> : null}
+      {review.response
+      ? <div>
+        Response from seller
+        <div>{review.response}</div>
+      </div>
+      : null}
 
       {review.photos.length
       && <div>
-        {review.photos.map(photo => <Thumbnail key={photo.id} imgLink={photo.url}  />)}
+        {review.photos.map(photo => <Thumbnail key={photo.id} imgLink={photo.url} onClick={()=>handleImgModal(photo.url)} />)}
       </div> }
+      {showImgModal
+      ? <Modal setShowModal={setShowImgModal}>
+        <img src={currentImage} />
+      </Modal>
+      : null}
 
-      <div>Helpful? <SmallButton>Yes</SmallButton>({review.helpfulness}) | <SmallButton>Report</SmallButton></div>
+
+      <div>
+        {!alreadyVoted ? <span>Helpful? <SmallButton onClick={voteHelpful}>Yes</SmallButton>({review.helpfulness})</span> : <ThanksMessage><i className="fa-solid fa-check"/> Thank you for your feedback!</ThanksMessage>} | <SmallButton>Report</SmallButton>
+      </div>
 
     </TileStyle>
   );
@@ -34,8 +77,13 @@ const SmallButton = styled.button`
   text-decoration: underline;
   border: none;
   background: none;
+  color: ${props=>props.color};
+  cursor: pointer;
 `
-
+const ReviewHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 const ReviewTitle = styled.h5`
   font-size: 1.25rem;
 `
@@ -54,6 +102,10 @@ const Thumbnail = styled.a`
   background-size: cover;
 
   margin-right: 2px;
+`
+const ThanksMessage = styled.span`
+  color:green;
+
 `
 
 export default Tile;

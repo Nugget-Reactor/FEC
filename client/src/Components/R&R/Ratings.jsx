@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import List from './List.jsx';
 import ModalForm from './ModalForm.jsx';
+import Modal from './Modal.jsx';
 
 const Ratings = ({ productID, productName }) => {
 
@@ -75,7 +76,7 @@ const Ratings = ({ productID, productName }) => {
           <BigButton onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
         </div>
       </ColumnContainer>
-      {showModal ? <ModalForm setShowModal={setShowModal} productName={productName} /> : null}
+      {showModal ? <Modal setShowModal={setShowModal}><ModalForm productName={productName} /></Modal> : null}
     </Layout>
   );
 }
@@ -90,6 +91,7 @@ const BigButton = styled.button`
   font-weight: 700;
   font-size: 1rem;
   margin: 10px;
+  cursor: pointer;
 `
 const ColumnContainer = styled.div`
   display: flex;
@@ -102,5 +104,6 @@ const ReviewTitle = styled.h5`
 const Dropdown = styled.select`
   margin: 0 10px;
   font-size: inherit;
+  cursor: pointer;
 `
 export default Ratings;
