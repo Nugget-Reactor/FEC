@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
 
@@ -16,6 +17,7 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
     let formQuestion = question;
     let formNickname = nickname;
     let formEmail = email;
+    let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (formQuestion === '') {
       alert('Question field must be filled out');
       return false;
@@ -24,7 +26,7 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
       alert('Nickname field must be filled out');
       return false;
     }
-    if (formEmail === '') {
+    if (!formEmail.match(validEmail)) {
       alert('Email must be in following format: example@example.example');
       return false;
     }
@@ -33,14 +35,21 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
 
   const handleSubmitQ = (e) => {
     e.preventDefault();
-    console.log('question', question);
-    console.log('nickname', nickname);
-    console.log('email', email);
+    let qObj = {};
+    qObj.body = question;
+    qObj.name = nickname;
+    qObj.email = email;
+    qObj.product_id = product_id;
+    console.log('handleSubmit question object', qObj);
     if (validateForm()) {
-      setShowQModal(!showQModal);
-      setQuestion('');
-      setNickname('');
-      setEmail('');
+      axios.post(`/qa/questions?product_id=${product_id}`, qObj)
+        .then(results => {
+          setShowQModal(!showQModal);
+          setQuestion('');
+          setNickname('');
+          setEmail('');
+        })
+        .catch(err => console.log('Error submitting question', err))
     }
     // setShowQModal(!showQModal);
 
