@@ -11,20 +11,20 @@ const QuestionModal = ({ name, handleClick }) => {
   return (
     <QuestionContainer>
       <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
-      <Heading4>Ask Your Question</Heading4>
-      <Heading5>About the <i>{name}</i></Heading5>
       <QuestionForm>
+        <Heading4>Ask Your Question</Heading4>
+        <Heading5>About the <i>{name}</i></Heading5>
         <QuestionBody>
           <Label>Your Question*: </Label>
-          <TextField defaultValue="Type Question Here..."></TextField>
+          <TextField placeholder="Type Question Here..."></TextField>
         </QuestionBody>
         <QuestionBody>
           <Label>What is your Nickname*: </Label>
-          <Input />
+          <Input placeholder="Type Nickname Here..." />
         </QuestionBody>
         <QuestionBody>
           <Label>Your Email*: </Label>
-          <Input />
+          <Input placeholder="Type Email Here..." />
         </QuestionBody>
         <QuestionBody>
           <SubmitButton>Submit Question</SubmitButton>
@@ -38,23 +38,27 @@ export default QuestionModal;
 
 const QuestionContainer = styled.div`
   position: fixed;
+  height: 100vh;
+  width: 100vw;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: grey;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
   border: 1px solid #ccc;
+  backdrop-filter: blur(6px);
+  background-color: rgba(45, 52, 54, 0.9);
 `;
 
 const Heading4 = styled.h4`
+  font-size: 1.25rem;
   margin: 5px;
 `;
 
 const Heading5 = styled.h5`
+  font-size: 1.1rem;
   margin: 5px;
 `;
 

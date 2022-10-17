@@ -45,5 +45,5 @@ const AnswersContainer = styled.div`
 const LoadMoreAnswers = styled.a`
   display: block;
   margin: 10px;
-  font-size: 11px;
+  font-size: 1rem;
 `;

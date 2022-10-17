@@ -18,9 +18,9 @@ const AnswerModal = ({ handleClick, body, name }) => {
   return (
     <AnswerContainer>
       <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
-      <AnswerHeading4>Submit Your Answer</AnswerHeading4>
-      <AnswerHeading5>{name}: {body}</AnswerHeading5>
       <AnswerForm>
+        <AnswerHeading4>Submit Your Answer</AnswerHeading4>
+        <AnswerHeading5>{name}: {body}</AnswerHeading5>
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
           <AnswerField placeholder="Your Answer Here..."></AnswerField>
@@ -48,20 +48,22 @@ export default AnswerModal;
 
 const AnswerContainer = styled.div`
   position: fixed;
+  height: 100vh;
+  width: 100vw;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0);
-  background-color: grey;
   z-index: 200;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
-  width: auto;
+  height: 100vh;
+  width: 100vw;
   border: 1px solid #ccc;
+  backdrop-filter: blur(6px);
+  background-color: rgba(45, 52, 54, 0.9);
 `;
 
 const AnswerForm = styled.form`
@@ -116,10 +118,12 @@ const AnswerFormPhotos = styled.button`
 
 const AnswerHeading4 = styled.h4`
   display: block;
+  margin: 5px;
 `;
 
 const AnswerHeading5 = styled.h5`
   display: inline-block;
+  margin: 5px;
 `;
 
 const AnswerText = styled.span`

@@ -34,14 +34,14 @@ const QuestionEntryContainer = styled.div`
 `;
 
 const QuestionHeading = styled.div`
-  display: block;
+  display: inline-block;
   padding: 10px;
   font-size: 1.25rem;
 `;
 
 const QuestionSubHeading = styled.div`
   display: inline-block;
-  padding: 5px 5px 5px 23px;
+  padding: 5px;
   font-size: .8rem;
 `;
 
