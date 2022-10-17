@@ -28,7 +28,12 @@ const AnswerModal = ({ handleClick, body, name }) => {
         <FormDiv>
           <AnswerLabel>What is your Nickname*:</AnswerLabel>
           <AnswerInput placeholder="Example: jack543!"></AnswerInput>
-          <AnswerText>*Note: For privacy reasons, do not use your full name or email address*</AnswerText>
+          <AnswerText>Note: For privacy reasons, do not use your full name or email address</AnswerText>
+        </FormDiv>
+        <FormDiv>
+          <AnswerLabel>What is your Email*:</AnswerLabel>
+          <AnswerInput placeholder="Example: jack@email.com"></AnswerInput>
+          <AnswerText>Note: For authentication reasons, you will not be emailed</AnswerText>
         </FormDiv>
         <FormFooter>
           <AnswerFormPhotos onClick={handlePhotosClick}>Upload Your Photos</AnswerFormPhotos>

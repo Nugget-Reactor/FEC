@@ -1,33 +1,98 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const QuestionModal = ({ product_id, name, handleClick }) => {
+const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
+
+  const [question, setQuestion] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => document.body.style.overflow = 'unset';
   }, []);
 
+  const validateForm = () => {
+    let formQuestion = question;
+    let formNickname = nickname;
+    let formEmail = email;
+    if (formQuestion === '') {
+      alert('Question field must be filled out');
+      return false;
+    }
+    if (formNickname === '') {
+      alert('Nickname field must be filled out');
+      return false;
+    }
+    if (formEmail === '') {
+      alert('Email must be in following format: example@example.example');
+      return false;
+    }
+    return true;
+  }
+
+  const handleSubmitQ = (e) => {
+    e.preventDefault();
+    console.log('question', question);
+    console.log('nickname', nickname);
+    console.log('email', email);
+    if (validateForm()) {
+      setShowQModal(!showQModal);
+      setQuestion('');
+      setNickname('');
+      setEmail('');
+    }
+    // setShowQModal(!showQModal);
+
+  }
+
   return (
     <QuestionContainer>
-      <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
+      <CloseBtn onClick={() => setShowQModal(!showQModal)} className="fa-solid fa-x"></CloseBtn>
       <QuestionForm>
         <Heading4>Ask Your Question</Heading4>
         <Heading5>About the <i>{name}</i></Heading5>
         <QuestionBody>
           <Label>Your Question*: </Label>
-          <TextField placeholder="Type Question Here..."></TextField>
+          <TextField
+            placeholder="Why did you like the product or not?"
+            value={question}
+            onChange={e => setQuestion(e.target.value)}
+            type="text"
+            required="required"
+            maxlength="1000"
+          ></TextField>
         </QuestionBody>
         <QuestionBody>
           <Label>What is your Nickname*: </Label>
-          <Input placeholder="Type Nickname Here..." />
+          <Input
+            placeholder="Type Nickname Here..."
+            value={nickname}
+            onChange={e => setNickname(e.target.value)}
+            type="text"
+            required="required"
+            maxlength="60"
+          />
+          <InputNote><i>
+            Note: For privacy reasons, do not use your full name or email address
+          </i></InputNote>
         </QuestionBody>
         <QuestionBody>
           <Label>Your Email*: </Label>
-          <Input placeholder="Type Email Here..." />
+          <Input
+            placeholder="Type Email Here..."
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required="required"
+            maxlength="60"
+            type="email"
+          />
+          <InputNote><i>
+            Note: For authentication reasons, you will not be emailed
+          </i></InputNote>
         </QuestionBody>
         <QuestionBody>
-          <SubmitButton>Submit Question</SubmitButton>
+          <SubmitButton onClick={handleSubmitQ}>Submit Question</SubmitButton>
         </QuestionBody>
       </QuestionForm>
     </QuestionContainer>
@@ -97,5 +162,8 @@ const Input = styled.input`
 `;
 
 const SubmitButton = styled.button`
+`;
 
+const InputNote = styled.span`
+  margin: 5px;
 `;

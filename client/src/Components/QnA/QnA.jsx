@@ -24,17 +24,12 @@ const QnA = ({ product }) => {
     }
   }, [product])
 
-  const handleAddQ = (e) => {
-    e.preventDefault();
-    setShowQModal(!showQModal)
-  }
-
   return (
     <QFeatureContainer>
       <Heading2>Questions & Answers</Heading2>
       <SearchQnA />
-      <QuestionsList questionsList={questions} name={product.name} handleAddQ={handleAddQ} />
-      {showQModal ? <QuestionModal product_id={product.id} name={product.name} handleClick={handleAddQ}></QuestionModal> : null}
+      <QuestionsList questionsList={questions} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal} />
+      {showQModal ? <QuestionModal product_id={product.id} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal}></QuestionModal> : null}
     </QFeatureContainer>
   )
 }

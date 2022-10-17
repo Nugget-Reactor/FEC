@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
 import styled from 'styled-components';
 
-const QuestionsList = ({ questionsList, name, handleAddQ }) => {
+const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
 
   const [totalCount, setTotalCount] = useState(0);
   const [currCount, setCurrCount] = useState(0);
@@ -33,7 +33,7 @@ const QuestionsList = ({ questionsList, name, handleAddQ }) => {
       </QuestionListBody>
       <QuestionListFooter>
         {currCount < totalCount && <MoreAnsweredButton onClick={handleMoreAs}>MORE ANSWERED QUESTIONS</MoreAnsweredButton>}
-        <AddQButton onClick={handleAddQ}>ADD A QUESTION +</AddQButton>
+        <AddQButton onClick={() => setShowQModal(!showQModal)}>ADD A QUESTION +</AddQButton>
       </QuestionListFooter>
     </QuestionListContainer>
   )
