@@ -34,10 +34,25 @@
   order: 0;
   flex: 0 1 auto;
   align-self: auto;
-  border: transparent 5px black;
+  border: transparent 5px;
   width: auto;
   height: 75px;
   margin: 10px;
+}
+
+.thumbnail-active {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  padding: 2px;
+  border-bottom: solid 5px black;
+  width: auto;
+  height: 75px;
+  margin: 10px;
+}
+
+.thumbnail-active:hover {
+  cursor: pointer;
 }
 
 .thumbnail:hover {

@@ -2,7 +2,6 @@ const { axios, URL } = require('./env/config.js');
 
 const ratings = {
   get: (req, res) => {
-
     axios.get(`${URL}/reviews?product_id=${req.query.product_id}`)
     .then((result) => {
       res.json(result.data)
@@ -11,7 +10,7 @@ const ratings = {
       console.log(err);
       res.sendStatus(404)
     });
-  }
+  },
 };
 
 module.exports = ratings;

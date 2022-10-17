@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const router = require('./routes.js')
+const router = require('./routes.js');
 
 const app = express();
 
