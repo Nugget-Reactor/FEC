@@ -6,18 +6,15 @@ const QuestionsList = ({ questionsList, name, handleAddQ }) => {
 
   const [totalCount, setTotalCount] = useState(0);
   const [currCount, setCurrCount] = useState(0);
-  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
     setTotalCount(questionsList.length);
-    setFilteredList(questionsList);
   }, [questionsList]);
 
-  console.log(filteredList, totalCount);
+  console.log('QuestionsList totalCount', totalCount);
 
   const handleMoreAs = (e) => {
     e.preventDefault();
-    setFilteredList(filteredList.slice(2));
     setCurrCount(currCount + 2);
   }
 
