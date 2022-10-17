@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import List from './List.jsx';
 import ModalForm from './ModalForm.jsx';
 import Modal from './Modal.jsx';
+import Breakdown from './Breakdown.jsx';
 
 const Ratings = ({ productID, productName }) => {
 
@@ -60,7 +61,7 @@ const Ratings = ({ productID, productName }) => {
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
         <div style={{width: "500px"}}>
-          awef
+          <Breakdown metadata={metadata} />
         </div>
         <div>
           <ReviewTitle>{totalCount} reviews, sorted by
