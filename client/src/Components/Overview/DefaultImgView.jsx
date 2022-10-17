@@ -40,7 +40,7 @@ const DefaultImageView = ({product, productStyles, currentStyle, handleExpansion
         currentStyle.photos && currentStyle.photos.map((slide, index) => {
           return (
             <div className={index === slideNumber ? 'slide active' : 'slide'} key={index}>
-              {index === slideNumber && (<img onClick={() => handleExpansion()} className='image' src={slide.url} alt=''/>)}
+              {index === slideNumber && (<img key={index} onClick={() => handleExpansion()} className='image' src={slide.url} alt=''/>)}
             </div>
           );
         })

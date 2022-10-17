@@ -15,7 +15,9 @@ const StyleSelector = ({productStyles, handleStyleChange, currentStyle}) => {
       }
       <div className='styles-container'>
         {productStyles && productStyles.map((style, index) => {
-          //Todo
+          return (
+            <img className="style-thumbnail" key={index} src={style.photos[0].thumbnail_url} onClick={() => handleStyleChange(style.style_id)}></img>
+          );
         })}
       </div>
     </div>

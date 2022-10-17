@@ -25,7 +25,9 @@ const ProductInfo = ({product, productStyles, currentStyle, handleStyleChange}) 
       <span>{createStars(getAverage(productRatings))} <span>Read all reviews</span></span>
       <p className="product-category">{product.category}</p>
       <h1 className="product-name">{product.name}</h1>
-      {currentStyle.sale_price !== null ? <p style={{color: 'red'}}>{currentStyle.sale_price} <span style={{color: 'black', textDecoration: 'line-through'}}>{currentStyle.original_price}</span></p> : <p>{currentStyle.original_price}</p>}
+      {currentStyle.sale_price !== null ?
+        <p style={{color: 'red'}}>{currentStyle.sale_price} <span style={{color: 'black', textDecoration: 'line-through'}}>{currentStyle.original_price}</span></p> :
+        <p>{currentStyle.original_price}</p>}
       <StyleSelector productStyles={productStyles} handleStyleChange={handleStyleChange} currentStyle={currentStyle}/>
     </div>
   );
