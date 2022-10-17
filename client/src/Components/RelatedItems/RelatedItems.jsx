@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItem from './RelatedItem.jsx';
 import styled from 'styled-components';
+import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
 
 const RelatedItems = ({ product, handleProductChange }) => {
   const [characteristics, setCharacteristics] = useState([]);
@@ -38,15 +39,14 @@ const RelatedItems = ({ product, handleProductChange }) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
-      {/* <RelatedItemsCarousel> */}
+      <RelatedItemsCarousel relatedItems={relatedItems}/>
       <Carousel>
-
         <RelatedItemsList>
         {relatedItems.map((relatedItem) =>
           <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
         </RelatedItemsList>
-      {/* </RelatedItemsCarousel> */}
       </Carousel>
+
 
     </div>
   )
