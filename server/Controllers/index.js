@@ -9,4 +9,4 @@ module.exports = {
   qnas,
   relatedItems,
   products
-}
+};
