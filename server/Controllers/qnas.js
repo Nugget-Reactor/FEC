@@ -2,7 +2,7 @@ const { axios, URL } = require('./env/config.js');
 
 const qnas = {
   getQs: (req, res) => {
-    axios.get(`${URL}/qa/questions?product_id=${req.query.product_id}`)
+    axios.get(`${URL}/qa/questions?product_id=${req.query.product_id}&count=50`)
       .then((result) => {
         res.status(200).json(result.data)
       })

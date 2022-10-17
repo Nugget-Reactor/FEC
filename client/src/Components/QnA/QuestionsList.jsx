@@ -4,27 +4,38 @@ import styled from 'styled-components';
 
 const QuestionsList = ({ questionsList, name, handleAddQ }) => {
 
-  const [list, setList] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [currCount, setCurrCount] = useState(0);
+  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
-    setList(questionsList);
+    setTotalCount(questionsList.length);
+    setFilteredList(questionsList);
   }, [questionsList]);
+
+  console.log(filteredList, totalCount);
+
+  const handleMoreAs = (e) => {
+    e.preventDefault();
+    setFilteredList(filteredList.slice(2));
+    setCurrCount(currCount + 2);
+  }
 
   return (
     <QuestionListContainer>
       <QuestionListBody>
-        {list.length > 4
-          ? list.map((question, index) => {
-            if (index < 4) {
+        {currCount < totalCount
+          ? questionsList.map((question, index) => {
+            if (index < currCount + 2) {
               return <QuestionEntry entry={question} key={index} name={name} />
             }
           })
-          : list.map((question, index) => {
+          : questionsList.map((question, index) => {
             return <QuestionEntry entry={question} key={index} name={name} />
           })}
       </QuestionListBody>
       <QuestionListFooter>
-        <MoreAnsweredButton>MORE ANSWERED QUESTIONS</MoreAnsweredButton>
+        {currCount < totalCount && <MoreAnsweredButton onClick={handleMoreAs}>MORE ANSWERED QUESTIONS</MoreAnsweredButton>}
         <AddQButton onClick={handleAddQ}>ADD A QUESTION +</AddQButton>
       </QuestionListFooter>
     </QuestionListContainer>
