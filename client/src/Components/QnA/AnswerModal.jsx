@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const AnswerModal = ({ handleClick }) => {
+const AnswerModal = ({ handleClick, body }) => {
 
   const hiddenFileInput = useRef(null);
 
@@ -21,7 +21,7 @@ const AnswerModal = ({ handleClick }) => {
         <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
       </BtnDiv>
       <AnswerHeading4>Submit Your Answer</AnswerHeading4>
-      <AnswerHeading5>[Product Name]: [Question Body]</AnswerHeading5>
+      <AnswerHeading5>[Product Name]: {body}</AnswerHeading5>
       <AnswerForm>
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
