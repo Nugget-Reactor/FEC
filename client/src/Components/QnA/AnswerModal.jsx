@@ -5,8 +5,6 @@ const AnswerModal = ({ handleClick, body, name }) => {
 
   const hiddenFileInput = useRef(null);
 
-  console.log('answer modal name', name);
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => document.body.style.overflow = 'unset';

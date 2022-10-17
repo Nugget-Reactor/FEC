@@ -35,9 +35,7 @@ const QnA = ({ product }) => {
     <QFeatureContainer>
       <Heading2>Questions & Answers</Heading2>
       <SearchQnA />
-      <QuestionsList questionsList={questions} name={product.name} />
-      <MoreAnsweredButton>MORE ANSWERED QUESTIONS</MoreAnsweredButton>
-      <AddQButton onClick={handleAddQ}>ADD A QUESTION +</AddQButton>
+      <QuestionsList questionsList={questions} name={product.name} handleAddQ={handleAddQ} />
       {showQModal ? <QuestionModal name={product.name} handleClick={handleAddQ}></QuestionModal> : null}
     </QFeatureContainer>
   )
@@ -48,22 +46,6 @@ export default QnA;
 const Heading2 = styled.h2`
 `;
 
-const AddQButton = styled.button`
-  border-radius: 0;
-  padding: 15px;
-  font-weight: 700;
-  font-size: 1rem;
-  margin: 10px;
-`;
-
-const MoreAnsweredButton = styled.button`
-  border-radius: 0;
-  padding: 15px;
-  font-weight: 700;
-  font-size: 1rem;
-  margin: 10px;
-`;
-
 const QFeatureContainer = styled.div`
-
+  margin: 40px 100px;
 `;

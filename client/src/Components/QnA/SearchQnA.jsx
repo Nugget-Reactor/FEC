@@ -26,7 +26,8 @@ const Input = styled.input`
 `;
 
 const SearchIcon = styled.i`
-  position: absolute;
-  left: 82vw;
+  position: relative;
+  top: 0;
+  right: 20px;
   z-index: 1;
 `;
