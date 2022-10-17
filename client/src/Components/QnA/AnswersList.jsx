@@ -9,6 +9,11 @@ const AnswersList = ({ answersObj }) => {
   for (let key in answersObj) {
     answersArr.push(answersObj[key]);
   }
+  answersArr.sort((a, b) => {
+    return b.helpfulness - a.helpfulness;
+  });
+
+  // console.log('answerslist', answersArr);
 
   return (
     <AnswersContainer>

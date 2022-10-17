@@ -13,7 +13,7 @@ const QuestionEntry = ({ entry }) => {
   }
 
   return (
-    <div>
+    <QuestionEntryContainer>
       <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
       <QuestionSubHeading>Helpful?</QuestionSubHeading>
       <HelpfulQ href="">Yes</HelpfulQ>
@@ -22,11 +22,16 @@ const QuestionEntry = ({ entry }) => {
       <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
       <AnswersList answersObj={entry.answers} />
       {showAModal && <AnswerModal handleClick={handleAddAnswer} body={entry.question_body}></AnswerModal>}
-    </div>
+    </QuestionEntryContainer>
   )
 }
 
 export default QuestionEntry;
+
+const QuestionEntryContainer = styled.div`
+  display: block;
+  padding: 5px;
+`;
 
 const QuestionHeading = styled.div`
   display: inline-block;

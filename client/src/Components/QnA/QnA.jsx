@@ -12,17 +12,19 @@ import QuestionModal from './QuestionModal.jsx';
 // console.log(sampleData);
 
 const QnA = ({ product }) => {
-  // const [product_id, setProductID] = useState(product.id);
+  const [questions, setQuestions] = useState([]);
 
   // console.log('product prop from questions', product);
 
   const [showQModal, setShowQModal] = useState(false);
 
   useEffect(() => {
-    axios.get('/qa/questions')
-      .then(/*results => console.log('results data for questions component', results.data)*/)
-      .catch(err => console.log('questions error', err))
-  }, [])
+    if (product.id !== undefined) {
+      axios.get(`/qa/questions?product_id=${product.id}`)
+        .then(results => setQuestions(results.data.results))
+        .catch(err => console.log('questions error', err))
+    }
+  }, [product])
 
   const handleAddQ = (e) => {
     e.preventDefault();
@@ -33,10 +35,10 @@ const QnA = ({ product }) => {
     <QFeatureContainer>
       <Heading2>Questions & Answers</Heading2>
       <SearchQnA />
-      <QuestionsList questionsList={sampleData.results} />
+      <QuestionsList questionsList={questions} />
       <MoreAnsweredButton>MORE ANSWERED QUESTIONS</MoreAnsweredButton>
       <AddQButton onClick={handleAddQ}>ADD A QUESTION +</AddQButton>
-      {showQModal ? <QuestionModal /> : null}
+      {showQModal ? <QuestionModal></QuestionModal> : null}
     </QFeatureContainer>
   )
 }
