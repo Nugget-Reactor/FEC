@@ -6,7 +6,7 @@ import ModalForm from './ModalForm.jsx';
 import Modal from './Modal.jsx';
 import Breakdown from './Breakdown.jsx';
 
-const Ratings = ({ productID, productName }) => {
+const Reviews = ({ productID, productName }) => {
 
   const [reviews, setReviews] = useState([]);
   const [metadata, setMetadata] = useState({});
@@ -61,7 +61,7 @@ const Ratings = ({ productID, productName }) => {
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
         <div style={{width: "500px"}}>
-          <Breakdown metadata={metadata} />
+          <Breakdown metadata={metadata} totalCount={totalCount} />
         </div>
         <div>
           <ReviewTitle>{totalCount} reviews, sorted by
@@ -83,7 +83,8 @@ const Ratings = ({ productID, productName }) => {
 }
 
 const Layout = styled.div`
-  margin: 20px 100px;
+  width: 75%;
+  margin: 0 auto;
 `
 
 const BigButton = styled.button`
@@ -96,8 +97,9 @@ const BigButton = styled.button`
 `
 const ColumnContainer = styled.div`
   display: flex;
-  width: 100%;
+
   justify-content: space-around;
+  gap: 50px;
 `
 const ReviewTitle = styled.h5`
   font-size: 1.25rem;
@@ -107,4 +109,4 @@ const Dropdown = styled.select`
   font-size: inherit;
   cursor: pointer;
 `
-export default Ratings;
+export default Reviews;

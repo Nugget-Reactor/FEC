@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
-import Ratings from './R&R/Ratings.jsx';
+import Reviews from './R&R/Reviews.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
 import QnA from './QnA/QnA.jsx';
 import axios from 'axios';
@@ -16,7 +16,7 @@ const App = () => {
     // axios.get('/products/40480') //has related items with sale price
     // axios.get('/products/40353')
     handleProductChange('40480');
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (product.id) {
@@ -24,7 +24,7 @@ const App = () => {
         .then(res => setProductStyles(res.data.results))
         .catch(err => console.error(err))
     }
-  }, [product])
+  }, [product]);
 
   const handleProductChange = (productID) => {  //this will be for related Items onClick handler.
     axios.get(`/products/${productID}`)
@@ -44,7 +44,7 @@ const App = () => {
     <div>
       <OverviewApp product={product} productStyles={productStyles} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <Ratings productID={product.id} productName={product.name}/>
+      <Reviews productID={product.id} productName={product.name}/>
       <QnA product={product} />
     </div>
 
