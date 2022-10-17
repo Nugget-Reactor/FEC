@@ -52,7 +52,7 @@ const RelatedItemsList = styled.ul`
   box-sizing: border-box;
   border: 2px solid red;
   max-height: 30em;
-  overflow: hidden;
+  overflow: auto;
   max-width: 100%;
   // old, good code
   // display: inline-block;
@@ -63,7 +63,7 @@ const RelatedItemsList = styled.ul`
 
 const Carousel = styled.div`
   // max-width: 95%;
-  overflow: hidden;
+  overflow: auto;
   border: 2px solid green;
 
 `
