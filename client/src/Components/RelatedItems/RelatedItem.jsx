@@ -64,35 +64,47 @@ const Pricing = ({salePrice, regPrice, strikePrice}) => {
   }
 };
 
-const RelatedItemListItem = styled.li`
+const RelatedItemListItem = styled.li` //the related items card itself
+  display: inline-flex;
+
+  // old good code
   display: inline-block;
   border-radius: 3px;
   margin: 5px;
-  border: 2px solid black;
+  border: 2px solid blue;
   padding: 5px;
+
 `
 
-const RelatedImageDiv = styled.div`
-  position:relative;
+const RelatedImageDiv = styled.div` //the image div
+//new carousel code
+
+//old, good code
+  position:relative; // so I can position the action button
   margin: 3px;
-  text-align: center;
-  height: 400px;
+  height: 350px;
   width: 250px;
   word-wrap: normal;
 `
-const RelatedDefaultImage = styled.img`
+const RelatedDefaultImage = styled.img` // image itself fits image div
   height: 100%;
   width: 100%;
   object-fit: cover;
 `
 
 const ActionButtonRelated = styled.button`
+  background: white;
+  border: 2px solid #f80;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 50%;
+  //old good code below
   position:absolute;
   right: 6px;
   top: 6px;
   font-size: 30px;
-  background: none;
-  border: none;
+  // background: none;
+  // border: none;
   color: #f80;
   &::after {
     font-family: FontAwesome;
@@ -105,12 +117,16 @@ const SaleAndStrikeBlock = styled.div`
 `
 
 const SalePricing = styled.div`
+  display: inline-flex;
+  //good old code
   color: red;
   margin-right: 5px;
-  display: inline-block;
+  // display: inline-block;
 `
 
 const StrikePricing = styled.div`
+  display: inline-flex;
+  //good old code
   text-decoration: line-through;
-  display: inline-block;
+  // display: inline-block;
 `

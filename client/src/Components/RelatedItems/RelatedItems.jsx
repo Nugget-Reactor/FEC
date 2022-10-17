@@ -33,8 +33,10 @@ const RelatedItems = ({ product, handleProductChange }) => {
     <div id="related-items-panel">
       <h2>Related Items</h2>
       <RelatedItemsList>
+        <Carousel>
         {relatedItems.map((relatedItem) =>
           <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
+        </Carousel>
       </RelatedItemsList>
     </div>
   )
@@ -43,11 +45,25 @@ const RelatedItems = ({ product, handleProductChange }) => {
 export default RelatedItems;
 
 const RelatedItemsList = styled.ul`
-  display: inline-block;
+
+  // new carousel first
+  display: flex;
+
+  box-sizing: border-box;
+  border: 2px solid red;
+  max-height: 30em;
+  overflow: hidden;
+  max-width: 100%;
+  // old, good code
+  // display: inline-block;
   border-radius: 3px;
-  border: 2px solid black;
+  // border: 2px solid black;
   padding: 0.5rem 0;
 `
 
+const Carousel = styled.div`
+  // max-width: 95%;
+  overflow: hidden;
+  border: 2px solid green;
 
-
+`
