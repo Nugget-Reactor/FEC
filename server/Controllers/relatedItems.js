@@ -26,57 +26,41 @@ const getRelatedMeta = (productID) => {
   .catch((err) => console.log('err in related items', err));
 
 };
-
-// const getRatings = (product) => {
-//   //from meta I am going to need the:
-//   //characteristics for the current item and for the related items
-//   // return axios.get(`${URL}/reviews/meta?product_id=${productID}`)
-//   // .then((product) => {
-//     var totalRatings = 0;
-//     var numberOfRatings = 0;
-//     var multiplier = 1; // each 1 star review is worth value 1, and 2 : 2, etc.
-//     var obj = {};  //haven't decided how to package this up yet, but this is one option
-//     if (product.data.ratings) {
-
-//       for (var ratingKey in product.data.ratings) {
-//         var currentRatings = Number(product.data.ratings[ratingKey]);
-//         totalRatings += (currentRatings * multiplier);
-//         numberOfRatings += currentRatings;
-//         multiplier++;
-//       }
-//       var averageStars = totalRatings/numberOfRatings;
-//       obj.rating = totalRatings/numberOfRatings;
-//     } else {
-//       obj.rating = [];
-//     }
-//     return obj;
-//   // })
-//   // .catch((err) => console.log('err in related items', err));
-// };
-
+//some items are coming back undefined - I need to ensure all promises are being completed before
 module.exports = {
   getRelated: (req, res) => {
 
     return axios.get(`${URL}/products/${req.params.id}/related`)
     .then((results) => {
+      var promiseArray = [];
+      // results = _.uniq(results); // only use a unique array of related items
+      // for (var i = 0; i < results.data.length; i++) {
+      //   var product = getProduct(results.data[i]);
+      //   var style = getStyle(results.data[i]);
+      //   var meta = getRelatedMeta(results.data[i]);
+      //   Promise.all([product, style, meta])
+      //   .then((promises) => {console.log('prmise line 42', promises); promiseArray.push(promises);})
+      //     .catch((err) => console.log('error line 43', err))
+
       var array = [];
       for (var i = 0; i < results.data.length; i++) {
         var product = getProduct(results.data[i]);
         var style = getStyle(results.data[i]);
         var meta = getRelatedMeta(results.data[i]);
-        // var ratings = getRatings(results.data[i]);
 
-        // //might have to iterate the style array?
-        // console.log('style in get', style);
-        // var result = _.extend(product, style);
+
+
+      // return Promise.all([product, style, meta])
         array.push(product);
         array.push(style);
         array.push(meta);
 
 
       }
+      // return promiseArray;
       return array;
     })
+    // .then((returnedPromises) => )
     .then((productArray) => {
       Promise.all(productArray)
       .then((results) => {

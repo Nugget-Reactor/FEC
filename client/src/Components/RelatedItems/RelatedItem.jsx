@@ -13,9 +13,11 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   const [salePrice, setSalePrice] = useState('');
 
   /** to set default style for card **/
-  var ratings = getAverage(relatedItem.ratings);
+  if (relatedItem) {
+    var ratings = getAverage(relatedItem.ratings);
+  }
   useEffect(() => {
-    if (relatedItem.results.length > 0) {
+    if (relatedItem && relatedItem.results.length > 0) {
       relatedItem.results.forEach((style) => {
         if (style['default?']) {
           setCurrentStyle(style);
@@ -26,11 +28,12 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
 
   /** to set default photo and default price for related items card **/
   useEffect(() => {
+    // console.log('currentStyle id in useEffect line 29 in RelatedItem', currentStyle.id);
     if (currentStyle.photos) {
-      currentStyle.photos.forEach((url) => {
-        setCurrentPhotoURL(url.thumbnail_url);
+      currentStyle.photos.forEach((photo) => {
+        setCurrentPhotoURL(photo.url);
       });
-    }
+    } // need a response if no url is found
     if (currentStyle.sale_price) {
       setStrikeRegPrice(currentStyle.original_price);
       setSalePrice(currentStyle.sale_price)

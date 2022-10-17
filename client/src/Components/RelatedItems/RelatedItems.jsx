@@ -14,6 +14,12 @@ const RelatedItems = ({ product, handleProductChange }) => {
     if (product.id) {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
+          var arrayOfRelatedIds = []; //attempting to eliminate duplicate related items and undefined items
+          for (var i = 0; i < results.data.length; i++) {
+            // if ()
+            arrayOfRelatedIds.push(results.data[i].id);
+          }
+          console.log('array of related ids in relatedItems.jsx line 21', arrayOfRelatedIds); //sometimes these come back undefined and cause errors
           setRelatedItems(results.data);
         })
         .catch((err) => console.log('error', err));
@@ -32,12 +38,16 @@ const RelatedItems = ({ product, handleProductChange }) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
-      <RelatedItemsList>
-        <Carousel>
+      {/* <RelatedItemsCarousel> */}
+      <Carousel>
+
+        <RelatedItemsList>
         {relatedItems.map((relatedItem) =>
           <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
-        </Carousel>
-      </RelatedItemsList>
+        </RelatedItemsList>
+      {/* </RelatedItemsCarousel> */}
+      </Carousel>
+
     </div>
   )
 }
