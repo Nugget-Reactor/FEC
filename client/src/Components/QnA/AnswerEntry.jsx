@@ -16,8 +16,7 @@ const AnswerEntry = ({ entry }) => {
         <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
         <AnswerListDiv> | </AnswerListDiv>
         <AnswerListDiv>Helpful?</AnswerListDiv>
-        <AddAnswer href="">Yes</AddAnswer>
-        <AnswerListDiv>({entry.helpfulness})</AnswerListDiv>
+        <AddAnswer href="">Yes ({entry.helpfulness})</AddAnswer>
         <AnswerListDiv> | </AnswerListDiv>
         <Report href="">Report</Report>
       </AnswerListFooter>

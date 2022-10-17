@@ -13,7 +13,9 @@ const AnswersList = ({ answersObj }) => {
     return b.helpfulness - a.helpfulness;
   });
 
-  // console.log('answerslist', answersArr);
+  const handleLoadMoreAs = (e) => {
+    e.preventDefault();
+  }
 
   return (
     <AnswersContainer>
@@ -26,7 +28,7 @@ const AnswersList = ({ answersObj }) => {
         : answersArr.map((answer, index) => {
           return <AnswerEntry entry={answer} key={index} />
         })}
-      {<LoadMoreAnswers href="">LOAD MORE ANSWERS</LoadMoreAnswers>}
+      {answersArr.length !== 0 && <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>LOAD MORE ANSWERS</LoadMoreAnswers>}
     </AnswersContainer>
   )
 }

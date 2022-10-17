@@ -14,14 +14,17 @@ const QuestionEntry = ({ entry, name }) => {
 
   return (
     <QuestionEntryContainer>
-      <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
-      <QuestionSubHeading>Helpful?</QuestionSubHeading>
-      <HelpfulQ href="">Yes</HelpfulQ>
-      <QuestionSubHeading>({entry && entry.question_helpfulness})</QuestionSubHeading>
-      <QuestionSubHeading>|</QuestionSubHeading>
-      <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
-      <AnswersList answersObj={entry.answers} />
-      {showAModal && <AnswerModal handleClick={handleAddAnswer} body={entry.question_body} name={name} ></AnswerModal>}
+      <QuestionEntryHeader>
+        <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
+        <QuestionSubHeading>Helpful?</QuestionSubHeading>
+        <HelpfulQ href="">Yes ({entry && entry.question_helpfulness})</HelpfulQ>
+        <QuestionSubHeading>|</QuestionSubHeading>
+        <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
+      </QuestionEntryHeader>
+      <AnswerBody>
+        {Object.keys(entry.answers).length !== 0 && <AnswersList answersObj={entry.answers} ></AnswersList>}
+        {showAModal && <AnswerModal handleClick={handleAddAnswer} body={entry.question_body} name={name} ></AnswerModal>}
+      </AnswerBody>
     </QuestionEntryContainer>
   )
 }
@@ -29,20 +32,31 @@ const QuestionEntry = ({ entry, name }) => {
 export default QuestionEntry;
 
 const QuestionEntryContainer = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+`;
+
+const QuestionEntryHeader = styled.div`
+  display: inline-block;
   padding: 5px;
 `;
 
 const QuestionHeading = styled.div`
-  display: inline-block;
+  display: inline-flex;
   padding: 10px;
   font-size: 1.25rem;
 `;
 
 const QuestionSubHeading = styled.div`
-  display: inline-block;
+  display: inline-flex;
   padding: 5px;
   font-size: .8rem;
+`;
+
+const AnswerBody = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const HelpfulQ = styled.a`

@@ -4,20 +4,22 @@ import styled from 'styled-components';
 
 const QuestionsList = ({ questionsList, name, handleAddQ }) => {
 
-  // useEffect(() => {
-  //   questionsList
-  // }, [])
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    setList(questionsList);
+  }, [questionsList]);
 
   return (
     <QuestionListContainer>
       <QuestionListBody>
-        {questionsList.length > 2
-          ? questionsList.map((question, index) => {
-            if (index < 2) {
+        {list.length > 4
+          ? list.map((question, index) => {
+            if (index < 4) {
               return <QuestionEntry entry={question} key={index} name={name} />
             }
           })
-          : questionsList.map((question, index) => {
+          : list.map((question, index) => {
             return <QuestionEntry entry={question} key={index} name={name} />
           })}
       </QuestionListBody>
@@ -48,8 +50,6 @@ const QuestionListFooter = styled.div`
 `;
 
 const AddQButton = styled.button`
-  height: 75px;
-  width: 200px;
   border-radius: 0;
   padding: 15px;
   font-weight: 700;
@@ -58,8 +58,6 @@ const AddQButton = styled.button`
 `;
 
 const MoreAnsweredButton = styled.button`
-  height: 75px;
-  width: 200px;
   border-radius: 0;
   padding: 15px;
   font-weight: 700;
