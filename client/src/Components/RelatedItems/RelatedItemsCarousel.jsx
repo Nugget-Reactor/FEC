@@ -11,11 +11,11 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
         <RIWrapper>
           <RIContentWrapper>
             <RIContent>
-            <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
-    <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
-    <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+              <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+              <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+              <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
 
-            {/* <div>{relatedItems.map((relatedItem) =>
+              {/* <div>{relatedItems.map((relatedItem) =>
           <RelatedItemTest relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}</div> */}
             </RIContent>
           </RIContentWrapper>
@@ -41,18 +41,18 @@ const RIContainer = styled.div`
 width: 100%
 display: flex;
 flex-direction: row;
-`
+`;
 const RIWrapper = styled.div`
 display: flex;
 width: 100%;
 position: relative;
-`
+`;
 
 const RIContentWrapper = styled.div`
 overflow: hidden;
     width: 100%;
     height: 100%;
-`
+`;
 
 const RIContent = styled.div`
   display: flex;
@@ -62,4 +62,4 @@ const RIContent = styled.div`
   &:: -webkit-scrollbar, {
     display: none; //not sure about this
   }
-`
+`;

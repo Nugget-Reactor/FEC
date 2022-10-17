@@ -40,19 +40,19 @@ const RelatedItems = ({ product, handleProductChange }) => {
     <div id="related-items-panel">
       <h2>Related Items</h2>
       <AttemptCarousel>
-      <RelatedItemsCarousel relatedItems={relatedItems}/>
+        <RelatedItemsCarousel relatedItems={relatedItems}/>
       </AttemptCarousel>
       <Carousel>
         <RelatedItemsList>
-        {relatedItems.map((relatedItem) =>
-          <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
+          {relatedItems.map((relatedItem) =>
+            <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
         </RelatedItemsList>
       </Carousel>
 
 
     </div>
-  )
-}
+  );
+};
 
 export default RelatedItems;
 
@@ -61,7 +61,7 @@ maxWidth: 1200;
 marginLeft: 'auto';
 marginRight: 'auto';
 marginTop: 64;
-`
+`;
 
 const RelatedItemsList = styled.ul`
 
@@ -78,11 +78,11 @@ const RelatedItemsList = styled.ul`
   border-radius: 3px;
   // border: 2px solid black;
   padding: 0.5rem 0;
-`
+`;
 
 const Carousel = styled.div`
   // max-width: 95%;
   overflow: auto;
   border: 2px solid green;
 
-`
+`;
