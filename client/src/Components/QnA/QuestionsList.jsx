@@ -11,7 +11,7 @@ const QuestionsList = ({ questionsList, name, handleAddQ }) => {
     setTotalCount(questionsList.length);
   }, [questionsList]);
 
-  console.log('QuestionsList totalCount', totalCount);
+  // console.log('QuestionsList totalCount', totalCount);
 
   const handleMoreAs = (e) => {
     e.preventDefault();

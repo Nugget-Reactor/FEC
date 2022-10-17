@@ -45,6 +45,7 @@ const AnswerListDiv = styled.div`
 `;
 
 const AnswerEntryContainer = styled.div`
+  padding: 5px;
 `;
 
 const PhotoContainer = styled.div`
