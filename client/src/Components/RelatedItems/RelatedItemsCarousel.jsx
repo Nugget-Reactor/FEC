@@ -3,13 +3,39 @@ import styled from 'styled-components';
 import RelatedItemTest from './RelatedItemTest.jsx';
 
 const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [length, setLength] = useState(0);
 
+  useEffect(() => {
+    if (relatedItems.length) {
+      setLength(relatedItems.length);
+    }
+
+  }, [relatedItems]);
+
+  const next = () => {
+    if (currentIndex < (length - 1)) {
+      setCurrentIndex(prevState => prevState + 1);
+    }
+  };
+
+  const prev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(prevState => prevState - 1);
+    }
+  };
 
   return (
     <div>
       <RIContainer>
         <RIWrapper>
           <RIContentWrapper>
+            <LeftArrow>&lt;</LeftArrow>
+            {/* <LeftArrow onClick={prev}>&lt;</LeftArrow> */}
+
+            {/* <button className="left-arrow">
+              &lt;
+            </button> */}
             <RIContent>
               <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
               <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
@@ -17,6 +43,12 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
 
               {/* <div>{relatedItems.map((relatedItem) =>
           <RelatedItemTest relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}</div> */}
+              {/* <button className="right-arrow">
+                &gt;
+              </button> */}
+              <RightArrow>&gt;</RightArrow>
+              {/* <RightArrow onClick={next}>&gt;</RightArrow> */}
+
             </RIContent>
           </RIContentWrapper>
         </RIWrapper>
@@ -55,6 +87,7 @@ overflow: hidden;
 `;
 
 const RIContent = styled.div`
+
   display: flex;
   transition: all 250ms linear;
     -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
@@ -62,4 +95,32 @@ const RIContent = styled.div`
   &:: -webkit-scrollbar, {
     display: none; //not sure about this
   }
+`;
+
+const LeftArrow = styled.button`
+font-size: larger;
+left: 24px;
+position: absolute;
+z-index: 1;
+top: 50%;
+transform: translateY(-50%);
+width: 48px;
+height: 48px;
+border-radius: 24px;
+background-color: white;
+border: 1px solid #ddd;
+`;
+
+const RightArrow = styled.button`
+font-size: larger;
+right: 24px;
+position: absolute;
+z-index: 1;
+top: 50%;
+transform: translateY(-50%);
+width: 48px;
+height: 48px;
+border-radius: 24px;
+background-color: white;
+border: 1px solid #ddd;
 `;
