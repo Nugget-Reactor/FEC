@@ -128,6 +128,6 @@ const AnswerHeading5 = styled.h5`
 
 const AnswerText = styled.span`
   margin: 5px;
-  font-size: 12px;
+  font-size: 1rem;
   font-style: italic;
 `;

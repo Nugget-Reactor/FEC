@@ -28,7 +28,7 @@ const qnas = {
       .catch(err => res.sendStatus(500))
   },
   addA: (req, res) => {
-    console.log('add answer req body');
+    // console.log('add answer req body');
     axios.post(`${URL}/qa/questions/${req.query.question_id}/answers`, req.body)
       .then(result => res.sendStatus(201))
       .catch(err => res.sendStatus(500))
