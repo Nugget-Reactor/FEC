@@ -45,7 +45,7 @@ const App = () => {
 
   const handleStyleChange = (styleID) => {
     productStyles.forEach((style) => {
-      if (style.style_id = styleID) {
+      if (style.style_id === styleID) {
         setCurrentStyle(style);
       }
     });
