@@ -46,14 +46,14 @@ const RelatedItemTest = ({relatedItem, handleProductChange}) => {
   // need action button to look better/be more accessible, and be functional => Compare modal
   // also if no reviews, this div should be hidden
   return (
-
+      <>
       <RelatedImageDiv><RelatedDefaultImage src={currentPhotoURL}/>
     <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
       <h4>{relatedItem.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
       <div>{createStars(ratings)}</div>
-
+      </>
   )
 };
 

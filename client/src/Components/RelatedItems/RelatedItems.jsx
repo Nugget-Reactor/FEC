@@ -39,7 +39,9 @@ const RelatedItems = ({ product, handleProductChange }) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
+      <AttemptCarousel>
       <RelatedItemsCarousel relatedItems={relatedItems}/>
+      </AttemptCarousel>
       <Carousel>
         <RelatedItemsList>
         {relatedItems.map((relatedItem) =>
@@ -53,6 +55,13 @@ const RelatedItems = ({ product, handleProductChange }) => {
 }
 
 export default RelatedItems;
+
+const AttemptCarousel = styled.div`
+maxWidth: 1200;
+marginLeft: 'auto';
+marginRight: 'auto';
+marginTop: 64;
+`
 
 const RelatedItemsList = styled.ul`
 

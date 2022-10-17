@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import RelatedItemTest from './RelatedItemTest.jsx';
 
-
-const RelatedItemsCarousel = ({relatedItems}) => {
+const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
 
 
   return (
@@ -11,8 +11,12 @@ const RelatedItemsCarousel = ({relatedItems}) => {
         <RIWrapper>
           <RIContentWrapper>
             <RIContent>
-            <div>{relatedItems.map((relatedItem) =>
-          <RelatedItemTest relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}</div>
+            <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+    <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+    <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+
+            {/* <div>{relatedItems.map((relatedItem) =>
+          <RelatedItemTest relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}</div> */}
             </RIContent>
           </RIContentWrapper>
         </RIWrapper>
@@ -36,7 +40,7 @@ export default RelatedItemsCarousel;
 const RIContainer = styled.div`
 width: 100%
 display: flex;
-flex-direction: column;
+flex-direction: row;
 `
 const RIWrapper = styled.div`
 display: flex;
