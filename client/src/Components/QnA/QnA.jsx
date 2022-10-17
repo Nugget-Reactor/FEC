@@ -34,7 +34,7 @@ const QnA = ({ product }) => {
       <Heading2>Questions & Answers</Heading2>
       <SearchQnA />
       <QuestionsList questionsList={questions} name={product.name} handleAddQ={handleAddQ} />
-      {showQModal ? <QuestionModal name={product.name} handleClick={handleAddQ}></QuestionModal> : null}
+      {showQModal ? <QuestionModal product_id={product.id} name={product.name} handleClick={handleAddQ}></QuestionModal> : null}
     </QFeatureContainer>
   )
 }

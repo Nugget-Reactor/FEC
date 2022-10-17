@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const QuestionModal = ({ name, handleClick }) => {
+const QuestionModal = ({ product_id, name, handleClick }) => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
