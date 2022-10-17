@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-// remove before push
-import sampleData from '../../../../samplequestions.js';
 
 import SearchQnA from './SearchQnA.jsx';
 import QuestionsList from './QuestionsList.jsx';
 import QuestionModal from './QuestionModal.jsx';
 
-// remove before push
-// console.log(sampleData);
 
 const QnA = ({ product }) => {
+
   const [questions, setQuestions] = useState([]);
+  const [showQModal, setShowQModal] = useState(false);
 
   // console.log('product prop from questions', product);
 
-  const [showQModal, setShowQModal] = useState(false);
+
 
   useEffect(() => {
     if (product.id !== undefined) {
