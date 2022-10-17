@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
 import styled from 'styled-components';
 
-const QuestionsList = ({ questionsList }) => {
+const QuestionsList = ({ questionsList, name }) => {
 
   // useEffect(() => {
   //   questionsList
@@ -13,11 +13,11 @@ const QuestionsList = ({ questionsList }) => {
       {questionsList.length > 2
         ? questionsList.map((question, index) => {
           if (index < 2) {
-            return <QuestionEntry entry={question} key={index} />
+            return <QuestionEntry entry={question} key={index} name={name} />
           }
         })
         : questionsList.map((question, index) => {
-          return <QuestionEntry entry={question} key={index} />
+          return <QuestionEntry entry={question} key={index} name={name} />
         })}
     </QuestionListContainer>
   )

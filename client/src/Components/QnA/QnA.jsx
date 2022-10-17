@@ -35,10 +35,10 @@ const QnA = ({ product }) => {
     <QFeatureContainer>
       <Heading2>Questions & Answers</Heading2>
       <SearchQnA />
-      <QuestionsList questionsList={questions} />
+      <QuestionsList questionsList={questions} name={product.name} />
       <MoreAnsweredButton>MORE ANSWERED QUESTIONS</MoreAnsweredButton>
       <AddQButton onClick={handleAddQ}>ADD A QUESTION +</AddQButton>
-      {showQModal ? <QuestionModal></QuestionModal> : null}
+      {showQModal ? <QuestionModal name={product.name} handleClick={handleAddQ}></QuestionModal> : null}
     </QFeatureContainer>
   )
 }

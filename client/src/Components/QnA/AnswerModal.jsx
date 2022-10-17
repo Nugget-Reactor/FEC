@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const AnswerModal = ({ handleClick, body }) => {
+const AnswerModal = ({ handleClick, body, name }) => {
 
   const hiddenFileInput = useRef(null);
+
+  console.log('answer modal name', name);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -17,11 +19,9 @@ const AnswerModal = ({ handleClick, body }) => {
 
   return (
     <AnswerContainer>
-      <BtnDiv>
-        <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
-      </BtnDiv>
+      <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
       <AnswerHeading4>Submit Your Answer</AnswerHeading4>
-      <AnswerHeading5>[Product Name]: {body}</AnswerHeading5>
+      <AnswerHeading5>{name}: {body}</AnswerHeading5>
       <AnswerForm>
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
@@ -81,13 +81,10 @@ const AddPhotos = styled.input`
 
 const CloseBtn = styled.i`
   position: fixed;
-  left: 57vw;
+  top: 0vh;
+  right: 0vw;
   z-index: 1;
   padding: 5px;
-`;
-
-const BtnDiv = styled.div`
-  display: flex;
 `;
 
 const FormDiv = styled.div`

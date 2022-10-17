@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 
-const QuestionEntry = ({ entry }) => {
+const QuestionEntry = ({ entry, name }) => {
 
   const [showAModal, setShowAModal] = useState(false);
 
@@ -21,7 +21,7 @@ const QuestionEntry = ({ entry }) => {
       <QuestionSubHeading>|</QuestionSubHeading>
       <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
       <AnswersList answersObj={entry.answers} />
-      {showAModal && <AnswerModal handleClick={handleAddAnswer} body={entry.question_body}></AnswerModal>}
+      {showAModal && <AnswerModal handleClick={handleAddAnswer} body={entry.question_body} name={name} ></AnswerModal>}
     </QuestionEntryContainer>
   )
 }

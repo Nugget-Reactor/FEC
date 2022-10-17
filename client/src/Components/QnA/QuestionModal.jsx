@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const QuestionModal = () => {
+const QuestionModal = ({ name, handleClick }) => {
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => document.body.style.overflow = 'unset';
+  }, []);
+
   return (
     <QuestionContainer>
+      <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
       <Heading4>Ask Your Question</Heading4>
-      <Heading5>About the [Product Name Here]</Heading5>
+      <Heading5>About the <i>{name}</i></Heading5>
       <QuestionForm>
-        <div>
+        <QuestionBody>
           <Label>Your Question*: </Label>
           <TextField defaultValue="Type Question Here..."></TextField>
-        </div>
-        <div>
+        </QuestionBody>
+        <QuestionBody>
           <Label>What is your Nickname*: </Label>
           <Input />
-        </div>
-        <div>
+        </QuestionBody>
+        <QuestionBody>
           <Label>Your Email*: </Label>
           <Input />
-        </div>
-        <div>
+        </QuestionBody>
+        <QuestionBody>
           <SubmitButton>Submit Question</SubmitButton>
-        </div>
+        </QuestionBody>
       </QuestionForm>
     </QuestionContainer>
   )
@@ -34,8 +41,9 @@ const QuestionContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: cyan;
+  background-color: grey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: auto;
@@ -52,10 +60,24 @@ const Heading5 = styled.h5`
 
 const QuestionForm = styled.form`
   display: flex;
+  flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 500px;
   background: white;
+`;
+
+const CloseBtn = styled.i`
+  position: fixed;
+  top: 0vh;
+  right: 0vw;
+  z-index: 1;
+  padding: 5px;
+`;
+
+const QuestionBody = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const Label = styled.label`
@@ -71,5 +93,5 @@ const Input = styled.input`
 `;
 
 const SubmitButton = styled.button`
-  border: none;
+
 `;
