@@ -16,7 +16,7 @@
   height: 750px;
   justify-content: center;
   align-items: center;
-  margin: 100px
+  margin: 50px
 }
 
 .thumbnail-container {
@@ -72,7 +72,19 @@
 .thumbnail-active:hover {
   cursor: pointer;
 }
+.styles-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+}
 
+.style-thumbnail {
+  border-radius: 50%;
+  height: 65px;
+  width: 65px;
+  object-fit: cover;
+  padding: 10px;
+}
 .thumbnail:hover {
   cursor: pointer;
 }
