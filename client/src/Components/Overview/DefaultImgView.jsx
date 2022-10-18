@@ -6,7 +6,7 @@ import './overview.css';
 
 const {useState, useEffect} = React;
 
-const DefaultImageView = ({product, productStyles, currentStyle, handleExpansion}) => {
+const DefaultImageView = ({currentStyle, handleExpansion}) => {
   const [slideNumber, setSlideNumber] = useState(0);
 
   const nextSlide = () => {
@@ -29,8 +29,8 @@ const DefaultImageView = ({product, productStyles, currentStyle, handleExpansion
         {
           currentStyle.photos && currentStyle.photos.map((item, index) => {
             return (
-              <div className="thumbnail-container">
-                <img onClick={() => setSlideNumber(index)} className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'} key={index} src={item.thumbnail_url}></img>
+              <div className="thumbnail-container" key={index}>
+                <img onClick={() => setSlideNumber(index)} className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'} key={index} src={item.url}></img>
               </div>
             );
           })
