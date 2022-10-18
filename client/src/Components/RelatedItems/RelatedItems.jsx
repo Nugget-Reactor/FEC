@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItem from './RelatedItem.jsx';
 import styled from 'styled-components';
+import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
 
 const RelatedItems = ({ product, handleProductChange }) => {
   const [characteristics, setCharacteristics] = useState([]);
@@ -32,22 +33,16 @@ const RelatedItems = ({ product, handleProductChange }) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
-      <RelatedItemsList>
-        {relatedItems.map((relatedItem) =>
-          <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
-      </RelatedItemsList>
+      <Carousel>
+        <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
+      </Carousel>
     </div>
-  )
-}
+  );
+};
 
 export default RelatedItems;
 
-const RelatedItemsList = styled.ul`
-  display: inline-block;
-  border-radius: 3px;
-  border: 2px solid black;
-  padding: 0.5rem 0;
-`
+const Carousel = styled.div`
+  max-width: 95%;
 
-
-
+`;

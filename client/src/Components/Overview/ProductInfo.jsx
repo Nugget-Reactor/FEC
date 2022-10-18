@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import axios from 'axios';
 import StyleSelector from './StyleSelector.jsx';
 import AddCart from './AddCart.jsx';
-import {getAverage, createStars} from '../../Tools/createStars';
+import { getAverage, createStars } from '../../Tools/createStars';
 
-const {useState, useEffect} = React;
+const { useState, useEffect } = React;
 
-const ProductInfo = ({product, productStyles, currentStyle, handleStyleChange}) => {
+const ProductInfo = ({ product, productStyles, currentStyle, handleStyleChange }) => {
   const [productRatings, setProductRatings] = useState({});
 
   useEffect(() => {
@@ -27,10 +27,10 @@ const ProductInfo = ({product, productStyles, currentStyle, handleStyleChange}) 
       <p className="product-category">{product.category}</p>
       <h1 className="product-name">{product.name}</h1>
       {currentStyle.sale_price !== null ?
-        <p style={{color: 'red'}}>${currentStyle.sale_price} <span style={{color: 'black', textDecoration: 'line-through'}}>${currentStyle.original_price}</span></p> :
+        <p style={{ color: 'red' }}>${currentStyle.sale_price} <span style={{ color: 'black', textDecoration: 'line-through' }}>${currentStyle.original_price}</span></p> :
         <p>${currentStyle.original_price}</p>}
-      <StyleSelector productStyles={productStyles} handleStyleChange={handleStyleChange} currentStyle={currentStyle}/>
-      <AddCart currentStyle={currentStyle}/>
+      <StyleSelector productStyles={productStyles} handleStyleChange={handleStyleChange} currentStyle={currentStyle} />
+      <AddCart currentStyle={currentStyle} />
     </div>
   );
 };
