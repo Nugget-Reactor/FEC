@@ -30,7 +30,7 @@ module.exports = {
     })
   ]
 } */
-
+const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 
