@@ -33,7 +33,6 @@ module.exports = {
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
-const path = require('path');
 
 const mode = process.env.ENV || 'development';
 
@@ -74,4 +73,4 @@ module.exports = {
       template: path.join(__dirname, "client/src", "index.html")
     })
   ]
-}
+};
