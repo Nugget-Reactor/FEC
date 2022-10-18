@@ -64,7 +64,7 @@ const Reviews = ({ productID, productName }) => {
           <Breakdown metadata={metadata} totalCount={totalCount} />
         </div>
         <div>
-          <ReviewTitle>{totalCount} reviews, sorted by
+          <ReviewTitle data-testid="reviewTitle">{totalCount} reviews, sorted by
             <Dropdown value={sort} onChange={handleSort}>
               <option value='relevant'>relevance</option>
               <option value='helpful'>most helpful</option>
@@ -74,7 +74,7 @@ const Reviews = ({ productID, productName }) => {
           <List reviews={reviews} />
 
           {totalCount >= currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
-          <BigButton onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
+          <BigButton data-testid="addReviewButton" onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
         </div>
       </ColumnContainer>
       {showModal ? <Modal setShowModal={setShowModal}><ModalForm productName={productName} /></Modal> : null}
