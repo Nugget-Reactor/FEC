@@ -37,11 +37,29 @@ const App = () => {
     }
   }, [productStyles]);
 
-  const handleProductChange = (productID) => { //this will be for related Items onClick handler.
-    axios.get(`/products/${productID}`)
+  let controller;
+  const abortRelatedItemAsk = (event) => {
+    if (controller) {
+      controller.abort();
+      console.log('download aborted');
+    }
+  };
+
+  const handleProductChange = (productID, event) => { //this will be for related Items onClick handler.
+    abortRelatedItemAsk(event); //aborts previous get request in case it is still running
+
+    controller = new AbortController();
+
+    axios.get(`/products/${productID}`, { signal: controller.signal })
       .then(res => setProduct(res.data))
       .catch(err => console.error(err));
   };
+
+  // const handleProductChange = (productID) => { //this will be for related Items onClick handler.
+  //   axios.get(`/products/${productID}`)
+  //     .then(res => setProduct(res.data))
+  //     .catch(err => console.error(err));
+  // };
 
   const handleStyleChange = (styleID) => {
     productStyles.forEach((style) => {

@@ -45,7 +45,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   // need action button to look better/be more accessible, and be functional => Compare modal
   // also if no reviews, this div should be hidden
   return (
-    <RelatedItemListItem onClick={(event) => handleProductChange(relatedItem.id)}>
+    <RelatedItemListItem onClick={(event) => handleProductChange(relatedItem.id, event)}>
       <RelatedImageDiv><RelatedDefaultImage src={currentPhotoURL}/>
         <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
