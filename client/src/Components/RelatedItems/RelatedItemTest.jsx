@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
 
-const RelatedItemTest = ({relatedItem, handleProductChange, indexReset}) => {
-  // console.log("related item in relatedItem line 7", relatedItem); //need this to access characteristics later
+const RelatedItemTest = ({relatedItem, handleProductChange}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
@@ -29,7 +28,6 @@ const RelatedItemTest = ({relatedItem, handleProductChange, indexReset}) => {
 
   /** to set default photo and default price for related items card **/
   useEffect(() => {
-    // console.log('currentStyle id in useEffect line 29 in RelatedItem', currentStyle.id);
     if (currentStyle.photos) {
       currentStyle.photos.forEach((photo) => {
         setCurrentPhotoURL(photo.url);
@@ -46,7 +44,7 @@ const RelatedItemTest = ({relatedItem, handleProductChange, indexReset}) => {
   // need action button to look better/be more accessible, and be functional => Compare modal
   // also if no reviews, this div should be hidden
   return (
-    <RelatedItemListItem onClick={(event) => { indexReset(); handleProductChange(relatedItem.id);}}>
+    <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
       <RelatedImageDiv><RelatedDefaultImage src={currentPhotoURL}/>
         <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
       <h5>{relatedItem.category}</h5>

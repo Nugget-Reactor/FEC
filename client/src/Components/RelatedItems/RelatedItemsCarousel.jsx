@@ -5,20 +5,17 @@ import RelatedItemTest from './RelatedItemTest.jsx';
 const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   console.log('related items prop', relatedItems);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsLength, setItemsLength] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
 
-  // useEffect(() => {
-  //   setLeftButtonVisible(false);
-  // }, []);
+  var fourCurrent;
 
-  if (relatedItems.length > 0) {
-    console.log('trying', relatedItems);
-    console.log('relatedItems.length', relatedItems.length);
-    // if (relatedItems.length > )
-    // setRightButtonVisible(false);
-  }
+  useEffect(() => {
+    setCurrentIndex(0);
+    fourCurrent = relatedItems.slice(0, 4);
+    console.log('currentIndex', currentIndex);
+    console.log('how many times does this go off?'); //only once per render
+  }, [relatedItems]);
 
   useEffect(() => { //make visibility conditional upon rendering
     if (relatedItems.length > 0) {
@@ -35,29 +32,12 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
         setRightButtonVisible(true);
       }
     }
-  }, [currentIndex]);
-
-  let indexReset = () => {
-    setCurrentIndex(0);
-    if (relatedItems.length <= 4) {
-      setCurrentIndex(prevVal => prevVal = 0);
-      setLeftButtonVisible(false);
-      setRightButtonVisible(false);
-
-    }
-  };
+  }, [currentIndex, relatedItems]);
 
   let ItemsRenderMap = () => {
-    if (relatedItems.length <= 4) {
-      setCurrentIndex(prevVal => prevVal = 0);
-      setLeftButtonVisible(false);
-    //   setRightButtonVisible(false);
-
-    }
-
     var currentFour = relatedItems.slice(currentIndex, currentIndex + 4);
     return <>{currentFour.map((currentItem) =>
-      <RelatedItemTest relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} indexReset={indexReset}/>)}</>;
+      <RelatedItemTest relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
   };
 
   let LeftButton = ({isVisible}) => {
