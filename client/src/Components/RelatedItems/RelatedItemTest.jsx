@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import RelatedItems from './RelatedItems.jsx';
 import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
-import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
 
 
-const RelatedItemTest = ({relatedItem, handleProductChange}) => {
+const RelatedItemTest = ({relatedItem, handleProductChange, indexReset}) => {
   // console.log("related item in relatedItem line 7", relatedItem); //need this to access characteristics later
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
@@ -17,6 +16,7 @@ const RelatedItemTest = ({relatedItem, handleProductChange}) => {
   if (relatedItem) {
     var ratings = getAverage(relatedItem.ratings);
   }
+
   useEffect(() => {
     if (relatedItem && relatedItem.results.length > 0) {
       relatedItem.results.forEach((style) => {
@@ -46,14 +46,14 @@ const RelatedItemTest = ({relatedItem, handleProductChange}) => {
   // need action button to look better/be more accessible, and be functional => Compare modal
   // also if no reviews, this div should be hidden
   return (
-    <>
+    <RelatedItemListItem onClick={(event) => { indexReset(); handleProductChange(relatedItem.id);}}>
       <RelatedImageDiv><RelatedDefaultImage src={currentPhotoURL}/>
         <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
       <h4>{relatedItem.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
       <div>{createStars(ratings)}</div>
-    </>
+    </RelatedItemListItem>
   );
 };
 
@@ -68,17 +68,17 @@ const Pricing = ({salePrice, regPrice, strikePrice}) => {
   }
 };
 
-// const RelatedItemListItem = styled.li` //the related items card itself
-//   display: inline-flex;
+const RelatedItemListItem = styled.li` //the related items card itself
+  display: inline-flex;
 
-//   // old good code
-//   display: inline-block;
-//   border-radius: 3px;
-//   margin: 5px;
-//   border: 2px solid blue;
-//   padding: 5px;
+  // old good code
+  display: inline-block;
+  border-radius: 3px;
+  margin: 5px;
+  border: 2px solid blue;
+  padding: 5px;
 
-// `
+`;
 
 const RelatedImageDiv = styled.div` //the image div
 //new carousel code

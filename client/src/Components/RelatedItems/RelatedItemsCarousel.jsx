@@ -7,15 +7,20 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsLength, setItemsLength] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
-  const [leftButtonVisible, setLeftButtonVisible] = useState(true);
+  const [leftButtonVisible, setLeftButtonVisible] = useState(false);
 
+  // useEffect(() => {
+  //   setLeftButtonVisible(false);
+  // }, []);
 
   if (relatedItems.length > 0) {
     console.log('trying', relatedItems);
     console.log('relatedItems.length', relatedItems.length);
+    // if (relatedItems.length > )
+    // setRightButtonVisible(false);
   }
 
-  useEffect(() => {
+  useEffect(() => { //make visibility conditional upon rendering
     if (relatedItems.length > 0) {
       console.log('index changed', currentIndex);
       if (currentIndex === 0) {
@@ -24,7 +29,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
         setLeftButtonVisible(true);
       }
 
-      if (relatedItems.length < 3 || currentIndex > relatedItems.length - 3) {
+      if (relatedItems.length < 5 || currentIndex > relatedItems.length - 5) {
         setRightButtonVisible(false);
       } else {
         setRightButtonVisible(true);
@@ -32,10 +37,27 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
     }
   }, [currentIndex]);
 
+  let indexReset = () => {
+    setCurrentIndex(0);
+    if (relatedItems.length <= 4) {
+      setCurrentIndex(prevVal => prevVal = 0);
+      setLeftButtonVisible(false);
+      setRightButtonVisible(false);
+
+    }
+  };
+
   let ItemsRenderMap = () => {
-    var currentFour = relatedItems.slice(currentIndex, currentIndex + 3);
+    if (relatedItems.length <= 4) {
+      setCurrentIndex(prevVal => prevVal = 0);
+      setLeftButtonVisible(false);
+    //   setRightButtonVisible(false);
+
+    }
+
+    var currentFour = relatedItems.slice(currentIndex, currentIndex + 4);
     return <>{currentFour.map((currentItem) =>
-      <RelatedItemTest relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
+      <RelatedItemTest relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} indexReset={indexReset}/>)}</>;
   };
 
   let LeftButton = ({isVisible}) => {
@@ -52,16 +74,11 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
         <RIWrapper>
           <RIContentWrapper>
             <LeftButton isVisible={leftButtonVisible}/>
-            {/* <LeftArrow onClick={prev}>&lt;</LeftArrow> */}
-
-            {/* <button className="left-arrow">
-              &lt;
-            </button> */}
             <RIContent>
-              <ItemsRenderMap/>
+              <ItemsRenderMap />
+              </RIContent>
               <RightButton isVisible={rightButtonVisible}/>
-            </RIContent>
-          </RIContentWrapper>
+            </RIContentWrapper>
         </RIWrapper>
       </RIContainer>
     </div>
@@ -69,22 +86,13 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
 };
 
 export default RelatedItemsCarousel;
-//   /** this is the actual carousel and is one possibility
-//    * //identify index of different items
-//    * use array of related items for index reference
-//    * if there are 4 items or less, no arrows
-//    * otherwise, only render 4 items
-//    * if item 0 is at rightmost, and items are more than 4, render arrow to the right
-//    * if item at 0 is index GREATER than 0, and there are more than 5 items total/3 more items than current
-//    * render arrow to the left
-//    * if
-//   **/
 
 const RIContainer = styled.div`
 width: 100%
 display: flex;
 flex-direction: row;
 `;
+
 const RIWrapper = styled.div`
 display: flex;
 width: 100%;
@@ -92,21 +100,48 @@ position: relative;
 `;
 
 const RIContentWrapper = styled.div`
-overflow: hidden;
+overflow: auto;
     width: 100%;
     height: 100%;
 `;
 
-const RIContent = styled.div`
+const RIContent = styled.ul`
 
   display: flex;
-  transition: all 250ms linear;
-    -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
-  scrollbar-width: none;  /* hide scrollbar in Firefox */
-  &:: -webkit-scrollbar, {
-    display: none; //not sure about this
+
+  box-sizing: border-box;
+  border: 2px solid red;
+  max-height: 30em;
+  overflow: auto;
+  max-width: 100%;
+  // old, good code
+  // display: inline-block;
+  border-radius: 3px;
+  // border: 2px solid black;
+  padding: 0.5rem 0;
+  // transition: all 250ms linear;
+  //   -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
+  // scrollbar-width: none;  /* hide scrollbar in Firefox */
+  // &:: -webkit-scrollbar, {
+  //   display: none; //not sure about this
   }
 `;
+// const RelatedItemsList = styled.ul`
+
+//   // new carousel first
+//   display: flex;
+
+//   box-sizing: border-box;
+//   border: 2px solid red;
+//   max-height: 30em;
+//   overflow: auto;
+//   max-width: 100%;
+//   // old, good code
+//   // display: inline-block;
+//   border-radius: 3px;
+//   // border: 2px solid black;
+//   padding: 0.5rem 0;
+// `;
 
 const LeftArrow = styled.button`
 font-size: larger;

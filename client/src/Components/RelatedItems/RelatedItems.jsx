@@ -33,9 +33,11 @@ const RelatedItems = ({ product, handleProductChange }) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
-      <AttemptCarousel>
-        <RelatedItemsCarousel relatedItems={relatedItems}/>
-      </AttemptCarousel>
+      <Carousel2>
+        <AttemptCarousel>
+          <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
+        </AttemptCarousel>
+      </Carousel2>
       <Carousel>
         <RelatedItemsList>
           {relatedItems.map((relatedItem) =>
@@ -50,10 +52,22 @@ const RelatedItems = ({ product, handleProductChange }) => {
 export default RelatedItems;
 
 const AttemptCarousel = styled.div`
-maxWidth: 1200;
-marginLeft: 'auto';
-marginRight: 'auto';
-marginTop: 64;
+// maxWidth: 1200;
+// marginLeft: 'auto';
+// marginRight: 'auto';
+// marginTop: 64;
+// new carousel first
+// display: flex;
+
+// box-sizing: border-box;
+// border: 2px solid red;
+// max-height: 30em;
+// max-width: 100%;
+// old, good code
+// display: inline-block;
+border-radius: 3px;
+// border: 2px solid black;
+padding: 0.5rem 0;
 `;
 
 const RelatedItemsList = styled.ul`
@@ -74,6 +88,13 @@ const RelatedItemsList = styled.ul`
 `;
 
 const Carousel = styled.div`
+  // max-width: 95%;
+  overflow: auto;
+  border: 2px solid green;
+
+`;
+
+const Carousel2 = styled.div`
   // max-width: 95%;
   overflow: auto;
   border: 2px solid green;
