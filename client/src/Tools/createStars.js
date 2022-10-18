@@ -45,7 +45,7 @@ export const createStars = (avgRating) => {
 const Star = styled.i`
   display: inline-block;
   position: relative;
-  font-size: 25px;
+  font-size: 20px;
   color: #ddd;
 
   &::after {

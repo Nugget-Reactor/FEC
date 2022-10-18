@@ -10,6 +10,7 @@ const Tile = ({ review }) => {
   const [currentImage, setCurrentImage] = useState('');
   const [showMore, setShowMore] = useState(false);
   const [alreadyVoted, setAlreadyVoted] = useState(false);
+  const [alreadyReported, setAlreadyReported] = useState(false);
 
   const handleImgModal = (link) => {
     setCurrentImage(link);
@@ -25,6 +26,13 @@ const Tile = ({ review }) => {
     axios.put(`/reviews/${review.review_id}/helpful`)
     .then((result) => {
       setAlreadyVoted(true);
+    })
+    .catch(err => console.error(err));
+  }
+  const report = () => {
+    axios.put(`/reviews/${review.review_id}/report`)
+    .then(result => {
+      setAlreadyReported(true);
     })
     .catch(err => console.error(err));
   }
@@ -61,7 +69,7 @@ const Tile = ({ review }) => {
 
 
       <div>
-        {!alreadyVoted ? <span>Helpful? <SmallButton onClick={voteHelpful}>Yes</SmallButton>({review.helpfulness})</span> : <ThanksMessage><i className="fa-solid fa-check"/> Thank you for your feedback!</ThanksMessage>} | <SmallButton>Report</SmallButton>
+        {!alreadyVoted ? <span>Helpful? <SmallButton onClick={voteHelpful}>Yes</SmallButton>({review.helpfulness})</span> : <ThanksMessage><i className="fa-solid fa-check"/> Thank you for your feedback!</ThanksMessage>} | <SmallButton onClick={report}>Report</SmallButton>
       </div>
 
     </TileStyle>

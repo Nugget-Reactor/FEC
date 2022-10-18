@@ -30,6 +30,16 @@ const products = {
         console.log(err);
         res.sendStatus(404);
       });
+  },
+  addCart: (req, res) => {
+    axios.post(`${URL}/cart`, req.body)
+      .then((result) => {
+        res.sendStatus(201);
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(404);
+      });
   }
 };
 
