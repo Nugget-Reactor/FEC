@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import RelatedItemTest from './RelatedItemTest.jsx';
+import RelatedItem from './RelatedItem.jsx';
 
 const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,7 +30,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   let ItemsRenderMap = () => {
     var currentFour = relatedItems.slice(currentIndex, currentIndex + 4);
     return <>{currentFour.map((currentItem) =>
-      <RelatedItemTest relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
+      <RelatedItem relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
   };
 
   let LeftButton = ({isVisible}) => {
@@ -91,22 +91,6 @@ const RIContent = styled.ul`
   padding: 0.5rem 0;
 
 `;
-// const RelatedItemsList = styled.ul`
-
-//   // new carousel first
-//   display: flex;
-
-//   box-sizing: border-box;
-//   border: 2px solid red;
-//   max-height: 30em;
-//   overflow: auto;
-//   max-width: 100%;
-//   // old, good code
-//   // display: inline-block;
-//   border-radius: 3px;
-//   // border: 2px solid black;
-//   padding: 0.5rem 0;
-// `;
 
 const LeftArrow = styled.button`
 font-size: larger;

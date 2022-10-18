@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import RelatedItems from './RelatedItems.jsx';
 import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
 
-const RelatedItem = ({relatedItem, handleProductChange}) => {
+const RelatedItemTest = ({relatedItem, handleProductChange}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
@@ -28,7 +27,6 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
 
   /** to set default photo and default price for related items card **/
   useEffect(() => {
-    // console.log('currentStyle id in useEffect line 29 in RelatedItem', currentStyle.id);
     if (currentStyle.photos) {
       currentStyle.photos.forEach((photo) => {
         setCurrentPhotoURL(photo.url);
@@ -45,7 +43,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   // need action button to look better/be more accessible, and be functional => Compare modal
   // also if no reviews, this div should be hidden
   return (
-    <RelatedItemListItem onClick={(event) => handleProductChange(relatedItem.id)}>
+    <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
       <RelatedImageDiv><RelatedDefaultImage src={currentPhotoURL}/>
         <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
@@ -56,12 +54,12 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   );
 };
 
-export default RelatedItem;
+export default RelatedItemTest;
 
 /** function for handling strikethrough proicing/ sale pricing/ regular pricing */
 const Pricing = ({salePrice, regPrice, strikePrice}) => {
   if (salePrice) {
-    return <SaleAndStrikeBlock><SalePricing>${salePrice}</SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
+    return <SaleAndStrikeBlock><SalePricing>${salePrice}  </SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
   } else {
     return <div>${regPrice}</div>;
   }
@@ -69,13 +67,10 @@ const Pricing = ({salePrice, regPrice, strikePrice}) => {
 
 const RelatedItemListItem = styled.li` //the related items card itself
   display: inline-flex;
-
-  // old good code
   display: inline-block;
   border-radius: 3px;
   margin: 5px;
   border: 2px solid black;
-  border-radius: 3px;
   padding: 5px;
 
 `;
