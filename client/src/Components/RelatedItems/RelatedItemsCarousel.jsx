@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import RelatedItemTest from './RelatedItemTest.jsx';
 
-const RelatedItemsCarousel = ({relatedItems}) => {
+const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   console.log('related items prop', relatedItems);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsLength, setItemsLength] = useState(0);
@@ -28,15 +29,14 @@ const RelatedItemsCarousel = ({relatedItems}) => {
       } else {
         setRightButtonVisible(true);
       }
-
     }
   }, [currentIndex]);
 
-  // useEffect(() => {
-  //   console.log(items);
-  //   console.log(items.length);
-  //   setItemsLength(items.length);
-  // }, []);
+  let ItemsRenderMap = () => {
+    var currentFour = relatedItems.slice(currentIndex, currentIndex + 3);
+    return <>{currentFour.map((currentItem) =>
+      <RelatedItemTest relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
+  };
 
   let LeftButton = ({isVisible}) => {
     return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow> : null;
@@ -58,11 +58,8 @@ const RelatedItemsCarousel = ({relatedItems}) => {
               &lt;
             </button> */}
             <RIContent>
-              {/* <div>{relatedItems.map((relatedItem) =>
-          <RelatedItemTest relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}</div> */}
+              <ItemsRenderMap/>
               <RightButton isVisible={rightButtonVisible}/>
-              {/* <RightArrow onClick={next}>&gt;</RightArrow> */}
-
             </RIContent>
           </RIContentWrapper>
         </RIWrapper>
