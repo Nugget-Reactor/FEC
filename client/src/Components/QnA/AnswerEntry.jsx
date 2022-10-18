@@ -5,7 +5,7 @@ import { format, parseISO } from 'date-fns';
 const AnswerEntry = ({ entry }) => {
 
   return (
-    <AnswerEntryContainer>
+    <AnswerEntryContainer data-testid="answer-entry">
       <AnswerListHeader><b>A:</b> {entry.body}</AnswerListHeader>
       <PhotoContainer>
         {!entry.photos.length
@@ -16,8 +16,7 @@ const AnswerEntry = ({ entry }) => {
         <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
         <AnswerListDiv> | </AnswerListDiv>
         <AnswerListDiv>Helpful?</AnswerListDiv>
-        <AddAnswer href="">Yes</AddAnswer>
-        <AnswerListDiv>({entry.helpfulness})</AnswerListDiv>
+        <AddAnswer href="">Yes ({entry.helpfulness})</AddAnswer>
         <AnswerListDiv> | </AnswerListDiv>
         <Report href="">Report</Report>
       </AnswerListFooter>
@@ -46,6 +45,7 @@ const AnswerListDiv = styled.div`
 `;
 
 const AnswerEntryContainer = styled.div`
+  padding: 5px;
 `;
 
 const PhotoContainer = styled.div`
