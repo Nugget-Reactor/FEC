@@ -64,7 +64,7 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
         <QuestionBody>
           <Label>Your Question*: </Label>
           <TextField
-            placeholder="Why did you like the product or not?"
+            placeholder="Why did you like or not like the product?"
             value={question}
             onChange={e => setQuestion(e.target.value)}
             type="text"
