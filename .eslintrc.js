@@ -1,7 +1,8 @@
-/** 
+/**
  * These rules enforce Hack Reactor's style guide.
  * Visit this repo for more information:
- *   https://github.com/hackreactor-labs/eslint-config-hackreactor
+ *   https://github.com/hackreactor-labs/eslint-config-ha
+ * ckreactor
  */
 
 module.exports = {
