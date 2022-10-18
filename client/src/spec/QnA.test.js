@@ -20,7 +20,7 @@ describe('renders Answers from QnA Widget', () => {
 
     const AnswerEntryElement = screen.getByTestId("answer-entry");
     expect(AnswerEntryElement).toBeInTheDocument();
-    screen.debug();
+    // screen.debug();
   });
 
   it('renders Answers List component', () => {
