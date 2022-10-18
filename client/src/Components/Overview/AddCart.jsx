@@ -36,9 +36,6 @@ const AddCart = ({currentStyle}) => {
     }
   };
 
-
-  console.log(currentSku);
-  console.log(currentQuantity);
   return (
     <div className="selectors-container">
       <select className="size-selector"
@@ -51,7 +48,7 @@ const AddCart = ({currentStyle}) => {
       <select className="quantity-selector"
         onChange={(e) => setCurrentQuantity(e.target.value)}>
         <option defaultValue="none">-</option>
-        {(itterate.slice(1, currentSku.quantity)).map((number, index) => {
+        {(itterate.slice(0, currentSku.quantity)).map((number, index) => {
           return <option value={number} key={index}>{number}</option>;
         })}
       </select>
