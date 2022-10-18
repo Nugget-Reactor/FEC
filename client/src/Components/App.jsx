@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
-import Ratings from './R&R/Ratings.jsx';
+import Reviews from './R&R/Reviews.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx';
 import QnA from './QnA/QnA.jsx';
 import axios from 'axios';
@@ -73,7 +73,7 @@ const App = () => {
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <Ratings productID={product.id} productName={product.name}/>
+      <Reviews productID={product.id} productName={product.name}/>
       <QnA product={product} />
     </div>
 
