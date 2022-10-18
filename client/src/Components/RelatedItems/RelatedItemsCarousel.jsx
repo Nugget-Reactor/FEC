@@ -5,24 +5,15 @@ import RelatedItemTest from './RelatedItemTest.jsx';
 const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(0);
-
-  useEffect(() => {
-    if (relatedItems.length) {
-      setLength(relatedItems.length);
-    }
-
-  }, [relatedItems]);
-
-  const next = () => {
-    if (currentIndex < (length - 1)) {
-      setCurrentIndex(prevState => prevState + 1);
-    }
+  const [rightButtonVisible, setRightButtonVisible] = useState(true);
+  const [leftButtonVisible, setLeftButtonVisible] = useState(true);
+  console.log(currentIndex);
+  let LeftButton = ({isVisible}) => {
+    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow> : null;
   };
 
-  const prev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prevState => prevState - 1);
-    }
+  let RightButton = ({isVisible}) => {
+    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}>&gt;</RightArrow> : null;
   };
 
   return (
@@ -30,23 +21,16 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
       <RIContainer>
         <RIWrapper>
           <RIContentWrapper>
-            <LeftArrow>&lt;</LeftArrow>
+            <LeftButton isVisible={leftButtonVisible}/>
             {/* <LeftArrow onClick={prev}>&lt;</LeftArrow> */}
 
             {/* <button className="left-arrow">
               &lt;
             </button> */}
             <RIContent>
-              <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
-              <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
-              <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
-
               {/* <div>{relatedItems.map((relatedItem) =>
           <RelatedItemTest relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}</div> */}
-              {/* <button className="right-arrow">
-                &gt;
-              </button> */}
-              <RightArrow>&gt;</RightArrow>
+              <RightButton isVisible={rightButtonVisible}/>
               {/* <RightArrow onClick={next}>&gt;</RightArrow> */}
 
             </RIContent>
@@ -124,3 +108,24 @@ border-radius: 24px;
 background-color: white;
 border: 1px solid #ddd;
 `;
+
+
+
+// useEffect(() => {
+//   if (relatedItems.length) {
+//     setLength(relatedItems.length);
+//   }
+
+// }, [relatedItems]);
+
+// const next = () => {
+//   if (currentIndex < (length - 1)) {
+//     setCurrentIndex(prevState => prevState + 1);
+//   }
+// };
+
+// const prev = () => {
+//   if (currentIndex > 0) {
+//     setCurrentIndex(prevState => prevState - 1);
+//   }
+// };

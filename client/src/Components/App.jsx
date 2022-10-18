@@ -38,15 +38,15 @@ const App = () => {
   }, [productStyles]);
 
   let controller;
-  const abortRelatedItemAsk = (event) => {
+  const abortRelatedItemAsk = () => {
     if (controller) {
       controller.abort();
       console.log('download aborted');
     }
   };
 
-  const handleProductChange = (productID, event) => { //this will be for related Items onClick handler.
-    abortRelatedItemAsk(event); //aborts previous get request in case it is still running
+  const handleProductChange = (productID) => { //this will be for related Items onClick handler.
+    abortRelatedItemAsk(); //aborts previous get request in case it is still running
 
     controller = new AbortController();
 
