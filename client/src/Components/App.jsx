@@ -16,7 +16,7 @@ const App = () => {
     // axios.get('/products/40480') //has related items with sale price
     // axios.get('/products/40353')
     // 411197
-    handleProductChange('40344');
+    handleProductChange('40480');
   }, []);
 
   useEffect(() => {
@@ -37,11 +37,29 @@ const App = () => {
     }
   }, [productStyles]);
 
+  let controller;
+  const abortRelatedItemAsk = () => {
+    if (controller) {
+      controller.abort();
+      console.log('download aborted');
+    }
+  };
+
   const handleProductChange = (productID) => { //this will be for related Items onClick handler.
-    axios.get(`/products/${productID}`)
+    abortRelatedItemAsk(); //aborts previous get request in case it is still running
+
+    controller = new AbortController();
+
+    axios.get(`/products/${productID}`, { signal: controller.signal })
       .then(res => setProduct(res.data))
       .catch(err => console.error(err));
   };
+
+  // const handleProductChange = (productID) => { //this will be for related Items onClick handler.
+  //   axios.get(`/products/${productID}`)
+  //     .then(res => setProduct(res.data))
+  //     .catch(err => console.error(err));
+  // };
 
   const handleStyleChange = (styleID) => {
     productStyles.forEach((style) => {
