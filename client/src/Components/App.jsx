@@ -55,7 +55,7 @@ const App = () => {
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <Ratings productID={product.id} productName={product.name}/>
+      <Ratings productID={product.id} productName={product.name} />
       <QnA product={product} />
     </div>
 

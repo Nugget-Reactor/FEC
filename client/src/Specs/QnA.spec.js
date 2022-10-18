@@ -1,16 +1,15 @@
-/**
- * @jest-environment jsdom
- */
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+jest.mock('@fortawesome/fontawesome-free/css/all.min.css', () => ({
+  FontAwesomeIcon: ''
+}))
+import axios from 'axios';
+jest.mock('axios');
 
-import QnA from '../Components/QnA/QnA.jsx';
+import { render, screen } from '@testing-library/react';
+import App from '../Components/App.jsx';
 
 describe('QnA Feature', () => {
-  test('renders QnA feature component', () => {
-    render(<QnA />);
-
-    screen.debug();
+  test('renders App feature component', () => {
+    render(<App />);
   });
 });
 
