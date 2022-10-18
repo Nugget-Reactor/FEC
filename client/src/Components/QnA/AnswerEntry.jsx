@@ -5,7 +5,7 @@ import { format, parseISO } from 'date-fns';
 const AnswerEntry = ({ entry }) => {
 
   return (
-    <AnswerEntryContainer>
+    <AnswerEntryContainer data-testid="answer-entry">
       <AnswerListHeader><b>A:</b> {entry.body}</AnswerListHeader>
       <PhotoContainer>
         {!entry.photos.length
