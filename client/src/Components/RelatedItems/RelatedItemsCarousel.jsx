@@ -12,12 +12,24 @@ const RelatedItemsCarousel = ({relatedItems}) => {
   if (relatedItems.length > 0) {
     console.log('trying', relatedItems);
     console.log('relatedItems.length', relatedItems.length);
-
-
   }
+
   useEffect(() => {
-    console.log('index changed', currentIndex);
-    // }
+    if (relatedItems.length > 0) {
+      console.log('index changed', currentIndex);
+      if (currentIndex === 0) {
+        setLeftButtonVisible(false);
+      } else if (currentIndex > 0) {
+        setLeftButtonVisible(true);
+      }
+
+      if (relatedItems.length < 3 || currentIndex > relatedItems.length - 3) {
+        setRightButtonVisible(false);
+      } else {
+        setRightButtonVisible(true);
+      }
+
+    }
   }, [currentIndex]);
 
   // useEffect(() => {
