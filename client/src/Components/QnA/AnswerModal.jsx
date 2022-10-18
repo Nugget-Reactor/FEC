@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const AnswerModal = ({ handleClick }) => {
+const AnswerModal = ({ handleClick, body, name }) => {
 
   const hiddenFileInput = useRef(null);
 
@@ -17,12 +17,10 @@ const AnswerModal = ({ handleClick }) => {
 
   return (
     <AnswerContainer>
-      <BtnDiv>
-        <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
-      </BtnDiv>
-      <AnswerHeading4>Submit Your Answer</AnswerHeading4>
-      <AnswerHeading5>[Product Name]: [Question Body]</AnswerHeading5>
+      <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
       <AnswerForm>
+        <AnswerHeading4>Submit Your Answer</AnswerHeading4>
+        <AnswerHeading5>{name}: {body}</AnswerHeading5>
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
           <AnswerField placeholder="Your Answer Here..."></AnswerField>
@@ -30,7 +28,12 @@ const AnswerModal = ({ handleClick }) => {
         <FormDiv>
           <AnswerLabel>What is your Nickname*:</AnswerLabel>
           <AnswerInput placeholder="Example: jack543!"></AnswerInput>
-          <AnswerText>*Note: For privacy reasons, do not use your full name or email address*</AnswerText>
+          <AnswerText>Note: For privacy reasons, do not use your full name or email address</AnswerText>
+        </FormDiv>
+        <FormDiv>
+          <AnswerLabel>What is your Email*:</AnswerLabel>
+          <AnswerInput placeholder="Example: jack@email.com"></AnswerInput>
+          <AnswerText>Note: For authentication reasons, you will not be emailed</AnswerText>
         </FormDiv>
         <FormFooter>
           <AnswerFormPhotos onClick={handlePhotosClick}>Upload Your Photos</AnswerFormPhotos>
@@ -50,20 +53,22 @@ export default AnswerModal;
 
 const AnswerContainer = styled.div`
   position: fixed;
+  height: 100vh;
+  width: 100vw;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0);
-  background-color: grey;
   z-index: 200;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
-  width: auto;
+  height: 100vh;
+  width: 100vw;
   border: 1px solid #ccc;
+  backdrop-filter: blur(6px);
+  background-color: rgba(45, 52, 54, 0.9);
 `;
 
 const AnswerForm = styled.form`
@@ -81,13 +86,10 @@ const AddPhotos = styled.input`
 
 const CloseBtn = styled.i`
   position: fixed;
-  left: 57vw;
+  top: 0vh;
+  right: 0vw;
   z-index: 1;
   padding: 5px;
-`;
-
-const BtnDiv = styled.div`
-  display: flex;
 `;
 
 const FormDiv = styled.div`
@@ -121,14 +123,16 @@ const AnswerFormPhotos = styled.button`
 
 const AnswerHeading4 = styled.h4`
   display: block;
+  margin: 5px;
 `;
 
 const AnswerHeading5 = styled.h5`
   display: inline-block;
+  margin: 5px;
 `;
 
 const AnswerText = styled.span`
   margin: 5px;
-  font-size: 12px;
+  font-size: 1rem;
   font-style: italic;
 `;

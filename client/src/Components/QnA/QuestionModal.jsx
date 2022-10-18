@@ -1,27 +1,108 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
-const QuestionModal = () => {
+const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
+
+  const [question, setQuestion] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => document.body.style.overflow = 'unset';
+  }, []);
+
+  const validateForm = () => {
+    let formQuestion = question;
+    let formNickname = nickname;
+    let formEmail = email;
+    let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (formQuestion === '') {
+      alert('Question field must be filled out');
+      return false;
+    }
+    if (formNickname === '') {
+      alert('Nickname field must be filled out');
+      return false;
+    }
+    if (!formEmail.match(validEmail)) {
+      alert('Email must be in following format: example@example.example');
+      return false;
+    }
+    return true;
+  }
+
+  const handleSubmitQ = (e) => {
+    e.preventDefault();
+    let qObj = {};
+    qObj.body = question;
+    qObj.name = nickname;
+    qObj.email = email;
+    qObj.product_id = product_id;
+    console.log('handleSubmit question object', qObj);
+    if (validateForm()) {
+      axios.post(`/qa/questions?product_id=${product_id}`, qObj)
+        .then(results => {
+          setShowQModal(!showQModal);
+          setQuestion('');
+          setNickname('');
+          setEmail('');
+        })
+        .catch(err => console.log('Error submitting question', err))
+    }
+    // setShowQModal(!showQModal);
+
+  }
+
   return (
     <QuestionContainer>
-      <Heading4>Ask Your Question</Heading4>
-      <Heading5>About the [Product Name Here]</Heading5>
+      <CloseBtn onClick={() => setShowQModal(!showQModal)} className="fa-solid fa-x"></CloseBtn>
       <QuestionForm>
-        <div>
+        <Heading4>Ask Your Question</Heading4>
+        <Heading5>About the <i>{name}</i></Heading5>
+        <QuestionBody>
           <Label>Your Question*: </Label>
-          <TextField defaultValue="Type Question Here..."></TextField>
-        </div>
-        <div>
+          <TextField
+            placeholder="Why did you like the product or not?"
+            value={question}
+            onChange={e => setQuestion(e.target.value)}
+            type="text"
+            required="required"
+            maxlength="1000"
+          ></TextField>
+        </QuestionBody>
+        <QuestionBody>
           <Label>What is your Nickname*: </Label>
-          <Input />
-        </div>
-        <div>
+          <Input
+            placeholder="Type Nickname Here..."
+            value={nickname}
+            onChange={e => setNickname(e.target.value)}
+            type="text"
+            required="required"
+            maxlength="60"
+          />
+          <InputNote><i>
+            Note: For privacy reasons, do not use your full name or email address
+          </i></InputNote>
+        </QuestionBody>
+        <QuestionBody>
           <Label>Your Email*: </Label>
-          <Input />
-        </div>
-        <div>
-          <SubmitButton>Submit Question</SubmitButton>
-        </div>
+          <Input
+            placeholder="Type Email Here..."
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required="required"
+            maxlength="60"
+            type="email"
+          />
+          <InputNote><i>
+            Note: For authentication reasons, you will not be emailed
+          </i></InputNote>
+        </QuestionBody>
+        <QuestionBody>
+          <SubmitButton onClick={handleSubmitQ}>Submit Question</SubmitButton>
+        </QuestionBody>
       </QuestionForm>
     </QuestionContainer>
   )
@@ -31,31 +112,50 @@ export default QuestionModal;
 
 const QuestionContainer = styled.div`
   position: fixed;
+  height: 100vh;
+  width: 100vw;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: cyan;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
   border: 1px solid #ccc;
+  backdrop-filter: blur(6px);
+  background-color: rgba(45, 52, 54, 0.9);
 `;
 
 const Heading4 = styled.h4`
+  font-size: 1.25rem;
   margin: 5px;
 `;
 
 const Heading5 = styled.h5`
+  font-size: 1.1rem;
   margin: 5px;
 `;
 
 const QuestionForm = styled.form`
   display: flex;
+  flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 500px;
   background: white;
+`;
+
+const CloseBtn = styled.i`
+  position: fixed;
+  top: 0vh;
+  right: 0vw;
+  z-index: 1;
+  padding: 5px;
+`;
+
+const QuestionBody = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const Label = styled.label`
@@ -71,5 +171,8 @@ const Input = styled.input`
 `;
 
 const SubmitButton = styled.button`
-  border: none;
+`;
+
+const InputNote = styled.span`
+  margin: 5px;
 `;

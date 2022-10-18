@@ -1,27 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import AnswerEntry from './AnswerEntry.jsx';
 
 const AnswersList = ({ answersObj }) => {
 
+  const [totalCount, setTotalCount] = useState(0);
+  const [currCount, setCurrCount] = useState(0);
+
   const answersArr = [];
   for (let key in answersObj) {
     answersArr.push(answersObj[key]);
   }
+  answersArr.sort((a, b) => {
+    return b.helpfulness - a.helpfulness;
+  });
+  useEffect(() => {
+    setTotalCount(answersArr.length);
+  }, []);
+
+  const handleLoadMoreAs = (e) => {
+    e.preventDefault();
+    setCurrCount(currCount + 2);
+  }
 
   return (
     <AnswersContainer>
-      {answersArr.length > 2
+      {currCount < totalCount
         ? answersArr.map((answer, index) => {
-          if (index < 2) {
+          if (index < currCount + 2) {
             return <AnswerEntry entry={answer} key={index} />
           }
         })
         : answersArr.map((answer, index) => {
           return <AnswerEntry entry={answer} key={index} />
         })}
-      {<LoadMoreAnswers href="">LOAD MORE ANSWERS</LoadMoreAnswers>}
+      {answersArr.length !== 0 && currCount < totalCount &&
+        <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>LOAD MORE ANSWERS</LoadMoreAnswers>}
     </AnswersContainer>
   )
 }
@@ -33,12 +48,12 @@ const AnswersContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  height: 50vh;
-  width: 96vw;
+  max-width: 70vw;
+  max-height: 50vh;
 `;
 
 const LoadMoreAnswers = styled.a`
   display: block;
   margin: 10px;
-  font-size: 11px;
+  font-size: 1rem;
 `;
