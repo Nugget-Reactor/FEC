@@ -1,13 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import RelatedItemTest from './RelatedItemTest.jsx';
 
-const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
+const RelatedItemsCarousel = ({relatedItems}) => {
+  console.log('related items prop', relatedItems);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [length, setLength] = useState(0);
+  const [itemsLength, setItemsLength] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(true);
-  console.log(currentIndex);
+
+
+  if (relatedItems.length > 0) {
+    console.log('trying', relatedItems);
+    console.log('relatedItems.length', relatedItems.length);
+
+
+  }
+  useEffect(() => {
+    console.log('index changed', currentIndex);
+    // }
+  }, [currentIndex]);
+
+  // useEffect(() => {
+  //   console.log(items);
+  //   console.log(items.length);
+  //   setItemsLength(items.length);
+  // }, []);
+
   let LeftButton = ({isVisible}) => {
     return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow> : null;
   };
