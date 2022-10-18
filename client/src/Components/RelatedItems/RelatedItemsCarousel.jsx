@@ -3,23 +3,16 @@ import styled from 'styled-components';
 import RelatedItemTest from './RelatedItemTest.jsx';
 
 const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
-  console.log('related items prop', relatedItems);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
 
-  var fourCurrent;
-
   useEffect(() => {
     setCurrentIndex(0);
-    fourCurrent = relatedItems.slice(0, 4);
-    console.log('currentIndex', currentIndex);
-    console.log('how many times does this go off?'); //only once per render
   }, [relatedItems]);
 
   useEffect(() => { //make visibility conditional upon rendering
     if (relatedItems.length > 0) {
-      console.log('index changed', currentIndex);
       if (currentIndex === 0) {
         setLeftButtonVisible(false);
       } else if (currentIndex > 0) {
@@ -56,9 +49,9 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
             <LeftButton isVisible={leftButtonVisible}/>
             <RIContent>
               <ItemsRenderMap />
-              </RIContent>
-              <RightButton isVisible={rightButtonVisible}/>
-            </RIContentWrapper>
+            </RIContent>
+            <RightButton isVisible={rightButtonVisible}/>
+          </RIContentWrapper>
         </RIWrapper>
       </RIContainer>
     </div>
@@ -88,23 +81,15 @@ overflow: auto;
 const RIContent = styled.ul`
 
   display: flex;
+  border: 2px solid black;
+  border-radius: 3px;
 
   box-sizing: border-box;
-  border: 2px solid red;
   max-height: 30em;
   overflow: auto;
   max-width: 100%;
-  // old, good code
-  // display: inline-block;
-  border-radius: 3px;
-  // border: 2px solid black;
   padding: 0.5rem 0;
-  // transition: all 250ms linear;
-  //   -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
-  // scrollbar-width: none;  /* hide scrollbar in Firefox */
-  // &:: -webkit-scrollbar, {
-  //   display: none; //not sure about this
-  }
+
 `;
 // const RelatedItemsList = styled.ul`
 

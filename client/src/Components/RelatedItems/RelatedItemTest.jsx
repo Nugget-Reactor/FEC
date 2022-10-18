@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import RelatedItems from './RelatedItems.jsx';
 import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
@@ -60,7 +59,7 @@ export default RelatedItemTest;
 /** function for handling strikethrough proicing/ sale pricing/ regular pricing */
 const Pricing = ({salePrice, regPrice, strikePrice}) => {
   if (salePrice) {
-    return <SaleAndStrikeBlock><SalePricing>${salePrice}</SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
+    return <SaleAndStrikeBlock><SalePricing>${salePrice}  </SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
   } else {
     return <div>${regPrice}</div>;
   }
@@ -73,7 +72,7 @@ const RelatedItemListItem = styled.li` //the related items card itself
   display: inline-block;
   border-radius: 3px;
   margin: 5px;
-  border: 2px solid blue;
+  border: 2px solid black;
   padding: 5px;
 
 `;

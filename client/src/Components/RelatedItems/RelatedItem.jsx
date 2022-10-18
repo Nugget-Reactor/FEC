@@ -5,7 +5,6 @@ import { createStars, getAverage } from '../../Tools/createStars';
 
 
 const RelatedItem = ({relatedItem, handleProductChange}) => {
-  // console.log("related item in relatedItem line 7", relatedItem); //need this to access characteristics later
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
@@ -16,6 +15,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   if (relatedItem) {
     var ratings = getAverage(relatedItem.ratings);
   }
+
   useEffect(() => {
     if (relatedItem && relatedItem.results.length > 0) {
       relatedItem.results.forEach((style) => {
@@ -74,7 +74,8 @@ const RelatedItemListItem = styled.li` //the related items card itself
   display: inline-block;
   border-radius: 3px;
   margin: 5px;
-  border: 2px solid blue;
+  border: 2px solid black;
+  border-radius: 3px;
   padding: 5px;
 
 `;

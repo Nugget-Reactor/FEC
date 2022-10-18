@@ -33,70 +33,16 @@ const RelatedItems = ({ product, handleProductChange }) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
-      <Carousel2>
-        <AttemptCarousel>
-          <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
-        </AttemptCarousel>
-      </Carousel2>
       <Carousel>
-        <RelatedItemsList>
-          {relatedItems.map((relatedItem) =>
-            <RelatedItem relatedItem={relatedItem} handleProductChange={handleProductChange} key={relatedItem.id} />)}
-        </RelatedItemsList>
+        <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
       </Carousel>
-
     </div>
   );
 };
 
 export default RelatedItems;
 
-const AttemptCarousel = styled.div`
-// maxWidth: 1200;
-// marginLeft: 'auto';
-// marginRight: 'auto';
-// marginTop: 64;
-// new carousel first
-// display: flex;
-
-// box-sizing: border-box;
-// border: 2px solid red;
-// max-height: 30em;
-// max-width: 100%;
-// old, good code
-// display: inline-block;
-border-radius: 3px;
-// border: 2px solid black;
-padding: 0.5rem 0;
-`;
-
-const RelatedItemsList = styled.ul`
-
-  // new carousel first
-  display: flex;
-
-  box-sizing: border-box;
-  border: 2px solid red;
-  max-height: 30em;
-  overflow: auto;
-  max-width: 100%;
-  // old, good code
-  // display: inline-block;
-  border-radius: 3px;
-  // border: 2px solid black;
-  padding: 0.5rem 0;
-`;
-
 const Carousel = styled.div`
-  // max-width: 95%;
-  overflow: auto;
-  border: 2px solid green;
-
-`;
-
-const Carousel2 = styled.div`
-  // max-width: 95%;
-  overflow: auto;
-  border: 2px solid green;
+  max-width: 95%;
 
 `;
