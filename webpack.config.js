@@ -33,6 +33,7 @@ module.exports = {
 
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
+const path = require('path');
 
 const mode = process.env.ENV || 'development';
 
