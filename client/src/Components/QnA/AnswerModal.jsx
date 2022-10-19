@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const AnswerModal = ({ handleClick, body, name, question_id }) => {
+const AnswerModal = ({ showAModal, setShowAModal, body, name, question_id }) => {
 
   const hiddenFileInput = useRef(null);
+  const [answerBody, setAnswerBody] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -15,18 +19,31 @@ const AnswerModal = ({ handleClick, body, name, question_id }) => {
     hiddenFileInput.current.click();
   }
 
-  console.log(question_id);
+  const handleSubmitA = e => {
+    e.preventDefault();
+    // console.log('quesiton_id', question_id);
+    // console.log('answerBody', answerBody);
+    // console.log('username', username);
+    // console.log('email', email);
+    // console.log('photos', photos);
+    setShowAModal(!showAModal);
+  }
+
   // helper validator should check 5 or less images, more alerts error
 
   return (
     <AnswerContainer>
-      <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
+      <CloseBtn onClick={() => setShowAModal(!showAModal)} className="fa-solid fa-x"></CloseBtn>
       <AnswerForm>
         <AnswerHeading4>Submit Your Answer</AnswerHeading4>
         <AnswerHeading5>{name}: {body}</AnswerHeading5>
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
-          <AnswerField placeholder="Your Answer Here..."></AnswerField>
+          <AnswerField
+            placeholder="Your Answer Here..."
+            value={answerBody}
+            onChange={e => setAnswerBody(e.target.value)}
+          ></AnswerField>
         </FormDiv>
         <FormDiv>
           <AnswerLabel>What is your Nickname*:</AnswerLabel>
@@ -41,11 +58,14 @@ const AnswerModal = ({ handleClick, body, name, question_id }) => {
         <FormFooter>
           <AnswerFormPhotos onClick={handlePhotosClick}>Upload Your Photos</AnswerFormPhotos>
           <AddPhotos
+            id="upload-files"
             type="file"
+            multiple
             ref={hiddenFileInput}
             style={{ display: 'none' }}
+            onChange={() => console.log(document.getElementById('upload-files').files)}
           />
-          <AnswerFormSubmit onClick={e => handleClick(e)}>Submit Answer</AnswerFormSubmit>
+          <AnswerFormSubmit >Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>
     </AnswerContainer>
