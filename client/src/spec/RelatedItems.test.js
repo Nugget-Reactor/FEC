@@ -1,0 +1,41 @@
+/**
+ * @jest-environment jsdom
+*/
+import React from 'react';
+import { render, screen, cleanup, waitFor, fireEvent, act, getByTestId, getByText } from '@testing-library/react';
+import axiosMock from 'axios';
+
+import { sampleProduct, sampleRelatedItems } from './sampleData/RelatedItems/sampleProduct.js';
+
+import RelatedItems from '../Components/RelatedItems/RelatedItems.jsx';
+import RelatedItemsCarousel from '../Components/RelatedItems/RelatedItemsCarousel.jsx';
+import RelatedItem from '../Components/RelatedItems/RelatedItem.jsx';
+
+
+describe('renders Related Items from Related Items Widget', () => {
+  afterEach(cleanup);
+
+  it('Related Items Widget should render', async () => {
+    act(() => {
+    const { getByTestId, getByText } = render(<RelatedItems product={sampleProduct} />)
+    });
+
+
+    expect(screen.getByText('Related Items')).toBeInTheDocument();
+  })
+
+  it('Related Items Carousel right button should render when there are more than 4 items in the relateditems prop', async () => {
+    act(() => {
+      const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
+    });
+
+    expect(getByTestId('right-carousel-button')).toBeInTheDocument();
+  })
+
+  it('Related Items Product Name should render', async () => {
+  act(() => {
+    const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
+  });
+    expect(screen.getByText('Rita Hat')).toBeInTheDocument();
+  })
+});

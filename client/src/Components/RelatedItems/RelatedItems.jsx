@@ -16,6 +16,14 @@ const RelatedItems = ({ product, handleProductChange }) => {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
           setRelatedItems(results.data);
+          var relatedItemsArray = [];
+          var allRelatedProducts = [];
+          for (var i = 0; i < results.data.length; i++) {
+            relatedItemsArray.push(results.data[i].id);
+            allRelatedProducts.push(results.data[i]);
+          }
+          console.log('relatedItemsArray, related items line 25', relatedItemsArray);
+          console.log('singleProduct, related items line 23', allRelatedProducts);
         })
         .catch((err) => console.log('error', err));
 
