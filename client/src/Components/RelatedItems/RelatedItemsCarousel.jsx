@@ -34,11 +34,11 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   };
 
   let LeftButton = ({isVisible}) => {
-    return leftButtonVisible ? <div><LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow></div> : null;
+    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow> : null;
   };
 
   let RightButton = ({isVisible}) => {
-    return rightButtonVisible ? <div data-testid="right-carousel-button"><RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} >&gt;</RightArrow></div> : null;
+    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-carousel-button">&gt;</RightArrow> : null;
   };
 
   return (

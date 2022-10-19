@@ -2,7 +2,7 @@
  * @jest-environment jsdom
 */
 import React from 'react';
-import { render, screen, cleanup, waitFor, fireEvent, act, getByTestId, getByText } from '@testing-library/react';
+import { render, screen, cleanup, waitFor, fireEvent, act } from '@testing-library/react';
 import axiosMock from 'axios';
 
 import { sampleProduct, sampleRelatedItems } from './sampleData/RelatedItems/sampleProduct.js';
@@ -23,7 +23,7 @@ describe('renders Related Items from Related Items Widget', () => {
   //   expect(screen.getByText('Related Items')).toBeInTheDocument();
   // })
 
-  it('Related Items Carousel right button should render when there are more than 4 items in the relateditems prop', async () => {
+  it('Related Items Carousel right button should render when there are more than 4 items in the relatedItems prop', async () => {
       const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
 
     expect(getByTestId('right-carousel-button')).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe('renders Related Items from Related Items Widget', () => {
 
   it('Related Items Product Name should render', async () => {
   act(() => {
-    const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
+    const { getByText } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
   });
     expect(screen.getByText('Rita Hat')).toBeInTheDocument();
   })
