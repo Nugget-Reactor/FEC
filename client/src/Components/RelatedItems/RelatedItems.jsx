@@ -44,5 +44,6 @@ export default RelatedItems;
 
 const Carousel = styled.div`
   max-width: 95%;
+  height: 100%;
 
 `;

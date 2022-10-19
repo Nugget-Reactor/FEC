@@ -37,8 +37,8 @@ const AddCart = ({currentStyle}) => {
   };
 
 
-  console.log(currentSku);
-  console.log(currentQuantity);
+  // console.log(currentSku);
+  // console.log(currentQuantity);
   return (
     <div className="selectors-container">
       <select className="size-selector"
