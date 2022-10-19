@@ -43,7 +43,7 @@ const RelatedItems = ({ product, handleProductChange }) => {
 export default RelatedItems;
 
 const Carousel = styled.div`
-  max-width: 95%;
+  max-width: 100%;
   height: 100%;
 
 `;
