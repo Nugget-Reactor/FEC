@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
 
-const RelatedItemTest = ({relatedItem, handleProductChange}) => {
+const RelatedItem = ({relatedItem, handleProductChange}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
@@ -16,12 +16,15 @@ const RelatedItemTest = ({relatedItem, handleProductChange}) => {
   }
 
   useEffect(() => {
-    if (relatedItem && relatedItem.results.length > 0) {
-      relatedItem.results.forEach((style) => {
-        if (style['default?']) {
-          setCurrentStyle(style);
-        }
-      });
+    if (relatedItem && relatedItem.results) {
+      if (relatedItem.results.length > 0) {
+        relatedItem.results.forEach((style) => {
+          if (style['default?']) {
+            setCurrentStyle(style);
+          }
+        });
+
+      }
     }
   }, []);
 
@@ -54,7 +57,7 @@ const RelatedItemTest = ({relatedItem, handleProductChange}) => {
   );
 };
 
-export default RelatedItemTest;
+export default RelatedItem;
 
 /** function for handling strikethrough proicing/ sale pricing/ regular pricing */
 const Pricing = ({salePrice, regPrice, strikePrice}) => {
@@ -72,6 +75,7 @@ const RelatedItemListItem = styled.li` //the related items card itself
   margin: 5px;
   border: 2px solid black;
   padding: 5px;
+  height: 100%;
 
 `;
 

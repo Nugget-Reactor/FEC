@@ -38,7 +38,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   };
 
   let RightButton = ({isVisible}) => {
-    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}>&gt;</RightArrow> : null;
+    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-carousel-button">&gt;</RightArrow> : null;
   };
 
   return (
@@ -50,7 +50,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
             <RIContent>
               <ItemsRenderMap />
             </RIContent>
-            <RightButton isVisible={rightButtonVisible}/>
+            <RightButton isVisible={rightButtonVisible} />
           </RIContentWrapper>
         </RIWrapper>
       </RIContainer>
@@ -61,14 +61,18 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
 export default RelatedItemsCarousel;
 
 const RIContainer = styled.div`
-width: 100%
+width: 100%;
 display: flex;
 flex-direction: row;
+height: 100%;
+
 `;
 
 const RIWrapper = styled.div`
 display: flex;
 width: 100%;
+height: 100%;
+
 position: relative;
 `;
 
