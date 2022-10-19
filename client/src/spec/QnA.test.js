@@ -18,10 +18,12 @@ describe('renders Answers from QnA Widget', () => {
   afterEach(cleanup);
 
   it('Questions widget should render', async () => {
-    const { getByTestId, getByText } = render(<QnA product={sampleQuestion} />)
+    const { getByTestId } = render(<QnA product={sampleQuestion} />);
 
     expect(screen.getByText('Questions & Answers')).toBeInTheDocument();
     expect(getByTestId('addq-button')).toBeInTheDocument();
+
+    screen.debug();
 
     // const reviewTitle = await waitFor(() => getByTestId('reviewTitle'));
 

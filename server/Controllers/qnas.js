@@ -12,7 +12,7 @@ const qnas = {
       });
   },
   getAs: (req, res) => {
-    axios.get(`${URL}/qa/questions/${req.query.question_id}/answers`)
+    axios.get(`${URL}/qa/questions/${req.params.question_id}/answers`)
       .then((result) => {
         res.status(200).json(result.data)
       })
@@ -29,7 +29,7 @@ const qnas = {
   },
   addA: (req, res) => {
     // console.log('add answer req body');
-    axios.post(`${URL}/qa/questions/${req.query.question_id}/answers`, req.body)
+    axios.post(`${URL}/qa/questions/${req.params.question_id}/answers`, req.body)
       .then(result => res.sendStatus(201))
       .catch(err => res.sendStatus(500))
   }

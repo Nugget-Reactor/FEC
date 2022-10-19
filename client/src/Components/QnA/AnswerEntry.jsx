@@ -18,7 +18,7 @@ const AnswerEntry = ({ entry }) => {
         <AnswerListDiv>Helpful?</AnswerListDiv>
         <AddAnswer href="">Yes ({entry.helpfulness})</AddAnswer>
         <AnswerListDiv> | </AnswerListDiv>
-        <Report href="">Report</Report>
+        <ReportAnswer href="">Report Answer</ReportAnswer>
       </AnswerListFooter>
     </AnswerEntryContainer>
   )
@@ -55,7 +55,7 @@ const AddAnswer = styled.a`
   font-size: .9rem;
 `;
 
-const Report = styled.a`
+const ReportAnswer = styled.a`
   font-size: .9rem;
 `;
 

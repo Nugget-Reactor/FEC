@@ -19,6 +19,8 @@ const QuestionEntry = ({ entry, name }) => {
         <QuestionSubHeading>Helpful?</QuestionSubHeading>
         <HelpfulQ href="">Yes ({entry && entry.question_helpfulness})</HelpfulQ>
         <QuestionSubHeading>|</QuestionSubHeading>
+        <ReportQuestion href="">Report Question</ReportQuestion>
+        <QuestionSubHeading>|</QuestionSubHeading>
         <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
       </QuestionEntryHeader>
       <AnswerBody>
@@ -51,7 +53,11 @@ const QuestionHeading = styled.div`
 const QuestionSubHeading = styled.div`
   display: inline-flex;
   padding: 5px;
-  font-size: .8rem;
+  font-size: .9rem;
+`;
+
+const ReportQuestion = styled.a`
+  font-size: .9rem;
 `;
 
 const AnswerBody = styled.div`
@@ -60,9 +66,11 @@ const AnswerBody = styled.div`
 `;
 
 const HelpfulQ = styled.a`
-  font-size: .8rem;
+  font-size: .9rem;
 `;
 
 const AddAnswer = styled.a`
-  font-size: .8rem;
+  font-size: .9rem;
+  padding: 5px;
+  right: 0;
 `;
