@@ -47,9 +47,6 @@ const AnswersContainer = styled.div`
   margin: 10px;
   display: flex;
   flex-direction: column;
-  overflow: auto;
-  max-width: 70vw;
-  max-height: 50vh;
 `;
 
 const LoadMoreAnswers = styled.a`
