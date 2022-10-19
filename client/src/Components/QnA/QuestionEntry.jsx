@@ -23,7 +23,7 @@ const QuestionEntry = ({ entry, name }) => {
       </QuestionEntryHeader>
       <AnswerBody>
         {Object.keys(entry.answers).length !== 0 && <AnswersList answersObj={entry.answers} ></AnswersList>}
-        {showAModal && <AnswerModal handleClick={handleAddAnswer} body={entry.question_body} name={name} ></AnswerModal>}
+        {showAModal && <AnswerModal handleClick={handleAddAnswer} body={entry.question_body} name={name} question_id={entry.question_id} ></AnswerModal>}
       </AnswerBody>
     </QuestionEntryContainer>
   )

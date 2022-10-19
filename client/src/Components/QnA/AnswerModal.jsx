@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const AnswerModal = ({ handleClick, body, name }) => {
+const AnswerModal = ({ handleClick, body, name, question_id }) => {
 
   const hiddenFileInput = useRef(null);
 
@@ -14,6 +14,9 @@ const AnswerModal = ({ handleClick, body, name }) => {
     e.preventDefault();
     hiddenFileInput.current.click();
   }
+
+  console.log(question_id);
+  // helper validator should check 5 or less images, more alerts error
 
   return (
     <AnswerContainer>
