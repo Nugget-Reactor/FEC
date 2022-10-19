@@ -124,6 +124,7 @@ const QuestionContainer = styled.div`
   border: 1px solid #ccc;
   backdrop-filter: blur(6px);
   background-color: rgba(45, 52, 54, 0.9);
+  z-index: 200;
 `;
 
 const Heading4 = styled.h4`
@@ -149,7 +150,7 @@ const CloseBtn = styled.i`
   position: fixed;
   top: 0vh;
   right: 0vw;
-  z-index: 1;
+  z-index: 201;
   padding: 5px;
 `;
 

@@ -3,11 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import './overview.css';
-const {useState} = React;
+const { useState } = React;
 
 
-const AddCart = ({currentStyle}) => {
-  const [currentSku, setCurrentSku] = useState({sku_id: '', quantity: 0});
+const AddCart = ({ currentStyle }) => {
+  const [currentSku, setCurrentSku] = useState({ sku_id: '', quantity: 0 });
   const [currentQuantity, setCurrentQuantity] = useState(0);
   const availableSkus = [];
   const currentSkus = currentStyle.skus;
@@ -17,7 +17,7 @@ const AddCart = ({currentStyle}) => {
   for (const key in currentSkus) {
     if (key !== 'null' && currentSkus[key].quantity !== 0) {
       availableSkus.push(
-        {skuID: key, quantity: currentSkus[key].quantity, size: currentSkus[key].size}
+        { skuID: key, quantity: currentSkus[key].quantity, size: currentSkus[key].size }
       );
     }
   }
@@ -25,20 +25,20 @@ const AddCart = ({currentStyle}) => {
   const handleSkuChange = (skuID) => {
     availableSkus.forEach(sku => {
       if (sku.skuID === skuID) {
-        setCurrentSku({sku_id: sku.skuID, quantity: sku.quantity});
+        setCurrentSku({ sku_id: sku.skuID, quantity: sku.quantity });
       }
     });
   };
 
   const addToCart = () => {
     if (currentSku.sku_id && currentQuantity > 0) {
-      axios.post('/cart', {sku_id: currentSku.sku_id});
+      axios.post('/cart', { sku_id: currentSku.sku_id });
     }
   };
 
 
-  console.log(currentSku);
-  console.log(currentQuantity);
+  // console.log(currentSku);
+  // console.log(currentQuantity);
   return (
     <div className="selectors-container">
       <select className="size-selector"
