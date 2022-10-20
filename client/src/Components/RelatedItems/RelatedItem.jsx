@@ -34,8 +34,10 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
 
   /** to set default photo and default price for related items card **/
   useEffect(() => {
-    if (currentStyle.photos) { //render photos conditionally to no image found notice if null
+    if (currentStyle.photos && currentStyle.photos[0]) { //render photos conditionally to no image found notice if null
       setCurrentPhotoURL(currentStyle.photos[0].url);
+    } else {
+      setCurrentPhotoURL(null);
     }
     if (currentStyle.sale_price) {
       setStrikeRegPrice(currentStyle.original_price);
@@ -54,7 +56,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   };
 
   const conditionalRatings = () => { //if no ratings, do not render any stars business doc says if no reviews?
-    if (relatedItem.ratings !== {}) {
+    if (Object.keys(relatedItem.ratings).length > 0) {
       return <div>{createStars(ratings)}</div>;
     } else {
       console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");
