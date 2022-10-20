@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import AnswerEntry from './AnswerEntry.jsx';
 
-const AnswersList = ({ answersObj, question_id }) => {
+const AnswersList = ({ question_id }) => {
 
   const [answersList, setAnswersList] = useState([]);
   const [showLoadMore, setShowLoadMore] = useState(false);
@@ -23,13 +23,13 @@ const AnswersList = ({ answersObj, question_id }) => {
     setShowLoadMore(!showLoadMore);
   }, []);
 
-  const answersArr = [];
-  for (let key in answersObj) {
-    answersArr.push(answersObj[key]);
-  }
-  answersArr.sort((a, b) => {
-    return b.helpfulness - a.helpfulness;
-  });
+  // const answersArr = [];
+  // for (let key in answersObj) {
+  //   answersArr.push(answersObj[key]);
+  // }
+  // answersArr.sort((a, b) => {
+  //   return b.helpfulness - a.helpfulness;
+  // });
 
   const handleLoadMoreAs = (e) => {
     e.preventDefault();
