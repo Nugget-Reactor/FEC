@@ -38,7 +38,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
       currentStyle.photos.forEach((photo) => {
         setCurrentPhotoURL(photo.url);
       });
-    } // need a response if no url is found
+    }
     if (currentStyle.sale_price) {
       setStrikeRegPrice(currentStyle.original_price);
       setSalePrice(currentStyle.sale_price);
@@ -53,19 +53,28 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
     } else {
       return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
     }
+  };
 
+  const conditionalRatings = () => { //if no ratings, do not render any stars
+    if (relatedItem.ratings !== []) {
+      return <div>{createStars(ratings)}</div>;
+    } else {
+      console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");
+      return <div>No Reviews Yet</div>;
+    }
   };
 
   // need action button to look better/be more accessible, and be functional => Compare modal
   // also if no reviews, review div should be hidden
   return (
     <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
-      <RelatedImageDiv>{conditionalPhoto()}
+      <RelatedImageDiv>
+        {conditionalPhoto()}
         <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
       <h4>{relatedItem.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
-      <div>{createStars(ratings)}</div>
+      {conditionalRatings()}
     </RelatedItemListItem>
   );
 };

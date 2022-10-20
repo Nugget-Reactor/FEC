@@ -18,7 +18,7 @@ const App = () => {
     // 411197
     // handleProductChange('40480');
     // handleProductChange('41197');
-    handleProductChange('40344');
+    handleProductChange('40480');
 
 
     // handleProductChange('40345'); //breaks it - contains some items with no image and no price
