@@ -16,7 +16,7 @@ const App = () => {
     // axios.get('/products/40480') //has related items with sale price
     // axios.get('/products/40353')
     // 411197
-    // handleProductChange('40480');
+    // handleProductChange('40353'); //infinity stones
     // handleProductChange('41197');
     handleProductChange('40480');
 

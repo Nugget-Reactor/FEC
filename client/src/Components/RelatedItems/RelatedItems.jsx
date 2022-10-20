@@ -9,6 +9,7 @@ const RelatedItems = ({ product, handleProductChange }) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedPrices, setRelatedPrices] = useState([]);
   const [relatedImages, setRelatedImages] = useState([]);
+  const [noneRelated, setNoneRelated] = useState('');
 
   useEffect(() => {
     /**to get related item **/
@@ -16,6 +17,9 @@ const RelatedItems = ({ product, handleProductChange }) => {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
           setRelatedItems(results.data);
+          if (results.data.length === 0) {
+            setNoneRelated('There are no Related Products for this item');
+          }
           // var arrayOfRelatedID = []; //use this to test related items by product ID when needed - remove before production
           // for (var i = 0; i < results.data.length; i++) {
           //   arrayOfRelatedID.push(results.data[i].id);
@@ -34,13 +38,18 @@ const RelatedItems = ({ product, handleProductChange }) => {
     }
   }, [product]);
 
+  const AnyRelatedItems = () => {
+    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/> : <h1>{noneRelated}</h1>;
 
+  };
+
+  // make conditional rendering for when there are no related items
   return (
     <div id="related-items-panel">
       <h2>Related Products</h2>
       <RelatedItemsDiv>
         <Carousel>
-          <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
+          <AnyRelatedItems/>
         </Carousel>
       </RelatedItemsDiv>
     </div>
@@ -58,4 +67,5 @@ align-items: stretch;`;
 const Carousel = styled.div`
   max-width: 100%;
   max-height: 100%;
+  word-wrap: normal;
 `;
