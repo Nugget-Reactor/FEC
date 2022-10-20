@@ -84,36 +84,28 @@ const RIContent = styled.ul`
   box-sizing: border-box;
   max-width: 100%;
   padding: 0.5rem 0;
+  padding-left: 3vw;
+  padding-right: 3vw;
 `;
 
 const LeftArrow = styled.button`
 position: absolute;
-z-index: 1;
-font-size: 1.8em;
-
-background: rgba(255, 255, 255, 0.6);
-backdrop-filter: blur(5px);
-height: 100%;
-width: 3vw;
-
-left: 0px;
+border: none;
+background: none;
 top: 50%;
 transform: translateY(-50%);
-border: 1px solid white;
+font-size: 1.8em;
+width: 2em;
+left: 1px;
 `;
 
 const RightArrow = styled.button`
 position: absolute;
-z-index: 1;
-font-size: 1.8em;
-
-background: rgba(255, 255, 255, 0.6);
-backdrop-filter: blur(5px);
-height: 100%;
-width: 3vw;
-
-right: 0px;
+border: none;
+background: none;
 top: 50%;
 transform: translateY(-50%);
-border: 1px solid white;
+font-size: 1.8em;
+width: 2em;
+right: 1px;
 `;
