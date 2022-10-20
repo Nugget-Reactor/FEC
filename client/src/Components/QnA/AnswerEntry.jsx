@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { format, parseISO } from 'date-fns';
+import axios from 'axios';
 
 const AnswerEntry = ({ entry }) => {
+
+  const [helpfulClicked, setHelpfulClicked] = useState(false);
+  const [reportClicked, setReportClicked] = useState(false);
+
+  const handleMarkAHelpful = (e) => {
+    e.preventDefault();
+    axios.put(`/qa/answers/${entry.id}/helpful`)
+      .then(results => {
+        setHelpfulClicked(!helpfulClicked);
+      })
+      .catch(err => console.log('Error updating answer helpfulness'))
+  }
+
+  const handleReportA = (e) => {
+    e.preventDefault();
+    axios.put(`/qa/answers/${entry.id}/report`)
+      .then(results => {
+        setReportClicked(!reportClicked);
+      })
+      .catch(err => console.log('Error updating answer helpfulness'))
+  }
+
+  // console.log('answer entry', entry);
 
   return (
     <AnswerEntryContainer data-testid="answer-entry">
@@ -16,9 +40,13 @@ const AnswerEntry = ({ entry }) => {
         <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
         <AnswerListDiv> | </AnswerListDiv>
         <AnswerListDiv>Helpful?</AnswerListDiv>
-        <AddAnswer href="">Yes ({entry.helpfulness})</AddAnswer>
+        {helpfulClicked
+          ? <AddAnswer href="" onClick={e => e.preventDefault()}>Yes ({entry.helpfulness + 1})</AddAnswer>
+          : <AddAnswer href="" onClick={handleMarkAHelpful}>Yes ({entry.helpfulness})</AddAnswer>}
         <AnswerListDiv> | </AnswerListDiv>
-        <ReportAnswer href="">Report Answer</ReportAnswer>
+        {reportClicked
+          ? <ReportAnswer href="" onClick={e => e.preventDefault()}>Reported</ReportAnswer>
+          : <ReportAnswer href="" onClick={handleReportA}>Report Answer</ReportAnswer>}
       </AnswerListFooter>
     </AnswerEntryContainer>
   )
