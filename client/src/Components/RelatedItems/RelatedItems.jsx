@@ -33,17 +33,28 @@ const RelatedItems = ({ product, handleProductChange }) => {
   return (
     <div id="related-items-panel">
       <h2>Related Items</h2>
+      <RelatedItemsDiv>
       <Carousel>
         <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
       </Carousel>
+      </RelatedItemsDiv>
     </div>
   );
 };
 
 export default RelatedItems;
 
+const RelatedItemsDiv = styled.div`
+
+justify-content: space-around;
+// gap: 50px;
+display: flex;
+overflow: hidden;
+max-height: 100%;
+align-items: stretch;`;
+
 const Carousel = styled.div`
   max-width: 100%;
-  height: 100%;
+  max-height: 100%;
 
 `;
