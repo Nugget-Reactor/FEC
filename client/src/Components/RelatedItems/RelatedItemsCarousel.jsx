@@ -93,7 +93,7 @@ font-size: 1.8em;
 
 background: rgba(255, 255, 255, 0.6);
 backdrop-filter: blur(5px);
-height: 100vh;
+height: 100%;
 width: 3vw;
 
 left: 0px;
@@ -109,7 +109,7 @@ font-size: 1.8em;
 
 background: rgba(255, 255, 255, 0.6);
 backdrop-filter: blur(5px);
-height: 100vh;
+height: 100%;
 width: 3vw;
 
 right: 0px;
