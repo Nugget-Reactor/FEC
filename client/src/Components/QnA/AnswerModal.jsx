@@ -21,7 +21,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
     hiddenFileInput.current.click();
   };
 
-  const validateForm = () => {
+  const validateAForm = () => {
     let formAnswerBody = answerBody;
     let formUsername = username;
     let formEmail = email;
@@ -48,26 +48,26 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
 
   const handleSubmitA = e => {
     e.preventDefault();
-    console.log('question_id', questionID);
-    console.log('answerBody', answerBody);
-    console.log('username', username);
-    console.log('email', email);
-    console.log('photos', photos);
+    // console.log('question_id', questionID);
+    // console.log('answerBody', answerBody);
+    // console.log('username', username);
+    // console.log('email', email);
+    // console.log('photos', photos);
     let aObj = {};
     aObj.body = answerBody;
     aObj.name = username;
     aObj.email = email;
     aObj.photos = photos;
-    if (validateForm()) {
-      // axios.post(`/qa/questions/${question_id}/answers`, aObj)
-      //   .then(results => {
-      //     setShowAModal(!showAModal);
-      //     setAnswerBody('');
-      //     setUsername('');
-      //     setEmail('');
-      //     setPhotos([]);
-      //   })
-      //   .catch(err => console.log('Error submitting answer', err))
+    if (validateAForm()) {
+      axios.post(`/qa/questions/${questionID}/answers`, aObj)
+        .then(results => {
+          setShowAModal(!showAModal);
+          setAnswerBody('');
+          setUsername('');
+          setEmail('');
+          setPhotos([]);
+        })
+        .catch(err => console.log('Error submitting answer', err));
     }
 
   };
