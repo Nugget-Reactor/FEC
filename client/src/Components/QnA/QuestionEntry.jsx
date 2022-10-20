@@ -13,7 +13,7 @@ const QuestionEntry = ({ entry, name }) => {
   const handleAddAnswer = (e) => {
     e.preventDefault();
     setShowAModal(!showAModal);
-  }
+  };
 
   const handleMarkHelpful = (e) => {
     e.preventDefault();
@@ -21,8 +21,8 @@ const QuestionEntry = ({ entry, name }) => {
       .then(results => {
         setHelpfulClicked(!helpfulClicked);
       })
-      .catch(err => console.log('Error updating question helpfulness'))
-  }
+      .catch(err => console.log('Error updating question helpfulness'));
+  };
 
   const handleReportQ = (e) => {
     e.preventDefault();
@@ -30,8 +30,8 @@ const QuestionEntry = ({ entry, name }) => {
       .then(results => {
         setReportClicked(!reportClicked);
       })
-      .catch(err => console.log('Error reporting question'))
-  }
+      .catch(err => console.log('Error reporting question'));
+  };
 
   return (
     <QuestionEntryContainer>
@@ -49,12 +49,12 @@ const QuestionEntry = ({ entry, name }) => {
         <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
       </QuestionEntryHeader>
       <AnswerBody>
-        {Object.keys(entry.answers).length !== 0 && <AnswersList question_id={entry.question_id}></AnswersList>}
-        {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} question_id={entry.question_id} ></AnswerModal>}
+        {Object.keys(entry.answers).length !== 0 && <AnswersList questionID={entry.question_id}></AnswersList>}
+        {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} questionID={entry.question_id} ></AnswerModal>}
       </AnswerBody>
     </QuestionEntryContainer>
-  )
-}
+  );
+};
 
 export default QuestionEntry;
 

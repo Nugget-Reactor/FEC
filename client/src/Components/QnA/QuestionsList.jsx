@@ -16,7 +16,7 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
   const handleMoreAs = (e) => {
     e.preventDefault();
     setCurrCount(currCount + 2);
-  }
+  };
 
   return (
     <QuestionListContainer>
@@ -24,11 +24,11 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
         {currCount < totalCount
           ? questionsList.map((question, index) => {
             if (index < currCount + 2) {
-              return <QuestionEntry entry={question} key={index} name={name} />
+              return <QuestionEntry entry={question} key={index} name={name} />;
             }
           })
           : questionsList.map((question, index) => {
-            return <QuestionEntry entry={question} key={index} name={name} />
+            return <QuestionEntry entry={question} key={index} name={name} />;
           })}
       </QuestionListBody>
       <QuestionListFooter>
@@ -36,8 +36,8 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
         <AddQButton onClick={() => setShowQModal(!showQModal)} data-testid="addq-button">ADD A QUESTION +</AddQButton>
       </QuestionListFooter>
     </QuestionListContainer>
-  )
-}
+  );
+};
 
 export default QuestionsList;
 

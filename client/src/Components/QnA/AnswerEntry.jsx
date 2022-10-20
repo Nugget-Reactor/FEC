@@ -16,8 +16,8 @@ const AnswerEntry = ({ entry }) => {
       .then(results => {
         setHelpfulClicked(!helpfulClicked);
       })
-      .catch(err => console.log('Error updating answer helpfulness'))
-  }
+      .catch(err => console.log('Error updating answer helpfulness'));
+  };
 
   const handleReportA = (e) => {
     e.preventDefault();
@@ -25,8 +25,8 @@ const AnswerEntry = ({ entry }) => {
       .then(results => {
         setReportClicked(!reportClicked);
       })
-      .catch(err => console.log('Error updating answer helpfulness'))
-  }
+      .catch(err => console.log('Error updating answer helpfulness'));
+  };
 
   // console.log('answer entry', entry);
 
@@ -51,8 +51,8 @@ const AnswerEntry = ({ entry }) => {
           : <ReportAnswer href="" onClick={handleReportA}>Report Answer</ReportAnswer>}
       </AnswerListFooter>
     </AnswerEntryContainer>
-  )
-}
+  );
+};
 
 export default AnswerEntry;
 

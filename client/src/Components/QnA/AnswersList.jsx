@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import AnswerEntry from './AnswerEntry.jsx';
 
-const AnswersList = ({ question_id }) => {
+const AnswersList = ({ questionID }) => {
 
   const [answersList, setAnswersList] = useState([]);
   const [showLoadMore, setShowLoadMore] = useState(false);
@@ -12,9 +12,9 @@ const AnswersList = ({ question_id }) => {
   // console.log('passed down answersObj', answersObj);
 
   useEffect(() => {
-    axios.get(`/qa/questions/${question_id}/answers`)
+    axios.get(`/qa/questions/${questionID}/answers`)
       .then(results => setAnswersList(results.data.results))
-      .catch(err => console.log('Error getting answers list', err))
+      .catch(err => console.log('Error getting answers list', err));
   }, [showLoadMore]);
 
   // console.log(answersList);
@@ -34,25 +34,25 @@ const AnswersList = ({ question_id }) => {
   const handleLoadMoreAs = (e) => {
     e.preventDefault();
     setShowLoadMore(!showLoadMore);
-  }
+  };
 
   return (
     <AnswersContainer>
       {showLoadMore && answersList
         ? answersList.map((answer, index) => {
           if (index < 2) {
-            return <AnswerEntry entry={answer} key={index} />
+            return <AnswerEntry entry={answer} key={index} />;
           }
         })
         : answersList.map((answer, index) => {
-          return <AnswerEntry entry={answer} key={index} />
+          return <AnswerEntry entry={answer} key={index} />;
         })}
       {showLoadMore
         ? <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>LOAD MORE ANSWERS</LoadMoreAnswers>
         : <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>COLLAPSE LIST</LoadMoreAnswers>}
     </AnswersContainer>
-  )
-}
+  );
+};
 
 export default AnswersList;
 

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, question_id }) => {
+const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, questionID }) => {
 
   const hiddenFileInput = useRef(null);
   const [answerBody, setAnswerBody] = useState('');
@@ -19,13 +19,13 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
   const handlePhotosClick = e => {
     e.preventDefault();
     hiddenFileInput.current.click();
-  }
+  };
 
   const validateForm = () => {
     let formAnswerBody = answerBody;
     let formUsername = username;
     let formEmail = email;
-    let formPhotos = photos
+    let formPhotos = photos;
     let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (formAnswerBody === '') {
       alert('Your Answer field must be filled out');
@@ -44,11 +44,11 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
       return false;
     }
     return true;
-  }
+  };
 
   const handleSubmitA = e => {
     e.preventDefault();
-    console.log('question_id', question_id);
+    console.log('question_id', questionID);
     console.log('answerBody', answerBody);
     console.log('username', username);
     console.log('email', email);
@@ -70,7 +70,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
       //   .catch(err => console.log('Error submitting answer', err))
     }
 
-  }
+  };
   // helper validator should check 5 or less images, more alerts error
 
   return (
@@ -92,7 +92,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         </FormDiv>
         {showPreview && photos.length > 0
           ? <PhotosList>{photos.map((photo, index) => {
-            return <PhotoEntry key={index}><PhotoImg src={photo}></PhotoImg></PhotoEntry>
+            return <PhotoEntry key={index}><PhotoImg src={photo}></PhotoImg></PhotoEntry>;
           })}</PhotosList>
           : <NoSelectedFiles>No files selected</NoSelectedFiles>}
         <FormDiv>
@@ -143,8 +143,8 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         </FormFooter>
       </AnswerForm>
     </AnswerContainer>
-  )
-}
+  );
+};
 
 export default AnswerModal;
 
