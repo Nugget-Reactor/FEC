@@ -35,9 +35,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   /** to set default photo and default price for related items card **/
   useEffect(() => {
     if (currentStyle.photos) { //render photos conditionally to no image found notice if null
-      currentStyle.photos.forEach((photo) => {
-        setCurrentPhotoURL(photo.url);
-      });
+      setCurrentPhotoURL(currentStyle.photos[0].url);
     }
     if (currentStyle.sale_price) {
       setStrikeRegPrice(currentStyle.original_price);
