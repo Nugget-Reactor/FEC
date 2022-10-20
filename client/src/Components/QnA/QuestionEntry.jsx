@@ -7,6 +7,8 @@ import axios from 'axios';
 const QuestionEntry = ({ entry, name }) => {
 
   const [showAModal, setShowAModal] = useState(false);
+  const [helpfulClicked, setHelpfulClicked] = useState(false);
+  const [reportClicked, setReportClicked] = useState(false);
 
   const handleAddAnswer = (e) => {
     e.preventDefault();
@@ -16,8 +18,19 @@ const QuestionEntry = ({ entry, name }) => {
   const handleMarkHelpful = (e) => {
     e.preventDefault();
     axios.put(`/qa/questions/${entry.question_id}/helpful`)
-      .then(results => console.log('Success updating question helpfulness'))
+      .then(results => {
+        setHelpfulClicked(!helpfulClicked);
+      })
       .catch(err => console.log('Error updating question helpfulness'))
+  }
+
+  const handleReportQ = (e) => {
+    e.preventDefault();
+    axios.put(`/qa/questions/${entry.question_id}/report`)
+      .then(results => {
+        setReportClicked(!reportClicked);
+      })
+      .catch(err => console.log('Error reporting question'))
   }
 
   return (
@@ -25,9 +38,13 @@ const QuestionEntry = ({ entry, name }) => {
       <QuestionEntryHeader>
         <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
         <QuestionSubHeading>Helpful?</QuestionSubHeading>
-        <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>
+        {helpfulClicked
+          ? <HelpfulQ href="">Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
+          : <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
         <QuestionSubHeading>|</QuestionSubHeading>
-        <ReportQuestion href="">Report Question</ReportQuestion>
+        {reportClicked
+          ? <ReportQuestion href="">Reported</ReportQuestion>
+          : <ReportQuestion href="" onClick={handleReportQ}>Report Question</ReportQuestion>}
         <QuestionSubHeading>|</QuestionSubHeading>
         <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
       </QuestionEntryHeader>
