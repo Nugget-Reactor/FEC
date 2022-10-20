@@ -9,12 +9,16 @@ import Breakdown from './Breakdown.jsx';
 const Reviews = ({ productID, productName }) => {
 
   const [reviews, setReviews] = useState([]);
+  const [filteredReviews, setFilteredReviews] = useState([]);
   const [metadata, setMetadata] = useState({});
   const [sort, setSort] = useState('relevant');
   const [currentCount, setCurrentCount] = useState(2);
-  const [totalCount, setTotalCount] = useState(2);
+  const [filteredTotalCount, setFilteredTotalCount] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [filters, setFilters] = useState([]);
 
+  //Set initial reviews list
   useEffect(() => {
     if(productID !== undefined) {
       axios.get(`/reviews?product_id=${productID}&sort=${sort}&count=${currentCount}`)
@@ -25,6 +29,19 @@ const Reviews = ({ productID, productName }) => {
     }
   }, [productID, sort, currentCount]);
 
+  //Set filtered reviews list
+  useEffect(() => {
+    if(filters.length > 0) {
+      let filtered = reviews.filter((review) => {
+        return filters.includes(review.rating);
+      })
+      setFilteredReviews(filtered);
+    } else {
+      setFilteredReviews(reviews);
+    }
+  }, [reviews, filters]);
+
+  //Set metadata
   useEffect(() => {
     if(productID !== undefined) {
       axios.get(`/reviews/meta?product_id=${productID}`)
@@ -35,17 +52,26 @@ const Reviews = ({ productID, productName }) => {
     }
   }, [productID]);
 
+  //Set total reviews count and filtered reviews count
   useEffect(() => {
-    setTotalCount(getReviewCount());
-  }, [metadata])
+    getReviewCount();
+  }, [metadata, filters])
 
   const getReviewCount = () => {
     let total = 0;
 
+    if(filters.length > 0 && metadata.ratings) {
+      filters.forEach((filter) => {
+        total += Number(metadata.ratings[filter]);
+      })
+      setFilteredTotalCount(total);
+    }
+    total = 0;
     for(let count in metadata.ratings) {
       total += Number(metadata.ratings[count]);
     }
-    return total;
+    setTotalCount(total)
+
   }
 
   const handleSort = (e) => {
@@ -64,14 +90,14 @@ const Reviews = ({ productID, productName }) => {
           <Breakdown metadata={metadata} totalCount={totalCount} />
         </div>
         <div>
-          <ReviewTitle data-testid="reviewTitle">{totalCount} reviews, sorted by
+          <ReviewTitle data-testid="reviewTitle">{filteredTotalCount || totalCount} reviews, sorted by
             <Dropdown value={sort} onChange={handleSort}>
               <option value='relevant'>relevance</option>
               <option value='helpful'>most helpful</option>
               <option value='newest'>newest</option>
             </Dropdown>
           </ReviewTitle>
-          <List reviews={reviews} />
+          <List reviews={filteredReviews} />
 
           {totalCount >= currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
           <BigButton data-testid="addReviewButton" onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
