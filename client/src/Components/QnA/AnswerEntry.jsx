@@ -5,12 +5,14 @@ import axios from 'axios';
 
 const AnswerEntry = ({ entry }) => {
 
+  // console.log(entry);
+
   const [helpfulClicked, setHelpfulClicked] = useState(false);
   const [reportClicked, setReportClicked] = useState(false);
 
   const handleMarkAHelpful = (e) => {
     e.preventDefault();
-    axios.put(`/qa/answers/${entry.id}/helpful`)
+    axios.put(`/qa/answers/${entry.answer_id}/helpful`)
       .then(results => {
         setHelpfulClicked(!helpfulClicked);
       })
@@ -19,7 +21,7 @@ const AnswerEntry = ({ entry }) => {
 
   const handleReportA = (e) => {
     e.preventDefault();
-    axios.put(`/qa/answers/${entry.id}/report`)
+    axios.put(`/qa/answers/${entry.answer_id}/report`)
       .then(results => {
         setReportClicked(!reportClicked);
       })

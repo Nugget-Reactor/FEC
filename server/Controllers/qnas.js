@@ -12,7 +12,7 @@ const qnas = {
       });
   },
   getAs: (req, res) => {
-    axios.get(`${URL}/qa/questions/${req.params.question_id}/answers`)
+    axios.get(`${URL}/qa/questions/${req.params.question_id}/answers?count=50`)
       .then((result) => {
         res.status(200).json(result.data)
       })

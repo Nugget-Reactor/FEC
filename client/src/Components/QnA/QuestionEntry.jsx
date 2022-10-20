@@ -49,7 +49,7 @@ const QuestionEntry = ({ entry, name }) => {
         <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
       </QuestionEntryHeader>
       <AnswerBody>
-        {Object.keys(entry.answers).length !== 0 && <AnswersList answersObj={entry.answers} ></AnswersList>}
+        {Object.keys(entry.answers).length !== 0 && <AnswersList answersObj={entry.answers} question_id={entry.question_id}></AnswersList>}
         {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} question_id={entry.question_id} ></AnswerModal>}
       </AnswerBody>
     </QuestionEntryContainer>
