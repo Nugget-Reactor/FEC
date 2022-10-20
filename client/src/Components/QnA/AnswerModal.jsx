@@ -66,6 +66,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
           setEmail('');
           setPhotos([]);
         })
+        .catch(err => console.log('Error submitting answer', err))
     }
 
   }

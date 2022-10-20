@@ -32,6 +32,26 @@ const qnas = {
     axios.post(`${URL}/qa/questions/${req.params.question_id}/answers`, req.body)
       .then(result => res.sendStatus(201))
       .catch(err => res.sendStatus(500))
+  },
+  markQHelpful: (req, res) => {
+    axios.put(`${URL}/qa/questions/${req.params.question_id}/helpful`)
+      .then(result => res.sendStatus(204))
+      .catch(err => res.sendStatus(500))
+  },
+  reportQ: (req, res) => {
+    axios.put(`${URL}/qa/questions/${req.params.question_id}/report`)
+      .then(result => res.sendStatus(204))
+      .catch(err => res.sendStatus(500))
+  },
+  markAHelpful: (req, res) => {
+    axios.put(`${URL}/qa/answers/${req.params.answer_id}/helpful`)
+      .then(result => res.sendStatus(204))
+      .catch(err => res.sendStatus(500))
+  },
+  reportA: (req, res) => {
+    axios.put(`${URL}/qa/answers/${req.params.answer_id}/report`)
+      .then(result => res.sendStatus(204))
+      .catch(err => res.sendStatus(500))
   }
 };
 

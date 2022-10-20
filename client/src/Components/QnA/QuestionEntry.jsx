@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
+import axios from 'axios';
 
 const QuestionEntry = ({ entry, name }) => {
 
@@ -12,12 +13,19 @@ const QuestionEntry = ({ entry, name }) => {
     setShowAModal(!showAModal);
   }
 
+  const handleMarkHelpful = (e) => {
+    e.preventDefault();
+    axios.put(`/qa/questions/${entry.question_id}/helpful`)
+      .then(results => console.log('Success updating question helpfulness'))
+      .catch(err => console.log('Error updating question helpfulness'))
+  }
+
   return (
     <QuestionEntryContainer>
       <QuestionEntryHeader>
         <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
         <QuestionSubHeading>Helpful?</QuestionSubHeading>
-        <HelpfulQ href="">Yes ({entry && entry.question_helpfulness})</HelpfulQ>
+        <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>
         <QuestionSubHeading>|</QuestionSubHeading>
         <ReportQuestion href="">Report Question</ReportQuestion>
         <QuestionSubHeading>|</QuestionSubHeading>
