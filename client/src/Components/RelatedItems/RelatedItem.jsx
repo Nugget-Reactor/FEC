@@ -55,8 +55,8 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
     }
   };
 
-  const conditionalRatings = () => { //if no ratings, do not render any stars
-    if (relatedItem.ratings !== []) {
+  const conditionalRatings = () => { //if no ratings, do not render any stars business doc says if no reviews?
+    if (relatedItem.ratings !== {}) {
       return <div>{createStars(ratings)}</div>;
     } else {
       console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");

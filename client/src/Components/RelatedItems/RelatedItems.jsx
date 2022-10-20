@@ -16,11 +16,11 @@ const RelatedItems = ({ product, handleProductChange }) => {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
           setRelatedItems(results.data);
-          var arrayOfRelatedID = [];
-          for (var i = 0; i < results.data.length; i++) {
-            arrayOfRelatedID.push(results.data[i].id);
-          }
-          console.log(arrayOfRelatedID);
+          // var arrayOfRelatedID = []; //use this to test related items by product ID when needed - remove before production
+          // for (var i = 0; i < results.data.length; i++) {
+          //   arrayOfRelatedID.push(results.data[i].id);
+          // }
+          // console.log(arrayOfRelatedID);
         })
         .catch((err) => console.log('error', err));
 
@@ -39,9 +39,9 @@ const RelatedItems = ({ product, handleProductChange }) => {
     <div id="related-items-panel">
       <h2>Related Items</h2>
       <RelatedItemsDiv>
-      <Carousel>
-        <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
-      </Carousel>
+        <Carousel>
+          <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/>
+        </Carousel>
       </RelatedItemsDiv>
     </div>
   );
