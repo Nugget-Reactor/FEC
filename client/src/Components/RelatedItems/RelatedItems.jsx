@@ -16,6 +16,11 @@ const RelatedItems = ({ product, handleProductChange }) => {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
           setRelatedItems(results.data);
+          var arrayOfRelatedID = [];
+          for (var i = 0; i < results.data.length; i++) {
+            arrayOfRelatedID.push(results.data[i].id);
+          }
+          console.log(arrayOfRelatedID);
         })
         .catch((err) => console.log('error', err));
 
