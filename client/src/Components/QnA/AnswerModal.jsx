@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
-const AnswerModal = ({ showAModal, setShowAModal, body, name, question_id }) => {
+const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, question_id }) => {
 
   const hiddenFileInput = useRef(null);
   const [answerBody, setAnswerBody] = useState('');
@@ -19,16 +20,55 @@ const AnswerModal = ({ showAModal, setShowAModal, body, name, question_id }) => 
     hiddenFileInput.current.click();
   }
 
-  const handleSubmitA = e => {
-    e.preventDefault();
-    // console.log('quesiton_id', question_id);
-    // console.log('answerBody', answerBody);
-    // console.log('username', username);
-    // console.log('email', email);
-    // console.log('photos', photos);
-    setShowAModal(!showAModal);
+  const validateForm = () => {
+    let formAnswerBody = answerBody;
+    let formUsername = username;
+    let formEmail = email;
+    let formPhotos = photos
+    let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (formAnswerBody === '') {
+      alert('Your Answer field must be filled out');
+      return false;
+    }
+    if (formUsername === '') {
+      alert('Nickname field must be filled out');
+      return false;
+    }
+    if (!formEmail.match(validEmail)) {
+      alert('Email must be in following format: example@example.example');
+      return false;
+    }
+    if (formPhotos.length > 5) {
+      alert('Only 5 photos are allowed to be uploaded to answers');
+      return false;
+    }
+    return true;
   }
 
+  const handleSubmitA = e => {
+    e.preventDefault();
+    console.log('question_id', question_id);
+    console.log('answerBody', answerBody);
+    console.log('username', username);
+    console.log('email', email);
+    console.log('photos', photos);
+    let aObj = {};
+    aObj.body = answerBody;
+    aObj.name = username;
+    aObj.email = email;
+    aObj.photos = photos;
+    if (validateForm()) {
+      axios.post(`/qa/questions/${question_id}/answers`, aObj)
+        .then(results => {
+          setShowAModal(!showAModal);
+          setAnswerBody('');
+          setUsername('');
+          setEmail('');
+          setPhotos([]);
+        })
+    }
+
+  }
   // helper validator should check 5 or less images, more alerts error
 
   return (
@@ -36,23 +76,40 @@ const AnswerModal = ({ showAModal, setShowAModal, body, name, question_id }) => 
       <CloseBtn onClick={() => setShowAModal(!showAModal)} className="fa-solid fa-x"></CloseBtn>
       <AnswerForm>
         <AnswerHeading4>Submit Your Answer</AnswerHeading4>
-        <AnswerHeading5>{name}: {body}</AnswerHeading5>
+        <AnswerHeading5>{questionName}: {questionBody}</AnswerHeading5>
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
           <AnswerField
             placeholder="Your Answer Here..."
             value={answerBody}
             onChange={e => setAnswerBody(e.target.value)}
+            type="text"
+            required
+            maxlength="1000"
           ></AnswerField>
         </FormDiv>
         <FormDiv>
           <AnswerLabel>What is your Nickname*:</AnswerLabel>
-          <AnswerInput placeholder="Example: jack543!"></AnswerInput>
+          <AnswerInput
+            placeholder="Example: jack543!"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            type="text"
+            required
+            maxlength="60"
+          ></AnswerInput>
           <AnswerText>Note: For privacy reasons, do not use your full name or email address</AnswerText>
         </FormDiv>
         <FormDiv>
           <AnswerLabel>What is your Email*:</AnswerLabel>
-          <AnswerInput placeholder="Example: jack@email.com"></AnswerInput>
+          <AnswerInput
+            placeholder="Example: jack@email.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            type="text"
+            required
+            maxlength="60"
+          ></AnswerInput>
           <AnswerText>Note: For authentication reasons, you will not be emailed</AnswerText>
         </FormDiv>
         <FormFooter>
@@ -60,12 +117,13 @@ const AnswerModal = ({ showAModal, setShowAModal, body, name, question_id }) => 
           <AddPhotos
             id="upload-files"
             type="file"
+            accept="image/*"
             multiple
             ref={hiddenFileInput}
             style={{ display: 'none' }}
             onChange={() => console.log(document.getElementById('upload-files').files)}
           />
-          <AnswerFormSubmit >Submit Answer</AnswerFormSubmit>
+          <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>
     </AnswerContainer>

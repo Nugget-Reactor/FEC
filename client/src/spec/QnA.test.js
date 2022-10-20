@@ -20,7 +20,7 @@ describe('renders Answers from QnA Widget', () => {
   it('Questions widget should render', async () => {
     const { getByTestId } = render(<QnA product={sampleQuestion} />);
 
-    expect(screen.getByText('Questions & Answers')).toBeInTheDocument();
+    expect(screen.getByText(/Questions & Answers/i)).toBeInTheDocument();
     expect(getByTestId('addq-button')).toBeInTheDocument();
 
     screen.debug();

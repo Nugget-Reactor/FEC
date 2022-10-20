@@ -25,7 +25,7 @@ const QuestionEntry = ({ entry, name }) => {
       </QuestionEntryHeader>
       <AnswerBody>
         {Object.keys(entry.answers).length !== 0 && <AnswersList answersObj={entry.answers} ></AnswersList>}
-        {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} body={entry.question_body} name={name} question_id={entry.question_id} ></AnswerModal>}
+        {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} question_id={entry.question_id} ></AnswerModal>}
       </AnswerBody>
     </QuestionEntryContainer>
   )

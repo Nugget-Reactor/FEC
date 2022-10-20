@@ -51,8 +51,6 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
         })
         .catch(err => console.log('Error submitting question', err))
     }
-    // setShowQModal(!showQModal);
-
   }
 
   return (

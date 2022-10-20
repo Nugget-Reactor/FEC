@@ -32,7 +32,7 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
           })}
       </QuestionListBody>
       <QuestionListFooter>
-        {currCount < totalCount && <MoreAnsweredButton onClick={handleMoreAs}>MORE ANSWERED QUESTIONS</MoreAnsweredButton>}
+        {currCount < totalCount && <MoreAnsweredButton onClick={handleMoreAs} data-testid="more-questions">MORE ANSWERED QUESTIONS</MoreAnsweredButton>}
         <AddQButton onClick={() => setShowQModal(!showQModal)} data-testid="addq-button">ADD A QUESTION +</AddQButton>
       </QuestionListFooter>
     </QuestionListContainer>
