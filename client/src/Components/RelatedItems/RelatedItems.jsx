@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import RelatedItem from './RelatedItem.jsx';
 import styled from 'styled-components';
 import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
 
@@ -40,7 +39,6 @@ const RelatedItems = ({ product, handleProductChange }) => {
 
   const AnyRelatedItems = () => {
     return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/> : <h1>{noneRelated}</h1>;
-
   };
 
   // make conditional rendering for when there are no related items
