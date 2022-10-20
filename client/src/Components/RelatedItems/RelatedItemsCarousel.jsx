@@ -45,13 +45,13 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
     <div>
       <RIContainer>
         <RIWrapper>
-            <LeftButton isVisible={leftButtonVisible}/>
+          <LeftButton isVisible={leftButtonVisible}/>
           <RIContentWrapper>
             <RIContent>
               <ItemsRenderMap />
             </RIContent>
           </RIContentWrapper>
-            <RightButton isVisible={rightButtonVisible} />
+          <RightButton isVisible={rightButtonVisible} />
         </RIWrapper>
       </RIContainer>
     </div>
@@ -61,57 +61,40 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
 export default RelatedItemsCarousel;
 
 const RIContainer = styled.div`
-width: 100%;
+width: 100%
 display: flex;
 flex-direction: row;
-max-height: 100%;
-overflow: hidden;
-
 `;
 
 const RIWrapper = styled.div`
 display: flex;
 width: 100%;
-max-height: 100%;
 position: relative;
-overflow: hidden;
-
 `;
-
 const RIContentWrapper = styled.div`
 // overflow: auto;
     width: 100%;
-    max-height: 100%;
-overflow: hidden;
-
+    height: 100%;
 `;
 
 const RIContent = styled.ul`
-
   display: flex;
   border: 2px solid black;
   border-radius: 3px;
-
   box-sizing: border-box;
-  max-height: 100%;
-  // max-height: 100vh;
-
-  overflow: hidden;
   max-width: 100%;
   padding: 0.5rem 0;
-
 `;
 
 const LeftArrow = styled.button`
 position: absolute;
 z-index: 1;
-font-size: 1.5em;
+font-size: 1.8em;
 
 background: rgba(255, 255, 255, 0.6);
 backdrop-filter: blur(5px);
 height: 100vh;
-width: 48px;
-overflow: hidden;
+width: 3vw;
 
 left: 0px;
 top: 50%;
@@ -122,13 +105,12 @@ border: 1px solid white;
 const RightArrow = styled.button`
 position: absolute;
 z-index: 1;
-font-size: 1.5em;
+font-size: 1.8em;
 
 background: rgba(255, 255, 255, 0.6);
 backdrop-filter: blur(5px);
 height: 100vh;
-width: 48px;
-overflow: hidden;
+width: 3vw;
 
 right: 0px;
 top: 50%;
