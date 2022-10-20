@@ -4,23 +4,15 @@ import styled from 'styled-components';
 import OutfitsCarousel from './OutfitsCarousel.jsx';
 
 const Outfits = ({handleProductChange, addOutfit}) => { //it will need handleclick to change page to that item
-  const [outfits, setOutfits] = useState({});
-
-  useEffect(() => {
-    /**to get outfits **/
-    console.log(window.localStorage.outfits);
-
-  }, []);
 
   return (
     <div id="related-items-panel">
-      <button onClick={(event) => addOutfit()}>Click</button>
-      {/* <h2>Related Products</h2>
+      <h2>Your Outfit</h2>
       <OutfitsDiv>
         <Carousel>
-          <AnyOutfits/>
+          <OutfitsCarousel handleProductChange={handleProductChange} addOutfit={addOutfit}/>
         </Carousel>
-      </OutfitsDiv> */}
+      </OutfitsDiv>
     </div>
   );
 };

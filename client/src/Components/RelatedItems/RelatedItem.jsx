@@ -9,34 +9,12 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   const [regPrice, setRegPrice] = useState('');
   const [strikeRegPrice, setStrikeRegPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
-  const [stars, setStars] = useState([]);
-  // const outfitObject = React.useRef(null);
-  const [outfitObject, setOutfitObject] = useState({});
-
 
   /** to set default style for card **/
   if (relatedItem) {
     var ratings = getAverage(relatedItem.ratings);
   }
 
-  var outfitHolder = {};
-  outfitHolder.regPrice = regPrice;
-  outfitHolder.strikeRegPrice = strikeRegPrice;
-  outfitHolder.salePrice = salePrice;
-  outfitHolder.stars = stars;
-  outfitHolder.name = relatedItem.name;
-  outfitHolder.category = relatedItem.category;
-  outfitHolder.currentPhotoURL = currentPhotoURL;
-
-  useEffect(() => {
-    setStars(createStars(ratings));
-  }, []);
-
-  useEffect(() => {
-    // console.log('outfitObject', outfitObject);
-  }, [outfitObject]);
-
-  // console.log(outfitObject);
   useEffect(() => {
     var defaultStyle = false;
     if (relatedItem && relatedItem.results) {
@@ -90,10 +68,6 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   // also if no reviews, review div should be hidden - current is set to read "No Reviews Yet"
   return (
     <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
-      <button onClick={(event) => {
-        setOutfitObject(outfitHolder);
-      } }>Click</button>
-      {stars}
       <RelatedImageDiv>
         {conditionalPhoto()}
         <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
