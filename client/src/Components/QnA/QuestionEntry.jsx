@@ -39,11 +39,11 @@ const QuestionEntry = ({ entry, name }) => {
         <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
         <QuestionSubHeading>Helpful?</QuestionSubHeading>
         {helpfulClicked
-          ? <HelpfulQ href="">Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
+          ? <HelpfulQ href="" onClick={e => e.preventDefault()}>Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
           : <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
         <QuestionSubHeading>|</QuestionSubHeading>
         {reportClicked
-          ? <ReportQuestion href="">Reported</ReportQuestion>
+          ? <ReportQuestion href="" onClick={e => e.preventDefault()}>Reported</ReportQuestion>
           : <ReportQuestion href="" onClick={handleReportQ}>Report Question</ReportQuestion>}
         <QuestionSubHeading>|</QuestionSubHeading>
         <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
