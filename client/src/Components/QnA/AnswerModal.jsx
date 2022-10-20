@@ -9,6 +9,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -58,15 +59,15 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
     aObj.email = email;
     aObj.photos = photos;
     if (validateForm()) {
-      axios.post(`/qa/questions/${question_id}/answers`, aObj)
-        .then(results => {
-          setShowAModal(!showAModal);
-          setAnswerBody('');
-          setUsername('');
-          setEmail('');
-          setPhotos([]);
-        })
-        .catch(err => console.log('Error submitting answer', err))
+      // axios.post(`/qa/questions/${question_id}/answers`, aObj)
+      //   .then(results => {
+      //     setShowAModal(!showAModal);
+      //     setAnswerBody('');
+      //     setUsername('');
+      //     setEmail('');
+      //     setPhotos([]);
+      //   })
+      //   .catch(err => console.log('Error submitting answer', err))
     }
 
   }
@@ -89,6 +90,11 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
             maxlength="1000"
           ></AnswerField>
         </FormDiv>
+        {showPreview && photos.length > 0
+          ? <PhotosList>{photos.map((photo, index) => {
+            return <PhotoEntry key={index}><PhotoImg src={photo}></PhotoImg></PhotoEntry>
+          })}</PhotosList>
+          : <NoSelectedFiles>No files selected</NoSelectedFiles>}
         <FormDiv>
           <AnswerLabel>What is your Nickname*:</AnswerLabel>
           <AnswerInput
@@ -122,7 +128,16 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
             multiple
             ref={hiddenFileInput}
             style={{ display: 'none' }}
-            onChange={() => console.log(document.getElementById('upload-files').files)}
+            onChange={() => {
+              const fileList = document.getElementById('upload-files').files;
+              const urlArr = [];
+              for (let i = 0, numFiles = fileList.length; i < numFiles; i++) {
+                const objectURL = window.URL.createObjectURL(fileList[i]);
+                urlArr.push(objectURL);
+              }
+              setPhotos(urlArr);
+              setShowPreview(!showPreview);
+            }}
           />
           <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
         </FormFooter>
@@ -203,6 +218,18 @@ const AnswerFormSubmit = styled.button`
 const AnswerFormPhotos = styled.button`
 `;
 
+const PhotosList = styled.ul`
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
+`;
+const PhotoEntry = styled.li`
+`;
+const PhotoImg = styled.img`
+  max-width: 10vw;
+  max-height: 7vh;
+`;
+
 const AnswerHeading4 = styled.h4`
   display: block;
   margin: 5px;
@@ -217,4 +244,8 @@ const AnswerText = styled.span`
   margin: 5px;
   font-size: 1rem;
   font-style: italic;
+`;
+
+const NoSelectedFiles = styled.p`
+  margin: 5px;
 `;
