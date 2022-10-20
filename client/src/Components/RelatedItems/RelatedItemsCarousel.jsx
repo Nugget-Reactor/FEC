@@ -45,13 +45,13 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
     <div>
       <RIContainer>
         <RIWrapper>
+          <LeftButton isVisible={leftButtonVisible}/>
           <RIContentWrapper>
-            <LeftButton isVisible={leftButtonVisible}/>
             <RIContent>
               <ItemsRenderMap />
             </RIContent>
-            <RightButton isVisible={rightButtonVisible} />
           </RIContentWrapper>
+          <RightButton isVisible={rightButtonVisible} />
         </RIWrapper>
       </RIContainer>
     </div>
@@ -61,86 +61,59 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
 export default RelatedItemsCarousel;
 
 const RIContainer = styled.div`
-width: 100%;
+width: 100%
 display: flex;
 flex-direction: row;
-height: 100%;
-
 `;
 
 const RIWrapper = styled.div`
 display: flex;
 width: 100%;
-height: 100%;
-
 position: relative;
 `;
-
 const RIContentWrapper = styled.div`
-overflow: auto;
+// overflow: auto;
     width: 100%;
     height: 100%;
 `;
 
 const RIContent = styled.ul`
-
   display: flex;
   border: 2px solid black;
   border-radius: 3px;
-
   box-sizing: border-box;
-  max-height: 30em;
-  overflow: auto;
   max-width: 100%;
   padding: 0.5rem 0;
-
 `;
 
 const LeftArrow = styled.button`
-font-size: larger;
-left: 24px;
 position: absolute;
 z-index: 1;
+font-size: 1.8em;
+
+background: rgba(255, 255, 255, 0.6);
+backdrop-filter: blur(5px);
+height: 100vh;
+width: 3vw;
+
+left: 0px;
 top: 50%;
 transform: translateY(-50%);
-width: 48px;
-height: 48px;
-border-radius: 24px;
-background-color: white;
-border: 1px solid #ddd;
+border: 1px solid white;
 `;
 
 const RightArrow = styled.button`
-font-size: larger;
-right: 24px;
 position: absolute;
 z-index: 1;
+font-size: 1.8em;
+
+background: rgba(255, 255, 255, 0.6);
+backdrop-filter: blur(5px);
+height: 100vh;
+width: 3vw;
+
+right: 0px;
 top: 50%;
 transform: translateY(-50%);
-width: 48px;
-height: 48px;
-border-radius: 24px;
-background-color: white;
-border: 1px solid #ddd;
+border: 1px solid white;
 `;
-
-
-
-// useEffect(() => {
-//   if (relatedItems.length) {
-//     setLength(relatedItems.length);
-//   }
-
-// }, [relatedItems]);
-
-// const next = () => {
-//   if (currentIndex < (length - 1)) {
-//     setCurrentIndex(prevState => prevState + 1);
-//   }
-// };
-
-// const prev = () => {
-//   if (currentIndex > 0) {
-//     setCurrentIndex(prevState => prevState - 1);
-//   }
-// };

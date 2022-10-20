@@ -16,8 +16,10 @@ const App = () => {
     // axios.get('/products/40480') //has related items with sale price
     // axios.get('/products/40353')
     // 411197
-    // handleProductChange('40480');
-    handleProductChange('41197');
+    // handleProductChange('40353'); //infinity stones
+    // handleProductChange('41197');
+    handleProductChange('40480');
+
 
     // handleProductChange('40345'); //breaks it - contains some items with no image and no price
     // handleProductChange('40344');
@@ -60,12 +62,6 @@ const App = () => {
       .then(res => setProduct(res.data))
       .catch(err => console.error(err));
   };
-
-  // const handleProductChange = (productID) => { //this will be for related Items onClick handler.
-  //   axios.get(`/products/${productID}`)
-  //     .then(res => setProduct(res.data))
-  //     .catch(err => console.error(err));
-  // };
 
   const handleStyleChange = (styleID) => {
     productStyles.forEach((style) => {
