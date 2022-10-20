@@ -15,7 +15,7 @@ const AnswersList = ({ question_id }) => {
     axios.get(`/qa/questions/${question_id}/answers`)
       .then(results => setAnswersList(results.data.results))
       .catch(err => console.log('Error getting answers list', err))
-  }, []);
+  }, [showLoadMore]);
 
   // console.log(answersList);
 
