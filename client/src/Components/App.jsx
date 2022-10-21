@@ -86,13 +86,13 @@ const App = () => {
       }
     });
   };
- //errors - stars are stuck - need to have some of these things in a useEffect, page not re-rerendering when outfits added,
- //prices pporly laid out
+
   useEffect(() => { //to set outfits on localStorage - it should be an array, but we willl be adding one outfit at a time.
     var windowOutfits;
     var outfitIDs = [];
     if (window.localStorage.outfits) {
       windowOutfits = JSON.parse(window.localStorage.getItem('outfits'));
+      setAllOutfits(windowOutfits); //sets allOutfits for use later
       for (var i = 0; i < windowOutfits.length; i++) {
         outfitIDs.push(windowOutfits[i].id); //to get the i'd to be sure there are no duplicates
       }
@@ -121,12 +121,22 @@ const App = () => {
     currentProduct.currentPhotoURL = currentOutfitStyle.photos[0].url;
     setCurrentOutfit(currentProduct);
   };
+  const removeOutfit = (productID) => {
+    var [...copyOfFits] = allOutfits;
+    copyOfFits.forEach((windowFit, index) => {
+      if (windowFit.id === productID) {
+        copyOfFits.splice(index, 1);
+      }
+    });
+    window.localStorage.setItem('outfits', JSON.stringify(copyOfFits)); //changes localStorage -> sets window data
+    setAllOutfits(copyOfFits); //this is little more than an alert to tell the carousel to get the window data
+  };
 
   return (
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits}/>
+      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
       <Reviews productID={product.id} productName={product.name} />
       <QnA product={product} />
     </div>

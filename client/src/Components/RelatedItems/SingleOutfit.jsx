@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
 
 
-const SingleOutfit = ({outfit, handleProductChange}) => {
+const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
@@ -22,17 +22,18 @@ const SingleOutfit = ({outfit, handleProductChange}) => {
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      return <DefaultImage src={currentPhotoURL} />;
+      return <DefaultImage src={currentPhotoURL} onClick={(event) => { handleProductChange(outfit.id); }}/>;
     } else {
-      return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
+      return <NoPhotoDiv onClick={(event) => { handleProductChange(outfit.id); }}><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
     }
   };
 
   return (
-    <OutfitItemListItem onClick={(event) => { handleProductChange(outfit.id); }}>
-      <OutfitImageDiv>
+    <OutfitItemListItem >
+      <OutfitImageDiv >
         {conditionalPhoto()}
-        <ActionButtonOutfit icon="fa-solid fa-xmark-large" ></ActionButtonOutfit></OutfitImageDiv>
+        <ActionButtonOutfit onClick={(event) => removeOutfit(outfit.id)}></ActionButtonOutfit>
+      </OutfitImageDiv>
       <h5>{outfit.category}</h5>
       <h4>{outfit.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />

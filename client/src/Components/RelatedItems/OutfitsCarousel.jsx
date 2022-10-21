@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import OutfitButtonCard from './OutfitButtonCard.jsx';
 import SingleOutfit from './SingleOutfit.jsx';
 
-const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits}) => {
+const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [RightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
@@ -33,17 +33,13 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits}) => {
     }
   }, [currentIndex, outfits]);
 
-  // let updateOutFitsCarousel = () => {
-  //   setUpdatedOutfits(prev => prev + 1);
-  // };
-
   let OutfitsRenderMap = () => { //this is not firing off
     if (outfits.length > 0) {
       // console.log('outfits in OutfitsCarousel', outfits);
 
       var currentThree = outfits.slice(currentIndex, currentIndex + 3);
       return <>{currentThree.map((currentItem) =>
-        <SingleOutfit outfit={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
+        <SingleOutfit outfit={currentItem} handleProductChange={handleProductChange} key={currentItem.id} removeOutfit={removeOutfit} />)}</>;
     }
   };
 
@@ -87,6 +83,7 @@ width: 100%;
 position: relative;
 `;
 const OutfitContentWrapper = styled.div`
+border: 2px solid red;
   width: 100%;
   height: 100%;
 `;
@@ -100,6 +97,9 @@ const OutfitContent = styled.ul`
   padding: 0.5rem 0;
   padding-left: 3vw;
   padding-right: 3vw;
+
+  min-width: 80%;
+  border: 2px solid blue;
 `;
 
 const LeftArrow = styled.button`
