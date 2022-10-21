@@ -13,6 +13,7 @@ import QnA from '../Components/QnA/QnA.jsx';
 // import AnswersList from '../Components/QnA/AnswersList.jsx';
 
 // console.log(sampleQuestion);
+// LOOK INTO WAITFOR
 
 describe('renders Answers from QnA Widget', () => {
   afterEach(cleanup);

@@ -58,17 +58,17 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
     aObj.name = username;
     aObj.email = email;
     aObj.photos = photos;
-    if (validateAForm()) {
-      axios.post(`/qa/questions/${questionID}/answers`, aObj)
-        .then(results => {
-          setShowAModal(!showAModal);
-          setAnswerBody('');
-          setUsername('');
-          setEmail('');
-          setPhotos([]);
-        })
-        .catch(err => console.log('Error submitting answer', err));
-    }
+    // if (validateAForm()) {
+    //   axios.post(`/qa/questions/${questionID}/answers`, aObj)
+    //     .then(results => {
+    //       setShowAModal(!showAModal);
+    //       setAnswerBody('');
+    //       setUsername('');
+    //       setEmail('');
+    //       setPhotos([]);
+    //     })
+    //     .catch(err => console.log('Error submitting answer', err));
+    // }
 
   };
   // helper validator should check 5 or less images, more alerts error
@@ -128,12 +128,19 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
             multiple
             ref={hiddenFileInput}
             style={{ display: 'none' }}
-            onChange={() => {
-              const fileList = document.getElementById('upload-files').files;
+            onChange={(e) => {
+              // trying to figure out how to get file converted to user accessible URL before uploading to black box
+              const fileList = e.target.files;
               const urlArr = [];
               for (let i = 0, numFiles = fileList.length; i < numFiles; i++) {
+                // let reader = new FileReader();
+                console.log('the file', fileList[i]);
                 const objectURL = window.URL.createObjectURL(fileList[i]);
                 urlArr.push(objectURL);
+                // reader.addEventListener('load', () => {
+                //   console.log('done loading with', reader.result);
+                // }, false);
+                // reader.readAsDataURL(fileList[i]);
               }
               setPhotos(urlArr);
               setShowPreview(!showPreview);

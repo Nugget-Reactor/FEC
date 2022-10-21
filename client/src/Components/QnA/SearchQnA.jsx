@@ -5,7 +5,7 @@ const SearchQnA = () => {
 
   const [query, setQuery] = useState('');
 
-  console.log(query);
+  // console.log(query);
 
   return (
     <SearchContainer>

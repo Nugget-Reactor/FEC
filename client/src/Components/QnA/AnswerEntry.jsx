@@ -28,7 +28,12 @@ const AnswerEntry = ({ entry }) => {
       .catch(err => console.log('Error updating answer helpfulness'));
   };
 
-  // console.log('answer entry', entry);
+  let reader = new FileReader();
+  reader.addEventListener('load', () => {
+    console.log('done loading with', reader.result);
+  }, false);
+
+  // console.log('answer entry photos', entry.photos);
 
   return (
     <AnswerEntryContainer data-testid="answer-entry">
