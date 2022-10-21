@@ -10,6 +10,9 @@ export const getAverage = (ratings) => {
     totalRatings += (currentRatingsCount * Number(key));
     numberOfRatings += currentRatingsCount;
   }
+  if(numberOfRatings === 0) {
+    return null;
+  }
   return (totalRatings/numberOfRatings).toFixed(1);
 }
 

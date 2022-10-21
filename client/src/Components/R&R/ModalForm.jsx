@@ -1,17 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
+import axios from 'axios';
+import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 
-const ModalForm = ({ productName }) => {
+const ModalForm = ({ productID, productName }) => {
 
   const [rating, setRating] = useState(0);
+  const [recommend, setRecommend] = useState(false);
   const summaryRef = useRef();
   const bodyRef = useRef();
-  const recommendRef = useRef();
   const nameRef = useRef();
   const emailRef = useRef();
+  const photoRef = useRef();
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
+
+  useEffect(() => {
+    photoRef.current = createCloudinaryWidget((url) => {
+      setPhotos([...photos, url]);
+    })
+  }, []);
 
   const createStarInput = () => {
     let meaning = '';
@@ -36,22 +45,21 @@ const ModalForm = ({ productName }) => {
     return stars;
   }
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    /* axios.post('/reviews', {
-      productId,
+    axios.post('/reviews', {
+      product_id: productID,
       rating,
-      summary:,
-      body:,
-      recommend:,
-      name:,
-      email:,
-      photos:,
-      characteristics:,
-
-    }) */
+      summary: summaryRef.current.value,
+      body: bodyRef.current.value,
+      recommend,
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      photos,
+      characteristics: {},
+    })
+    .catch(err=>console.error(err));
   }
   return(
     <Form onSubmit={handleSubmit} >
@@ -69,11 +77,11 @@ const ModalForm = ({ productName }) => {
         <div>
           Do you recommend this product? <Required />
           <div>
-            <input id="yes" type="radio" name="recommend" value="yes"/>
+            <input onClick={()=>setRecommend(true)} id="yes" type="radio" name="recommend" value="yes"/>
             <label htmlFor="yes">Yes</label>
           </div>
           <div>
-            <input id="no" type="radio" name="recommend" value="no"/>
+            <input onClick={()=>setRecommend(false)} id="no" type="radio" name="recommend" value="no"/>
             <label htmlFor="no">No</label>
           </div>
         </div>
@@ -83,23 +91,27 @@ const ModalForm = ({ productName }) => {
         </div>
         <InputLabel>
           Add a headline
-          <TextInput type="text" maxLength="60" placeholder="Example: Best purchase ever!" ></TextInput>
+          <TextInput type="text" ref={summaryRef} maxLength="60" placeholder="Example: Best purchase ever!" ></TextInput>
         </InputLabel>
         <InputLabel>
           <div>Add a written review <Required /></div>
-          <TextAreaInput required minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" ></TextAreaInput>
+          <TextAreaInput required ref={bodyRef} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" ></TextAreaInput>
         </InputLabel>
         <InputLabel>
           <div>What is your nickname? <Required /></div>
-          <TextInput required type="text" maxLength="60" placeholder="Example: jackson11!" ></TextInput>
+          <TextInput required ref={nameRef} type="text" maxLength="60" placeholder="Example: jackson11!" ></TextInput>
           <p>For privacy reasons, do not use your full name or email address</p>
         </InputLabel>
         <InputLabel>
           <div>Your email <Required /></div>
-          <TextInput required type="email" maxLength="60" placeholder="Example: jackson11@email.com" ></TextInput>
+          <TextInput required ref={emailRef} type="email" maxLength="60" placeholder="Example: jackson11@email.com" ></TextInput>
           <p>For authentication reasons, you will not be emailed</p>
         </InputLabel>
-
+        <InputLabel>
+          Add a photo URL
+          <button onClick={()=>photoRef.current.open()}></button>
+          {photos.length ? photos.map((photo, i)=><Thumbnail imgLink={photo} key={i}></Thumbnail>) : null}
+        </InputLabel>
       </ModalContent>
       <ModalFooter>
         <SubmitButton type="submit">Submit</SubmitButton>
@@ -166,6 +178,23 @@ const TextAreaInput = styled.textarea`
   margin: 5px 0;
   padding: 0.5rem;
   height: 200px;
+`
+const PhotoInput = styled.input`
+
+`
+const PhotoSubmit = styled.button`
+
+`
+const Thumbnail = styled.a`
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-image: url(${props => props.imgLink});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  margin-right: 2px;
 `
 const Span = styled.span`
   font-size: 1.25rem;
