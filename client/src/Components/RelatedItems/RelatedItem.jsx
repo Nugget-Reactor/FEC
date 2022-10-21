@@ -16,25 +16,29 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   }
 
   useEffect(() => {
+    var defaultStyle = false;
     if (relatedItem && relatedItem.results) {
       if (relatedItem.results.length > 0) {
         relatedItem.results.forEach((style) => {
           if (style['default?']) {
             setCurrentStyle(style);
+            defaultStyle = true;
           }
         });
-
+        if (!defaultStyle) { //sets default to first item in styles array if no default found in the styles array - not precisely to spec, but does not leave divs awkwardly rendered and broken-looking.
+          setCurrentStyle(relatedItem.results[0]);
+        }
       }
     }
   }, []);
 
   /** to set default photo and default price for related items card **/
   useEffect(() => {
-    if (currentStyle.photos) {
-      currentStyle.photos.forEach((photo) => {
-        setCurrentPhotoURL(photo.url);
-      });
-    } // need a response if no url is found
+    if (currentStyle.photos && currentStyle.photos[0]) { //render photos conditionally to no image found notice if null
+      setCurrentPhotoURL(currentStyle.photos[0].url);
+    } else {
+      setCurrentPhotoURL(null);
+    }
     if (currentStyle.sale_price) {
       setStrikeRegPrice(currentStyle.original_price);
       setSalePrice(currentStyle.sale_price);
@@ -43,16 +47,34 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
     }
   }, [currentStyle]);
 
+  const conditionalPhoto = () => {
+    if (typeof currentPhotoURL === 'string') {
+      return <RelatedDefaultImage src={currentPhotoURL} />;
+    } else {
+      return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
+    }
+  };
+
+  const conditionalRatings = () => { //if no ratings, do not render any stars business doc says if no reviews?
+    if (Object.keys(relatedItem.ratings).length > 0) {
+      return <div>{createStars(ratings)}</div>;
+    } else {
+      console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");
+      return <div>No Reviews Yet</div>; //change this to blank if no stars, set default size
+    }
+  };
+
   // need action button to look better/be more accessible, and be functional => Compare modal
-  // also if no reviews, this div should be hidden
+  // also if no reviews, review div should be hidden
   return (
     <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
-      <RelatedImageDiv><RelatedDefaultImage src={currentPhotoURL}/>
+      <RelatedImageDiv>
+        {conditionalPhoto()}
         <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
       <h4>{relatedItem.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
-      <div>{createStars(ratings)}</div>
+      {conditionalRatings()}
     </RelatedItemListItem>
   );
 };
@@ -67,6 +89,25 @@ const Pricing = ({salePrice, regPrice, strikePrice}) => {
     return <div>${regPrice}</div>;
   }
 };
+const NoPhotoDiv = styled.div`
+  top: 50%;
+  bottom: 0px;
+  height: 350px;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid gray;
+  display: block;
+  margin: auto;
+`;
+
+const NoPhotoH1 = styled.h1`
+  bottom: 0px;
+  color: gray;
+  padding-top: 8vh;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+`;
 
 const RelatedItemListItem = styled.li` //the related items card itself
   display: inline-flex;
@@ -80,9 +121,6 @@ const RelatedItemListItem = styled.li` //the related items card itself
 `;
 
 const RelatedImageDiv = styled.div` //the image div
-//new carousel code
-
-//old, good code
   position:relative; // so I can position the action button
   margin: 3px;
   height: 350px;
