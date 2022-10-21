@@ -95,7 +95,6 @@ const DefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonOutfit = styled.button`
-  display: inline-block;
   z-index: 1;
   padding: .2em .4em;
   font-size: 1.8em;

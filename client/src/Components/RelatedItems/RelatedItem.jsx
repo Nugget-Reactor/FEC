@@ -135,19 +135,26 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
 const ActionButtonRelated = styled.button`
   z-index: 1;
 
-  background: white;
-  border: 2px solid #f80;
+  // background: white;
+  // border: 2px solid #f80;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-radius: 50%;
+  // border-radius: 50%;
   //old good code below
   position:absolute;
   right: 6px;
   top: 6px;
-  font-size: 30px;
+  // font-size: 30px;
   // background: none;
   // border: none;
   color: #f80;
+
+  // padding: .2em .4em;
+  font-size: 1.8em;
+  background: white;
+  border: 3px solid #f80;
+  border-radius: 50%;
+
   &::after {
     font-family: FontAwesome;
     content: "\\f005";

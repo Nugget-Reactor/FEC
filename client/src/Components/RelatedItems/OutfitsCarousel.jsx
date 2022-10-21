@@ -9,11 +9,10 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits}) => {
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
   const [outfits, setOutfits] = useState([]);
 
-  /**to get outfits when updated **/
+  /**to get outfits when updated - only currently seems to work by doing the windlow local storage parse here rather than setting to allOutfits. possible a simple alert might do the trick as well**/
   useEffect(() => {
     setCurrentIndex(0);
     if (window.localStorage.outfits) {
-      // console.log('outfits in outfitsCarousel', JSON.parse(window.localStorage.outfits));
       setOutfits(JSON.parse(window.localStorage.outfits));
     }
   }, [allOutfits]);

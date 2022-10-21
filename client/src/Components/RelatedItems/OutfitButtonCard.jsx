@@ -10,12 +10,22 @@ const OutfitButtonCard = ({addOutfit}) => {
         <OutfitImage>
           <OutfitImageButton onClick={(event) => addOutfit()}>+</OutfitImageButton>
         </OutfitImage>
+        <ActionText>Add Current Product to your Outfits</ActionText>
       </OutfitImageDiv>
     </OutfitItemListItem>
   );
 };
 
 export default OutfitButtonCard;
+
+const ActionText = styled.div`
+color: #091;
+  padding-top: .5em;
+  // font-color: green
+  font-size: 1.8em;
+  word-wrap: normal;
+  text-align: center;
+`;
 
 const OutfitItemListItem = styled.li` //the Outfit items card itself
 list-style-type: none;
@@ -44,19 +54,16 @@ position:relative;
   display: block;
   margin: auto;
   text-align: center;
-
-
 `;
 
 const OutfitImageButton = styled.button`
-  color: green;
   font-size: 8em;
   text-align: center;
   background: white;
   padding-top: 30%;
-border: none;
-top: 40%;
-color: #091;
+  border: none;
+  top: 40%;
+  color: #091;
 `;
 
 // const ActionButtonOutfit = styled.button
