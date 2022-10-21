@@ -22,8 +22,8 @@ const qnas = {
       });
   },
   addQ: (req, res) => {
-    // console.log('add question req body', req.body);
-    axios.post(`${URL}/qa/questions?product_id=${req.body.productID}`, req.body)
+    console.log('add question req body', req.body);
+    axios.post(`${URL}/qa/questions?product_id=${req.body.product_id}`, req.body)
       .then(result => res.sendStatus(201))
       .catch(err => res.sendStatus(500));
   },

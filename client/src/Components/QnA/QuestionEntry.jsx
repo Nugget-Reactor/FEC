@@ -33,6 +33,7 @@ const QuestionEntry = ({ entry, name }) => {
       .catch(err => console.log('Error reporting question'));
   };
 
+  // if entry.question body includes query context return this, else return null
   return (
     <QuestionEntryContainer>
       <QuestionEntryHeader>

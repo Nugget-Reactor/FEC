@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
+import SearchQnA from './SearchQnA.jsx';
 import styled from 'styled-components';
 
 const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
@@ -20,6 +21,7 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
 
   return (
     <QuestionListContainer>
+      <SearchQnA />
       <QuestionListBody>
         {currCount < totalCount
           ? questionsList.map((question, index) => {

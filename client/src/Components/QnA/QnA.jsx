@@ -27,7 +27,6 @@ const QnA = ({ product }) => {
   return (
     <QFeatureContainer>
       <Heading2>Questions & Answers</Heading2>
-      <SearchQnA />
       <QuestionsList questionsList={questions} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal} />
       {showQModal ? <QuestionModal productID={product.id} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal}></QuestionModal> : null}
     </QFeatureContainer>
