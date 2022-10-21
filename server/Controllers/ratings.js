@@ -44,6 +44,17 @@ const ratings = {
       console.log(err);
       res.sendStatus(404);
     });
+  },
+
+  addReview: (req, res) => {
+    axios.post(`${URL}/reviews`, req.body)
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(404);
+    });
   }
 };
 

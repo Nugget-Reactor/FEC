@@ -11,7 +11,6 @@ const Tile = ({ review }) => {
   const [showMore, setShowMore] = useState(false);
   const [alreadyVoted, setAlreadyVoted] = useState(false);
   const [alreadyReported, setAlreadyReported] = useState(false);
-
   const handleImgModal = (link) => {
     setCurrentImage(link);
     setShowImgModal(true);
@@ -61,7 +60,8 @@ const Tile = ({ review }) => {
 
       {review.photos.length
       && <div>
-        {review.photos.map(photo => <Thumbnail key={photo.id} imgLink={photo.url} onClick={()=>handleImgModal(photo.url)} />)}
+        {review.photos.map(photo => {
+        return <Thumbnail key={photo.id} imgLink={photo.url} onClick={()=>handleImgModal(photo.url)} />})}
       </div> }
       {showImgModal
       ? <Modal closeModal={closeImgModal}>

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
+import axios from 'axios';
+import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 
 const ModalForm = ({ productID, productName }) => {
 
@@ -13,6 +15,12 @@ const ModalForm = ({ productID, productName }) => {
   const photoRef = useRef();
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
+
+  useEffect(() => {
+    photoRef.current = createCloudinaryWidget((url) => {
+      setPhotos([...photos, url]);
+    })
+  }, []);
 
   const createStarInput = () => {
     let meaning = '';
@@ -37,13 +45,10 @@ const ModalForm = ({ productID, productName }) => {
     return stars;
   }
 
-  const addPhoto = () => {
-    setPhotos([...photos, photoRef.current.value]);
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({
+
+    axios.post('/reviews', {
       product_id: productID,
       rating,
       summary: summaryRef.current.value,
@@ -52,21 +57,9 @@ const ModalForm = ({ productID, productName }) => {
       name: nameRef.current.value,
       email: emailRef.current.value,
       photos,
-      // characteristics:,
-
+      characteristics: {},
     })
-    /* axios.post('/reviews', {
-      productId,
-      rating,
-      summary:,
-      body:,
-      recommend:,
-      name:,
-      email:,
-      photos:,
-      characteristics:,
-
-    }) */
+    .catch(err=>console.error(err));
   }
   return(
     <Form onSubmit={handleSubmit} >
@@ -116,8 +109,7 @@ const ModalForm = ({ productID, productName }) => {
         </InputLabel>
         <InputLabel>
           Add a photo URL
-          <PhotoInput type="text" ref={photoRef}></PhotoInput>
-          <PhotoSubmit type="button" onClick={addPhoto}>Add Photo</PhotoSubmit>
+          <button onClick={()=>photoRef.current.open()}></button>
           {photos.length ? photos.map((photo, i)=><Thumbnail imgLink={photo} key={i}></Thumbnail>) : null}
         </InputLabel>
       </ModalContent>

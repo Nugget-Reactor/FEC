@@ -14,6 +14,7 @@ router.get('/reviews', controllers.ratings.get);
 router.get('/reviews/meta', controllers.ratings.getMeta);
 router.put('/reviews/:review_id/helpful', controllers.ratings.helpful);
 router.put('/reviews/:review_id/report', controllers.ratings.report);
+router.post('/reviews', controllers.ratings.addReview);
 
 //Questions Routes
 router.get('/qa/questions', controllers.qnas.getQs);
