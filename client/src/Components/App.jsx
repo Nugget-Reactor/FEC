@@ -3,7 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Reviews from './R&R/Reviews.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx';
-import Outfits from './RelatedItems/Outfits.jsx';
+import OutfitCollection from './RelatedItems/OutfitCollection.jsx';
 import QnA from './QnA/QnA.jsx';
 import axios from 'axios';
 import { createStars, getAverage } from '../Tools/createStars';
@@ -85,39 +85,46 @@ const App = () => {
       }
     });
   };
-
+ //errors - stars are stuck - need to have some of these things in a useEffect, page not re-rerendering when outfits added,
+ //prices pporly laid out
   useEffect(() => { //to set outfits on localStorage - it should be an array, but we willl be adding one outfit at a time.
     var windowOutfits;
+    var outfitIDs = [];
     if (window.localStorage.outfits) {
       windowOutfits = JSON.parse(window.localStorage.getItem('outfits'));
+      for (var i = 0; i < windowOutfits.length; i++) {
+        outfitIDs.push(windowOutfits[i].id);
+      }
     } else {
       windowOutfits = [];
     }
-    if (Object.keys(currentOutfit).length > 0) {
+
+    if (Object.keys(currentOutfit).length > 0 && !outfitIDs.includes(currentOutfit.id)) {
       windowOutfits.push(currentOutfit);
       window.localStorage.setItem('outfits', JSON.stringify(windowOutfits));
+    } else {
+      console.log('not added!');
     }
   }, [currentOutfit]);
 
+  /** product constructor for outfits module */
   const addOutfit = () => {
     var currentProduct = {};
     currentProduct.id = product.id;
     currentProduct.regPrice = currentOutfitStyle.original_price;
     currentProduct.salePrice = currentOutfitStyle.sale_price;
-    currentProduct.stars = createStars(getAverage(currentRatings));
+    currentProduct.ratings = getAverage(currentRatings); //children do not like stars
     currentProduct.name = product.name;
     currentProduct.category = product.category;
     currentProduct.currentPhotoURL = currentOutfitStyle.photos[0].url;
     setCurrentOutfit(currentProduct);
-    console.log('currentProduct', currentProduct);
   };
-  /** product constructor  for outfits module can I do this inside of Overview so we do not duplicate the efforts?*/
 
   return (
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <Outfits handleProductChange={handleProductChange} addOutfit={addOutfit}/>
+      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit}/>
       <Reviews productID={product.id} productName={product.name} />
       <QnA product={product} />
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import OutfitButtonCard from './OutfitButtonCard.jsx';
-import Outfit from './Outfit.jsx';
+import SingleOutfit from './SingleOutfit.jsx';
 
 const OutfitsCarousel = ({handleProductChange, addOutfit}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,10 +15,11 @@ const OutfitsCarousel = ({handleProductChange, addOutfit}) => {
 
   /**to get outfits **/
   useEffect(() => {
-    console.log('outfits in outfits', JSON.parse(window.localStorage.outfits));
-    setOutfits(JSON.parse(window.localStorage.outfits));
+    if (window.localStorage.outfits) {
+      console.log('outfits in outfits', JSON.parse(window.localStorage.outfits));
+      setOutfits(JSON.parse(window.localStorage.outfits));
+    }
   }, []);
-
   useEffect(() => { //make visibility conditional upon rendeOutfitng
     if (outfits.length > 0) {
       if (currentIndex === 0) {
@@ -35,13 +36,15 @@ const OutfitsCarousel = ({handleProductChange, addOutfit}) => {
     }
   }, [currentIndex, outfits]);
 
-  // let OutfitsRenderMap = () => {
-  //   if (outfits.length > 0) {
-  //     var currentThree = outfits.slice(currentIndex, currentIndex + 3);
-  //     return <>{currentThree.map((currentItem) =>
-  //       <Outfit outfit={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
-  //   }
-  // };
+  let OutfitsRenderMap = () => {
+    if (outfits.length > 0) {
+      console.log('outfits in OutfitsCarousel', outfits);
+
+      var currentThree = outfits.slice(currentIndex, currentIndex + 3);
+      return <>{currentThree.map((currentItem) =>
+        <SingleOutfit outfit={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
+    }
+  };
 
   let LeftButton = ({isVisible}) => {
     return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow> : null;
@@ -58,8 +61,8 @@ const OutfitsCarousel = ({handleProductChange, addOutfit}) => {
           <LeftButton isVisible={leftButtonVisible}/>
           <OutfitContentWrapper>
             <OutfitContent>
-              <OutfitButtonCard addOutfit={addOutfit}/>
-              {/* <OutfitsRenderMap /> */}
+              <OutfitButtonCard addOutfit={addOutfit} outfits={outfits} />
+              <OutfitsRenderMap />
             </OutfitContent>
           </OutfitContentWrapper>
           <RightButton isVisible={RightButtonVisible} />

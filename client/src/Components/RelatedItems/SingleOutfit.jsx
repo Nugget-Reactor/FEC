@@ -1,24 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { createStars, getAverage } from '../../Tools/createStars';
+import { createStars } from '../../Tools/createStars';
 
 
-const Outfit = ({outfit, handleProductChange}) => {
+const SingleOutfit = ({outfit, handleProductChange}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
   const [strikeRegPrice, setStrikeRegPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
-
+  console.log('outfit in outfit', outfit);
   useEffect(() => {
+    if (outfit.salePrice) {
+      setStrikeRegPrice(outfit.regPrice);
+    }
     setRegPrice(outfit.regPrice);
     setSalePrice(outfit.salePrice);
     setCurrentPhotoURL(outfit.currentPhotoURL);
+
   }, [outfit]);
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      <DefaultImage src={currentPhotoURL} />;
+      return <DefaultImage src={currentPhotoURL} />;
     } else {
       return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
     }
@@ -28,16 +32,16 @@ const Outfit = ({outfit, handleProductChange}) => {
     <OutfitItemListItem onClick={(event) => { handleProductChange(outfit.id); }}>
       <OutfitImageDiv>
         {conditionalPhoto()}
-        <ActionButtonOutfit></ActionButtonOutfit></OutfitImageDiv>
+        <ActionButtonOutfit>X</ActionButtonOutfit></OutfitImageDiv>
       <h5>{outfit.category}</h5>
       <h4>{outfit.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
-      {outfit.stars}
+      {createStars(outfit.ratings)}
     </OutfitItemListItem>
   );
 };
 
-export default Outfit;
+export default SingleOutfit;
 
 /** function for handling strikethrough proicing/ sale pricing/ regular pricing */
 const Pricing = ({salePrice, regPrice, strikePrice}) => {
@@ -69,14 +73,12 @@ const NoPhotoH1 = styled.h1`
 `;
 
 const OutfitItemListItem = styled.li` //the Outfit items card itself
-  display: inline-flex;
   display: inline-block;
   border-radius: 3px;
   margin: 5px;
   border: 2px solid black;
   padding: 5px;
   height: 100%;
-
 `;
 
 const OutfitImageDiv = styled.div` //the image div
@@ -93,22 +95,23 @@ const DefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonOutfit = styled.button`
+  z-index: 1;
   background: white;
   border: 2px solid #f80;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-left: .2em;
+  padding-right: .2em;
   border-radius: 50%;
   //old good code below
   position:absolute;
   right: 6px;
   top: 6px;
-  font-size: 30px;
+  font-size: 3em;
   // background: none;
-  // border: none;
+  border: none;
   color: #f00;
-  &::after {
-    font-family: FontAwesome;
-    content: "\\e59b";
+  // &::after {
+  //   font-family: FontAwesome;
+  //   content: "\\e59b";
   }
 `;
 
@@ -117,11 +120,11 @@ const SaleAndStrikeBlock = styled.div`
 `;
 
 const SalePricing = styled.div`
-  display: inline-flex;
+  // display: inline-flex;
   //good old code
   color: red;
   margin-right: 5px;
-  // display: inline-block;
+  display: inline-block;
 `;
 
 const StrikePricing = styled.div`
