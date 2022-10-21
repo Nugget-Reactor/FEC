@@ -13,6 +13,7 @@ const Reviews = ({ productID, productName }) => {
   const [metadata, setMetadata] = useState({});
   const [sort, setSort] = useState('relevant');
   const [currentCount, setCurrentCount] = useState(2);
+  const [getCount, setGetCount] = useState(50);
   const [filteredTotalCount, setFilteredTotalCount] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -21,13 +22,13 @@ const Reviews = ({ productID, productName }) => {
   //Set initial reviews list
   useEffect(() => {
     if(productID !== undefined) {
-      axios.get(`/reviews?product_id=${productID}&sort=${sort}&count=${currentCount}`)
+      axios.get(`/reviews?product_id=${productID}&sort=${sort}&count=${getCount}`)
       .then(res => {
         setReviews(res.data.results)
       })
       .catch(err => console.error(err));
     }
-  }, [productID, sort, currentCount]);
+  }, [productID, sort, getCount]);
 
   //Set filtered reviews list
   useEffect(() => {
@@ -41,7 +42,7 @@ const Reviews = ({ productID, productName }) => {
     }
   }, [reviews, filters]);
 
-  //Set metadata
+  //Set metadata and reset filters
   useEffect(() => {
     if(productID !== undefined) {
       axios.get(`/reviews/meta?product_id=${productID}`)
@@ -50,44 +51,61 @@ const Reviews = ({ productID, productName }) => {
       })
       .catch(err => console.error(err));
     }
+    setFilters([]);
   }, [productID]);
 
-  //Set total reviews count and filtered reviews count
+  //Set filtered reviews count
   useEffect(() => {
-    getReviewCount();
-  }, [metadata, filters])
+    let filteredTotal = 0;
 
-  const getReviewCount = () => {
+    filters.forEach((filter) => {
+      filteredTotal += Number(metadata.ratings[filter]);
+    })
+    setFilteredTotalCount(filteredTotal);
+  }, [metadata, filters]);
+
+  //Set total reviews count
+  useEffect(() => {
     let total = 0;
-
-    if(filters.length > 0 && metadata.ratings) {
-      filters.forEach((filter) => {
-        total += Number(metadata.ratings[filter]);
-      })
-      setFilteredTotalCount(total);
-    }
-    total = 0;
     for(let count in metadata.ratings) {
       total += Number(metadata.ratings[count]);
     }
-    setTotalCount(total)
-
-  }
+    setTotalCount(total);
+  }, [metadata]);
 
   const handleSort = (e) => {
     setSort(e.target.value);
   }
 
   const handleMoreReviews = () => {
+    if(currentCount >= getCount) {
+      setGetCount(getCount + 50);
+    }
     setCurrentCount(currentCount + 2);
   }
 
+  const modifyFilters = (starValue) => {
+    if(!starValue) {
+      setFilters([]);
+    } else {
+      setFilters(previousFilters => {
+        if(previousFilters.includes(starValue)){
+          return previousFilters.filter(value=> value!==starValue);
+        } else {
+          return [...previousFilters, starValue];
+        }
+      });
+    }
+  }
+  const closeModal = () => {
+    setShowModal(false);
+  }
   return (
     <Layout>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
         <div style={{width: "500px"}}>
-          <Breakdown metadata={metadata} totalCount={totalCount} />
+          <Breakdown metadata={metadata} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
         </div>
         <div>
           <ReviewTitle data-testid="reviewTitle">{filteredTotalCount || totalCount} reviews, sorted by
@@ -97,13 +115,13 @@ const Reviews = ({ productID, productName }) => {
               <option value='newest'>newest</option>
             </Dropdown>
           </ReviewTitle>
-          <List reviews={filteredReviews} />
+          <List reviews={filteredReviews} currentCount={currentCount} />
 
-          {totalCount >= currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
+          {reviews.length > currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
           <BigButton data-testid="addReviewButton" onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
         </div>
       </ColumnContainer>
-      {showModal ? <Modal setShowModal={setShowModal}><ModalForm productName={productName} /></Modal> : null}
+      {showModal ? <Modal closeModal={closeModal}><ModalForm productID={productID} productName={productName} /></Modal> : null}
     </Layout>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const RatingFilter = ({rating, starValue, totalCount}) => {
+const RatingFilter = ({rating, starValue, totalCount, modifyFilters}) => {
 
   const getPercentage = () => {
     if(rating && totalCount){
@@ -9,21 +9,22 @@ const RatingFilter = ({rating, starValue, totalCount}) => {
     }
     return 0;
   }
-  const filter = () => {
-    setFilter(starValue);
-  }
+
   return(
-    <div>
-      <FilterButton onClick={filter}>{starValue} stars</FilterButton><RatingBar fill={getPercentage(starValue)} />
-    </div>
+    <SelectableDiv onClick={()=>modifyFilters(starValue)}>
+      <RatingSpan>{starValue} stars</RatingSpan><RatingBar fill={getPercentage(starValue)} />
+    </SelectableDiv>
   );
 }
-const FilterButton = styled.button`
-  text-decoration: underline;
+const SelectableDiv = styled.div`
   cursor: pointer;
-  background: none;
-  border: none;
 
+  &:hover {
+    background-color: pink;
+  }
+`
+const RatingSpan = styled.span`
+  text-decoration: underline;
 `
 const RatingBar = styled.div`
   width: 150px;
