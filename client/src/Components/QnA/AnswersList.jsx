@@ -13,7 +13,10 @@ const AnswersList = ({ questionID }) => {
 
   useEffect(() => {
     axios.get(`/qa/questions/${questionID}/answers`)
-      .then(results => setAnswersList(results.data.results))
+      .then(results => {
+        // console.log('got answers list');
+        setAnswersList(results.data.results);
+      })
       .catch(err => console.log('Error getting answers list', err));
   }, [showLoadMore]);
 

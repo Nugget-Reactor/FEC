@@ -36,7 +36,7 @@ const AnswerEntry = ({ entry }) => {
       <PhotoContainer>
         {!entry.photos.length
           ? null
-          : <Image src={entry.photos[0]}></Image>}
+          : <Image src={entry.photos[0].url}></Image>}
       </PhotoContainer>
       <AnswerListFooter>
         <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
