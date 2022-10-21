@@ -3,24 +3,22 @@ import styled from 'styled-components';
 import OutfitButtonCard from './OutfitButtonCard.jsx';
 import SingleOutfit from './SingleOutfit.jsx';
 
-const OutfitsCarousel = ({handleProductChange, addOutfit}) => {
+const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [RightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
   const [outfits, setOutfits] = useState([]);
 
+  /**to get outfits when updated **/
   useEffect(() => {
     setCurrentIndex(0);
-  }, [outfits]);
-
-  /**to get outfits **/
-  useEffect(() => {
     if (window.localStorage.outfits) {
-      console.log('outfits in outfits', JSON.parse(window.localStorage.outfits));
+      // console.log('outfits in outfitsCarousel', JSON.parse(window.localStorage.outfits));
       setOutfits(JSON.parse(window.localStorage.outfits));
     }
-  }, []);
-  useEffect(() => { //make visibility conditional upon rendeOutfitng
+  }, [allOutfits]);
+
+  useEffect(() => { //make button visibility conditional upon qty of items in outfits
     if (outfits.length > 0) {
       if (currentIndex === 0) {
         setLeftButtonVisible(false);
@@ -36,9 +34,13 @@ const OutfitsCarousel = ({handleProductChange, addOutfit}) => {
     }
   }, [currentIndex, outfits]);
 
-  let OutfitsRenderMap = () => {
+  // let updateOutFitsCarousel = () => {
+  //   setUpdatedOutfits(prev => prev + 1);
+  // };
+
+  let OutfitsRenderMap = () => { //this is not firing off
     if (outfits.length > 0) {
-      console.log('outfits in OutfitsCarousel', outfits);
+      // console.log('outfits in OutfitsCarousel', outfits);
 
       var currentThree = outfits.slice(currentIndex, currentIndex + 3);
       return <>{currentThree.map((currentItem) =>

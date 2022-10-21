@@ -9,7 +9,7 @@ const SingleOutfit = ({outfit, handleProductChange}) => {
   const [regPrice, setRegPrice] = useState('');
   const [strikeRegPrice, setStrikeRegPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
-  console.log('outfit in outfit', outfit);
+
   useEffect(() => {
     if (outfit.salePrice) {
       setStrikeRegPrice(outfit.regPrice);
@@ -32,21 +32,21 @@ const SingleOutfit = ({outfit, handleProductChange}) => {
     <OutfitItemListItem onClick={(event) => { handleProductChange(outfit.id); }}>
       <OutfitImageDiv>
         {conditionalPhoto()}
-        <ActionButtonOutfit>X</ActionButtonOutfit></OutfitImageDiv>
+        <ActionButtonOutfit icon="fa-solid fa-xmark-large" ></ActionButtonOutfit></OutfitImageDiv>
       <h5>{outfit.category}</h5>
       <h4>{outfit.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
-      {createStars(outfit.ratings)}
+      <div>{createStars(outfit.ratings)}</div>
     </OutfitItemListItem>
   );
 };
 
 export default SingleOutfit;
 
-/** function for handling strikethrough proicing/ sale pricing/ regular pricing */
+/** function for handling strikethrough pricing/ sale pricing/ regular pricing */
 const Pricing = ({salePrice, regPrice, strikePrice}) => {
   if (salePrice) {
-    return <SaleAndStrikeBlock><SalePricing>${salePrice}  </SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
+    return <SaleAndStrikeBlock><SalePricing>${salePrice}</SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
   } else {
     return <div>${regPrice}</div>;
   }
@@ -95,23 +95,21 @@ const DefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonOutfit = styled.button`
+  display: inline-block;
   z-index: 1;
+  padding: .2em .4em;
+  font-size: 1.8em;
   background: white;
-  border: 2px solid #f80;
-  padding-left: .2em;
-  padding-right: .2em;
+  border: 3px solid #f00;
   border-radius: 50%;
-  //old good code below
+
   position:absolute;
   right: 6px;
   top: 6px;
-  font-size: 3em;
-  // background: none;
-  border: none;
   color: #f00;
-  // &::after {
-  //   font-family: FontAwesome;
-  //   content: "\\e59b";
+  &:after{
+    font-family: FontAwesome;
+    content: "\\58";
   }
 `;
 
@@ -120,16 +118,30 @@ const SaleAndStrikeBlock = styled.div`
 `;
 
 const SalePricing = styled.div`
-  // display: inline-flex;
-  //good old code
+  display: inline-flex;
   color: red;
   margin-right: 5px;
-  display: inline-block;
 `;
 
 const StrikePricing = styled.div`
   display: inline-flex;
-  //good old code
   text-decoration: line-through;
-  // display: inline-block;
 `;
+
+/**  possible button add-ons
+ * height: 1.8em;
+  width: 1.8em;
+  z-index: 1;
+  font-size: 1.5em;
+  background: white;
+  border: 3px solid #f00;
+  border-radius: .9em 50%;
+
+  position:absolute;
+  right: 6px;
+  top: 6px;
+  color: #f00;
+  &:after{
+    font-family: FontAwesome;
+    content: "\\58";
+  } */

@@ -110,7 +110,6 @@ const NoPhotoH1 = styled.h1`
 `;
 
 const RelatedItemListItem = styled.li` //the related items card itself
-  display: inline-flex;
   display: inline-block;
   border-radius: 3px;
   margin: 5px;
@@ -134,6 +133,8 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonRelated = styled.button`
+  z-index: 1;
+
   background: white;
   border: 2px solid #f80;
   padding-top: 5px;
@@ -159,15 +160,11 @@ const SaleAndStrikeBlock = styled.div`
 
 const SalePricing = styled.div`
   display: inline-flex;
-  //good old code
   color: red;
   margin-right: 5px;
-  // display: inline-block;
 `;
 
 const StrikePricing = styled.div`
   display: inline-flex;
-  //good old code
   text-decoration: line-through;
-  // display: inline-block;
 `;

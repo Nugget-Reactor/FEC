@@ -16,6 +16,7 @@ const App = () => {
   const [currentMeta, setCurrentMeta] = useState({});
   const [currentRatings, setCurrentRatings] = useState({});
   const [currentOutfit, setCurrentOutfit] = useState({});
+  const [allOutfits, setAllOutfits] = useState([]);
 
   useEffect(() => {
     // axios.get('/products/40344')
@@ -93,7 +94,7 @@ const App = () => {
     if (window.localStorage.outfits) {
       windowOutfits = JSON.parse(window.localStorage.getItem('outfits'));
       for (var i = 0; i < windowOutfits.length; i++) {
-        outfitIDs.push(windowOutfits[i].id);
+        outfitIDs.push(windowOutfits[i].id); //to get the i'd to be sure there are no duplicates
       }
     } else {
       windowOutfits = [];
@@ -101,6 +102,7 @@ const App = () => {
 
     if (Object.keys(currentOutfit).length > 0 && !outfitIDs.includes(currentOutfit.id)) {
       windowOutfits.push(currentOutfit);
+      setAllOutfits(windowOutfits); //adds item to outfit Array
       window.localStorage.setItem('outfits', JSON.stringify(windowOutfits));
     } else {
       console.log('not added!');
@@ -124,7 +126,7 @@ const App = () => {
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit}/>
+      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits}/>
       <Reviews productID={product.id} productName={product.name} />
       <QnA product={product} />
     </div>

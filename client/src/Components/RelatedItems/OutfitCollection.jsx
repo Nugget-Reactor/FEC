@@ -3,14 +3,14 @@ import axios from 'axios';
 import styled from 'styled-components';
 import OutfitsCarousel from './OutfitsCarousel.jsx';
 
-const Outfits = ({handleProductChange, addOutfit}) => { //it will need handleclick to change page to that item
+const Outfits = ({handleProductChange, addOutfit, allOutfits}) => { //it will need handleclick to change page to that item
 
   return (
     <div id="related-items-panel">
       <h2>Your Outfit</h2>
       <OutfitsDiv>
         <Carousel>
-          <OutfitsCarousel handleProductChange={handleProductChange} addOutfit={addOutfit}/>
+          <OutfitsCarousel handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits}/>
         </Carousel>
       </OutfitsDiv>
     </div>
