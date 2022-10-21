@@ -30,7 +30,10 @@ const ProductInfo = ({ product, productStyles, currentStyle, handleStyleChange }
         <p style={{ color: 'red' }}>${currentStyle.sale_price} <span style={{ color: 'black', textDecoration: 'line-through' }}>${currentStyle.original_price}</span></p> :
         <p>${currentStyle.original_price}</p>}
       <StyleSelector productStyles={productStyles} handleStyleChange={handleStyleChange} currentStyle={currentStyle} />
-      <AddCart currentStyle={currentStyle} />
+      <div>
+        <AddCart currentStyle={currentStyle} />
+      </div>
+
     </div>
   );
 };

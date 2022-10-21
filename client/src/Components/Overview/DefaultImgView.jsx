@@ -29,8 +29,13 @@ const DefaultImageView = ({currentStyle, handleExpansion}) => {
         {
           currentStyle.photos && currentStyle.photos.map((item, index) => {
             return (
-              <div className="thumbnail-container" key={index}>
-                <img onClick={() => setSlideNumber(index)} className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'} key={index} src={item.url}></img>
+              <div className="thumbnail-container"
+                key={index}>
+                <img onClick={() => setSlideNumber(index)}
+                  className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'}
+                  key={index}
+                  src={item.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg': item.url}>
+                </img>
               </div>
             );
           })
@@ -39,8 +44,12 @@ const DefaultImageView = ({currentStyle, handleExpansion}) => {
       {
         currentStyle.photos && currentStyle.photos.map((slide, index) => {
           return (
-            <div className={index === slideNumber ? 'slide active' : 'slide'} key={index}>
-              {index === slideNumber && (<img key={index} onClick={() => handleExpansion()} className='image' src={slide.url} alt=''/>)}
+            <div key={index}>
+              {index === slideNumber &&
+              (<img key={index}
+                onClick={() => handleExpansion()}
+                className='image'
+                src={slide.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' : slide.url} alt=''/>)}
             </div>
           );
         })
@@ -53,3 +62,4 @@ const DefaultImageView = ({currentStyle, handleExpansion}) => {
 export default DefaultImageView;
 
 
+// className={index === slideNumber ? 'slide active' : 'slide'}

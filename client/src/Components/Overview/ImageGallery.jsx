@@ -3,28 +3,23 @@ import axios from 'axios';
 import styled from 'styled-components';
 import {AiOutlineArrowRight, AiOutlineArrowLeft} from 'react-icons/ai';
 import DefaultImageView from './DefaultImgView.jsx';
+import ExpandedView from './ExpandedView.jsx';
+import ZoomView from './ZoomView.jsx';
 import './overview.css';
 
 const {useState, useEffect} = React;
 
-const ImageGallery = ({product, productStyles, currentStyle}) => {
+const ImageGallery = ({currentStyle, expanded, handleExpansion}) => {
   const [slideNumber, setSlideNumber] = useState(0);
-  const [expanded, setExpanded] = useState(false);
-
-
-  const handleExpansion = () => {
-    setExpanded(!expanded);
-  };
-
 
   return (
     <div className='gallery'>
       {!expanded &&
-        <DefaultImageView product={product} productStyles={productStyles} currentStyle={currentStyle} handleExpansion={handleExpansion}/>
+        <DefaultImageView currentStyle={currentStyle} handleExpansion={handleExpansion}/>
       }
       {
         expanded &&
-        <h1 onClick={() => handleExpansion()}>Expanded View</h1>
+        <ExpandedView currentStyle={currentStyle} handleExpansion={handleExpansion}/>
       }
     </div>
   );
