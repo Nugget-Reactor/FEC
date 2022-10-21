@@ -21,7 +21,7 @@ const ratings = {
     .catch(err => {
       console.log(err);
       res.sendStatus(404);
-    })
+    });
   },
 
   helpful: (req, res) => {
@@ -32,7 +32,29 @@ const ratings = {
     .catch(err => {
       console.log(err);
       res.sendStatus(404);
+    });
+  },
+
+  report: (req, res) => {
+    axios.put(`${URL}/reviews/${req.params.review_id}/report`)
+    .then(result => {
+      res.sendStatus(204);
     })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+  },
+
+  addReview: (req, res) => {
+    axios.post(`${URL}/reviews`, req.body)
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(404);
+    });
   }
 };
 
