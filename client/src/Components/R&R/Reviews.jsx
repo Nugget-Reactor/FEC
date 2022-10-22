@@ -9,22 +9,40 @@ import Breakdown from './Breakdown.jsx';
 const Reviews = ({ productID, productName }) => {
 
   const [reviews, setReviews] = useState([]);
+  const [filteredReviews, setFilteredReviews] = useState([]);
   const [metadata, setMetadata] = useState({});
   const [sort, setSort] = useState('relevant');
   const [currentCount, setCurrentCount] = useState(2);
-  const [totalCount, setTotalCount] = useState(2);
+  const [getCount, setGetCount] = useState(50);
+  const [filteredTotalCount, setFilteredTotalCount] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [filters, setFilters] = useState([]);
 
+  //Set initial reviews list
   useEffect(() => {
     if(productID !== undefined) {
-      axios.get(`/reviews?product_id=${productID}&sort=${sort}&count=${currentCount}`)
+      axios.get(`/reviews?product_id=${productID}&sort=${sort}&count=${getCount}`)
       .then(res => {
         setReviews(res.data.results)
       })
       .catch(err => console.error(err));
     }
-  }, [productID, sort, currentCount]);
+  }, [productID, sort, getCount]);
 
+  //Set filtered reviews list
+  useEffect(() => {
+    if(filters.length > 0) {
+      let filtered = reviews.filter((review) => {
+        return filters.includes(review.rating);
+      })
+      setFilteredReviews(filtered);
+    } else {
+      setFilteredReviews(reviews);
+    }
+  }, [reviews, filters]);
+
+  //Set metadata and reset filters
   useEffect(() => {
     if(productID !== undefined) {
       axios.get(`/reviews/meta?product_id=${productID}`)
@@ -33,51 +51,77 @@ const Reviews = ({ productID, productName }) => {
       })
       .catch(err => console.error(err));
     }
+    setFilters([]);
   }, [productID]);
 
+  //Set filtered reviews count
   useEffect(() => {
-    setTotalCount(getReviewCount());
-  }, [metadata])
+    let filteredTotal = 0;
 
-  const getReviewCount = () => {
+    filters.forEach((filter) => {
+      filteredTotal += Number(metadata.ratings[filter]);
+    })
+    setFilteredTotalCount(filteredTotal);
+  }, [metadata, filters]);
+
+  //Set total reviews count
+  useEffect(() => {
     let total = 0;
-
     for(let count in metadata.ratings) {
       total += Number(metadata.ratings[count]);
     }
-    return total;
-  }
+    setTotalCount(total);
+  }, [metadata]);
 
   const handleSort = (e) => {
     setSort(e.target.value);
   }
 
   const handleMoreReviews = () => {
+    if(currentCount >= getCount) {
+      setGetCount(getCount + 50);
+    }
     setCurrentCount(currentCount + 2);
   }
 
+  const modifyFilters = (starValue) => {
+    if(!starValue) {
+      setFilters([]);
+    } else {
+      setFilters(previousFilters => {
+        if(previousFilters.includes(starValue)){
+          return previousFilters.filter(value=> value!==starValue);
+        } else {
+          return [...previousFilters, starValue];
+        }
+      });
+    }
+  }
+  const closeModal = () => {
+    setShowModal(false);
+  }
   return (
     <Layout>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
         <div style={{width: "500px"}}>
-          <Breakdown metadata={metadata} totalCount={totalCount} />
+          <Breakdown metadata={metadata} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
         </div>
         <div>
-          <ReviewTitle data-testid="reviewTitle">{totalCount} reviews, sorted by
+          <ReviewTitle data-testid="reviewTitle">{filteredTotalCount || totalCount} reviews, sorted by
             <Dropdown value={sort} onChange={handleSort}>
               <option value='relevant'>relevance</option>
               <option value='helpful'>most helpful</option>
               <option value='newest'>newest</option>
             </Dropdown>
           </ReviewTitle>
-          <List reviews={reviews} />
+          <List reviews={filteredReviews} currentCount={currentCount} />
 
-          {totalCount >= currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
+          {reviews.length > currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
           <BigButton data-testid="addReviewButton" onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
         </div>
       </ColumnContainer>
-      {showModal ? <Modal setShowModal={setShowModal}><ModalForm productName={productName} /></Modal> : null}
+      {showModal ? <Modal closeModal={closeModal}><ModalForm productID={productID} productName={productName} /></Modal> : null}
     </Layout>
   );
 }

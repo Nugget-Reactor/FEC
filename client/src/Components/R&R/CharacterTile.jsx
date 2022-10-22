@@ -3,7 +3,16 @@ import styled from 'styled-components';
 
 const CharacterTile = ({ charName, value }) => {
   const getScale = () => {
+    if(value === null) {
+      return 0
+    }
     return ((+value - 1) / 4 * 100) - 2;
+  }
+  const hasValue = () => {
+    if(value === null){
+      return 'hidden';
+    }
+    return 'visible';
   }
   const getDescriptions = () => {
     let descs = [];
@@ -33,7 +42,7 @@ const CharacterTile = ({ charName, value }) => {
   return(
     <div>
       <h5>{charName}</h5>
-      <ValueBar left={getScale()}><GreyBar/><GreyBar/><GreyBar/></ValueBar>
+      <ValueBar left={getScale()} visibility={hasValue()}><GreyBar/><GreyBar/><GreyBar/></ValueBar>
       <Descriptions>
         {getDescriptions()}
       </Descriptions>
@@ -54,6 +63,7 @@ const ValueBar = styled.div`
     position: absolute;
     top: -5px;
     left: ${props=>props.left}%;
+    visibility: ${props=>props.visibility};
   }
 `
 const GreyBar = styled.span`

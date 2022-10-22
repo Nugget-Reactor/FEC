@@ -11,10 +11,12 @@ const Tile = ({ review }) => {
   const [showMore, setShowMore] = useState(false);
   const [alreadyVoted, setAlreadyVoted] = useState(false);
   const [alreadyReported, setAlreadyReported] = useState(false);
-
   const handleImgModal = (link) => {
     setCurrentImage(link);
     setShowImgModal(true);
+  }
+  const closeImgModal = () => {
+    setShowImgModal(false);
   }
   const shortenBody = () => {
     if(!showMore && review.body.length > 250) {
@@ -38,7 +40,6 @@ const Tile = ({ review }) => {
   }
   return(
     <TileStyle>
-
       <ReviewHeader>
         <span>{createStars(review.rating)}</span>
         <span>{review.reviewer_name}, {format(parseISO(review.date), 'MMMM d, yyyy')}</span>
@@ -59,17 +60,24 @@ const Tile = ({ review }) => {
 
       {review.photos.length
       && <div>
-        {review.photos.map(photo => <Thumbnail key={photo.id} imgLink={photo.url} onClick={()=>handleImgModal(photo.url)} />)}
+        {review.photos.map(photo => {
+        return <Thumbnail key={photo.id} imgLink={photo.url} onClick={()=>handleImgModal(photo.url)} />})}
       </div> }
       {showImgModal
-      ? <Modal setShowModal={setShowImgModal}>
+      ? <Modal closeModal={closeImgModal}>
         <img src={currentImage} />
       </Modal>
       : null}
 
 
       <div>
-        {!alreadyVoted ? <span>Helpful? <SmallButton onClick={voteHelpful}>Yes</SmallButton>({review.helpfulness})</span> : <ThanksMessage><i className="fa-solid fa-check"/> Thank you for your feedback!</ThanksMessage>} | <SmallButton onClick={report}>Report</SmallButton>
+        {!alreadyVoted
+        ? <span>Helpful? <SmallButton onClick={voteHelpful}>Yes</SmallButton>({review.helpfulness})</span>
+        : <ThanksMessage><i className="fa-solid fa-check"/> Thank you for your feedback!</ThanksMessage>}
+        |
+        {!alreadyReported
+        ? <SmallButton onClick={report}>Report</SmallButton>
+        : <span>This review has been reported.</span>}
       </div>
 
     </TileStyle>

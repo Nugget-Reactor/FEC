@@ -1,41 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import { createStars, getAverage } from '../../Tools/createStars';
-import Ratings from './Ratings.jsx';
+import RatingFilter from './RatingFilter.jsx';
 import Characteristics from './Characteristics.jsx';
 import styled from 'styled-components';
 
-const Breakdown = ({ metadata, totalCount }) => {
-  const [avgRating, setAvgRating] = useState(0);
+const Breakdown = ({ metadata, totalCount, filters, modifyFilters }) => {
+  const [avgRating, setAvgRating] = useState(null);
 
   useEffect(() => {
-    setAvgRating(getAverage(metadata.ratings))
+    setAvgRating(getAverage(metadata.ratings));
   }, [metadata]);
 
   const getRecommendedRate = () => {
     if(metadata.recommended) {
-      let trues = metadata.recommended.true || 0;
-      let falses = metadata.recommended.false || 0;
-      return (Number(trues)/(Number(trues) + Number(falses)) * 100).toFixed(0);
+      let trues = Number(metadata.recommended.true) || 0;
+      let falses = Number(metadata.recommended.false) || 0;
+      if(trues === 0 && falses === 0) {
+        return 0;
+      }
+      return (trues/(trues + falses) * 100).toFixed(0);
     }
+  }
+  const renderFilters = () => {
+    let filters = [];
+    if(metadata.ratings) {
+      for(let i = 5; i >= 1; i--) {
+        filters.push(<RatingFilter rating={metadata.ratings[i]} totalCount={totalCount} starValue={i} modifyFilters={modifyFilters} key={i} />)
+      }
+    }
+    return filters
   }
 
   return(
     <div>
       <div>
-        <AvgRating>{avgRating}</AvgRating>{createStars(avgRating)}
+        {avgRating ? <span><BoldText>{avgRating}</BoldText> {createStars(avgRating)}</span> : <BoldText>No Reviews Yet</BoldText>}
       </div>
-      <Ratings ratings={metadata.ratings} totalCount={totalCount} />
       <div>
-        {getRecommendedRate()}% of reviews recommend this product
+        {filters.length
+        ? <div>Filtered by star rating(s): {filters.sort().map((filter, i)=>{
+          if(i > 0) {
+            return ', '+filter;
+          }
+          return filter;
+        })}
+        <ClearButton onClick={()=>modifyFilters()}>Clear</ClearButton>
+        </div>
+        : null}
+        {renderFilters()}
+      </div>
+      <div>
+        {avgRating ? `${getRecommendedRate()}% of reviews recommend this product` : null}
       </div>
       <Characteristics chars={metadata.characteristics} />
     </div>
   );
 }
 
-const AvgRating = styled.span`
+const BoldText = styled.span`
   font-size: 2rem;
   font-weight: 600;
+`
+const ClearButton = styled.button`
+  background: none;
+  border: none;
+  text-decoration: underline;
+  display: block;
+  color:blue;
 `
 
 export default Breakdown;

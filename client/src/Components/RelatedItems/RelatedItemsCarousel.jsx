@@ -38,20 +38,20 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   };
 
   let RightButton = ({isVisible}) => {
-    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}>&gt;</RightArrow> : null;
+    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-carousel-button">&gt;</RightArrow> : null;
   };
 
   return (
     <div>
       <RIContainer>
         <RIWrapper>
+          <LeftButton isVisible={leftButtonVisible}/>
           <RIContentWrapper>
-            <LeftButton isVisible={leftButtonVisible}/>
             <RIContent>
               <ItemsRenderMap />
             </RIContent>
-            <RightButton isVisible={rightButtonVisible}/>
           </RIContentWrapper>
+          <RightButton isVisible={rightButtonVisible} />
         </RIWrapper>
       </RIContainer>
     </div>
@@ -71,72 +71,44 @@ display: flex;
 width: 100%;
 position: relative;
 `;
-
-const RIContentWrapper = styled.div`
-overflow: auto;
+const RIContentWrapper = styled.div`  //this manages the min size of the carousel
     width: 100%;
     height: 100%;
+    inline-block;
+    min-width: 76vw;
 `;
 
 const RIContent = styled.ul`
-
   display: flex;
   border: 2px solid black;
   border-radius: 3px;
-
   box-sizing: border-box;
-  max-height: 30em;
-  overflow: auto;
   max-width: 100%;
   padding: 0.5rem 0;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  border-radius: 10px;
 
 `;
 
 const LeftArrow = styled.button`
-font-size: larger;
-left: 24px;
 position: absolute;
-z-index: 1;
+border: none;
 top: 50%;
+border-radius: 50%;
+background: white;
 transform: translateY(-50%);
-width: 48px;
-height: 48px;
-border-radius: 24px;
-background-color: white;
-border: 1px solid #ddd;
+font-size: 1.8em;
+left: .3em;
 `;
 
 const RightArrow = styled.button`
-font-size: larger;
-right: 24px;
 position: absolute;
-z-index: 1;
+border: none;
 top: 50%;
+border-radius: 50%;
+background: white;
 transform: translateY(-50%);
-width: 48px;
-height: 48px;
-border-radius: 24px;
-background-color: white;
-border: 1px solid #ddd;
+font-size: 1.8em;
+right: .3em;
 `;
-
-
-
-// useEffect(() => {
-//   if (relatedItems.length) {
-//     setLength(relatedItems.length);
-//   }
-
-// }, [relatedItems]);
-
-// const next = () => {
-//   if (currentIndex < (length - 1)) {
-//     setCurrentIndex(prevState => prevState + 1);
-//   }
-// };
-
-// const prev = () => {
-//   if (currentIndex > 0) {
-//     setCurrentIndex(prevState => prevState - 1);
-//   }
-// };
