@@ -130,31 +130,6 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
             photoRef.current.open();
             setShowPreview(true);
           }}>Upload Your Photos</AnswerFormPhotos>
-          {/* <AddPhotos
-            id="upload-files"
-            type="file"
-            accept="image/*"
-            multiple
-            ref={hiddenFileInput}
-            style={{ display: 'none' }}
-            onChange={(e) => {
-              // trying to figure out how to get file converted to user accessible URL before uploading to black box
-              const fileList = e.target.files;
-              const urlArr = [];
-              for (let i = 0, numFiles = fileList.length; i < numFiles; i++) {
-                // let reader = new FileReader();
-                console.log('the file', fileList[i]);
-                const objectURL = window.URL.createObjectURL(fileList[i]);
-                urlArr.push(objectURL);
-                // reader.addEventListener('load', () => {
-                //   console.log('done loading with', reader.result);
-                // }, false);
-                // reader.readAsDataURL(fileList[i]);
-              }
-              setPhotos(urlArr);
-              setShowPreview(!showPreview);
-            }}
-          /> */}
           <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>
