@@ -18,7 +18,7 @@ const AnswersList = ({ questionID }) => {
         setAnswersList(results.data.results);
       })
       .catch(err => console.log('Error getting answers list', err));
-  }, [showLoadMore]);
+  }, [questionID, showLoadMore]);
 
   // console.log(answersList);
 
@@ -67,6 +67,7 @@ const AnswersContainer = styled.div`
 
 const LoadMoreAnswers = styled.a`
   display: block;
+  align-self: start;
   margin: 10px;
   font-size: 1rem;
 `;

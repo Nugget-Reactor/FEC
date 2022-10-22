@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const QuestionModal = ({ productID, name, showQModal, setShowQModal }) => {
+const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, setQuestions }) => {
 
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
