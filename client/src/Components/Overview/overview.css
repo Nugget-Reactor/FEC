@@ -12,6 +12,23 @@
   align-items: center;
 }
 
+.expand-button {
+  position: absolute;
+  color: black;
+  top: 125px;
+  right: 25px;
+  cursor: pointer;
+  font-size: 1.5rem
+}
+
+.expanded-expand-button {
+  position: absolute;
+  top: 35px;
+  right: 150px;
+  cursor: pointer;
+  font-size: 1.5rem
+}
+
 .expanded-gallery {
   position: relative;
   height: 750px;
@@ -129,6 +146,10 @@
   object-fit: cover;
   padding: 10px;
   cursor: pointer;
+}
+
+.style-thumbnail::selection {
+  border: 1px green;
 }
 
 .thumbnail:hover {

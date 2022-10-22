@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import {AiOutlineArrowRight, AiOutlineArrowLeft} from 'react-icons/ai';
+import {AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineExpand} from 'react-icons/ai';
 import './overview.css';
 
 const {useState, useEffect} = React;
@@ -41,6 +41,7 @@ const DefaultImageView = ({currentStyle, handleExpansion}) => {
           })
         }
       </div>
+      <div><AiOutlineExpand className="expand-button" onClick={() => handleExpansion()}/></div>
       {
         currentStyle.photos && currentStyle.photos.map((slide, index) => {
           return (
