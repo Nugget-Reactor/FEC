@@ -80,6 +80,8 @@ const OutfitItemListItem = styled.li` //the Outfit items card itself
   border: 2px solid black;
   padding: 5px;
   height: 100%;
+  min-height: 27em;
+
 `;
 
 const OutfitImageDiv = styled.div` //the image div

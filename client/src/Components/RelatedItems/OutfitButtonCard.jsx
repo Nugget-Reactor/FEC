@@ -6,35 +6,31 @@ const OutfitButtonCard = ({addOutfit}) => {
 
 
   return (
-    <OutfitItemListItem>
-      <OutfitImageDiv>
-        <OutfitImage>
-          <OutfitImageButton onClick={(event) => addOutfit()}>+</OutfitImageButton>
-        </OutfitImage>
+    <OutfitButtonDiv>
+      <HolderDiv>
+        <CardSquare>
+          <AddButton onClick={(event) => addOutfit()}>+</AddButton>
+        </CardSquare>
         <ActionText>Add Current Product to your Outfits</ActionText>
-      </OutfitImageDiv>
-    </OutfitItemListItem>
+      </HolderDiv>
+    </OutfitButtonDiv>
   );
 };
 
 export default OutfitButtonCard;
 
 
-const OutfitItemListItem = styled.li` //the Outfit items card itself
-min-height: 100%;
-
+const OutfitButtonDiv = styled.li` //the Outfit items card itself
 list-style-type: none;
-display: inline-flex;
 display: inline-block;
 border-radius: 3px;
 margin: 5px;
 border: 2px solid black;
 padding: 5px;
-min-height: 100%;
-// min-width: 30%;
+min-height: 27em; //makes button same vertical height ass outfit cards
 `;
 
-const OutfitImageDiv = styled.div`
+const HolderDiv = styled.div`
 min-height: 100%;
 
 position:relative; // so I can position the action button
@@ -43,7 +39,7 @@ height: 400px;
 width: 250px;
 `;
 
-const OutfitImage = styled.div`
+const CardSquare = styled.div`
 position:relative;
 bottom: 0px;
 height: 350px;
@@ -54,7 +50,7 @@ margin: auto;
 text-align: center;
 `;
 
-const OutfitImageButton = styled.button`
+const AddButton = styled.button`
 font-size: 8em;
 text-align: center;
 background: white;

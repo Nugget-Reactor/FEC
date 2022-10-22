@@ -71,7 +71,7 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
 
 export default OutfitsCarousel;
 
-const OutfitContainer = styled.div`
+const OutfitContainer = styled.div` //farthest outside
 width: 100%;
 display: flex;
 flex-direction: row;
@@ -81,7 +81,9 @@ const OutfitWrapper = styled.div`
 display: flex;
 width: 100%;
 position: relative;
+border: 4px solid black;
 `;
+
 const OutfitContentWrapper = styled.div`
 border: 2px solid red;
   width: 100%;
@@ -95,17 +97,15 @@ const OutfitContent = styled.ul`
   box-sizing: border-box;
   max-width: 100%;
   padding: 0.5rem 0;
-  padding-left: 3vw;
-  padding-right: 3vw;
-
+  padding-left: 3em; //for buttons
+  padding-right: 3em;
+  min-height: 80%;
   min-width: 80%;
-  border: 2px solid blue;
 `;
 
 const LeftArrow = styled.button`
 position: absolute;
 border: none;
-background: none;
 top: 50%;
 transform: translateY(-50%);
 font-size: 1.8em;
@@ -116,10 +116,11 @@ left: 1px;
 const RightArrow = styled.button`
 position: absolute;
 border: none;
-background: none;
+border-radius: 50%;
+background: white; // //change this
 top: 50%;
 transform: translateY(-50%);
 font-size: 1.8em;
-width: 2em;
-right: 1px;
+// width: 2em; //change this
+right: .3em;
 `;

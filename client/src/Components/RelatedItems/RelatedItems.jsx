@@ -66,4 +66,5 @@ const Carousel = styled.div`
   max-width: 100%;
   max-height: 100%;
   word-wrap: normal;
+  overflow: hidden;
 `;

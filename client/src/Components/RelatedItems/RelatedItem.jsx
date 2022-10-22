@@ -115,7 +115,7 @@ const RelatedItemListItem = styled.li` //the related items card itself
   margin: 5px;
   border: 2px solid black;
   padding: 5px;
-  height: 100%;
+  min-height: 27em;
 
 `;
 

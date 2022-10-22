@@ -6,36 +6,25 @@ import OutfitsCarousel from './OutfitsCarousel.jsx';
 const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => { //it will need handleclick to change page to that item
 
   return (
+    <div id="outfits-panel">
     <OutfitsSizing>
-        <h2>Your Outfit</h2>
-      <div id="outfits-panel">
+      <h2>Your Outfit</h2>
+    </OutfitsSizing>
         <OutfitsDiv>
           <Carousel>
             <OutfitsCarousel handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
           </Carousel>
         </OutfitsDiv>
       </div>
-    </OutfitsSizing>
   );
 };
 
 export default Outfits;
 
 const OutfitsSizing = styled.div`
-// // // display: block;
-// // justify-content: space-around;
-// // display: flex;
-// // align-items: stretch;
+width: 75%;
+margin: 0 auto;
 
-//   min-height: 15em;
-//   width: 80%;
-
-// //   // justify-content: space-around;
-// //   // display: flex;
-// //   // max-height: 100%;
-// //   // align-items: stretch;
-// //   // min-height: 100%;
-border: 2px solid black;
 `;
 
 const OutfitsDiv = styled.div`
@@ -47,8 +36,12 @@ min-height: 100%;
 `;
 
 const Carousel = styled.div`
-// min-height: 100%;
-//   max-width: 100%;
-//   max-height: 100%;
-//   word-wrap: normal;
+max-width: 80%;
+max-height: 100%;
+word-wrap: normal;
+  // min-width: 50vw;
+
+  overflow: hidden;
+
+
 `;
