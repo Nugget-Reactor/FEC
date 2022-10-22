@@ -1,20 +1,35 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 
 const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, questionID }) => {
 
   const hiddenFileInput = useRef(null);
+  const photoRef = useRef(null);
   const [answerBody, setAnswerBody] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
+  const [tempPhoto, setTempPhoto] = useState(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => document.body.style.overflow = 'unset';
   }, []);
+
+  useEffect(() => {
+    photoRef.current = createCloudinaryWidget((url) => {
+      setTempPhoto(url);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (tempPhoto) {
+      setPhotos([...photos, tempPhoto]);
+    }
+  }, [tempPhoto]);
 
   const handlePhotosClick = e => {
     e.preventDefault();
@@ -58,20 +73,19 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
     aObj.name = username;
     aObj.email = email;
     aObj.photos = photos;
-    // if (validateAForm()) {
-    //   axios.post(`/qa/questions/${questionID}/answers`, aObj)
-    //     .then(results => {
-    //       setShowAModal(!showAModal);
-    //       setAnswerBody('');
-    //       setUsername('');
-    //       setEmail('');
-    //       setPhotos([]);
-    //     })
-    //     .catch(err => console.log('Error submitting answer', err));
-    // }
-
+    if (validateAForm()) {
+      axios.post(`/qa/questions/${questionID}/answers`, aObj)
+        .then(results => {
+          setShowAModal(!showAModal);
+          setAnswerBody('');
+          setUsername('');
+          setEmail('');
+          setPhotos([]);
+        })
+        .catch(err => console.log('Error submitting answer', err));
+    }
+    setShowPreview(false);
   };
-  // helper validator should check 5 or less images, more alerts error
 
   return (
     <AnswerContainer>
@@ -120,8 +134,12 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
           <AnswerText>Note: For authentication reasons, you will not be emailed</AnswerText>
         </FormDiv>
         <FormFooter>
-          <AnswerFormPhotos onClick={handlePhotosClick}>Upload Your Photos</AnswerFormPhotos>
-          <AddPhotos
+          <AnswerFormPhotos onClick={(e) => {
+            e.preventDefault();
+            photoRef.current.open();
+            setShowPreview(true);
+          }}>Upload Your Photos</AnswerFormPhotos>
+          {/* <AddPhotos
             id="upload-files"
             type="file"
             accept="image/*"
@@ -145,7 +163,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
               setPhotos(urlArr);
               setShowPreview(!showPreview);
             }}
-          />
+          /> */}
           <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>

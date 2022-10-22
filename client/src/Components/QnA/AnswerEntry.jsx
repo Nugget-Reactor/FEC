@@ -28,11 +28,6 @@ const AnswerEntry = ({ entry }) => {
       .catch(err => console.log('Error updating answer helpfulness'));
   };
 
-  let reader = new FileReader();
-  reader.addEventListener('load', () => {
-    console.log('done loading with', reader.result);
-  }, false);
-
   // console.log('answer entry photos', entry.photos);
 
   return (
@@ -41,7 +36,9 @@ const AnswerEntry = ({ entry }) => {
       <PhotoContainer>
         {!entry.photos.length
           ? null
-          : <Image src={entry.photos[0].url}></Image>}
+          : entry.photos.map((photo, index) => {
+            return <Image src={photo.url} key={index}></Image>;
+          })}
       </PhotoContainer>
       <AnswerListFooter>
         <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
