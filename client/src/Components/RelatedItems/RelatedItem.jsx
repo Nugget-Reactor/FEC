@@ -51,7 +51,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
     if (typeof currentPhotoURL === 'string') {
       return <RelatedDefaultImage src={currentPhotoURL} onClick={(event) => { handleProductChange(relatedItem.id); }}/>;
     } else {
-      return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
+      return <NoPhotoDiv onClick={(event) => { handleProductChange(relatedItem.id); }}><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
     }
   };
 
@@ -99,6 +99,8 @@ const NoPhotoDiv = styled.div`
   margin: auto;
   height: 18em;
   width: 14em;
+  cursor: default;
+  }
 `;
 
 const NoPhotoH1 = styled.h1`
@@ -114,8 +116,8 @@ const RelatedItemListItem = styled.li` //the related items card itself
   display: inline-block;
   border-radius: 3px;
   margin: .8em; //outside borders
-  border: 2px solid black;
   padding: .5em; //inside borders
+  border: 2px solid black;
   min-height: 27em;
 `;
 

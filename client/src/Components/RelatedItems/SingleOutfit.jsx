@@ -71,6 +71,8 @@ const NoPhotoDiv = styled.div`
   border: 1px solid gray;
   display: block;
   margin: auto;
+  cursor: default;
+
 `;
 
 const NoPhotoH1 = styled.h1`
