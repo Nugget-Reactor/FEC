@@ -49,28 +49,38 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      return <RelatedDefaultImage src={currentPhotoURL} />;
+      return <RelatedDefaultImage src={currentPhotoURL} onClick={(event) => { handleProductChange(relatedItem.id); }}/>;
     } else {
       return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
     }
   };
 
-  const conditionalRatings = () => { //if no ratings, do not render any stars business doc says if no reviews?
+  const conditionalRatings = () => {
     if (Object.keys(relatedItem.ratings).length > 0) {
       return <div>{createStars(ratings)}</div>;
     } else {
-      console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");
-      return <div></div>; //change this to blank if no stars, set default size
+      return <div></div>;
     }
   };
 
+  /** function for handling strikethrough proicing/ sale pricing/ regular pricing */
+  const Pricing = ({salePrice, regPrice, strikePrice}) => {
+    if (salePrice) {
+      return <SaleAndStrikeBlock><SalePricing>${salePrice}  </SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
+    } else {
+      return <div>${regPrice}</div>;
+    }
+  };
+
+
   // need action button to look better/be more accessible, and be functional => Compare modal
-  // also if no reviews, review div should be hidden - current is set to read "No Reviews Yet"
+  // may need to pass up related item characteristics OR pass down product characteristicsRelated onClick={(event) => compareChar(relatedItem.idRelated>
   return (
-    <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
+    <RelatedItemListItem >
       <RelatedImageDiv>
         {conditionalPhoto()}
-        <ActionButtonRelated></ActionButtonRelated></RelatedImageDiv>
+        <ActionButtonRelated onClick={(event) => console.log('clicked button!')}></ActionButtonRelated>
+      </RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
       <h4>{relatedItem.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
@@ -81,14 +91,6 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
 
 export default RelatedItem;
 
-/** function for handling strikethrough proicing/ sale pricing/ regular pricing */
-const Pricing = ({salePrice, regPrice, strikePrice}) => {
-  if (salePrice) {
-    return <SaleAndStrikeBlock><SalePricing>${salePrice}  </SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
-  } else {
-    return <div>${regPrice}</div>;
-  }
-};
 const NoPhotoDiv = styled.div`
   top: 50%;
   bottom: 0px;
@@ -119,7 +121,7 @@ const RelatedItemListItem = styled.li` //the related items card itself
 `;
 
 const RelatedImageDiv = styled.div` //the image div
-  position:relative; // so I can position the action button
+  position: relative; // so I can position the action button
   margin: 3px;
   height: 350px;
   width: 250px;
@@ -133,27 +135,17 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
 
 const ActionButtonRelated = styled.button`
   z-index: 1;
-
-  // background: white;
-  // border: 2px solid #f80;
   padding-top: 5px;
   padding-bottom: 5px;
-  // border-radius: 50%;
-  //old good code below
-  position:absolute;
-  right: 6px;
-  top: 6px;
-  // font-size: 30px;
-  // background: none;
-  // border: none;
-  color: #f80;
-
-  // padding: .2em .4em;
   font-size: 1.8em;
   background: white;
   border: 3px solid #f80;
   border-radius: 50%;
 
+  position:absolute;
+  right: 6px;
+  top: 6px;
+  color: #f80;
   &::after {
     font-family: FontAwesome;
     content: "\\f005";

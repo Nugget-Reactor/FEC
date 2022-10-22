@@ -32,8 +32,16 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
     if (outfit.ratings > 0) {
       return <div>{createStars(outfit.ratings)}</div>;
     } else {
-      console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");
       return <div></div>; //change this to blank if no stars, set default size
+    }
+  };
+
+  /** function for handling strikethrough pricing/ sale pricing/ regular pricing */
+  const Pricing = ({salePrice, regPrice, strikePrice}) => {
+    if (salePrice) {
+      return <SaleAndStrikeBlock><SalePricing>${salePrice}</SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
+    } else {
+      return <div>${regPrice}</div>;
     }
   };
 
@@ -53,14 +61,6 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
 
 export default SingleOutfit;
 
-/** function for handling strikethrough pricing/ sale pricing/ regular pricing */
-const Pricing = ({salePrice, regPrice, strikePrice}) => {
-  if (salePrice) {
-    return <SaleAndStrikeBlock><SalePricing>${salePrice}</SalePricing><StrikePricing>${strikePrice}</StrikePricing></SaleAndStrikeBlock>;
-  } else {
-    return <div>${regPrice}</div>;
-  }
-};
 
 const NoPhotoDiv = styled.div`
   top: 50%;
@@ -88,13 +88,12 @@ const OutfitItemListItem = styled.li` //the Outfit items card itself
   margin: 5px;
   border: 2px solid black;
   padding: 5px;
-  height: 100%;
   min-height: 27em;
 
 `;
 
 const OutfitImageDiv = styled.div` //the image div
-  position:relative; // so I can position the action button
+  position: relative; // so I can position the action button
   margin: 3px;
   height: 350px;
   width: 250px;
@@ -138,21 +137,3 @@ const StrikePricing = styled.div`
   display: inline-flex;
   text-decoration: line-through;
 `;
-
-/**  possible button add-ons
- * height: 1.8em;
-  width: 1.8em;
-  z-index: 1;
-  font-size: 1.5em;
-  background: white;
-  border: 3px solid #f00;
-  border-radius: .9em 50%;
-
-  position:absolute;
-  right: 6px;
-  top: 6px;
-  color: #f00;
-  &:after{
-    font-family: FontAwesome;
-    content: "\\58";
-  } */
