@@ -28,6 +28,15 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
     }
   };
 
+  const conditionalRatings = () => { //if no ratings, do not render any stars business doc says if no reviews?
+    if (outfit.ratings > 0) {
+      return <div>{createStars(outfit.ratings)}</div>;
+    } else {
+      console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");
+      return <div></div>; //change this to blank if no stars, set default size
+    }
+  };
+
   return (
     <OutfitItemListItem >
       <OutfitImageDiv >
@@ -37,7 +46,7 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
       <h5>{outfit.category}</h5>
       <h4>{outfit.name}</h4>
       <Pricing salePrice={salePrice} regPrice={regPrice} strikePrice={strikeRegPrice} />
-      <div>{createStars(outfit.ratings)}</div>
+      {conditionalRatings()}
     </OutfitItemListItem>
   );
 };

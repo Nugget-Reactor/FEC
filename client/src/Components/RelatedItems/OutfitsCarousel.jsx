@@ -81,7 +81,7 @@ const OutfitWrapper = styled.div`
 display: flex;
 width: 100%;
 position: relative;
-border: 4px solid black;
+// border: 4px solid black;
 `;
 
 const OutfitContentWrapper = styled.div`

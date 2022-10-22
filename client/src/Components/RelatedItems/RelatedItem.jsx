@@ -60,7 +60,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
       return <div>{createStars(ratings)}</div>;
     } else {
       console.log("if height of div is wrong, it's because there are no reviews. see line 63, RelatedItem");
-      return <div>No Reviews Yet</div>; //change this to blank if no stars, set default size
+      return <div></div>; //change this to blank if no stars, set default size
     }
   };
 
@@ -116,7 +116,6 @@ const RelatedItemListItem = styled.li` //the related items card itself
   border: 2px solid black;
   padding: 5px;
   min-height: 27em;
-
 `;
 
 const RelatedImageDiv = styled.div` //the image div

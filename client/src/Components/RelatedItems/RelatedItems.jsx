@@ -44,7 +44,9 @@ const RelatedItems = ({ product, handleProductChange }) => {
   // make conditional rendering for when there are no related items
   return (
     <div id="related-items-panel">
-      <h2>Related Products</h2>
+      <Heading>
+        <h2>Related Products</h2>
+      </Heading>
       <RelatedItemsDiv>
         <Carousel>
           <AnyRelatedItems/>
@@ -55,6 +57,11 @@ const RelatedItems = ({ product, handleProductChange }) => {
 };
 
 export default RelatedItems;
+
+const Heading = styled.div`
+width: 75%;
+margin: 0 auto;
+`;
 
 const RelatedItemsDiv = styled.div`
 justify-content: space-around;
