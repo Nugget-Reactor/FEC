@@ -13,14 +13,21 @@ const ModalForm = ({ productID, productName }) => {
   const nameRef = useRef();
   const emailRef = useRef();
   const photoRef = useRef();
+  const [tempPhoto, setTempPhoto] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
-
+  console.log(photos);
   useEffect(() => {
     photoRef.current = createCloudinaryWidget((url) => {
-      setPhotos([...photos, url]);
+      setTempPhoto(url);
     })
   }, []);
+
+  useEffect(() => {
+    if(tempPhoto) {
+      setPhotos([...photos, tempPhoto]);
+    }
+  }, [tempPhoto]);
 
   const createStarInput = () => {
     let meaning = '';
@@ -110,8 +117,10 @@ const ModalForm = ({ productID, productName }) => {
         <InputLabel>
           Add a photo URL
           <button onClick={()=>photoRef.current.open()}></button>
-          {photos.length ? photos.map((photo, i)=><Thumbnail imgLink={photo} key={i}></Thumbnail>) : null}
         </InputLabel>
+        <ThumbnailContainer>
+          {photos.length ? photos.map((photo, i)=><Thumbnail imgLink={photo} key={i}></Thumbnail>) : null}
+        </ThumbnailContainer>
       </ModalContent>
       <ModalFooter>
         <SubmitButton type="submit">Submit</SubmitButton>
@@ -179,11 +188,9 @@ const TextAreaInput = styled.textarea`
   padding: 0.5rem;
   height: 200px;
 `
-const PhotoInput = styled.input`
-
-`
-const PhotoSubmit = styled.button`
-
+const ThumbnailContainer = styled.div`
+  display:flex;
+  gap: 10px;
 `
 const Thumbnail = styled.a`
   display: inline-block;
