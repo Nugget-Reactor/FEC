@@ -4,14 +4,13 @@ import styled from 'styled-components';
 
 const OutfitButtonCard = ({addOutfit}) => {
 
-
   return (
     <OutfitButtonDiv>
       <HolderDiv>
         <CardSquare>
           <AddButton onClick={(event) => addOutfit()}>+</AddButton>
         </CardSquare>
-        <ActionText>Add Current Product to your Outfits</ActionText>
+        <ActionText>Add Current Product to your Outfit</ActionText>
       </HolderDiv>
     </OutfitButtonDiv>
   );
