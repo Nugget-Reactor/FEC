@@ -7,16 +7,16 @@ import axiosMock from "axios";
 import Reviews from '../Components/R&R/Reviews.jsx';
 
 describe('Reviews component testing', () => {
- /*  beforeAll(() => {
-    render(<Reviews />)
-  }); */
+  /*  beforeAll(() => {
+     render(<Reviews />)
+   }); */
   afterEach(cleanup);
 
   it('Reviews should render', async () => {
     const productID = 12345;
 
     axiosMock.get.mockImplementation((url) => {
-      if(url === `/reviews?product_id=${productID}&sort=relevant&count=2`) {
+      if (url === `/reviews?product_id=${productID}&sort=relevant&count=2`) {
         return Promise.resolve({
           data: {
             results: [{
@@ -34,7 +34,7 @@ describe('Reviews component testing', () => {
           }
         })
       }
-      if(url === `/reviews/meta?product_id=${productID}`) {
+      if (url === `/reviews/meta?product_id=${productID}`) {
         return Promise.resolve({
           data: {
             "product_id": "2",
@@ -65,7 +65,7 @@ describe('Reviews component testing', () => {
         })
       }
     })
-    const {getByTestId, getByText } = render(<Reviews productID={productID} productName="Product1" />)
+    const { getByTestId, getByText } = render(<Reviews productID={productID} productName="Product1" />)
 
     expect(screen.getByText('Ratings & Reviews')).toBeInTheDocument();
     expect(getByTestId('addReviewButton')).toBeInTheDocument();

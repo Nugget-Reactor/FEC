@@ -1,53 +1,175 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 
-const AnswerModal = ({ handleClick, body, name }) => {
+const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, questionID }) => {
 
   const hiddenFileInput = useRef(null);
+  const photoRef = useRef(null);
+  const [answerBody, setAnswerBody] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [photos, setPhotos] = useState([]);
+  const [showPreview, setShowPreview] = useState(false);
+  const [tempPhoto, setTempPhoto] = useState(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => document.body.style.overflow = 'unset';
   }, []);
 
+  useEffect(() => {
+    photoRef.current = createCloudinaryWidget((url) => {
+      setTempPhoto(url);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (tempPhoto) {
+      setPhotos([...photos, tempPhoto]);
+    }
+  }, [tempPhoto]);
+
   const handlePhotosClick = e => {
     e.preventDefault();
     hiddenFileInput.current.click();
-  }
+  };
+
+  const validateAForm = () => {
+    let formAnswerBody = answerBody;
+    let formUsername = username;
+    let formEmail = email;
+    let formPhotos = photos;
+    let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (formAnswerBody === '') {
+      alert('Your Answer field must be filled out');
+      return false;
+    }
+    if (formUsername === '') {
+      alert('Nickname field must be filled out');
+      return false;
+    }
+    if (!formEmail.match(validEmail)) {
+      alert('Email must be in following format: example@example.example');
+      return false;
+    }
+    if (formPhotos.length > 5) {
+      alert('Only 5 photos are allowed to be uploaded to answers');
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmitA = e => {
+    e.preventDefault();
+    // console.log('question_id', questionID);
+    // console.log('answerBody', answerBody);
+    // console.log('username', username);
+    // console.log('email', email);
+    // console.log('photos', photos);
+    let aObj = {};
+    aObj.body = answerBody;
+    aObj.name = username;
+    aObj.email = email;
+    aObj.photos = photos;
+    if (validateAForm()) {
+      axios.post(`/qa/questions/${questionID}/answers`, aObj)
+        .then(results => {
+          setShowAModal(!showAModal);
+          setAnswerBody('');
+          setUsername('');
+          setEmail('');
+          setPhotos([]);
+        })
+        .catch(err => console.log('Error submitting answer', err));
+    }
+    setShowPreview(false);
+  };
 
   return (
     <AnswerContainer>
-      <CloseBtn onClick={handleClick} className="fa-solid fa-x"></CloseBtn>
+      <CloseBtn onClick={() => setShowAModal(!showAModal)} className="fa-solid fa-x"></CloseBtn>
       <AnswerForm>
         <AnswerHeading4>Submit Your Answer</AnswerHeading4>
-        <AnswerHeading5>{name}: {body}</AnswerHeading5>
+        <AnswerHeading5>{questionName}: {questionBody}</AnswerHeading5>
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
-          <AnswerField placeholder="Your Answer Here..."></AnswerField>
+          <AnswerField
+            placeholder="Your Answer Here..."
+            value={answerBody}
+            onChange={e => setAnswerBody(e.target.value)}
+            type="text"
+            required
+            maxlength="1000"
+          ></AnswerField>
         </FormDiv>
+        {showPreview && photos.length > 0
+          ? <PhotosList>{photos.map((photo, index) => {
+            return <PhotoEntry key={index}><PhotoImg src={photo}></PhotoImg></PhotoEntry>;
+          })}</PhotosList>
+          : <NoSelectedFiles>No files selected</NoSelectedFiles>}
         <FormDiv>
           <AnswerLabel>What is your Nickname*:</AnswerLabel>
-          <AnswerInput placeholder="Example: jack543!"></AnswerInput>
+          <AnswerInput
+            placeholder="Example: jack543!"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            type="text"
+            required
+            maxlength="60"
+          ></AnswerInput>
           <AnswerText>Note: For privacy reasons, do not use your full name or email address</AnswerText>
         </FormDiv>
         <FormDiv>
           <AnswerLabel>What is your Email*:</AnswerLabel>
-          <AnswerInput placeholder="Example: jack@email.com"></AnswerInput>
+          <AnswerInput
+            placeholder="Example: jack@email.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            type="text"
+            required
+            maxlength="60"
+          ></AnswerInput>
           <AnswerText>Note: For authentication reasons, you will not be emailed</AnswerText>
         </FormDiv>
         <FormFooter>
-          <AnswerFormPhotos onClick={handlePhotosClick}>Upload Your Photos</AnswerFormPhotos>
-          <AddPhotos
+          <AnswerFormPhotos onClick={(e) => {
+            e.preventDefault();
+            photoRef.current.open();
+            setShowPreview(true);
+          }}>Upload Your Photos</AnswerFormPhotos>
+          {/* <AddPhotos
+            id="upload-files"
             type="file"
+            accept="image/*"
+            multiple
             ref={hiddenFileInput}
             style={{ display: 'none' }}
-          />
-          <AnswerFormSubmit onClick={e => handleClick(e)}>Submit Answer</AnswerFormSubmit>
+            onChange={(e) => {
+              // trying to figure out how to get file converted to user accessible URL before uploading to black box
+              const fileList = e.target.files;
+              const urlArr = [];
+              for (let i = 0, numFiles = fileList.length; i < numFiles; i++) {
+                // let reader = new FileReader();
+                console.log('the file', fileList[i]);
+                const objectURL = window.URL.createObjectURL(fileList[i]);
+                urlArr.push(objectURL);
+                // reader.addEventListener('load', () => {
+                //   console.log('done loading with', reader.result);
+                // }, false);
+                // reader.readAsDataURL(fileList[i]);
+              }
+              setPhotos(urlArr);
+              setShowPreview(!showPreview);
+            }}
+          /> */}
+          <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>
     </AnswerContainer>
-  )
-}
+  );
+};
 
 export default AnswerModal;
 
@@ -121,6 +243,18 @@ const AnswerFormSubmit = styled.button`
 const AnswerFormPhotos = styled.button`
 `;
 
+const PhotosList = styled.ul`
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
+`;
+const PhotoEntry = styled.li`
+`;
+const PhotoImg = styled.img`
+  max-width: 10vw;
+  max-height: 7vh;
+`;
+
 const AnswerHeading4 = styled.h4`
   display: block;
   margin: 5px;
@@ -135,4 +269,8 @@ const AnswerText = styled.span`
   margin: 5px;
   font-size: 1rem;
   font-style: italic;
+`;
+
+const NoSelectedFiles = styled.p`
+  margin: 5px;
 `;
