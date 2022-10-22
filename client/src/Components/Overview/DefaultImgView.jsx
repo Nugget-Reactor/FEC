@@ -6,16 +6,16 @@ import './overview.css';
 
 const {useState, useEffect} = React;
 
-const DefaultImageView = ({currentStyle, handleExpansion}) => {
-  const [slideNumber, setSlideNumber] = useState(0);
+const DefaultImageView = ({currentStyle, handleExpansion, slideNumber, nextSlide, prevSlide, setSlideNumber}) => {
+  // const [slideNumber, setSlideNumber] = useState(0);
 
-  const nextSlide = () => {
-    setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
-  };
+  // const nextSlide = () => {
+  //   setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
+  // };
 
-  const prevSlide = () => {
-    setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
-  };
+  // const prevSlide = () => {
+  //   setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
+  // };
 
   return (
     <div className='gallery'>

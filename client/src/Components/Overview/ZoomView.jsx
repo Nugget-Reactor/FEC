@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
 const {useState, useEffect} = React;
 
-const ImageMagnifier = ({src, width, height, magnifierHeight = 100, magnifieWidth = 100, zoomLevel = 1.5}) => {
+const ImageMagnifier = ({src, width, height, magnifierHeight = 100, magnifierWidth = 100, zoomLevel = 1.5, setZoomed, zoomed}) => {
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
   return (
     <div
+      onClick={() => setZoomed(false)}
       style={{
         position: "relative",
         height: height,
@@ -15,7 +16,12 @@ const ImageMagnifier = ({src, width, height, magnifierHeight = 100, magnifieWidt
     >
       <img
         src={src}
-        style={{ height: height, width: width }}
+        style={{ height: height,
+          width: width,
+          borderRadius: '10px',
+          objectFit: 'cover',
+          marginRight: '50px',
+          marginLeft: '20px'}}
         onMouseEnter={(e) => {
           // update image size and turn-on magnifier
           const elem = e.currentTarget;
@@ -49,10 +55,10 @@ const ImageMagnifier = ({src, width, height, magnifierHeight = 100, magnifieWidt
           pointerEvents: "none",
           // set size of magnifier
           height: `${magnifierHeight}px`,
-          width: `${magnifieWidth}px`,
+          width: `${magnifierWidth}px`,
           // move element center to cursor pos
           top: `${y - magnifierHeight / 2}px`,
-          left: `${x - magnifieWidth / 2}px`,
+          left: `${x - magnifierWidth / 2}px`,
           opacity: "1", // reduce opacity so you can verify position
           border: "1px solid lightgray",
           backgroundColor: "white",
@@ -65,7 +71,7 @@ const ImageMagnifier = ({src, width, height, magnifierHeight = 100, magnifieWidt
           }px`,
 
           //calculate position of zoomed image.
-          backgroundPositionX: `${-x * zoomLevel + magnifieWidth / 2}px`,
+          backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
           backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`
         }}
       ></div>

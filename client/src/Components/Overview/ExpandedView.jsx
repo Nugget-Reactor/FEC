@@ -8,24 +8,24 @@ import './overview.css';
 
 const {useState, useEffect} = React;
 
-const ExpandedView = ({currentStyle, handleExpansion}) => {
-  const [slideNumber, setSlideNumber] = useState(0);
+const ExpandedView = ({currentStyle, handleExpansion, slideNumber, nextSlide, prevSlide, setSlideNumber}) => {
+  // const [slideNumber, setSlideNumber] = useState(0);
   const [zoomed, setZoomed] = useState(false);
 
-  const nextSlide = () => {
-    setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
-  };
+  // const nextSlide = () => {
+  //   setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
+  // };
 
-  const prevSlide = () => {
-    setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
-  };
+  // const prevSlide = () => {
+  //   setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
+  // };
 
   return (
     <div className='expanded-gallery'>
-      {currentStyle.photos !== undefined && slideNumber !== 0 &&
+      {currentStyle.photos !== undefined && slideNumber !== 0 && !zoomed &&
       <AiOutlineArrowLeft className="expanded-left-arrow" onClick={prevSlide}/>
       }
-      {currentStyle.photos !== undefined && slideNumber !== currentStyle.photos.length - 1 &&
+      {currentStyle.photos !== undefined && slideNumber !== currentStyle.photos.length - 1 && !zoomed &&
       <AiOutlineArrowRight className="expanded-right-arrow" onClick={nextSlide}/>
       }
       <div className="expanded-thumbnails">
@@ -44,7 +44,9 @@ const ExpandedView = ({currentStyle, handleExpansion}) => {
           })
         }
       </div>
+      {!zoomed &&
       <div><AiOutlineExpand className="expanded-expand-button" onClick={() => handleExpansion()}/></div>
+      }
       {
         currentStyle.photos && !zoomed && currentStyle.photos.map((slide, index) => {
           return (
@@ -61,7 +63,9 @@ const ExpandedView = ({currentStyle, handleExpansion}) => {
       }
       {
         zoomed !== false &&
-        <ImageMagnifier width='937' height='750' src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
+        <div className='zoom-container'>
+          <ImageMagnifier height='750px' width='100vh' src={currentStyle.photos[slideNumber].url} zoomed={zoomed} setZoomed={setZoomed}/>
+        </div>
       }
     </div>
   );
