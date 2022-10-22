@@ -5,7 +5,6 @@ import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 
 const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, questionID }) => {
 
-  // const hiddenFileInput = useRef(null);
   const photoRef = useRef(null);
   const answerRef = useRef(null);
   const usernameRef = useRef(null);
@@ -31,11 +30,6 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
       setPhotos([...photos, tempPhoto]);
     }
   }, [tempPhoto]);
-
-  // const handlePhotosClick = e => {
-  //   e.preventDefault();
-  //   hiddenFileInput.current.click();
-  // };
 
   const validateAForm = () => {
     let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
