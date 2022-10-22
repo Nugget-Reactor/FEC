@@ -49,17 +49,9 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
     setShowCompareModal(true);
   };
 
-  const compareModal = () => {
-    console.log('showCompareModal', showCompareModal);
-    showCompareModal ? <div>Hello?!</div> : null;
-
-    // showCompareModal ? <CompareModal closeModal={closeModal}><CompareModalTable productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} /></CompareModal> : null; //not changing window because it's not altering the state
-  };
-
-  // make conditional rendering for when there are no related items
   return (
     <div id="related-items-panel">
-      {showCompareModal ? <CompareModal closeModal={closeModal}><CompareModalTable productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} /></CompareModal> : null}
+      {showCompareModal ? <CompareModal closeModal={closeModal} productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} /> : null}
       <Heading>
         <h2>Related Products</h2>
       </Heading>

@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import CompareModalTable from './CompareModalTable.jsx'; //Jonah's has this as a child or 'related item'
+import CompareModalTable from './CompareModalTable.jsx'; //
 
-const CompareModal = ({closeModal}) => {
+const CompareModal = ({closeModal, productName, relatedCharacteristics, currentCharacteristics}) => {
   const escModal = (e) => {
     if (e.key === 'Escape') {
       closeModal();
     }
   };
-  // useEffect(() => {
-  //   document.body.style.overflow = 'hidden';
-  //   document.addEventListener('keydown', escModal, false);
-  //   return () => {
-  //     document.body.style.overflow = 'unset';
-  //     document.removeEventListener('keydown', escModal, false);
-  //   };
-  // }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', escModal, false);
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', escModal, false);
+    };
+  }, []);
 
   return (
-    <CompareModalContainer>
-      <div>Hello!</div>
+    <CompareModalContainer onClick={closeModal}>
+      <CompareModalTable />
     </CompareModalContainer>
   );
 };
