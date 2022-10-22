@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
+import SearchQnA from './SearchQnA.jsx';
 import styled from 'styled-components';
 
 const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
@@ -16,28 +17,29 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
   const handleMoreAs = (e) => {
     e.preventDefault();
     setCurrCount(currCount + 2);
-  }
+  };
 
   return (
     <QuestionListContainer>
+      <SearchQnA />
       <QuestionListBody>
         {currCount < totalCount
           ? questionsList.map((question, index) => {
             if (index < currCount + 2) {
-              return <QuestionEntry entry={question} key={index} name={name} />
+              return <QuestionEntry entry={question} key={index} name={name} />;
             }
           })
           : questionsList.map((question, index) => {
-            return <QuestionEntry entry={question} key={index} name={name} />
+            return <QuestionEntry entry={question} key={index} name={name} />;
           })}
       </QuestionListBody>
       <QuestionListFooter>
-        {currCount < totalCount && <MoreAnsweredButton onClick={handleMoreAs}>MORE ANSWERED QUESTIONS</MoreAnsweredButton>}
+        {currCount < totalCount && <MoreAnsweredButton onClick={handleMoreAs} data-testid="more-questions">MORE ANSWERED QUESTIONS</MoreAnsweredButton>}
         <AddQButton onClick={() => setShowQModal(!showQModal)} data-testid="addq-button">ADD A QUESTION +</AddQButton>
       </QuestionListFooter>
     </QuestionListContainer>
-  )
-}
+  );
+};
 
 export default QuestionsList;
 

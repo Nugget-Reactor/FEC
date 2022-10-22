@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { format, parseISO } from 'date-fns';
+import axios from 'axios';
 
 const AnswerEntry = ({ entry }) => {
+
+  // console.log(entry);
+
+  const [helpfulClicked, setHelpfulClicked] = useState(false);
+  const [reportClicked, setReportClicked] = useState(false);
+
+  const handleMarkAHelpful = (e) => {
+    e.preventDefault();
+    axios.put(`/qa/answers/${entry.answer_id}/helpful`)
+      .then(results => {
+        setHelpfulClicked(!helpfulClicked);
+      })
+      .catch(err => console.log('Error updating answer helpfulness'));
+  };
+
+  const handleReportA = (e) => {
+    e.preventDefault();
+    axios.put(`/qa/answers/${entry.answer_id}/report`)
+      .then(results => {
+        setReportClicked(!reportClicked);
+      })
+      .catch(err => console.log('Error updating answer helpfulness'));
+  };
+
+  // console.log('answer entry photos', entry.photos);
 
   return (
     <AnswerEntryContainer data-testid="answer-entry">
@@ -10,19 +36,25 @@ const AnswerEntry = ({ entry }) => {
       <PhotoContainer>
         {!entry.photos.length
           ? null
-          : <Image src={entry.photos[0]}></Image>}
+          : entry.photos.map((photo, index) => {
+            return <Image src={photo.url} key={index}></Image>;
+          })}
       </PhotoContainer>
       <AnswerListFooter>
         <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
         <AnswerListDiv> | </AnswerListDiv>
         <AnswerListDiv>Helpful?</AnswerListDiv>
-        <AddAnswer href="">Yes ({entry.helpfulness})</AddAnswer>
+        {helpfulClicked
+          ? <AddAnswer href="" onClick={e => e.preventDefault()}>Yes ({entry.helpfulness + 1})</AddAnswer>
+          : <AddAnswer href="" onClick={handleMarkAHelpful}>Yes ({entry.helpfulness})</AddAnswer>}
         <AnswerListDiv> | </AnswerListDiv>
-        <Report href="">Report</Report>
+        {reportClicked
+          ? <ReportAnswer href="" onClick={e => e.preventDefault()}>Reported</ReportAnswer>
+          : <ReportAnswer href="" onClick={handleReportA}>Report Answer</ReportAnswer>}
       </AnswerListFooter>
     </AnswerEntryContainer>
-  )
-}
+  );
+};
 
 export default AnswerEntry;
 
@@ -55,7 +87,7 @@ const AddAnswer = styled.a`
   font-size: .9rem;
 `;
 
-const Report = styled.a`
+const ReportAnswer = styled.a`
   font-size: .9rem;
 `;
 

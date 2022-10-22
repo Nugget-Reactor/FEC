@@ -20,19 +20,18 @@ const QnA = ({ product }) => {
     if (product.id !== undefined) {
       axios.get(`/qa/questions?product_id=${product.id}`)
         .then(results => setQuestions(results.data.results))
-        .catch(err => console.log('questions error', err))
+        .catch(err => console.log('questions error', err));
     }
-  }, [product])
+  }, [product]);
 
   return (
     <QFeatureContainer>
       <Heading2>Questions & Answers</Heading2>
-      <SearchQnA />
       <QuestionsList questionsList={questions} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal} />
-      {showQModal ? <QuestionModal product_id={product.id} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal}></QuestionModal> : null}
+      {showQModal ? <QuestionModal productID={product.id} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal}></QuestionModal> : null}
     </QFeatureContainer>
-  )
-}
+  );
+};
 
 export default QnA;
 
