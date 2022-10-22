@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 
-const Modal = ({ setShowModal, children }) => {
+const Modal = ({ closeModal, children }) => {
   const escModal = (e) => {
     if(e.key === 'Escape'){
-      setShowModal(false);
+      closeModal();
     }
   }
   useEffect(() => {
@@ -19,7 +19,7 @@ const Modal = ({ setShowModal, children }) => {
 
   return(
     <ModalContainer>
-      <CloseButton type="button" onClick={()=>setShowModal(false)}>x</CloseButton>
+      <CloseButton type="button" onClick={closeModal}>x</CloseButton>
       {children}
     </ModalContainer>
   );

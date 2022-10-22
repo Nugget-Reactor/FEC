@@ -19,15 +19,14 @@ const App = () => {
   const [allOutfits, setAllOutfits] = useState([]);
 
   useEffect(() => {
-    // axios.get('/products/40344')
-    // axios.get('/products/40480') //has related items with sale price
-    // axios.get('/products/40353')
     // handleProductChange('40353'); //infinity stones
     // handleProductChange('41197');
     // handleProductChange('40480');
     handleProductChange('40345'); // contains some items with no image and no price
     // handleProductChange('40344');
-
+    // handleProductChange('41197');
+    // handleProductChange('40345'); //breaks it - contains some items with no image and no price
+    // handleProductChange('40344');
   }, []);
 
   useEffect(() => {

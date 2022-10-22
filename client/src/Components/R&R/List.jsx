@@ -2,11 +2,11 @@ import React from 'react';
 import Tile from './Tile.jsx';
 import styled from 'styled-components';
 
-const List = ({ reviews }) => {
+const List = ({ reviews, currentCount }) => {
 
   return(
     <ScrollableList>
-      {reviews.map(review => <Tile key={review.review_id} review={review} />)}
+      {reviews.slice(0, currentCount).map(review => <Tile key={review.review_id} review={review} />)}
     </ScrollableList>
   );
 }
