@@ -91,21 +91,21 @@ const RIContent = styled.ul`
 const LeftArrow = styled.button`
 position: absolute;
 border: none;
-background: none;
 top: 50%;
+border-radius: 50%;
+background: white;
 transform: translateY(-50%);
 font-size: 1.8em;
-width: 2em;
-left: 1px;
+left: .3em;
 `;
 
 const RightArrow = styled.button`
 position: absolute;
 border: none;
-background: none;
 top: 50%;
+border-radius: 50%;
+background: white;
 transform: translateY(-50%);
 font-size: 1.8em;
-width: 2em;
-right: 1px;
+right: .3em;
 `;

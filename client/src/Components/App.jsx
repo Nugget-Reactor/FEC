@@ -24,8 +24,8 @@ const App = () => {
     // axios.get('/products/40353')
     // handleProductChange('40353'); //infinity stones
     // handleProductChange('41197');
-    handleProductChange('40480');
-    // handleProductChange('40345'); // contains some items with no image and no price
+    // handleProductChange('40480');
+    handleProductChange('40345'); // contains some items with no image and no price
     // handleProductChange('40344');
 
   }, []);

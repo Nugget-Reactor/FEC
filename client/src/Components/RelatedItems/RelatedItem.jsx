@@ -94,12 +94,11 @@ export default RelatedItem;
 const NoPhotoDiv = styled.div`
   top: 50%;
   bottom: 0px;
-  height: 350px;
-  max-width: 100%;
-  overflow: hidden;
   border: 1px solid gray;
   display: block;
   margin: auto;
+  height: 18em;
+  width: 14em;
 `;
 
 const NoPhotoH1 = styled.h1`
@@ -114,19 +113,19 @@ const NoPhotoH1 = styled.h1`
 const RelatedItemListItem = styled.li` //the related items card itself
   display: inline-block;
   border-radius: 3px;
-  margin: 5px;
+  margin: .8em; //outside borders
   border: 2px solid black;
-  padding: 5px;
+  padding: .5em; //inside borders
   min-height: 27em;
 `;
 
 const RelatedImageDiv = styled.div` //the image div
   position: relative; // so I can position the action button
-  margin: 3px;
-  height: 350px;
-  width: 250px;
-  word-wrap: normal;
+  margin: auto;
+  height: 18em;
+  width: 14em;
 `;
+
 const RelatedDefaultImage = styled.img` // image itself fits image div
   height: 100%;
   width: 100%;

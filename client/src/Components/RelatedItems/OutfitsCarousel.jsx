@@ -81,11 +81,9 @@ const OutfitWrapper = styled.div`
 display: flex;
 width: 100%;
 position: relative;
-// border: 4px solid black;
 `;
 
 const OutfitContentWrapper = styled.div`
-border: 2px solid red;
   width: 100%;
   height: 100%;
 `;
@@ -107,20 +105,20 @@ const LeftArrow = styled.button`
 position: absolute;
 border: none;
 top: 50%;
+border-radius: 50%;
+background: white;
 transform: translateY(-50%);
 font-size: 1.8em;
-width: 2em;
-left: 1px;
+left: .3em;
 `;
 
 const RightArrow = styled.button`
 position: absolute;
 border: none;
-border-radius: 50%;
-background: white; // //change this
 top: 50%;
+border-radius: 50%;
+background: white;
 transform: translateY(-50%);
 font-size: 1.8em;
-// width: 2em; //change this
 right: .3em;
 `;

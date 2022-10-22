@@ -90,15 +90,22 @@ const OutfitItemListItem = styled.li` //the Outfit items card itself
   padding: 5px;
   min-height: 27em;
 
+  list-style-type: none;
+display: inline-block;
+border-radius: 3px;
+border: 2px solid black;
+min-height: 27em; //makes button same vertical height as outfit cards
+margin: .8em; //outside borders
+padding: .5em; //inside borders
 `;
 
 const OutfitImageDiv = styled.div` //the image div
-  position: relative; // so I can position the action button
-  margin: 3px;
-  height: 350px;
-  width: 250px;
-  word-wrap: normal;
+position: relative; // so I can position the action button
+margin: 3px;
+height: 18em;
+width: 14em;
 `;
+
 const DefaultImage = styled.img` // image itself fits image div
   height: 100%;
   width: 100%;
