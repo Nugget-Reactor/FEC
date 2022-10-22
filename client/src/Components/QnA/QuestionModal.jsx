@@ -4,9 +4,6 @@ import axios from 'axios';
 
 const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, setQuestions }) => {
 
-  const [question, setQuestion] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
   const questionRef = useRef(null);
   const nicknameRef = useRef(null);
   const emailRef = useRef(null);
@@ -45,9 +42,7 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
       axios.post(`/qa/questions?product_id=${productID}`, qObj)
         .then(results => {
           setShowQModal(!showQModal);
-          setQuestion('');
-          setNickname('');
-          setEmail('');
+          // get request to get updated list, just adding new object to end of questions state didnt work as expected
         })
         .catch(err => console.log('Error submitting question', err));
     }
