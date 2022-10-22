@@ -37,12 +37,15 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
     qObj.name = nicknameRef.current.value;
     qObj.email = emailRef.current.value;
     qObj.product_id = productID;
-    console.log('handleSubmit question object', qObj);
+    // console.log('handleSubmit question object', qObj);
     if (validateForm()) {
       axios.post(`/qa/questions?product_id=${productID}`, qObj)
         .then(results => {
           setShowQModal(!showQModal);
           // get request to get updated list, just adding new object to end of questions state didnt work as expected
+          axios.get(`/qa/questions?product_id=${productID}`)
+            .then(results => setQuestions(results.data.results))
+            .catch(err => console.log('get questions error in question modal', err));
         })
         .catch(err => console.log('Error submitting question', err));
     }
