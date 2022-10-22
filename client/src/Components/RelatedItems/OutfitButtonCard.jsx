@@ -20,7 +20,7 @@ export default OutfitButtonCard;
 
 
 const OutfitButtonDiv = styled.li` //the Outfit items card itself
-cursor: default;
+cursor: pointer;
 list-style-type: none;
 display: inline-block;
 border-radius: 3px;

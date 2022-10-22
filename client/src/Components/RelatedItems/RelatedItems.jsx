@@ -3,12 +3,13 @@ import axios from 'axios';
 import styled from 'styled-components';
 import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
 
-const RelatedItems = ({ product, handleProductChange }) => {
+const RelatedItems = ({ product, handleProductChange, currentMeta }) => {
   const [characteristics, setCharacteristics] = useState([]);
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedPrices, setRelatedPrices] = useState([]);
   const [relatedImages, setRelatedImages] = useState([]);
   const [noneRelated, setNoneRelated] = useState('');
+  // console.log('currentMeta', currentMeta);
 
   useEffect(() => {
     /**to get related item **/
@@ -16,6 +17,7 @@ const RelatedItems = ({ product, handleProductChange }) => {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
           setRelatedItems(results.data);
+          // console.log('results.data', results.data);
           if (results.data.length === 0) {
             setNoneRelated('There are no Related Products for this item');
           }
@@ -34,11 +36,12 @@ const RelatedItems = ({ product, handleProductChange }) => {
       //   setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
       // })
       // .catch((err) => console.log('error', err));
+
     }
   }, [product]);
 
   const AnyRelatedItems = () => {
-    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange}/> : <h1>{noneRelated}</h1>;
+    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange} currentMeta={currentMeta} /> : <h1>{noneRelated}</h1>;
   };
 
   // make conditional rendering for when there are no related items

@@ -20,14 +20,15 @@ const App = () => {
 
   useEffect(() => {
     // handleProductChange('40353'); //infinity stones
+    // handleProductChange('40351'); //infinity stones in related items
+
     // handleProductChange('41197');
     // handleProductChange('40480');
-    handleProductChange('40345'); // contains some items with no image and no price
+    handleProductChange('40345'); // contains some items with no image and no price - also 3 from infinity stones
     // handleProductChange('40344');
     // handleProductChange('41197');
-    // handleProductChange('40345'); //breaks it - contains some items with no image and no price
-    // handleProductChange('40344');
   }, []);
+  // console.log('currentMeta', currentMeta);
 
   useEffect(() => {
     if (product.id) {
@@ -93,7 +94,7 @@ const App = () => {
       windowOutfits = JSON.parse(window.localStorage.getItem('outfits'));
       setAllOutfits(windowOutfits); //sets allOutfits for use later
       for (var i = 0; i < windowOutfits.length; i++) {
-        outfitIDs.push(windowOutfits[i].id); //to get the i'd to be sure there are no duplicates
+        outfitIDs.push(windowOutfits[i].id); //to get the id to be sure there are no duplicates
       }
     } else {
       windowOutfits = [];
@@ -120,6 +121,7 @@ const App = () => {
     currentProduct.currentPhotoURL = currentOutfitStyle.photos[0].url;
     setCurrentOutfit(currentProduct);
   };
+
   const removeOutfit = (productID) => {
     var [...copyOfFits] = allOutfits;
     copyOfFits.forEach((windowFit, index) => {
@@ -134,7 +136,7 @@ const App = () => {
   return (
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} />
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
       <Reviews productID={product.id} productName={product.name} />
       <QnA product={product} />

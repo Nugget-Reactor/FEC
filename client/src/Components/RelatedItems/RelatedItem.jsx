@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
 
-const RelatedItem = ({relatedItem, handleProductChange}) => {
+const RelatedItem = ({relatedItem, handleProductChange, currentMeta}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
   const [strikeRegPrice, setStrikeRegPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
+  const [relatedCharacteristics, setRelatedCharacteristics] = useState({});
+  const [currentCharacteristics, setCurrentCharacteristics] = useState({});
+
 
   /** to set default style for card **/
   if (relatedItem) {
@@ -30,6 +33,19 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
         }
       }
     }
+
+    if (relatedItem && relatedItem.characteristics) {
+      setRelatedCharacteristics(relatedItem.characteristics);
+      // console.log('relatedItem.characteristics', relatedItem.characteristics);
+    }
+    // console.log('currentMeta', currentMeta);
+
+    if (currentMeta.characteristics) {
+      setCurrentCharacteristics(currentMeta.characteristics);
+      // console.log('currentMeta.characteristics', currentMeta.characteristics);
+    }
+
+
   }, []);
 
   /** to set default photo and default price for related items card **/
@@ -51,7 +67,7 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
     if (typeof currentPhotoURL === 'string') {
       return <RelatedDefaultImage src={currentPhotoURL} onClick={(event) => { handleProductChange(relatedItem.id); }}/>;
     } else {
-      return <NoPhotoDiv onClick={(event) => { handleProductChange(relatedItem.id); }}><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
+      return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
     }
   };
 
@@ -76,10 +92,13 @@ const RelatedItem = ({relatedItem, handleProductChange}) => {
   // need action button to look better/be more accessible, and be functional => Compare modal
   // may need to pass up related item characteristics OR pass down product characteristicsRelated onClick={(event) => compareChar(relatedItem.idRelated>
   return (
-    <RelatedItemListItem >
+    <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
       <RelatedImageDiv>
         {conditionalPhoto()}
-        <ActionButtonRelated onClick={(event) => console.log('clicked button!')}></ActionButtonRelated>
+        <ActionButtonRelated onClick={(event) => {
+          event.stopPropagation();
+          console.log('clicked button!');
+        }}></ActionButtonRelated>
       </RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
       <h4>{relatedItem.name}</h4>
@@ -99,7 +118,7 @@ const NoPhotoDiv = styled.div`
   margin: auto;
   height: 18em;
   width: 14em;
-  cursor: default;
+  cursor: pointer;
   border-radius: 10px;
 `;
 
@@ -113,7 +132,7 @@ const NoPhotoH1 = styled.h1`
 `;
 
 const RelatedItemListItem = styled.li` //the related items card itself
-  cursor: default;
+  cursor: pointer;
   list-style-type: none;
   display: inline-block;
   border-radius: 3px;
