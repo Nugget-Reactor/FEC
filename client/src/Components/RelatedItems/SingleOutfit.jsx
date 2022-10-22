@@ -65,14 +65,13 @@ export default SingleOutfit;
 const NoPhotoDiv = styled.div`
   top: 50%;
   bottom: 0px;
-  height: 350px;
-  max-width: 100%;
-  overflow: hidden;
   border: 1px solid gray;
   display: block;
   margin: auto;
+  height: 18em;
+  width: 14em;
   cursor: default;
-
+  border-radius: 10px;
 `;
 
 const NoPhotoH1 = styled.h1`
@@ -81,31 +80,29 @@ const NoPhotoH1 = styled.h1`
   padding-top: 8vh;
   text-align: center;
   vertical-align: middle;
-  overflow: hidden;
+  border-radius: 10px;
 `;
 
 const OutfitItemListItem = styled.li` //the Outfit items card itself
+  cursor: default;
+  list-style-type: none;
   display: inline-block;
   border-radius: 3px;
-  margin: 5px;
+  margin: .8em; //outside borders
+  padding: .5em; //inside borders
   border: 2px solid black;
-  padding: 5px;
   min-height: 27em;
-
-  list-style-type: none;
-display: inline-block;
-border-radius: 3px;
-border: 2px solid black;
-min-height: 27em; //makes button same vertical height as outfit cards
-margin: .8em; //outside borders
-padding: .5em; //inside borders
+  border-radius: 10px;
 `;
 
 const OutfitImageDiv = styled.div` //the image div
 position: relative; // so I can position the action button
-margin: 3px;
+margin: auto;
 height: 18em;
 width: 14em;
+border: 1px solid gray;
+border-radius: 10px;
+overflow: hidden;
 `;
 
 const DefaultImage = styled.img` // image itself fits image div
@@ -114,7 +111,7 @@ const DefaultImage = styled.img` // image itself fits image div
   object-fit: cover;
 `;
 
-const ActionButtonOutfit = styled.button`
+const ActionButtonOutfit = styled.button`  //the X
   z-index: 1;
   padding: .2em .4em;
   font-size: 1.8em;

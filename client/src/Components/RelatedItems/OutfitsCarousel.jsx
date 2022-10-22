@@ -75,17 +75,22 @@ const OutfitContainer = styled.div` //farthest outside
 width: 100%;
 display: flex;
 flex-direction: row;
+// min-width: 100%;
 `;
 
 const OutfitWrapper = styled.div`
 display: flex;
 width: 100%;
 position: relative;
+// min-width: 100%;
+
 `;
 
 const OutfitContentWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+height: 100%;
+width: 100%;
+display: inline-block;
+min-width: 76vw;
 `;
 
 const OutfitContent = styled.ul`
@@ -99,6 +104,8 @@ const OutfitContent = styled.ul`
   padding-right: 3em;
   min-height: 80%;
   min-width: 80%;
+  border-radius: 10px;
+
 `;
 
 const LeftArrow = styled.button`

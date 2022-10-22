@@ -100,7 +100,7 @@ const NoPhotoDiv = styled.div`
   height: 18em;
   width: 14em;
   cursor: default;
-  }
+  border-radius: 10px;
 `;
 
 const NoPhotoH1 = styled.h1`
@@ -109,16 +109,19 @@ const NoPhotoH1 = styled.h1`
   padding-top: 8vh;
   text-align: center;
   vertical-align: middle;
-  overflow: hidden;
+  border-radius: 10px;
 `;
 
 const RelatedItemListItem = styled.li` //the related items card itself
+  cursor: default;
+  list-style-type: none;
   display: inline-block;
   border-radius: 3px;
   margin: .8em; //outside borders
   padding: .5em; //inside borders
   border: 2px solid black;
   min-height: 27em;
+  border-radius: 10px;
 `;
 
 const RelatedImageDiv = styled.div` //the image div
@@ -126,6 +129,9 @@ const RelatedImageDiv = styled.div` //the image div
   margin: auto;
   height: 18em;
   width: 14em;
+  border: 1px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 const RelatedDefaultImage = styled.img` // image itself fits image div
@@ -134,7 +140,7 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
   object-fit: cover;
 `;
 
-const ActionButtonRelated = styled.button`
+const ActionButtonRelated = styled.button` // the star
   z-index: 1;
   padding-top: 5px;
   padding-bottom: 5px;

@@ -71,10 +71,11 @@ display: flex;
 width: 100%;
 position: relative;
 `;
-const RIContentWrapper = styled.div`
-// overflow: auto;
+const RIContentWrapper = styled.div`  //this manages the min size of the carousel
     width: 100%;
     height: 100%;
+    inline-block;
+    min-width: 76vw;
 `;
 
 const RIContent = styled.ul`
@@ -86,6 +87,8 @@ const RIContent = styled.ul`
   padding: 0.5rem 0;
   padding-left: 3vw;
   padding-right: 3vw;
+  border-radius: 10px;
+
 `;
 
 const LeftArrow = styled.button`
