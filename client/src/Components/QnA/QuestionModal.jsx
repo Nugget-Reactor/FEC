@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -7,6 +7,9 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const questionRef = useRef(null);
+  const nicknameRef = useRef(null);
+  const emailRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -14,19 +17,16 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
   }, []);
 
   const validateForm = () => {
-    let formQuestion = question;
-    let formNickname = nickname;
-    let formEmail = email;
     let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (formQuestion === '') {
+    if (questionRef.current.value === '') {
       alert('Question field must be filled out');
       return false;
     }
-    if (formNickname === '') {
+    if (nicknameRef.current.value === '') {
       alert('Nickname field must be filled out');
       return false;
     }
-    if (!formEmail.match(validEmail)) {
+    if (!emailRef.current.value.match(validEmail)) {
       alert('Email must be in following format: example@example.example');
       return false;
     }
@@ -36,9 +36,9 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
   const handleSubmitQ = (e) => {
     e.preventDefault();
     let qObj = {};
-    qObj.body = question;
-    qObj.name = nickname;
-    qObj.email = email;
+    qObj.body = questionRef.current.value;
+    qObj.name = nicknameRef.current.value;
+    qObj.email = emailRef.current.value;
     qObj.product_id = productID;
     console.log('handleSubmit question object', qObj);
     if (validateForm()) {
@@ -62,22 +62,20 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
         <QuestionBody>
           <Label>Your Question*: </Label>
           <TextField
+            required
             placeholder="Why did you like or not like the product?"
-            value={question}
-            onChange={e => setQuestion(e.target.value)}
+            ref={questionRef}
             type="text"
-            required="required"
             maxlength="1000"
           ></TextField>
         </QuestionBody>
         <QuestionBody>
           <Label>What is your Nickname*: </Label>
           <Input
+            required
             placeholder="Type Nickname Here..."
-            value={nickname}
-            onChange={e => setNickname(e.target.value)}
+            ref={nicknameRef}
             type="text"
-            required="required"
             maxlength="60"
           />
           <InputNote><i>
@@ -87,10 +85,9 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
         <QuestionBody>
           <Label>Your Email*: </Label>
           <Input
+            required
             placeholder="Type Email Here..."
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required="required"
+            ref={emailRef}
             maxlength="60"
             type="email"
           />

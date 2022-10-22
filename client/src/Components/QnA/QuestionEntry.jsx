@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const QuestionEntry = ({ entry, name, query }) => {
 
-  console.log('question entry', entry);
+  // console.log('question entry', entry);
 
   const [showAModal, setShowAModal] = useState(false);
   const [helpfulClicked, setHelpfulClicked] = useState(false);
