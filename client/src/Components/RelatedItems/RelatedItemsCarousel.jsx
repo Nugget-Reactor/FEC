@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import RelatedItem from './RelatedItem.jsx';
 
-const RelatedItemsCarousel = ({relatedItems, handleProductChange, currentMeta}) => {
+const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
   // console.log('currentMeta', currentMeta);
+  // console.log('productName', productName);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -31,7 +32,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange, currentMeta}) 
   let ItemsRenderMap = () => {
     var currentFour = relatedItems.slice(currentIndex, currentIndex + 4);
     return <>{currentFour.map((currentItem) =>
-      <RelatedItem relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} currentMeta={currentMeta} />)}</>;
+      <RelatedItem relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} isModalVisible={isModalVisible}/>)}</>;
   };
 
   let LeftButton = ({isVisible}) => {

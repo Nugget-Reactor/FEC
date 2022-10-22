@@ -2,13 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
+import CompareModal from './CompareModal.jsx';
+import CompareModalTable from './CompareModalTable.jsx';
 
-const RelatedItems = ({ product, handleProductChange, currentMeta }) => {
+const RelatedItems = ({ product, handleProductChange, currentMeta, productName }) => {
   const [characteristics, setCharacteristics] = useState([]);
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedPrices, setRelatedPrices] = useState([]);
   const [relatedImages, setRelatedImages] = useState([]);
   const [noneRelated, setNoneRelated] = useState('');
+  const [currentCharacteristics, setCurrentCharacteristics] = useState({});
+  const [relatedCharacteristics, setRelatedCharacteristics] = useState({});
+  const [showCompareModal, setShowCompareModal] = useState(false);
+
   // console.log('currentMeta', currentMeta);
 
   useEffect(() => {
@@ -21,32 +27,39 @@ const RelatedItems = ({ product, handleProductChange, currentMeta }) => {
           if (results.data.length === 0) {
             setNoneRelated('There are no Related Products for this item');
           }
-          // var arrayOfRelatedID = []; //use this to test related items by product ID when needed - remove before production
-          // for (var i = 0; i < results.data.length; i++) {
-          //   arrayOfRelatedID.push(results.data[i].id);
-          // }
-          // console.log(arrayOfRelatedID);
         })
         .catch((err) => console.log('error', err));
 
-      //to do for modal to get characteristics of current item from metadata if not passed down as props
-      // axios.get(`/reviews/meta?product_id=${product.id}`) //actually want currentItem.id/related
-      // .then((results) => {
-      //   console.log('characteristics in Related Items', results);
-      //   setRelatedItems(results.data);  //I want this to be an array of objects with all of the properties I want
-      // })
-      // .catch((err) => console.log('error', err));
-
+      if (currentMeta.characteristics) { //for modal
+        setCurrentCharacteristics(currentMeta.characteristics);
+      }
     }
   }, [product]);
 
   const AnyRelatedItems = () => {
-    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange} currentMeta={currentMeta} /> : <h1>{noneRelated}</h1>;
+    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange} isModalVisible={isModalVisible} /> : <h1>{noneRelated}</h1>;
+  };
+
+  const closeModal = () => {
+    setShowCompareModal(false);
+  };
+
+  const isModalVisible = (relatedChar) => {
+    setRelatedCharacteristics(relatedChar);
+    setShowCompareModal(true);
+  };
+
+  const compareModal = () => {
+    console.log('showCompareModal', showCompareModal);
+    showCompareModal ? <div>Hello?!</div> : null;
+
+    // showCompareModal ? <CompareModal closeModal={closeModal}><CompareModalTable productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} /></CompareModal> : null; //not changing window because it's not altering the state
   };
 
   // make conditional rendering for when there are no related items
   return (
     <div id="related-items-panel">
+      {showCompareModal ? <CompareModal closeModal={closeModal}><CompareModalTable productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} /></CompareModal> : null}
       <Heading>
         <h2>Related Products</h2>
       </Heading>

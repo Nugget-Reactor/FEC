@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { createStars, getAverage } from '../../Tools/createStars';
 
-
-const RelatedItem = ({relatedItem, handleProductChange, currentMeta}) => {
+const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentPhotoURL, setCurrentPhotoURL] = useState('');
   const [regPrice, setRegPrice] = useState('');
   const [strikeRegPrice, setStrikeRegPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
   const [relatedCharacteristics, setRelatedCharacteristics] = useState({});
-  const [currentCharacteristics, setCurrentCharacteristics] = useState({});
-
 
   /** to set default style for card **/
   if (relatedItem) {
@@ -36,15 +33,7 @@ const RelatedItem = ({relatedItem, handleProductChange, currentMeta}) => {
 
     if (relatedItem && relatedItem.characteristics) {
       setRelatedCharacteristics(relatedItem.characteristics);
-      // console.log('relatedItem.characteristics', relatedItem.characteristics);
     }
-    // console.log('currentMeta', currentMeta);
-
-    if (currentMeta.characteristics) {
-      setCurrentCharacteristics(currentMeta.characteristics);
-      // console.log('currentMeta.characteristics', currentMeta.characteristics);
-    }
-
 
   }, []);
 
@@ -65,7 +54,7 @@ const RelatedItem = ({relatedItem, handleProductChange, currentMeta}) => {
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      return <RelatedDefaultImage src={currentPhotoURL} onClick={(event) => { handleProductChange(relatedItem.id); }}/>;
+      return <RelatedDefaultImage src={currentPhotoURL} />;
     } else {
       return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
     }
@@ -88,7 +77,6 @@ const RelatedItem = ({relatedItem, handleProductChange, currentMeta}) => {
     }
   };
 
-
   // need action button to look better/be more accessible, and be functional => Compare modal
   // may need to pass up related item characteristics OR pass down product characteristicsRelated onClick={(event) => compareChar(relatedItem.idRelated>
   return (
@@ -96,9 +84,10 @@ const RelatedItem = ({relatedItem, handleProductChange, currentMeta}) => {
       <RelatedImageDiv>
         {conditionalPhoto()}
         <ActionButtonRelated onClick={(event) => {
-          event.stopPropagation();
+          event.stopPropagation(); //stops product card click from registering
+          isModalVisible(relatedCharacteristics); //send current characteristics up to RelatedItems
           console.log('clicked button!');
-        }}></ActionButtonRelated>
+        }} />
       </RelatedImageDiv>
       <h5>{relatedItem.category}</h5>
       <h4>{relatedItem.name}</h4>

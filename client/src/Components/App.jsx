@@ -10,6 +10,7 @@ import { createStars, getAverage } from '../Tools/createStars';
 
 const App = () => {
   const [product, setProduct] = useState({});
+  const [productName, setProductName] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentOutfitStyle, setCurrentOutfitStyle] = useState({});
@@ -42,6 +43,8 @@ const App = () => {
           setCurrentRatings(res.data.ratings); //sets ratings for current product(definitely needed)
         })
         .catch(err => console.error(err));
+
+      setProductName(product.name);
     }
 
   }, [product]);
@@ -136,7 +139,7 @@ const App = () => {
   return (
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName}/>
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
       <Reviews productID={product.id} productName={product.name} />
       <QnA product={product} />
