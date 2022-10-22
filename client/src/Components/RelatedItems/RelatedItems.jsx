@@ -14,7 +14,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   const [currentCharacteristics, setCurrentCharacteristics] = useState({});
   const [relatedCharacteristics, setRelatedCharacteristics] = useState({});
   const [showCompareModal, setShowCompareModal] = useState(false);
-
+  const [relatedName, setRelatedName] = useState('');
   // console.log('currentMeta', currentMeta);
 
   useEffect(() => {
@@ -32,6 +32,8 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
 
       if (currentMeta.characteristics) { //for modal
         setCurrentCharacteristics(currentMeta.characteristics);
+      } else {
+        console.log('no characteristics, related items line 36');
       }
     }
   }, [product]);
@@ -44,14 +46,17 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
     setShowCompareModal(false);
   };
 
-  const isModalVisible = (relatedChar) => {
+  const isModalVisible = (relatedChar, relName) => {
+    console.log('relatedChar', relatedChar);
     setRelatedCharacteristics(relatedChar);
+    setRelatedName(relName);
     setShowCompareModal(true);
+    setCurrentCharacteristics(currentMeta.characteristics);
   };
 
   return (
     <div id="related-items-panel">
-      {showCompareModal ? <CompareModal closeModal={closeModal} productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} /> : null}
+      {showCompareModal ? <CompareModal closeModal={closeModal} productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} /> : null}
       <Heading>
         <h2>Related Products</h2>
       </Heading>

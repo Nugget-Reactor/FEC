@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CompareModalTable from './CompareModalTable.jsx'; //
 
-const CompareModal = ({closeModal, productName, relatedCharacteristics, currentCharacteristics}) => {
+const CompareModal = ({closeModal, productName, relatedCharacteristics, currentCharacteristics, relatedName}) => {
   const escModal = (e) => {
     if (e.key === 'Escape') {
       closeModal();
@@ -20,7 +20,7 @@ const CompareModal = ({closeModal, productName, relatedCharacteristics, currentC
 
   return (
     <CompareModalContainer onClick={closeModal}>
-      <CompareModalTable />
+      <CompareModalTable productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} />
     </CompareModalContainer>
   );
 };
@@ -37,6 +37,6 @@ const CompareModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(6px);
-  background-color: rgba(45, 52, 54, 0.9);
+  background-color: rgba(45, 52, 54, 0.3);
   z-index: 42;
 `;

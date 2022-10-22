@@ -85,7 +85,7 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
         {conditionalPhoto()}
         <ActionButtonRelated onClick={(event) => {
           event.stopPropagation(); //stops product card click from registering
-          isModalVisible(relatedCharacteristics); //send current characteristics up to RelatedItems
+          isModalVisible(relatedCharacteristics, relatedItem.name); //send current characteristics up to RelatedItems
           console.log('clicked button!');
         }} />
       </RelatedImageDiv>
