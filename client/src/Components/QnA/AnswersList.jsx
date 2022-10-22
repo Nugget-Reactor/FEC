@@ -1,45 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import AnswerEntry from './AnswerEntry.jsx';
 
-const AnswersList = ({ answersObj }) => {
+const AnswersList = ({ questionID }) => {
 
-  const [totalCount, setTotalCount] = useState(0);
-  const [currCount, setCurrCount] = useState(0);
+  const [answersList, setAnswersList] = useState([]);
+  const [showLoadMore, setShowLoadMore] = useState(false);
 
-  const answersArr = [];
-  for (let key in answersObj) {
-    answersArr.push(answersObj[key]);
-  }
-  answersArr.sort((a, b) => {
-    return b.helpfulness - a.helpfulness;
-  });
+  // console.log('passed down answersObj', answersObj);
+
   useEffect(() => {
-    setTotalCount(answersArr.length);
+    axios.get(`/qa/questions/${questionID}/answers`)
+      .then(results => {
+        // console.log('got answers list');
+        setAnswersList(results.data.results);
+      })
+      .catch(err => console.log('Error getting answers list', err));
+  }, [showLoadMore]);
+
+  // console.log(answersList);
+
+  useEffect(() => {
+    setShowLoadMore(!showLoadMore);
   }, []);
+
+  // const answersArr = [];
+  // for (let key in answersObj) {
+  //   answersArr.push(answersObj[key]);
+  // }
+  // answersArr.sort((a, b) => {
+  //   return b.helpfulness - a.helpfulness;
+  // });
 
   const handleLoadMoreAs = (e) => {
     e.preventDefault();
-    setCurrCount(currCount + 2);
-  }
+    setShowLoadMore(!showLoadMore);
+  };
 
   return (
     <AnswersContainer>
-      {currCount < totalCount
-        ? answersArr.map((answer, index) => {
-          if (index < currCount + 2) {
-            return <AnswerEntry entry={answer} key={index} />
+      {showLoadMore && answersList
+        ? answersList.map((answer, index) => {
+          if (index < 2) {
+            return <AnswerEntry entry={answer} key={index} />;
           }
         })
-        : answersArr.map((answer, index) => {
-          return <AnswerEntry entry={answer} key={index} />
+        : answersList.map((answer, index) => {
+          return <AnswerEntry entry={answer} key={index} />;
         })}
-      {answersArr.length !== 0 && currCount < totalCount &&
-        <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>LOAD MORE ANSWERS</LoadMoreAnswers>}
+      {showLoadMore
+        ? <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>LOAD MORE ANSWERS</LoadMoreAnswers>
+        : <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>COLLAPSE LIST</LoadMoreAnswers>}
     </AnswersContainer>
-  )
-}
+  );
+};
 
 export default AnswersList;
 

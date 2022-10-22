@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
+const QuestionModal = ({ productID, name, showQModal, setShowQModal }) => {
 
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
@@ -31,7 +31,7 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
       return false;
     }
     return true;
-  }
+  };
 
   const handleSubmitQ = (e) => {
     e.preventDefault();
@@ -39,21 +39,19 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
     qObj.body = question;
     qObj.name = nickname;
     qObj.email = email;
-    qObj.product_id = product_id;
+    qObj.product_id = productID;
     console.log('handleSubmit question object', qObj);
     if (validateForm()) {
-      axios.post(`/qa/questions?product_id=${product_id}`, qObj)
+      axios.post(`/qa/questions?product_id=${productID}`, qObj)
         .then(results => {
           setShowQModal(!showQModal);
           setQuestion('');
           setNickname('');
           setEmail('');
         })
-        .catch(err => console.log('Error submitting question', err))
+        .catch(err => console.log('Error submitting question', err));
     }
-    // setShowQModal(!showQModal);
-
-  }
+  };
 
   return (
     <QuestionContainer>
@@ -105,8 +103,8 @@ const QuestionModal = ({ product_id, name, showQModal, setShowQModal }) => {
         </QuestionBody>
       </QuestionForm>
     </QuestionContainer>
-  )
-}
+  );
+};
 
 export default QuestionModal;
 
