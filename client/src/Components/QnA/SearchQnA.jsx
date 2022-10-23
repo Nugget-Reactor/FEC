@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const SearchQnA = () => {
+const SearchQnA = ({ query, setQuery }) => {
 
-  const [query, setQuery] = useState('');
+
 
   // console.log(query);
 
