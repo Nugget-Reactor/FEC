@@ -18,23 +18,33 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   // console.log('currentMeta', currentMeta);
 
   useEffect(() => {
-    /**to get related item **/
+    /**to get related items **/
     if (product.id) {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
-          setRelatedItems(results.data);
           // console.log('results.data', results.data);
           if (results.data.length === 0) {
             setNoneRelated('There are no Related Products for this item');
+          } else {
+            for (var i = 0; i < results.data.length - 1; i++) {
+              var sliced = results.data.slice(i + 1);
+              if (results.data[i].id === product.id) { //eliminates product appearing in own related items
+                results.data.splice(i, 1);
+              }
+              if (sliced.includes(results.data[i])) { //eliminates duplicates in related items
+                results.data.splice(i, 1);
+              }
+            }
+            setRelatedItems(results.data);
           }
+
         })
         .catch((err) => console.log('error', err));
 
       if (currentMeta.characteristics) { //for modal
         setCurrentCharacteristics(currentMeta.characteristics);
-      } else {
-        console.log('no characteristics, related items line 36');
       }
+
     }
   }, [product]);
 
@@ -47,7 +57,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   };
 
   const isModalVisible = (relatedChar, relName) => {
-    console.log('relatedChar', relatedChar);
+    // console.log('relatedChar', relatedChar);
     setRelatedCharacteristics(relatedChar);
     setRelatedName(relName);
     setShowCompareModal(true);
