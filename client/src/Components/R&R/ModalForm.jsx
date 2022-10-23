@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
 import axios from 'axios';
 import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
+import CharacteristicInput from './CharacteristicInput.jsx';
 
-const ModalForm = ({ productID, productName }) => {
+const ModalForm = ({ productID, productName, characteristicModel }) => {
 
   const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(false);
@@ -16,7 +17,6 @@ const ModalForm = ({ productID, productName }) => {
   const [tempPhoto, setTempPhoto] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
-  console.log(photos);
   useEffect(() => {
     photoRef.current = createCloudinaryWidget((url) => {
       setTempPhoto(url);
@@ -27,8 +27,16 @@ const ModalForm = ({ productID, productName }) => {
     if(tempPhoto) {
       setPhotos([...photos, tempPhoto]);
     }
+    if(photos.length === 4){
+      photoRef.current.close();
+    }
   }, [tempPhoto]);
 
+  const deletePhoto = (idx) => {
+    let newPhotos = [...photos];
+    newPhotos.splice(idx, 1);
+    setPhotos(newPhotos);
+  }
   const createStarInput = () => {
     let meaning = '';
     if(rating === 1) {
@@ -50,6 +58,19 @@ const ModalForm = ({ productID, productName }) => {
 
     stars.push(<Span key="6">{meaning}</Span>);
     return stars;
+  }
+  console.log(characteristics)
+  const createCharacteristicInput = () => {
+    let result = [];
+    for(let char in characteristicModel) {
+      result.push(<CharacteristicInput name={char} charID={characteristicModel[char].id} key={char} onChange={handleCharChange}/>)
+    }
+    return result;
+  }
+  const handleCharChange = (name, value) => {
+    let newChars = {...characteristics};
+    newChars[name] = value;
+    setCharacteristics(newChars);
   }
 
   const handleSubmit = (e) => {
@@ -94,7 +115,7 @@ const ModalForm = ({ productID, productName }) => {
         </div>
         <div>
           Characteristics <Required />
-
+          {createCharacteristicInput()}
         </div>
         <InputLabel>
           Add a headline
@@ -114,13 +135,21 @@ const ModalForm = ({ productID, productName }) => {
           <TextInput required ref={emailRef} type="email" maxLength="60" placeholder="Example: jackson11@email.com" ></TextInput>
           <p>For authentication reasons, you will not be emailed</p>
         </InputLabel>
-        <InputLabel>
-          Add a photo URL
-          <button onClick={()=>photoRef.current.open()}></button>
-        </InputLabel>
-        <ThumbnailContainer>
-          {photos.length ? photos.map((photo, i)=><Thumbnail imgLink={photo} key={i}></Thumbnail>) : null}
-        </ThumbnailContainer>
+        <div>
+          Add a photo
+          <ThumbnailContainer>
+            {photos.length
+            ? photos.map((photo, i)=>
+            <div key={i} style={{position: "relative"}}>
+              <Thumbnail imgLink={photo} key={i}></Thumbnail>
+              <DeleteButton onClick={()=>deletePhoto(i)}>x</DeleteButton>
+            </div>)
+            : null}
+            {photos.length < 5
+            ? <AddImageButton onClick={()=>photoRef.current.open()}>+</AddImageButton>
+            :null}
+          </ThumbnailContainer>
+        </div>
       </ModalContent>
       <ModalFooter>
         <SubmitButton type="submit">Submit</SubmitButton>
@@ -134,8 +163,9 @@ const Form = styled.form`
   border-radius: 5px;
   box-shadow: rgba(112,128,175,0.2)0px 16px 24px 0px;
   width: 600px;
+  max-height: 90vh;
   background: white;
-
+  overflow:auto;
 `
 
 const ModalHeader = styled.div`
@@ -222,11 +252,31 @@ const StarButton = styled.button`
   cursor: pointer;
   font-size: 2rem;
 `
+const AddImageButton = styled.button`
+  width: 100px;
+  height: 100px;
+  background: rgba(24, 220, 255,0.5);
+  border: 2px dashed rgba(23, 192, 235,1.0);
+  border-radius: 5px;
+  color: rgba(23, 192, 235,1.0);
+  font-size: 3rem;
+`
 
 const SubmitButton = styled.button`
   cursor: pointer;
   font-size: 1.25rem;
   margin: 5px;
+`
+
+const DeleteButton = styled.button`
+  cursor: pointer;
+  padding: 0 3px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background: lightgrey;
+  position: absolute;
+  top: -3px;
+  left: 93px;
 `
 
 export default ModalForm;

@@ -22,8 +22,8 @@ const App = () => {
     // handleProductChange('40353'); //infinity stones
     // handleProductChange('41197');
     // handleProductChange('40480');
-    handleProductChange('40345'); // contains some items with no image and no price
-    // handleProductChange('40344');
+    // handleProductChange('40345'); // contains some items with no image and no price
+    handleProductChange('40344');
     // handleProductChange('41197');
     // handleProductChange('40345'); //breaks it - contains some items with no image and no price
     // handleProductChange('40344');
@@ -136,7 +136,7 @@ const App = () => {
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-      <Reviews productID={product.id} productName={product.name} />
+      <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
       <QnA product={product} />
     </div>
   );

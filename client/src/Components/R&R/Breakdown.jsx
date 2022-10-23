@@ -4,17 +4,17 @@ import RatingFilter from './RatingFilter.jsx';
 import Characteristics from './Characteristics.jsx';
 import styled from 'styled-components';
 
-const Breakdown = ({ metadata, totalCount, filters, modifyFilters }) => {
+const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
   const [avgRating, setAvgRating] = useState(null);
 
   useEffect(() => {
-    setAvgRating(getAverage(metadata.ratings));
-  }, [metadata]);
+    setAvgRating(getAverage(currentMeta.ratings));
+  }, [currentMeta]);
 
   const getRecommendedRate = () => {
-    if(metadata.recommended) {
-      let trues = Number(metadata.recommended.true) || 0;
-      let falses = Number(metadata.recommended.false) || 0;
+    if(currentMeta.recommended) {
+      let trues = Number(currentMeta.recommended.true) || 0;
+      let falses = Number(currentMeta.recommended.false) || 0;
       if(trues === 0 && falses === 0) {
         return 0;
       }
@@ -23,9 +23,9 @@ const Breakdown = ({ metadata, totalCount, filters, modifyFilters }) => {
   }
   const renderFilters = () => {
     let filters = [];
-    if(metadata.ratings) {
+    if(currentMeta.ratings) {
       for(let i = 5; i >= 1; i--) {
-        filters.push(<RatingFilter rating={metadata.ratings[i]} totalCount={totalCount} starValue={i} modifyFilters={modifyFilters} key={i} />)
+        filters.push(<RatingFilter rating={currentMeta.ratings[i]} totalCount={totalCount} starValue={i} modifyFilters={modifyFilters} key={i} />)
       }
     }
     return filters
@@ -52,7 +52,7 @@ const Breakdown = ({ metadata, totalCount, filters, modifyFilters }) => {
       <div>
         {avgRating ? `${getRecommendedRate()}% of reviews recommend this product` : null}
       </div>
-      <Characteristics chars={metadata.characteristics} />
+      <Characteristics chars={currentMeta.characteristics} />
     </div>
   );
 }

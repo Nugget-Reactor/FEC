@@ -116,7 +116,7 @@ const Thumbnail = styled.a`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
+  cursor: pointer;
   margin-right: 2px;
 `
 const ThanksMessage = styled.span`
