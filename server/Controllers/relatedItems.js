@@ -31,9 +31,12 @@ module.exports = {
   getRelated: (req, res) => {
     axios.get(`${URL}/products/${req.params.id}/related`)
     .then((results) => {
+      return _.uniq(results.data);  //eliminates duplicates in related items
+    })
+    .then((results) => {
       var array = [];
       // console.log('results in relateditems.js line 35', results.data); //confirmed an error is happening from subsequent requests. these numbers always come through ok.
-      return Promise.all(results.data.map((itemNumber) => {
+      return Promise.all(results.map((itemNumber) => {
         return Promise.all([getProduct(itemNumber), getStyle(itemNumber), getRelatedMeta(itemNumber)])
         .then(results => {
           results = {...results[0], ...results[1], ...results[2]};

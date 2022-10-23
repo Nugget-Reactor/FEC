@@ -12,10 +12,10 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
     if (Object.keys(currentCharacteristics).length > 0) {
       for (var prodKeys in currentCharacteristics) {
         // if (!tableObject[prodKeys]) {
-        tableObject[prodKeys] = [];
+          tableObject[prodKeys] = [];
         tableObject[prodKeys].push(currentCharacteristics[prodKeys].value);
         // } else {
-        //   var prodChar = {};
+          //   var prodChar = {};
         //   prodChar.prod = currentCharacteristics[prodKeys].value;
         //   tableObject[prodKeys].push(prodChar);
         // }
@@ -29,27 +29,19 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
           tableObject[relKeys].push(null);
         }
         tableObject[relKeys].push(relatedCharacteristics[relKeys].value);
-      //     relChar.rel = relatedCharacteristics[relKeys].value;
-      //     tableObject[relKeys].push(relChar);
-      //     relChar.rel = relatedCharacteristics[relKeys].value;
-      //     tableObject[relKeys].push(relChar);
-      //   }
       }
     }
 
-    // for (var key in tableObject) {
-    //   var rowArray = [];
+    for (var key in tableObject) { //assemble characteristics into table mapping format
+      var rowArray = [];
+      rowArray.push(tableObject[key][0]);
+      rowArray.push(key);
+      tableObject[key][1] ? rowArray.push(tableObject[key][1]) : rowArray.push(null);
+      tableArray.push(rowArray);
+    }
 
-    //   tableObject[key].forEach((characteristic, index) => {
-    //     if ()
-    //   })
-    //   tableObject[key].prod ? rowArray.push(tableObject[key].prod) : rowArray.push(null);
-    //   rowArray.push(key);
-    //   tableObject[key].rel ? rowArray.push(tableObject[key].rel) : rowArray.push(null);
-    //   tableArray.push(rowArray);
-    // }
     console.log('tableObject', tableObject);
-    console.log('tableObject', tableArray);
+    console.log('tableArray', tableArray);
 
   };
   assembleTable();

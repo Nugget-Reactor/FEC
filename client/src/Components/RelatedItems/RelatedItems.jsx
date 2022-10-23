@@ -31,19 +31,12 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
               if (results.data[i].id === product.id) { //eliminates product appearing in own related items
                 results.data.splice(i, 1);
               }
-              if (sliced.includes(results.data[i])) { //eliminates duplicates in related items
-                results.data.splice(i, 1);
-              }
             }
             setRelatedItems(results.data);
           }
 
         })
         .catch((err) => console.log('error', err));
-
-      if (currentMeta.characteristics) { //for modal
-        setCurrentCharacteristics(currentMeta.characteristics);
-      }
 
     }
   }, [product]);
@@ -56,7 +49,8 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
     setShowCompareModal(false);
   };
 
-  const isModalVisible = (relatedChar, relName) => {
+  const isModalVisible = (event, relatedChar, relName) => {
+    event.preventDefault();
     // console.log('relatedChar', relatedChar);
     setRelatedCharacteristics(relatedChar);
     setRelatedName(relName);
