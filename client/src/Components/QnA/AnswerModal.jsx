@@ -78,6 +78,14 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
     setShowPreview(false);
   };
 
+  const handleRemoveUpload = (e, index) => {
+    e.preventDefault();
+    // loop through photos array
+    console.log('clicked', index);
+    let filtered = photos.filter((photo, i) => i !== index);
+    setPhotos(filtered);
+  };
+
   return (
     <AnswerContainer>
       <CloseBtn onClick={() => setShowAModal(!showAModal)} className="fa-solid fa-x"></CloseBtn>
@@ -96,7 +104,11 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         </FormDiv>
         {showPreview && photos.length > 0
           ? <PhotosList>{photos.map((photo, index) => {
-            return <PhotoEntry key={index}><PhotoImg src={photo}></PhotoImg></PhotoEntry>;
+            return (
+              <PhotoEntry key={index}>
+                <PhotoImg src={photo}></PhotoImg>
+                <RemoveUpload onClick={e => handleRemoveUpload(e, index)}>X</RemoveUpload>
+              </PhotoEntry>);
           })}</PhotosList>
           : <NoSelectedFiles>No files selected</NoSelectedFiles>}
         <FormDiv>
@@ -175,6 +187,10 @@ const CloseBtn = styled.i`
   right: 0vw;
   z-index: 1;
   padding: 5px;
+`;
+
+const RemoveUpload = styled.div`
+  display: inline-flex;
 `;
 
 const FormDiv = styled.div`
