@@ -4,9 +4,8 @@ import axios from 'axios';
 
 import AnswerEntry from './AnswerEntry.jsx';
 
-const AnswersList = ({ questionID }) => {
+const AnswersList = ({ questionID, answersList, setAnswersList }) => {
 
-  const [answersList, setAnswersList] = useState([]);
   const [showLoadMore, setShowLoadMore] = useState(false);
 
   // console.log('passed down answersObj', answersObj);
@@ -21,6 +20,10 @@ const AnswersList = ({ questionID }) => {
   }, [questionID, showLoadMore]);
 
   // console.log(answersList);
+
+  useEffect(() => {
+    setAnswersList(answersList);
+  }, [answersList]);
 
   useEffect(() => {
     setShowLoadMore(!showLoadMore);

@@ -11,6 +11,7 @@ const QuestionEntry = ({ entry, name, query }) => {
   const [showAModal, setShowAModal] = useState(false);
   const [helpfulClicked, setHelpfulClicked] = useState(false);
   const [reportClicked, setReportClicked] = useState(false);
+  const [answersList, setAnswersList] = useState([]);
 
   const handleAddAnswer = (e) => {
     e.preventDefault();
@@ -53,8 +54,8 @@ const QuestionEntry = ({ entry, name, query }) => {
           <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
         </QuestionEntryHeader>
         <AnswerBody>
-          {Object.keys(entry.answers).length !== 0 && <AnswersList questionID={entry.question_id}></AnswersList>}
-          {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} questionID={entry.question_id} ></AnswerModal>}
+          {Object.keys(entry.answers).length !== 0 && <AnswersList questionID={entry.question_id} answersList={answersList} setAnswersList={setAnswersList}></AnswersList>}
+          {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} questionID={entry.question_id} setAnswersList={setAnswersList}></AnswerModal>}
         </AnswerBody>
       </QuestionEntryContainer>
     );

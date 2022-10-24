@@ -92,7 +92,7 @@ const ReportAnswer = styled.a`
 `;
 
 const Image = styled.img`
-  height: 150px;
-  width: 200px;
-  padding: .5rem 1.75rem .5rem;
+  height: 100px;
+  width: 150px;
+  padding: .5rem;
 `;

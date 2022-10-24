@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 
-const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, questionID }) => {
+const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, questionID, setAnswersList }) => {
 
   const photoRef = useRef(null);
   const answerRef = useRef(null);
@@ -69,6 +69,9 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         .then(results => {
           setShowAModal(!showAModal);
           setPhotos([]);
+          axios.get(`/qa/questions/${questionID}/answers`)
+            .then(results => setAnswersList(results.data.results))
+            .catch(err => console.log('get answers error in answer modal', err));
         })
         .catch(err => console.log('Error submitting answer', err));
     }
