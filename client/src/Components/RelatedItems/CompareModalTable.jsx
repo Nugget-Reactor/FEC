@@ -27,25 +27,21 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
       }
     }
 
-
-
     for (var key in tableObject) { //assemble characteristics into array table mapping format
       var rowArray = [];
       var bothNull = false;
       if (tableObject[key][0] === null && tableObject[key][1] === null ||
-        tableObject[key].length === 1 && tableObject[key][0] === null) {
+        tableObject[key].length === 1 && tableObject[key][0] === null) { //to eliminate when characteristic only has an ID but null value
         bothNull = true;
       }
 
-      if (!bothNull) {
+      if (!bothNull) { //only renders characteristics if at least one of the values has a value other than null
         rowArray.push(tableObject[key][0]);
         rowArray.push(key);
         tableObject[key][1] ? rowArray.push(tableObject[key][1]) : rowArray.push(null);
         tableArray.push(rowArray);
       }
     }
-    console.log(tableArray);
-    console.log(tableObject);
     setTableData(tableArray);
   }, []);
 
@@ -66,9 +62,9 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
   };
 
   return (
-    <div>
+    <TableDiv>
       <TableTitle>COMPARING</TableTitle>
-      <CompareTableDiv>
+      <CompareTable>
         <TableHead>
           <tr>
             <Column>{productName}</Column>
@@ -79,13 +75,16 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
         <TableBody>
           {tableData.map((row, index) => <TableRow row={row} key={index + 'row'}/> )}
         </TableBody>
-      </CompareTableDiv>
-    </div>
+      </CompareTable>
+    </TableDiv>
 
   );
 };
 
 export default CompareModalTable;
+
+const TableDiv = styled.div`
+`;
 
 const TableTitle = styled.div`
 border-radius: 10px 10px 0 0;
@@ -95,13 +94,13 @@ padding: .8em 0 .3em 1.5em;
 float: inline-end;
 `;
 
-const CompareTableDiv = styled.table`
-flex-direction: column;
+const CompareTable = styled.table`
+overflow-y: auto;
+flex-direction: column; //not sure how to make characteristics scrollable AND pretty
 font-size: larger;
 min-width: 50vw;
 height: 30vh;
 text-align: center;
-overflow: auto;
 background: white;
 border-radius: 0 0 10px 10px;
 `;
@@ -111,12 +110,13 @@ const TableHead = styled.thead`
   top: 0;
 `;
 
-
 const Column = styled.th`  //to fix product value columns as same width
   width: 36%
 `;
 
 const TableBody = styled.tbody`
+top: 0;
+font-size: larger;
 
 `;
 

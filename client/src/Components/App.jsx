@@ -26,8 +26,8 @@ const App = () => {
     // handleProductChange('41197');
     // handleProductChange('40566');
 
-    handleProductChange('41031'); // 41031 40480
-    // handleProductChange('40345'); // contains some items with no image and no price - also 3 from infinity stones
+    // handleProductChange('40649'); // 40480, 41116, 41031, 40649
+    handleProductChange('40345'); // contains some items with no image and no price - also 3 from infinity stones
     // handleProductChange('40344');
     // handleProductChange('41197');
   }, []);
