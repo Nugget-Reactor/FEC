@@ -58,7 +58,7 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
   };
 
   const TableRow = ({row}) => {
-    return <tr>{row.map((value, index) => <td key={index + 'value'}>{formatValues(value)}</td>)}</tr>;
+    return <TableRowTR>{row.map((value, index) => <TableCell key={index + 'value'}>{formatValues(value)}</TableCell>)}</TableRowTR>;
   };
 
   return (
@@ -66,11 +66,11 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
       <TableTitle>COMPARING</TableTitle>
       <CompareTable>
         <TableHead>
-          <tr>
+          <TableRowTR>
             <Column>{productName}</Column>
-            <th></th>
+            <CenterColumn></CenterColumn>
             <Column>{relatedName}</Column>
-          </tr>
+          </TableRowTR>
         </TableHead>
         <TableBody>
           {tableData.map((row, index) => <TableRow row={row} key={index + 'row'}/> )}
@@ -84,6 +84,20 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
 export default CompareModalTable;
 
 const TableDiv = styled.div`
+// min-width: 50vw;
+// height: 30vh;
+// max-height: 30vh;
+// background: white;
+// border-radius: 10px;
+`;
+
+const TableCell = styled.td`
+width: 33%;
+`;
+
+const TableRowTR = styled.tr`
+display: table;
+width: 100%;
 `;
 
 const TableTitle = styled.div`
@@ -95,29 +109,38 @@ float: inline-end;
 `;
 
 const CompareTable = styled.table`
-overflow-y: auto;
-flex-direction: column; //not sure how to make characteristics scrollable AND pretty
+flex-direction: column;
 font-size: larger;
 min-width: 50vw;
 height: 30vh;
+max-height: 30vh;
 text-align: center;
 background: white;
 border-radius: 0 0 10px 10px;
+padding-bottom: 5vh;
 `;
 
 const TableHead = styled.thead`
-  position: sticky; //to make head stick so body can scroll if needed
-  top: 0;
+  width 100%
 `;
 
 const Column = styled.th`  //to fix product value columns as same width
-  width: 36%
+  width: 36%; // might change this to 33% to match values
+  text-align: center;
+`;
+
+const CenterColumn = styled.th`  //to fix product value columns as same width
+  width: 28%;  // might change this to 33% to match values
+  text-align: center;
+
 `;
 
 const TableBody = styled.tbody`
-top: 0;
+max-height: 25vh; //items DO become scrollable if characteristics are longer than parent
+display: block;
 font-size: larger;
-overflow: scroll;
+overflow-y: auto;
+
 `;
 
 const Check = styled.i` // the check
