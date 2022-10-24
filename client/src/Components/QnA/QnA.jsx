@@ -12,10 +12,6 @@ const QnA = ({ product }) => {
   const [questions, setQuestions] = useState([]);
   const [showQModal, setShowQModal] = useState(false);
 
-  // console.log('product prop from questions', product);
-
-
-
   useEffect(() => {
     if (product.id !== undefined) {
       axios.get(`/qa/questions?product_id=${product.id}`)

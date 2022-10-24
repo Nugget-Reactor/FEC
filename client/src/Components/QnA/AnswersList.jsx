@@ -8,8 +8,6 @@ const AnswersList = ({ questionID, answersList, setAnswersList }) => {
 
   const [showLoadMore, setShowLoadMore] = useState(false);
 
-  // console.log('passed down answersObj', answersObj);
-
   useEffect(() => {
     axios.get(`/qa/questions/${questionID}/answers`)
       .then(results => {
@@ -18,8 +16,6 @@ const AnswersList = ({ questionID, answersList, setAnswersList }) => {
       })
       .catch(err => console.log('Error getting answers list', err));
   }, [questionID, showLoadMore]);
-
-  // console.log(answersList);
 
   useEffect(() => {
     setAnswersList(answersList);

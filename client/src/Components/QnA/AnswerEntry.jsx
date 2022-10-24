@@ -5,8 +5,6 @@ import axios from 'axios';
 
 const AnswerEntry = ({ entry }) => {
 
-  // console.log(entry);
-
   const [helpfulClicked, setHelpfulClicked] = useState(false);
   const [reportClicked, setReportClicked] = useState(false);
 
@@ -27,8 +25,6 @@ const AnswerEntry = ({ entry }) => {
       })
       .catch(err => console.log('Error updating answer helpfulness'));
   };
-
-  // console.log('answer entry photos', entry.photos);
 
   return (
     <AnswerEntryContainer data-testid="answer-entry">

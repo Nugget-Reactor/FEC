@@ -13,8 +13,6 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
     setTotalCount(questionsList.length);
   }, [questionsList]);
 
-  // console.log('QuestionsList totalCount', totalCount);
-
   const handleMoreAs = (e) => {
     e.preventDefault();
     setCurrCount(currCount + 2);

@@ -13,6 +13,8 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
   const [photos, setPhotos] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
   const [tempPhoto, setTempPhoto] = useState(null);
+  const [showImgModal, setShowImgModal] = useState(false);
+  const [currImg, setCurrImg] = useState(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -54,11 +56,6 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
 
   const handleSubmitA = e => {
     e.preventDefault();
-    // console.log('question_id', questionID);
-    // console.log('answerBody', answerRef.current.value);
-    // console.log('username', usernameRef.current.value);
-    // console.log('email', emailRef.current.value);
-    // console.log('photos', photos);
     let aObj = {};
     aObj.body = answerRef.current.value;
     aObj.name = usernameRef.current.value;
@@ -80,10 +77,14 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
 
   const handleRemoveUpload = (e, index) => {
     e.preventDefault();
-    // loop through photos array
-    console.log('clicked', index);
     let filtered = photos.filter((photo, i) => i !== index);
     setPhotos(filtered);
+  };
+
+  const handleImgModal = (e, url) => {
+    e.preventDefault();
+    setShowImgModal(!showImgModal);
+    setCurrImg(url);
   };
 
   return (
@@ -105,7 +106,10 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         {showPreview && photos.length > 0
           ? <PhotosList>{photos.map((photo, index) => {
             return (
-              <PhotoEntry key={index}>
+              <PhotoEntry key={index} onClick={(e) => handleImgModal(e, photo)}>
+                {showImgModal
+                  ? <ImgModalContainer onClick={e => setShowImgModal(!showImgModal)}><ImgModal src={currImg}></ImgModal></ImgModalContainer>
+                  : null}
                 <PhotoImg src={photo}></PhotoImg>
                 <RemoveUpload onClick={e => handleRemoveUpload(e, index)}>X</RemoveUpload>
               </PhotoEntry>);
@@ -147,6 +151,28 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
 };
 
 export default AnswerModal;
+
+const ImgModalContainer = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  backdrop-filter: blur(6px);
+  background-color: rgba(45, 52, 54, 0.9);
+  z-index: 200;
+`;
+
+const ImgModal = styled.img`
+  height: 50vh;
+  width: 50vw;
+`;
 
 const AnswerContainer = styled.div`
   position: fixed;
