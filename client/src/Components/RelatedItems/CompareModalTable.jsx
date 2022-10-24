@@ -83,11 +83,6 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
 export default CompareModalTable;
 
 const TableDiv = styled.div`
-// min-width: 50vw;
-// height: 30vh;
-// max-height: 30vh;
-// background: white;
-// border-radius: 10px;
 `;
 
 const TableCell = styled.td`
@@ -111,12 +106,11 @@ const CompareTable = styled.table`
 flex-direction: column;
 font-size: larger;
 min-width: 50vw;
-height: 30vh;
 max-height: 30vh;
 text-align: center;
 background: white;
 border-radius: 0 0 10px 10px;
-padding-bottom: 5vh;
+padding-bottom: 3vh;
 `;
 
 const TableHead = styled.thead`

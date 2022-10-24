@@ -75,7 +75,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
 export default RelatedItems;
 
 const Heading = styled.div`
-width: 75%;
+width: 67%;
 margin: 0 auto;
 `;
 

@@ -36,11 +36,11 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible
   };
 
   let LeftButton = ({isVisible}) => {
-    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow> : null;
+    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
   };
 
   let RightButton = ({isVisible}) => {
-    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-carousel-button">&gt;</RightArrow> : null;
+    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-carousel-button"></RightArrow> : null;
   };
 
   return (
@@ -63,7 +63,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible
 export default RelatedItemsCarousel;
 
 const RIContainer = styled.div`
-width: 100%
+width: 100%;
 display: flex;
 flex-direction: row;
 `;
@@ -78,7 +78,8 @@ const RIContentWrapper = styled.div`  //this manages the min size of the carouse
   width: 100%;
   height: 100%;
   display: inline-block;
-  min-width: 76vw;
+  max-width: 76vw;
+
 `;
 
 const RIContent = styled.ul`
@@ -108,7 +109,18 @@ const LeftArrow = styled.button`
   transform: translateY(-50%);
   font-size: 1.8em;
   left: .3em;
+  &::after {
+    font-family: FontAwesome;
+    content: "\\f0d9";
+  }
 `;
+
+// z-index: 1;
+// padding-top: 5px;
+// padding-bottom: 5px;
+// font-size: 1.8em;
+// background: white;
+
 
 const RightArrow = styled.button`
 cursor: pointer;
@@ -122,4 +134,9 @@ background: white;
 transform: translateY(-50%);
 font-size: 1.8em;
 right: .3em;
+color: #000;
+&::after {
+  font-family: FontAwesome;
+  content: "\\f0da";
+}
 `;

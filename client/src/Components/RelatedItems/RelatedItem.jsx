@@ -56,7 +56,7 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
     if (typeof currentPhotoURL === 'string') {
       return <RelatedDefaultImage src={currentPhotoURL} />;
     } else {
-      return <NoPhotoDiv><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
+      return <NoPhotoDiv><NoPhotoH1><div>Photo</div><div>Coming</div><div>Soon!</div></NoPhotoH1></NoPhotoDiv>;
     }
   };
 
