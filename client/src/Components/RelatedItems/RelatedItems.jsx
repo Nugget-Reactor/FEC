@@ -17,6 +17,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   const [relatedName, setRelatedName] = useState('');
 
   useEffect(() => {
+    setNoneRelated('');
     /**to get related items **/
     if (product.id) {
       axios.get(`/products/${product.id}/related`)
