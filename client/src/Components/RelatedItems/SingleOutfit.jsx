@@ -85,7 +85,7 @@ const NoPhotoH1 = styled.h1`
 
 const OutfitItemListItem = styled.li` //the Outfit items card itself
   cursor: pointer;
-  list-style-type: none;
+  // list-style-type: none;
   display: inline-block;
   border-radius: 3px;
   margin: .8em; //outside borders
@@ -113,18 +113,17 @@ const DefaultImage = styled.img` // image itself fits image div
 
 const ActionButtonOutfit = styled.button`  //the X
   z-index: 1;
-  padding: .2em .4em;
+  // padding: .2em .4em;
+  width: 1.7em;
+  height: 1.7em;
   font-size: 1.8em;
   background: white;
-  // border: 3px solid #f00;
-  border: 3px solid #777;
-
+  border: 4px solid #777;
+  cursor: pointer;
   border-radius: 50%;
-
   position:absolute;
   right: 6px;
   top: 6px;
-  // color: #f00;
   color: #777;
   &:after{
     font-family: FontAwesome;

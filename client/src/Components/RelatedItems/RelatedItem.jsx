@@ -122,13 +122,12 @@ const NoPhotoH1 = styled.h1`
 
 const RelatedItemListItem = styled.li` //the related items card itself
   cursor: pointer;
-  list-style-type: none;
   display: inline-block;
   border-radius: 3px;
-  margin: .8em; //outside borders
-  padding: .5em; //inside borders
   border: 2px solid black;
   min-height: 27em;
+  margin: .8em; //outside borders
+  padding: .5em; //inside borders
   border-radius: 10px;
 `;
 
@@ -150,13 +149,15 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
 
 const ActionButtonRelated = styled.button` // the star
   z-index: 1;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  // padding-top: 5px;
+  // padding-bottom: 5px;
+  width: 1.5em;
+  height: 1.5em;
   font-size: 1.8em;
   background: white;
   border: 3px solid #f80;
   border-radius: 50%;
-
+  cursor: pointer;
   position:absolute;
   right: 6px;
   top: 6px;

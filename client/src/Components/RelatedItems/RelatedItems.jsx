@@ -15,14 +15,12 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   const [relatedCharacteristics, setRelatedCharacteristics] = useState({});
   const [showCompareModal, setShowCompareModal] = useState(false);
   const [relatedName, setRelatedName] = useState('');
-  // console.log('currentMeta', currentMeta);
 
   useEffect(() => {
     /**to get related items **/
     if (product.id) {
       axios.get(`/products/${product.id}/related`)
         .then((results) => {
-          // console.log('results.data', results.data);
           if (results.data.length === 0) {
             setNoneRelated('There are no Related Products for this item');
           } else {

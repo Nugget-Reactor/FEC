@@ -5,23 +5,22 @@ import styled from 'styled-components';
 const OutfitButtonCard = ({addOutfit}) => {
 
   return (
-    <OutfitButtonDiv>
+    <OutfitButtonLi>
       <HolderDiv>
         <CardSquare>
           <AddButton onClick={(event) => addOutfit()}>+</AddButton>
         </CardSquare>
         <ActionText>Add Current Product to your Outfit</ActionText>
       </HolderDiv>
-    </OutfitButtonDiv>
+    </OutfitButtonLi>
   );
 };
 
 export default OutfitButtonCard;
 
 
-const OutfitButtonDiv = styled.li` //the Outfit items card itself
+const OutfitButtonLi = styled.li` //the Outfit items card itself
 cursor: pointer;
-list-style-type: none;
 display: inline-block;
 border-radius: 3px;
 border: 2px solid black;
