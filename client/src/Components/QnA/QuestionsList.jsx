@@ -19,7 +19,7 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
   };
 
   return (
-    <QuestionListContainer>
+    <QuestionListContainer data-testid="questions-list">
       <SearchQnA query={query} setQuery={setQuery} />
       <QuestionListBody>
         {currCount < totalCount
