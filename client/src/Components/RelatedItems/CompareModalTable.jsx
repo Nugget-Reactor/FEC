@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
 
-
 const CompareModalTable = ({productName, relatedCharacteristics, currentCharacteristics, relatedName}) => {
   const [tableData, setTableData] = useState([]);
-
 
   useEffect(() => { //organize table data
     var tableObject = {};
@@ -42,16 +40,17 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
         tableArray.push(rowArray);
       }
     }
+    console.log(tableArray);
     setTableData(tableArray);
   }, []);
 
   const formatValues = (value) => {
     if (value === null || value === undefined) {
       return <> </>; //null
-    } else if (Number(value) * 1 === Number(value)) {
-      return <>{createStars(Number(value))}</>;
     } else if (value === true) {
       return <><Check/></>;
+    } else if (Number(value) * 1 === Number(value)) {
+      return <>{createStars(Number(value))}</>;
     } else {
       return <>{value}</>;
     }
@@ -140,7 +139,6 @@ max-height: 25vh; //items DO become scrollable if characteristics are longer tha
 display: block;
 font-size: larger;
 overflow-y: auto;
-
 `;
 
 const Check = styled.i` // the check
