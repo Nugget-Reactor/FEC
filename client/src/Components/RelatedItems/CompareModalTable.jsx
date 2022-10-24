@@ -117,7 +117,7 @@ const Column = styled.th`  //to fix product value columns as same width
 const TableBody = styled.tbody`
 top: 0;
 font-size: larger;
-
+overflow: scroll;
 `;
 
 const Check = styled.i` // the check
