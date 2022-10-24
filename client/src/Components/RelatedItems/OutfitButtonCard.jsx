@@ -51,6 +51,7 @@ border-radius: 10px;
 `;
 
 const AddButton = styled.button`
+cursor: pointer;
 font-size: 8em;
 text-align: center;
 background: white;
