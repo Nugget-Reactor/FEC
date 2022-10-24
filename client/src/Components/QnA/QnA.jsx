@@ -28,7 +28,7 @@ const QnA = ({ product }) => {
     <QFeatureContainer>
       <Heading2>Questions & Answers</Heading2>
       <QuestionsList questionsList={questions} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal} />
-      {showQModal ? <QuestionModal productID={product.id} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal}></QuestionModal> : null}
+      {showQModal ? <QuestionModal productID={product.id} name={product.name} showQModal={showQModal} setShowQModal={setShowQModal} questions={questions} setQuestions={setQuestions}></QuestionModal> : null}
     </QFeatureContainer>
   );
 };

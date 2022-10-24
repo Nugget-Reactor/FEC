@@ -5,11 +5,11 @@ import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 
 const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, questionID }) => {
 
-  const hiddenFileInput = useRef(null);
   const photoRef = useRef(null);
-  const [answerBody, setAnswerBody] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const answerRef = useRef(null);
+  const usernameRef = useRef(null);
+  const emailRef = useRef(null);
+
   const [photos, setPhotos] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
   const [tempPhoto, setTempPhoto] = useState(null);
@@ -31,30 +31,21 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
     }
   }, [tempPhoto]);
 
-  const handlePhotosClick = e => {
-    e.preventDefault();
-    hiddenFileInput.current.click();
-  };
-
   const validateAForm = () => {
-    let formAnswerBody = answerBody;
-    let formUsername = username;
-    let formEmail = email;
-    let formPhotos = photos;
     let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (formAnswerBody === '') {
+    if (answerRef.current.value === '') {
       alert('Your Answer field must be filled out');
       return false;
     }
-    if (formUsername === '') {
+    if (usernameRef.current.value === '') {
       alert('Nickname field must be filled out');
       return false;
     }
-    if (!formEmail.match(validEmail)) {
+    if (!emailRef.current.value.match(validEmail)) {
       alert('Email must be in following format: example@example.example');
       return false;
     }
-    if (formPhotos.length > 5) {
+    if (photos.length > 5) {
       alert('Only 5 photos are allowed to be uploaded to answers');
       return false;
     }
@@ -64,22 +55,19 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
   const handleSubmitA = e => {
     e.preventDefault();
     // console.log('question_id', questionID);
-    // console.log('answerBody', answerBody);
-    // console.log('username', username);
-    // console.log('email', email);
+    // console.log('answerBody', answerRef.current.value);
+    // console.log('username', usernameRef.current.value);
+    // console.log('email', emailRef.current.value);
     // console.log('photos', photos);
     let aObj = {};
-    aObj.body = answerBody;
-    aObj.name = username;
-    aObj.email = email;
+    aObj.body = answerRef.current.value;
+    aObj.name = usernameRef.current.value;
+    aObj.email = emailRef.current.value;
     aObj.photos = photos;
     if (validateAForm()) {
       axios.post(`/qa/questions/${questionID}/answers`, aObj)
         .then(results => {
           setShowAModal(!showAModal);
-          setAnswerBody('');
-          setUsername('');
-          setEmail('');
           setPhotos([]);
         })
         .catch(err => console.log('Error submitting answer', err));
@@ -96,11 +84,10 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         <FormDiv>
           <AnswerLabel>Your Answer*:</AnswerLabel>
           <AnswerField
-            placeholder="Your Answer Here..."
-            value={answerBody}
-            onChange={e => setAnswerBody(e.target.value)}
-            type="text"
             required
+            placeholder="Your Answer Here..."
+            ref={answerRef}
+            type="text"
             maxlength="1000"
           ></AnswerField>
         </FormDiv>
@@ -112,11 +99,10 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         <FormDiv>
           <AnswerLabel>What is your Nickname*:</AnswerLabel>
           <AnswerInput
-            placeholder="Example: jack543!"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            type="text"
             required
+            placeholder="Example: jack543!"
+            ref={usernameRef}
+            type="text"
             maxlength="60"
           ></AnswerInput>
           <AnswerText>Note: For privacy reasons, do not use your full name or email address</AnswerText>
@@ -124,11 +110,10 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         <FormDiv>
           <AnswerLabel>What is your Email*:</AnswerLabel>
           <AnswerInput
-            placeholder="Example: jack@email.com"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            type="text"
             required
+            placeholder="Example: jack@email.com"
+            ref={emailRef}
+            type="text"
             maxlength="60"
           ></AnswerInput>
           <AnswerText>Note: For authentication reasons, you will not be emailed</AnswerText>
@@ -139,31 +124,6 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
             photoRef.current.open();
             setShowPreview(true);
           }}>Upload Your Photos</AnswerFormPhotos>
-          {/* <AddPhotos
-            id="upload-files"
-            type="file"
-            accept="image/*"
-            multiple
-            ref={hiddenFileInput}
-            style={{ display: 'none' }}
-            onChange={(e) => {
-              // trying to figure out how to get file converted to user accessible URL before uploading to black box
-              const fileList = e.target.files;
-              const urlArr = [];
-              for (let i = 0, numFiles = fileList.length; i < numFiles; i++) {
-                // let reader = new FileReader();
-                console.log('the file', fileList[i]);
-                const objectURL = window.URL.createObjectURL(fileList[i]);
-                urlArr.push(objectURL);
-                // reader.addEventListener('load', () => {
-                //   console.log('done loading with', reader.result);
-                // }, false);
-                // reader.readAsDataURL(fileList[i]);
-              }
-              setPhotos(urlArr);
-              setShowPreview(!showPreview);
-            }}
-          /> */}
           <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>
