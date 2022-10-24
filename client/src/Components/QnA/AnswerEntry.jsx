@@ -58,6 +58,7 @@ const AnswerListHeader = styled.div`
   display: block;
   padding: 5px;
   font-size: 1rem;
+  overflow-wrap: anywhere;
 `;
 
 const AnswerListFooter = styled.div`
@@ -74,6 +75,8 @@ const AnswerListDiv = styled.div`
 
 const AnswerEntryContainer = styled.div`
   padding: 5px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const PhotoContainer = styled.div`
