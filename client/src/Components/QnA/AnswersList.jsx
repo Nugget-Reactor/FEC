@@ -68,5 +68,5 @@ const LoadMoreAnswers = styled.a`
   display: block;
   align-self: start;
   margin: 10px;
-  font-size: 1rem;
+  font-size: .8em;
 `;

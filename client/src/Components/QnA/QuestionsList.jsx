@@ -10,6 +10,7 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
+    setCurrCount(0);
     setTotalCount(questionsList.length);
   }, [questionsList]);
 
@@ -52,13 +53,14 @@ const QuestionListBody = styled.div`
   flex-direction: column;
   overflow: auto;
   max-width: 70vw;
-  max-height: 80vh;
+  max-height: 67vh;
 `;
 
 const QuestionListFooter = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 30px 0px 20px;
 `;
 
 const AddQButton = styled.button`
