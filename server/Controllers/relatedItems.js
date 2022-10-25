@@ -31,7 +31,7 @@ module.exports = {
   getRelated: (req, res) => {
     axios.get(`${URL}/products/${req.params.id}/related`)
     .then((results) => {
-      return _.uniq(results.data, true);
+      return _.uniq(results.data);  //eliminates duplicates in related items
     })
     .then((results) => {
       var array = [];

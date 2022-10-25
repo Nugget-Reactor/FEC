@@ -72,28 +72,26 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
 export default OutfitsCarousel;
 
 const OutfitContainer = styled.div` //farthest outside
-width: 100%;
-display: flex;
-flex-direction: row;
-// min-width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 `;
 
 const OutfitWrapper = styled.div`
-display: flex;
-width: 100%;
-position: relative;
-// min-width: 100%;
-
+  display: flex;
+  width: 100%;
+  position: relative;
 `;
 
-const OutfitContentWrapper = styled.div`
-height: 100%;
-width: 100%;
-display: inline-block;
-min-width: 76vw;
+const OutfitContentWrapper = styled.div` //this manages the min size of the carousel
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  min-width: 76vw;
 `;
 
 const OutfitContent = styled.ul`
+  list-style-type: none;
   display: flex;
   border: 2px solid black;
   border-radius: 3px;
@@ -109,23 +107,29 @@ const OutfitContent = styled.ul`
 `;
 
 const LeftArrow = styled.button`
-position: absolute;
-border: none;
-top: 50%;
-border-radius: 50%;
-background: white;
-transform: translateY(-50%);
-font-size: 1.8em;
-left: .3em;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  border: none;
+  top: 50%;
+  border-radius: 50%;
+  background: white;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  left: .3em;
 `;
 
 const RightArrow = styled.button`
-position: absolute;
-border: none;
-top: 50%;
-border-radius: 50%;
-background: white;
-transform: translateY(-50%);
-font-size: 1.8em;
-right: .3em;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  border: none;
+  top: 50%;
+  border-radius: 50%;
+  background: white;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  right: .3em;
 `;

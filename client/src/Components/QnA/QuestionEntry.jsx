@@ -4,7 +4,9 @@ import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
 
-const QuestionEntry = ({ entry, name }) => {
+const QuestionEntry = ({ entry, name, query }) => {
+
+  // console.log('question entry', entry);
 
   const [showAModal, setShowAModal] = useState(false);
   const [helpfulClicked, setHelpfulClicked] = useState(false);
@@ -34,27 +36,29 @@ const QuestionEntry = ({ entry, name }) => {
   };
 
   // if entry.question body includes query context return this, else return null
-  return (
-    <QuestionEntryContainer>
-      <QuestionEntryHeader>
-        <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
-        <QuestionSubHeading>Helpful?</QuestionSubHeading>
-        {helpfulClicked
-          ? <HelpfulQ href="" onClick={e => e.preventDefault()}>Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
-          : <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
-        <QuestionSubHeading>|</QuestionSubHeading>
-        {reportClicked
-          ? <ReportQuestion href="" onClick={e => e.preventDefault()}>Reported</ReportQuestion>
-          : <ReportQuestion href="" onClick={handleReportQ}>Report Question</ReportQuestion>}
-        <QuestionSubHeading>|</QuestionSubHeading>
-        <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
-      </QuestionEntryHeader>
-      <AnswerBody>
-        {Object.keys(entry.answers).length !== 0 && <AnswersList questionID={entry.question_id}></AnswersList>}
-        {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} questionID={entry.question_id} ></AnswerModal>}
-      </AnswerBody>
-    </QuestionEntryContainer>
-  );
+  if (query.length < 3 || query.length >= 3 && entry.question_body.includes(query)) {
+    return (
+      <QuestionEntryContainer>
+        <QuestionEntryHeader>
+          <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
+          <QuestionSubHeading>Helpful?</QuestionSubHeading>
+          {helpfulClicked
+            ? <HelpfulQ href="" onClick={e => e.preventDefault()}>Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
+            : <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
+          <QuestionSubHeading>|</QuestionSubHeading>
+          {reportClicked
+            ? <ReportQuestion href="" onClick={e => e.preventDefault()}>Reported</ReportQuestion>
+            : <ReportQuestion href="" onClick={handleReportQ}>Report Question</ReportQuestion>}
+          <QuestionSubHeading>|</QuestionSubHeading>
+          <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
+        </QuestionEntryHeader>
+        <AnswerBody>
+          {Object.keys(entry.answers).length !== 0 && <AnswersList questionID={entry.question_id}></AnswersList>}
+          {showAModal && <AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} questionID={entry.question_id} ></AnswerModal>}
+        </AnswerBody>
+      </QuestionEntryContainer>
+    );
+  }
 };
 
 export default QuestionEntry;
