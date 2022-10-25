@@ -22,7 +22,7 @@ const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => 
 export default Outfits;
 
 const Heading = styled.div`
-width: 75%;
+width: 67%;
 margin: 0 auto;
 `;
 

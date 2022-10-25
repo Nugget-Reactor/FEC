@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
 
+
 const CompareModalTable = ({productName, relatedCharacteristics, currentCharacteristics, relatedName}) => {
   const [tableData, setTableData] = useState([]);
+
 
   useEffect(() => { //organize table data
     var tableObject = {};
@@ -40,24 +42,23 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
         tableArray.push(rowArray);
       }
     }
-    // console.log(tableArray);
     setTableData(tableArray);
   }, []);
 
   const formatValues = (value) => {
     if (value === null || value === undefined) {
       return <> </>; //null
-    } else if (value === true) {
-      return <><Check/></>;
     } else if (Number(value) * 1 === Number(value)) {
       return <>{createStars(Number(value))}</>;
+    } else if (value === true) {
+      return <><Check/></>;
     } else {
       return <>{value}</>;
     }
   };
 
   const TableRow = ({row}) => {
-    return <TableRowTR>{row.map((value, index) => <TableCell key={index + 'value'}>{formatValues(value)}</TableCell>)}</TableRowTR>;
+    return <tr>{row.map((value, index) => <td key={index + 'value'}>{formatValues(value)}</td>)}</tr>;
   };
 
   return (
@@ -65,11 +66,11 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
       <TableTitle>COMPARING</TableTitle>
       <CompareTable>
         <TableHead>
-          <TableRowTR>
+          <tr>
             <Column>{productName}</Column>
-            <CenterColumn></CenterColumn>
+            <th></th>
             <Column>{relatedName}</Column>
-          </TableRowTR>
+          </tr>
         </TableHead>
         <TableBody>
           {tableData.map((row, index) => <TableRow row={row} key={index + 'row'}/> )}
@@ -85,15 +86,6 @@ export default CompareModalTable;
 const TableDiv = styled.div`
 `;
 
-const TableCell = styled.td`
-width: 33%;
-`;
-
-const TableRowTR = styled.tr`
-display: table;
-width: 100%;
-`;
-
 const TableTitle = styled.div`
 border-radius: 10px 10px 0 0;
 background: white;
@@ -103,36 +95,29 @@ float: inline-end;
 `;
 
 const CompareTable = styled.table`
-flex-direction: column;
+overflow-y: auto;
+flex-direction: column; //not sure how to make characteristics scrollable AND pretty
 font-size: larger;
 min-width: 50vw;
-max-height: 30vh;
+height: 30vh;
 text-align: center;
 background: white;
 border-radius: 0 0 10px 10px;
-padding-bottom: 3vh;
 `;
 
 const TableHead = styled.thead`
-  width 100%
+  position: sticky; //to make head stick so body can scroll if needed
+  top: 0;
 `;
 
 const Column = styled.th`  //to fix product value columns as same width
-  width: 36%; // might change this to 33% to match values
-  text-align: center;
-`;
-
-const CenterColumn = styled.th`  //to fix product value columns as same width
-  width: 28%;  // might change this to 33% to match values
-  text-align: center;
-
+  width: 36%
 `;
 
 const TableBody = styled.tbody`
-max-height: 25vh; //items DO become scrollable if characteristics are longer than parent
-display: block;
+top: 0;
 font-size: larger;
-overflow-y: auto;
+
 `;
 
 const Check = styled.i` // the check
