@@ -37,9 +37,11 @@ const ModalContainer = styled.div`
   backdrop-filter: blur(6px);
   background-color: rgba(45, 52, 54, 0.9);
   z-index: 42;
+
 `
 const CloseButton = styled.button`
   text-decoration: underline;
+  color: #fff;
   font-size: 2rem;
   border: none;
   background: none;

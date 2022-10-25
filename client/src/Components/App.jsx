@@ -139,8 +139,8 @@ const App = () => {
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName}/>
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-      <Reviews productID={product.id} productName={product.name} />
       <QnA product={product} />
+      <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
     </div>
   );
 };
