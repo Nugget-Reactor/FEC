@@ -12,7 +12,7 @@ const List = ({ reviews, currentCount }) => {
 }
 
 const ScrollableList = styled.div`
-  max-height: 75vh;
+  max-height: 65vh;
   overflow:auto;
 `
 
