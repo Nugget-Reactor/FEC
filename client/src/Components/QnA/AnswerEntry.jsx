@@ -5,8 +5,6 @@ import axios from 'axios';
 
 const AnswerEntry = ({ entry }) => {
 
-  // console.log(entry);
-
   const [helpfulClicked, setHelpfulClicked] = useState(false);
   const [reportClicked, setReportClicked] = useState(false);
 
@@ -27,8 +25,6 @@ const AnswerEntry = ({ entry }) => {
       })
       .catch(err => console.log('Error updating answer helpfulness'));
   };
-
-  // console.log('answer entry photos', entry.photos);
 
   return (
     <AnswerEntryContainer data-testid="answer-entry">
@@ -62,6 +58,7 @@ const AnswerListHeader = styled.div`
   display: block;
   padding: 5px;
   font-size: 1rem;
+  overflow-wrap: anywhere;
 `;
 
 const AnswerListFooter = styled.div`
@@ -78,6 +75,8 @@ const AnswerListDiv = styled.div`
 
 const AnswerEntryContainer = styled.div`
   padding: 5px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const PhotoContainer = styled.div`
@@ -92,7 +91,7 @@ const ReportAnswer = styled.a`
 `;
 
 const Image = styled.img`
-  height: 150px;
-  width: 200px;
-  padding: .5rem 1.75rem .5rem;
+  height: 100px;
+  width: 150px;
+  padding: .5rem;
 `;

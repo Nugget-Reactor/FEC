@@ -6,8 +6,10 @@ import { render, screen, cleanup, waitFor, fireEvent } from '@testing-library/re
 import axiosMock from 'axios';
 
 import { sampleQuestion } from './sampleData/QnA/sampleQuestionData.js';
+import { sampleQProduct } from './sampleData/QnA/sampleQuestionProduct.js';
 
 import QnA from '../Components/QnA/QnA.jsx';
+import QuestionsList from '../Components/QnA/QuestionsList.jsx';
 
 // import AnswerEntry from '../Components/QnA/AnswerEntry.jsx';
 // import AnswersList from '../Components/QnA/AnswersList.jsx';
@@ -15,22 +17,31 @@ import QnA from '../Components/QnA/QnA.jsx';
 // console.log(sampleQuestion);
 // LOOK INTO WAITFOR
 
-describe('renders Answers from QnA Widget', () => {
+describe('renders QnA Widget with Add Question button', () => {
   afterEach(cleanup);
 
-  it('Questions widget should render', async () => {
+  it('Questions widget should render with an add question button', () => {
     const { getByTestId } = render(<QnA product={sampleQuestion} />);
 
     expect(screen.getByText(/Questions & Answers/i)).toBeInTheDocument();
     expect(getByTestId('addq-button')).toBeInTheDocument();
 
     screen.debug();
-
-    // const reviewTitle = await waitFor(() => getByTestId('reviewTitle'));
-
-    // expect(reviewTitle).toHaveTextContent('0 reviews');
-  })
+  });
 });
+
+// describe('renders Questions List from QnA Widget', () => {
+//   afterEach(cleanup);
+
+//   it('Questions List should render', async () => {
+//     const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
+
+//     expect(screen.getAllByText(/Helpful/i)).toBeInTheDocument();
+//     expect(getByTestId('questions-list')).toBeInTheDocument();
+
+//     screen.debug();
+//   })
+// });
 
 // describe('true is truthy', () => {
 //   test('true is truthy', () => {
