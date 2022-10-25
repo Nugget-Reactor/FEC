@@ -9,5 +9,5 @@ module.exports = {
   moduleDirectories: ["node_modules", "client/dist/src"],
   transform: {
     "^.+\\.(js|jsx)$": "babel-jest",
-  }
+  },
 };

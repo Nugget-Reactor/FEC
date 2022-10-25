@@ -65,6 +65,7 @@ const AnswerListFooter = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: .5rem .5rem 1.2rem 1.75rem;
+  font-size: .8em;
 `;
 
 const AnswerListDiv = styled.div`

@@ -120,12 +120,12 @@ const QuestionContainer = styled.div`
 `;
 
 const Heading4 = styled.h4`
-  font-size: 1.25rem;
+  font-size: 1.25em;
   margin: 5px;
 `;
 
 const Heading5 = styled.h5`
-  font-size: 1.1rem;
+  font-size: 1.1em;
   margin: 5px;
 `;
 
@@ -157,15 +157,19 @@ const Label = styled.label`
 
 const TextField = styled.textarea`
   margin: 5px;
+  font-size: 1em;
 `;
 
 const Input = styled.input`
   margin: 5px;
+  font-size: 1em;
 `;
 
 const SubmitButton = styled.button`
+  font-size: 1em;
 `;
 
 const InputNote = styled.span`
   margin: 5px;
+  font-size: .8em;
 `;
