@@ -29,9 +29,6 @@ const App = () => {
     // handleProductChange('41197');
     // handleProductChange('40480');
     // handleProductChange('40344');
-    // handleProductChange('41197');
-    // handleProductChange('40345'); //breaks it - contains some items with no image and no price
-    // handleProductChange('40344');
   }, []);
 
   useEffect(() => {
@@ -141,11 +138,10 @@ const App = () => {
   return (
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef}/>
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName}/>
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
       <QnA product={product} />
-      <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
+      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
     </div>
   );
 };
