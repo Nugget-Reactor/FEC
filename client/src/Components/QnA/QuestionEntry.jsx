@@ -73,9 +73,10 @@ const QuestionEntryContainer = styled.div`
 `;
 
 const QuestionEntryHeader = styled.div`
-  display: inline-block;
+  display: flex;
   padding: 5px;
-
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const QuestionHeading = styled.div`
@@ -91,7 +92,6 @@ const QuestionSubHeading = styled.div`
 `;
 
 const RightFloat = styled.div`
-  float: right;
   display: flex;
   justify-content: center;
   align-items: center;

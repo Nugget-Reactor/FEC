@@ -23,7 +23,7 @@ const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 0px 30px 30px;
 `;
 
 const Input = styled.input`
