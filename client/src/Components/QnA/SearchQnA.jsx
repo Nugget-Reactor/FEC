@@ -23,7 +23,7 @@ const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 0px 30px 30px;
 `;
 
 const Input = styled.input`
@@ -31,11 +31,12 @@ const Input = styled.input`
   padding: 5px;
   display: inline-flex;
   justify-content: center;
+  font-size: 1em;
 `;
 
 const SearchIcon = styled.i`
   position: relative;
   top: 0;
-  right: 20px;
+  right: 3%;
   z-index: 1;
 `;
