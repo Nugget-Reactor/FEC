@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import RelatedItem from './RelatedItem.jsx';
 
-const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
+const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
+  // console.log('currentMeta', currentMeta);
+  // console.log('productName', productName);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -30,7 +32,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange}) => {
   let ItemsRenderMap = () => {
     var currentFour = relatedItems.slice(currentIndex, currentIndex + 4);
     return <>{currentFour.map((currentItem) =>
-      <RelatedItem relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} />)}</>;
+      <RelatedItem relatedItem={currentItem} handleProductChange={handleProductChange} key={currentItem.id} isModalVisible={isModalVisible}/>)}</>;
   };
 
   let LeftButton = ({isVisible}) => {
@@ -71,11 +73,12 @@ display: flex;
 width: 100%;
 position: relative;
 `;
+
 const RIContentWrapper = styled.div`  //this manages the min size of the carousel
-    width: 100%;
-    height: 100%;
-    inline-block;
-    min-width: 76vw;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  min-width: 76vw;
 `;
 
 const RIContent = styled.ul`
@@ -85,24 +88,32 @@ const RIContent = styled.ul`
   box-sizing: border-box;
   max-width: 100%;
   padding: 0.5rem 0;
-  padding-left: 3vw;
-  padding-right: 3vw;
+  padding-left: 3em;
+  padding-right: 3em;
   border-radius: 10px;
+  min-height: 80%;
+  min-width: 80%;
 
 `;
 
 const LeftArrow = styled.button`
-position: absolute;
-border: none;
-top: 50%;
-border-radius: 50%;
-background: white;
-transform: translateY(-50%);
-font-size: 1.8em;
-left: .3em;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  border: none;
+  top: 50%;
+  border-radius: 50%;
+  background: white;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  left: .3em;
 `;
 
 const RightArrow = styled.button`
+cursor: pointer;
+width: 1.5em;
+height: 1.5em;
 position: absolute;
 border: none;
 top: 50%;

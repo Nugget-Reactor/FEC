@@ -31,7 +31,6 @@ justify-content: space-around;
 display: flex;
 max-height: 100%;
 align-items: stretch;
-// min-height: 100%;
 `;
 
 const Carousel = styled.div`

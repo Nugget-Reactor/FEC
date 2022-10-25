@@ -10,6 +10,7 @@ import { createStars, getAverage } from '../Tools/createStars';
 
 const App = () => {
   const [product, setProduct] = useState({});
+  const [productName, setProductName] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentOutfitStyle, setCurrentOutfitStyle] = useState({});
@@ -20,12 +21,12 @@ const App = () => {
 
   useEffect(() => {
     // handleProductChange('40353'); //infinity stones
+    // handleProductChange('40351'); //infinity stones in related items
+    // handleProductChange('40566');
+    // handleProductChange('40649');
+    handleProductChange('40345'); // contains some items with no image and no price - also 3 from infinity stones
     // handleProductChange('41197');
     // handleProductChange('40480');
-    // handleProductChange('40345'); // contains some items with no image and no price
-    // handleProductChange('40344');
-    handleProductChange('41197');
-    // handleProductChange('40345'); //breaks it - contains some items with no image and no price
     // handleProductChange('40344');
   }, []);
 
@@ -41,6 +42,8 @@ const App = () => {
           setCurrentRatings(res.data.ratings); //sets ratings for current product(definitely needed)
         })
         .catch(err => console.error(err));
+
+      setProductName(product.name);
     }
 
   }, [product]);
@@ -53,7 +56,6 @@ const App = () => {
           setCurrentStyle(style);
           setCurrentOutfitStyle(style);
           defaultStyle = true;
-          // console.log('style line 49', style);
         }
       });
       if (!defaultStyle) {
@@ -93,7 +95,7 @@ const App = () => {
       windowOutfits = JSON.parse(window.localStorage.getItem('outfits'));
       setAllOutfits(windowOutfits); //sets allOutfits for use later
       for (var i = 0; i < windowOutfits.length; i++) {
-        outfitIDs.push(windowOutfits[i].id); //to get the i'd to be sure there are no duplicates
+        outfitIDs.push(windowOutfits[i].id); //to get the id to be sure there are no duplicates
       }
     } else {
       windowOutfits = [];
@@ -120,6 +122,7 @@ const App = () => {
     currentProduct.currentPhotoURL = currentOutfitStyle.photos[0].url;
     setCurrentOutfit(currentProduct);
   };
+
   const removeOutfit = (productID) => {
     var [...copyOfFits] = allOutfits;
     copyOfFits.forEach((windowFit, index) => {
@@ -134,10 +137,10 @@ const App = () => {
   return (
     <div>
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName}/>
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-      <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
       <QnA product={product} />
+      <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
     </div>
   );
 };
