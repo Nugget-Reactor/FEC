@@ -57,7 +57,6 @@ export default AnswerEntry;
 const AnswerListHeader = styled.div`
   display: block;
   padding: 5px;
-  font-size: 1rem;
   overflow-wrap: anywhere;
 `;
 
@@ -66,7 +65,6 @@ const AnswerListFooter = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: .5rem .5rem 1.2rem 1.75rem;
-  font-size: .9rem;
 `;
 
 const AnswerListDiv = styled.div`
@@ -83,11 +81,9 @@ const PhotoContainer = styled.div`
 `;
 
 const AddAnswer = styled.a`
-  font-size: .9rem;
 `;
 
 const ReportAnswer = styled.a`
-  font-size: .9rem;
 `;
 
 const Image = styled.img`

@@ -16,11 +16,12 @@ const OverviewApp = ({ product, productStyles, currentStyle, handleStyleChange, 
 
   return (
     <div className="overview">
-      <ImageGallery product={product} productStyles={productStyles} currentStyle={currentStyle} handleExpansion={handleExpansion} expanded={expanded}/>
-      {!expanded &&
-       <ProductInfo product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
-      }
-      <div className='break'></div>
+      <div className="gallery-container">
+        <ImageGallery product={product} productStyles={productStyles} currentStyle={currentStyle} handleExpansion={handleExpansion} expanded={expanded}/>
+        {!expanded &&
+        <ProductInfo product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
+        }
+      </div>
       <ProductDescription product={product}/>
     </div>
   );

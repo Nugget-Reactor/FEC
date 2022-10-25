@@ -78,17 +78,14 @@ const QuestionEntryHeader = styled.div`
 const QuestionHeading = styled.div`
   display: inline-flex;
   padding: 10px;
-  font-size: 1.25rem;
 `;
 
 const QuestionSubHeading = styled.div`
   display: inline-flex;
   padding: 5px;
-  font-size: .9rem;
 `;
 
 const ReportQuestion = styled.a`
-  font-size: .9rem;
 `;
 
 const AnswerBody = styled.div`
@@ -97,11 +94,9 @@ const AnswerBody = styled.div`
 `;
 
 const HelpfulQ = styled.a`
-  font-size: .9rem;
 `;
 
 const AddAnswer = styled.a`
-  font-size: .9rem;
   padding: 5px;
   right: 0;
 `;
