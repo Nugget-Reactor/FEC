@@ -73,9 +73,13 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
 export default RelatedItems;
 
 const RelatedItemsLayout = styled.div`
-`
+// padding-top: 30px;
+`;
+
 const Heading = styled.div`
   margin: 0;
+  padding-top: 20px;
+
 `;
 
 const Carousel = styled.div`
@@ -83,4 +87,5 @@ const Carousel = styled.div`
   max-height: 100%;
   word-wrap: normal;
   overflow: hidden;
+  padding-bottom: 30px;
 `;

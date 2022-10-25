@@ -155,7 +155,7 @@ const GlobalStyle = createGlobalStyle`
     background: linear-gradient(#FFAEBC, #A0E7E5 );
     margin: 0;
   }
-`
+`;
 
 const AppStyling = styled.div`
   font-family: 'Work Sans', sans-serif;
@@ -170,7 +170,7 @@ const AppStyling = styled.div`
   > * {
     padding: 0 40px;
   }
-`
+`;
 const StickyHeader = styled.div`
   position:sticky;
   display: flex;
@@ -180,7 +180,7 @@ const StickyHeader = styled.div`
   height: 75px;
   top: 0;
   z-index: 50;
-`
+`;
 
 export default App;
 
