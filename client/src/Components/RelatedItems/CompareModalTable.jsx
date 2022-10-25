@@ -40,7 +40,7 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
         tableArray.push(rowArray);
       }
     }
-    console.log(tableArray);
+    // console.log(tableArray);
     setTableData(tableArray);
   }, []);
 

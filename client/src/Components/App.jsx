@@ -105,8 +105,8 @@ const App = () => {
       windowOutfits.push(currentOutfit);
       setAllOutfits(windowOutfits); //adds item to outfit Array
       window.localStorage.setItem('outfits', JSON.stringify(windowOutfits));
-    } else {
-      console.log('not added!');
+    // } else {
+    //   console.log('not added!');
     }
   }, [currentOutfit]);
 
