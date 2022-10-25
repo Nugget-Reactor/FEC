@@ -109,8 +109,8 @@ const App = () => {
       windowOutfits.push(currentOutfit);
       setAllOutfits(windowOutfits); //adds item to outfit Array
       window.localStorage.setItem('outfits', JSON.stringify(windowOutfits));
-    // } else {
-    //   console.log('not added!');
+      // } else {
+      //   console.log('not added!');
     }
   }, [currentOutfit]);
 
@@ -140,12 +140,11 @@ const App = () => {
 
   return (
     <div>
-      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef}/>
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
+      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName} />
+      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit} />
       <QnA product={product} />
-      <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
+      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
     </div>
   );
 };
