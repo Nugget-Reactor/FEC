@@ -6,6 +6,10 @@ export const useClickTracker = () => {
   const [time, setTime] = useState('');
   const [widget, setWidget] = useState('');
 
+  useEffect(() => {
+
+  });
+
   const handleClick = (e) => {
     e.preventDefault();
     console.log('clicked', e.target);
