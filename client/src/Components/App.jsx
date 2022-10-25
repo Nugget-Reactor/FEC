@@ -143,9 +143,8 @@ const App = () => {
       <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef}/>
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
       <QnA product={product} />
-      <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
+      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
     </div>
   );
 };
