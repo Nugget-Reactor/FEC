@@ -20,21 +20,24 @@ const RatingFilter = ({rating, starValue, totalCount, modifyFilters}) => {
 }
 const SelectableDiv = styled.div`
   cursor: pointer;
-
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 0.5fr);
+  align-items: center;
+  justify-items: center;
   &:hover {
-    background-color: pink;
+    background-color: #ffebee;
   }
 `
 const RatingSpan = styled.span`
   text-decoration: underline;
+  justify-self:start;
 `
 const RatingBar = styled.div`
-  width: 150px;
+  width: 100%;
   height: 10px;
   background-color: lightgrey;
   display: inline-block;
   position: relative;
-  margin: 0 10px;
 
   &::after{
     content: 'x';
