@@ -98,15 +98,11 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
   }
   return (
     <Background>
-
-
     <Layout ref={reviewRef}>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
-        <div style={{width: "500px"}}>
-          <Breakdown currentMeta={currentMeta} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
-        </div>
-        <div>
+        <Breakdown currentMeta={currentMeta} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
+        <ReviewContainer>
           <ReviewTitle data-testid="reviewTitle">{filteredTotalCount || totalCount} reviews, sorted by
             <Dropdown value={sort} onChange={handleSort}>
               <option value='relevant'>relevance</option>
@@ -118,7 +114,7 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
 
           {reviews.length > currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
           <BigButton data-testid="addReviewButton" onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
-        </div>
+        </ReviewContainer>
       </ColumnContainer>
       {showModal
       ? <Modal closeModal={closeModal}>
@@ -131,10 +127,13 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
 }
 
 const Background = styled.div`
-  padding: 30px;
-  background: linear-gradient(to left, #FFAEBC, #ffebee)
+  background: linear-gradient(to left, #FFAEBC, #ffebee);
+
 `
 const Layout = styled.div`
+  margin: 30px 0;
+  padding: 1px 30px;
+  background-color: #fff;
 `
 
 const BigButton = styled.button`
@@ -150,6 +149,9 @@ const ColumnContainer = styled.div`
 
   justify-content: space-around;
   gap: 50px;
+`
+const ReviewContainer = styled.div`
+  width: 80%;
 `
 const ReviewTitle = styled.h5`
   font-size: 1.25rem;
