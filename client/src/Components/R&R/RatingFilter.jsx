@@ -12,7 +12,9 @@ const RatingFilter = ({rating, starValue, totalCount, modifyFilters}) => {
 
   return(
     <SelectableDiv onClick={()=>modifyFilters(starValue)}>
-      <RatingSpan>{starValue} stars</RatingSpan><RatingBar fill={getPercentage(starValue)} />
+      <RatingSpan>{starValue} stars</RatingSpan>
+      <RatingBar fill={getPercentage(starValue)} />
+      <span>{rating}</span>
     </SelectableDiv>
   );
 }
@@ -32,7 +34,7 @@ const RatingBar = styled.div`
   background-color: lightgrey;
   display: inline-block;
   position: relative;
-  margin-left: 10px;
+  margin: 0 10px;
 
   &::after{
     content: 'x';
