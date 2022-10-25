@@ -30,9 +30,6 @@ const App = () => {
     // handleProductChange('41197');
     // handleProductChange('40480');
     // handleProductChange('40344');
-    // handleProductChange('41197');
-    // handleProductChange('40345'); //breaks it - contains some items with no image and no price
-    // handleProductChange('40344');
   }, []);
 
   useEffect(() => {
@@ -158,7 +155,7 @@ const GlobalStyle = createGlobalStyle`
     background: linear-gradient(#FFAEBC, #A0E7E5 );
     margin: 0;
   }
-`
+`;
 
 const AppStyling = styled.div`
   font-family: 'Work Sans', sans-serif;
@@ -172,8 +169,9 @@ const AppStyling = styled.div`
   }
   > * {
     padding: 1px 40px;
+
   }
-`
+`;
 const StickyHeader = styled.div`
   position:sticky;
   display: flex;
@@ -183,15 +181,6 @@ const StickyHeader = styled.div`
   height: 75px;
   top: 0;
   z-index: 5;
-`
+`;
 
 export default App;
-
-/*
-mint green = #C2FFDE
-lavender blue = #DED6FF
-
-
-
-
-*/

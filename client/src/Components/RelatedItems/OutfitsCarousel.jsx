@@ -30,6 +30,8 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
       } else {
         setRightButtonVisible(true);
       }
+    } else {
+      setRightButtonVisible(false);
     }
   }, [currentIndex, outfits]);
 
@@ -52,18 +54,18 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   };
 
   return (
-      <OutfitContainer>
-        <OutfitWrapper>
-          <LeftButton isVisible={leftButtonVisible}/>
-          <OutfitContentWrapper>
-            <OutfitContent>
-              <OutfitButtonCard addOutfit={addOutfit} outfits={outfits} />
-              <OutfitsRenderMap />
-            </OutfitContent>
-          </OutfitContentWrapper>
-          <RightButton isVisible={RightButtonVisible} />
-        </OutfitWrapper>
-      </OutfitContainer>
+    <OutfitContainer>
+      <OutfitWrapper>
+        <LeftButton isVisible={leftButtonVisible}/>
+        <OutfitContentWrapper>
+          <OutfitContent>
+            <OutfitButtonCard addOutfit={addOutfit} outfits={outfits} />
+            <OutfitsRenderMap />
+          </OutfitContent>
+        </OutfitContentWrapper>
+        <RightButton isVisible={RightButtonVisible} />
+      </OutfitWrapper>
+    </OutfitContainer>
   );
 };
 
