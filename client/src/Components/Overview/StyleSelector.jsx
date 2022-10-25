@@ -10,7 +10,9 @@ const StyleSelector = ({productStyles, handleStyleChange, currentStyle}) => {
   return (
     <div>
       {currentStyle &&
-      <p>{'Style\>'} {currentStyle.name}</p>
+      <span style={{fontWeight: 'bold'}}>{'Style\>'}
+        &nbsp;<span style={{fontWeight: 'normal'}}>{currentStyle.name}</span>
+      </span>
       }
       <div className='styles-container'>
         {productStyles && productStyles.map((style, index) => {
@@ -24,3 +26,4 @@ const StyleSelector = ({productStyles, handleStyleChange, currentStyle}) => {
 };
 
 export default StyleSelector;
+{/* <p>{'Style\>'} {currentStyle.name}</p> */}
