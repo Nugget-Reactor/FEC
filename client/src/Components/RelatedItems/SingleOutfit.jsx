@@ -24,7 +24,7 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
     if (typeof currentPhotoURL === 'string') {
       return <DefaultImage src={currentPhotoURL} onClick={(event) => { handleProductChange(outfit.id); }}/>;
     } else {
-      return <NoPhotoDiv onClick={(event) => { handleProductChange(outfit.id); }}><NoPhotoH1><div>No Photo</div><div>Found</div></NoPhotoH1></NoPhotoDiv>;
+      return <NoPhotoDiv onClick={(event) => { handleProductChange(outfit.id); }}><NoPhotoH1><div>Photo</div><div>Coming</div><div>Soon!</div></NoPhotoH1></NoPhotoDiv>;
     }
   };
 

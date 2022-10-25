@@ -44,11 +44,11 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   };
 
   let LeftButton = ({isVisible}) => {
-    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}>&lt;</LeftArrow> : null;
+    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
   };
 
   let RightButton = ({isVisible}) => {
-    return RightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-outfit-carousel-button">&gt;</RightArrow> : null;
+    return RightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-outfit-carousel-button"></RightArrow> : null;
   };
 
   return (
@@ -87,7 +87,7 @@ const OutfitContentWrapper = styled.div` //this manages the min size of the caro
   height: 100%;
   width: 100%;
   display: inline-block;
-  min-width: 76vw;
+  max-width: 76vw;
 `;
 
 const OutfitContent = styled.ul`
@@ -118,6 +118,10 @@ const LeftArrow = styled.button`
   transform: translateY(-50%);
   font-size: 1.8em;
   left: .3em;
+  &::after {
+    font-family: FontAwesome;
+    content: "\\f0d9";
+  }
 `;
 
 const RightArrow = styled.button`
@@ -132,4 +136,8 @@ const RightArrow = styled.button`
   transform: translateY(-50%);
   font-size: 1.8em;
   right: .3em;
+  &::after {
+    font-family: FontAwesome;
+    content: "\\f0da";
+  }
 `;
