@@ -7,7 +7,7 @@ import { getAverage, createStars } from '../../Tools/createStars';
 
 const { useState, useEffect } = React;
 
-const ProductInfo = ({ product, productStyles, currentStyle, handleStyleChange }) => {
+const ProductInfo = ({ product, productStyles, currentStyle, handleStyleChange, reviewRef}) => {
   const [productRatings, setProductRatings] = useState({});
 
   useEffect(() => {
@@ -23,15 +23,23 @@ const ProductInfo = ({ product, productStyles, currentStyle, handleStyleChange }
 
   return (
     <div className="product-info-container">
-      <span>{createStars(getAverage(productRatings))} <span>Read all reviews</span></span>
+      <span>{createStars(getAverage(productRatings))}
+        <span style={{cursor: 'pointer'}} onClick={() => reviewRef.current.scrollIntoView({behavior: 'smooth'})}>Read all reviews</span>
+      </span>
       <p className="product-category">{product.category}</p>
       <h1 className="product-name">{product.name}</h1>
       {currentStyle.sale_price !== null ?
-        <p style={{ color: 'red' }}>${currentStyle.sale_price} <span style={{ color: 'black', textDecoration: 'line-through' }}>${currentStyle.original_price}</span></p> :
+        <p style={{ color: 'red' }}>${currentStyle.sale_price}
+          <span style={{ color: 'black', textDecoration: 'line-through' }}>${currentStyle.original_price}</span>
+        </p> :
         <p>${currentStyle.original_price}</p>}
       <StyleSelector productStyles={productStyles} handleStyleChange={handleStyleChange} currentStyle={currentStyle} />
-      <AddCart currentStyle={currentStyle} />
+      <div className='break'></div>
+      <div>
+        <AddCart currentStyle={currentStyle} />
+      </div>
     </div>
+
   );
 };
 

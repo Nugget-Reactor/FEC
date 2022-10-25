@@ -6,7 +6,7 @@ import ModalForm from './ModalForm.jsx';
 import Modal from './Modal.jsx';
 import Breakdown from './Breakdown.jsx';
 
-const Reviews = ({ productID, productName, currentMeta }) => {
+const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
 
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
@@ -97,7 +97,7 @@ const Reviews = ({ productID, productName, currentMeta }) => {
     setForceRerender(!forceRerender);
   }
   return (
-    <Layout>
+    <Layout ref={reviewRef}>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
         <div style={{width: "500px"}}>
