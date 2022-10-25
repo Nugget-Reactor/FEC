@@ -58,32 +58,25 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   };
 
   return (
-    <div id="related-items-panel">
+    <RelatedItemsLayout>
       {showCompareModal ? <CompareModal closeModal={closeModal} productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} /> : null}
       <Heading>
         <h2>Related Products</h2>
       </Heading>
-      <RelatedItemsDiv>
-        <Carousel>
-          <AnyRelatedItems/>
-        </Carousel>
-      </RelatedItemsDiv>
-    </div>
+      <Carousel>
+        <AnyRelatedItems/>
+      </Carousel>
+    </RelatedItemsLayout>
   );
 };
 
 export default RelatedItems;
 
+const RelatedItemsLayout = styled.div`
+`
 const Heading = styled.div`
-width: 75%;
-margin: 0 auto;
+  margin: 0;
 `;
-
-const RelatedItemsDiv = styled.div`
-justify-content: space-around;
-display: flex;
-max-height: 100%;
-align-items: stretch;`;
 
 const Carousel = styled.div`
   max-width: 100%;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Reviews from './R&R/Reviews.jsx';
@@ -24,8 +25,8 @@ const App = () => {
     // handleProductChange('40353'); //infinity stones
     // handleProductChange('40351'); //infinity stones in related items
     // handleProductChange('40566');
-    // handleProductChange('40649');
-    handleProductChange('40345'); // contains some items with no image and no price - also 3 from infinity stones
+    // handleProductChange('40649'); //40345
+    handleProductChange('40348'); // contains some items with no image and no price - also 3 from infinity stones
     // handleProductChange('41197');
     // handleProductChange('40480');
     // handleProductChange('40344');
@@ -109,8 +110,8 @@ const App = () => {
       windowOutfits.push(currentOutfit);
       setAllOutfits(windowOutfits); //adds item to outfit Array
       window.localStorage.setItem('outfits', JSON.stringify(windowOutfits));
-    } else {
-      console.log('not added!');
+      // } else {
+      //   console.log('not added!');
     }
   }, [currentOutfit]);
 
@@ -139,14 +140,58 @@ const App = () => {
   };
 
   return (
-    <div>
-      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef}/>
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
-      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
+    <AppStyling>
+      <GlobalStyle />
+      <StickyHeader><h1>Gnicchi</h1></StickyHeader>
+      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName} />
+      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit} />
       <QnA product={product} />
       <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
-    </div>
+    </AppStyling>
+
   );
 };
 
+const GlobalStyle = createGlobalStyle`
+  body{
+    background: linear-gradient(#FFAEBC, #A0E7E5 );
+    margin: 0;
+  }
+`
+
+const AppStyling = styled.div`
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.25rem;
+  word-break: break-word;
+  margin: 0 13%;
+  background: #fff;
+
+  & h1 {
+    letter-spacing: -1px;
+  }
+  > * {
+    padding: 0 40px;
+  }
+`
+const StickyHeader = styled.div`
+  position:sticky;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(to bottom, #fdf5e7, #FBE7C6);
+  height: 75px;
+  top: 0;
+  z-index: 50;
+`
+
 export default App;
+
+/*
+mint green = #C2FFDE
+lavender blue = #DED6FF
+
+
+
+
+*/

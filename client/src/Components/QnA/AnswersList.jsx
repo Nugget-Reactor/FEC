@@ -4,12 +4,9 @@ import axios from 'axios';
 
 import AnswerEntry from './AnswerEntry.jsx';
 
-const AnswersList = ({ questionID }) => {
+const AnswersList = ({ questionID, answersList, setAnswersList }) => {
 
-  const [answersList, setAnswersList] = useState([]);
   const [showLoadMore, setShowLoadMore] = useState(false);
-
-  // console.log('passed down answersObj', answersObj);
 
   useEffect(() => {
     axios.get(`/qa/questions/${questionID}/answers`)
@@ -20,7 +17,9 @@ const AnswersList = ({ questionID }) => {
       .catch(err => console.log('Error getting answers list', err));
   }, [questionID, showLoadMore]);
 
-  // console.log(answersList);
+  useEffect(() => {
+    setAnswersList(answersList);
+  }, [answersList]);
 
   useEffect(() => {
     setShowLoadMore(!showLoadMore);
