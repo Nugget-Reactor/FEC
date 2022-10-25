@@ -6,31 +6,24 @@ import OutfitsCarousel from './OutfitsCarousel.jsx';
 const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => { //it will need handleclick to change page to that item
 
   return (
-    <div id="outfits-panel">
+    <OutfitsContainer>
       <Heading>
         <h2>Your Outfit</h2>
       </Heading>
-      <OutfitsDiv>
-        <Carousel>
-          <OutfitsCarousel handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-        </Carousel>
-      </OutfitsDiv>
-    </div>
+      <Carousel>
+        <OutfitsCarousel handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
+      </Carousel>
+    </OutfitsContainer>
   );
 };
 
 export default Outfits;
 
+const OutfitsContainer = styled.div`
+  background-color: #B4F8C8;
+`
 const Heading = styled.div`
-width: 67%;
-margin: 0 auto;
-`;
-
-const OutfitsDiv = styled.div`
-justify-content: space-around;
-display: flex;
-max-height: 100%;
-align-items: stretch;
+margin: 0;
 `;
 
 const Carousel = styled.div`
