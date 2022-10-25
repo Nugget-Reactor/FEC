@@ -79,7 +79,6 @@ const RIContentWrapper = styled.div`  //this manages the min size of the carouse
   height: 100%;
   display: inline-block;
   max-width: 76vw;
-
 `;
 
 const RIContent = styled.ul`
@@ -114,13 +113,6 @@ const LeftArrow = styled.button`
     content: "\\f0d9";
   }
 `;
-
-// z-index: 1;
-// padding-top: 5px;
-// padding-bottom: 5px;
-// font-size: 1.8em;
-// background: white;
-
 
 const RightArrow = styled.button`
 cursor: pointer;
