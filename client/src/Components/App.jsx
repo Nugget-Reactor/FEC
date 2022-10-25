@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Reviews from './R&R/Reviews.jsx';
@@ -18,6 +18,7 @@ const App = () => {
   const [currentRatings, setCurrentRatings] = useState({});
   const [currentOutfit, setCurrentOutfit] = useState({});
   const [allOutfits, setAllOutfits] = useState([]);
+  const reviewRef = useRef(null);
 
   useEffect(() => {
     // handleProductChange('40353'); //infinity stones
@@ -27,6 +28,9 @@ const App = () => {
     handleProductChange('40348'); // contains some items with no image and no price - also 3 from infinity stones
     // handleProductChange('41197');
     // handleProductChange('40480');
+    // handleProductChange('40344');
+    // handleProductChange('41197');
+    // handleProductChange('40345'); //breaks it - contains some items with no image and no price
     // handleProductChange('40344');
   }, []);
 
@@ -136,9 +140,10 @@ const App = () => {
 
   return (
     <div>
-      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName}/>
+      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef}/>
+      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
+      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
       <QnA product={product} />
       <Reviews productID={product.id} productName={product.name} currentMeta={currentMeta} />
     </div>

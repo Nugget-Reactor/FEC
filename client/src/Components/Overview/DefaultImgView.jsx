@@ -1,21 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import {AiOutlineArrowRight, AiOutlineArrowLeft} from 'react-icons/ai';
+import {AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineExpand} from 'react-icons/ai';
 import './overview.css';
 
 const {useState, useEffect} = React;
 
-const DefaultImageView = ({currentStyle, handleExpansion}) => {
-  const [slideNumber, setSlideNumber] = useState(0);
+const DefaultImageView = ({currentStyle, handleExpansion, slideNumber, nextSlide, prevSlide, setSlideNumber}) => {
+  // const [slideNumber, setSlideNumber] = useState(0);
 
-  const nextSlide = () => {
-    setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
-  };
+  // const nextSlide = () => {
+  //   setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
+  // };
 
-  const prevSlide = () => {
-    setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
-  };
+  // const prevSlide = () => {
+  //   setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
+  // };
 
   return (
     <div className='gallery'>
@@ -29,18 +29,28 @@ const DefaultImageView = ({currentStyle, handleExpansion}) => {
         {
           currentStyle.photos && currentStyle.photos.map((item, index) => {
             return (
-              <div className="thumbnail-container" key={index}>
-                <img onClick={() => setSlideNumber(index)} className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'} key={index} src={item.url}></img>
+              <div className="thumbnail-container"
+                key={index}>
+                <img onClick={() => setSlideNumber(index)}
+                  className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'}
+                  key={index}
+                  src={item.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg': item.url}>
+                </img>
               </div>
             );
           })
         }
       </div>
+      <div><AiOutlineExpand className="expand-button" onClick={() => handleExpansion()}/></div>
       {
         currentStyle.photos && currentStyle.photos.map((slide, index) => {
           return (
-            <div className={index === slideNumber ? 'slide active' : 'slide'} key={index}>
-              {index === slideNumber && (<img key={index} onClick={() => handleExpansion()} className='image' src={slide.url} alt=''/>)}
+            <div key={index}>
+              {index === slideNumber &&
+              (<img key={index}
+                onClick={() => handleExpansion()}
+                className='image'
+                src={slide.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' : slide.url} alt=''/>)}
             </div>
           );
         })
@@ -53,3 +63,4 @@ const DefaultImageView = ({currentStyle, handleExpansion}) => {
 export default DefaultImageView;
 
 
+// className={index === slideNumber ? 'slide active' : 'slide'}

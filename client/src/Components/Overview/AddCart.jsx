@@ -33,12 +33,12 @@ const AddCart = ({ currentStyle }) => {
   const addToCart = () => {
     if (currentSku.sku_id && currentQuantity > 0) {
       axios.post('/cart', { sku_id: currentSku.sku_id });
+    } else {
+      setMessage(true);
     }
   };
 
 
-  // console.log(currentSku);
-  // console.log(currentQuantity);
   return (
     <div className="selectors-container">
       <select className="size-selector"
@@ -51,11 +51,14 @@ const AddCart = ({ currentStyle }) => {
       <select className="quantity-selector"
         onChange={(e) => setCurrentQuantity(e.target.value)}>
         <option defaultValue="none">-</option>
-        {(itterate.slice(1, currentSku.quantity)).map((number, index) => {
+        {(itterate.slice(0, currentSku.quantity)).map((number, index) => {
           return <option value={number} key={index}>{number}</option>;
         })}
       </select>
-      <button type="submit" onClick={() => addToCart()}>Add To Cart</button>
+      <div>
+        <button className='add-cart-button'type="submit" onClick={() => addToCart()}>Add To Cart</button>
+      </div>
+
     </div>
   );
 };
