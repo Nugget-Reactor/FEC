@@ -32,7 +32,7 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
   }
 
   return(
-    <div>
+    <BreakdownContainer>
       <div>
         {avgRating
         ? <div>
@@ -58,10 +58,12 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
         {avgRating ? `${getRecommendedRate()}% of reviews recommend this product` : null}
       </div>
       <Characteristics chars={currentMeta.characteristics} />
-    </div>
+    </BreakdownContainer>
   );
 }
 
+const BreakdownContainer = styled.div`
+`
 const BoldText = styled.span`
   font-size: 2rem;
   font-weight: 600;

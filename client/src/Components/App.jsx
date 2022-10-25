@@ -171,7 +171,7 @@ const AppStyling = styled.div`
     letter-spacing: -1px;
   }
   > * {
-    padding: 0 40px;
+    padding: 1px 40px;
   }
 `
 const StickyHeader = styled.div`
@@ -182,7 +182,7 @@ const StickyHeader = styled.div`
   background: linear-gradient(to bottom, #fdf5e7, #FBE7C6);
   height: 75px;
   top: 0;
-  z-index: 50;
+  z-index: 5;
 `
 
 export default App;
