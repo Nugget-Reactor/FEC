@@ -4,10 +4,10 @@ module.exports = {
     '\\.(css|less|scss)$': '<rootDir>/client/src/spec/styleMock.js',
   },
   testEnvironment: 'jsdom',
-  // verbose: true,
-  // moduleFileExtensions: ["js", "jsx"],
-  // moduleDirectories: ["node_modules", "client/dist/src"],
-  // transform: {
-  //   "^.+\\.(js|jsx)$": "babel-jest",
-  // },
+  verbose: true,
+  moduleFileExtensions: ["js", "jsx"],
+  moduleDirectories: ["node_modules", "client/dist/src"],
+  transform: {
+    "^.+\\.(js|jsx)$": "babel-jest",
+  }
 };
