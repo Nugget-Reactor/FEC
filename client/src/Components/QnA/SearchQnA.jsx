@@ -3,10 +3,6 @@ import styled from 'styled-components';
 
 const SearchQnA = ({ query, setQuery }) => {
 
-
-
-  // console.log(query);
-
   return (
     <SearchContainer>
       <Input

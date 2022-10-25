@@ -52,7 +52,6 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   };
 
   return (
-    <div>
       <OutfitContainer>
         <OutfitWrapper>
           <LeftButton isVisible={leftButtonVisible}/>
@@ -65,7 +64,6 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
           <RightButton isVisible={RightButtonVisible} />
         </OutfitWrapper>
       </OutfitContainer>
-    </div>
   );
 };
 
@@ -103,7 +101,7 @@ const OutfitContent = styled.ul`
   min-height: 80%;
   min-width: 80%;
   border-radius: 10px;
-
+  background-color: #fff;
 `;
 
 const LeftArrow = styled.button`

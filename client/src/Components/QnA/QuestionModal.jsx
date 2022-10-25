@@ -37,7 +37,6 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
     qObj.name = nicknameRef.current.value;
     qObj.email = emailRef.current.value;
     qObj.product_id = productID;
-    // console.log('handleSubmit question object', qObj);
     if (validateForm()) {
       axios.post(`/qa/questions?product_id=${productID}`, qObj)
         .then(results => {
