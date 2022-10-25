@@ -52,7 +52,7 @@ const QuestionListBody = styled.div`
   flex-direction: column;
   overflow: auto;
   max-width: 70vw;
-  max-height: 80vh;
+  max-height: 70vh;
 `;
 
 const QuestionListFooter = styled.div`

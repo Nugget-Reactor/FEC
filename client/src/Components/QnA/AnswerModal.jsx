@@ -231,10 +231,12 @@ const FormFooter = styled.div`
 
 const AnswerInput = styled.input`
   margin: 5px;
+  font-size: 1em;
 `;
 
 const AnswerField = styled.textarea`
   margin: 5px;
+  font-size: 1em;
 `;
 
 const AnswerLabel = styled.label`
@@ -243,9 +245,11 @@ const AnswerLabel = styled.label`
 `;
 
 const AnswerFormSubmit = styled.button`
+  font-size: 1em;
 `;
 
 const AnswerFormPhotos = styled.button`
+  font-size: 1em;
 `;
 
 const PhotosList = styled.ul`
@@ -263,19 +267,22 @@ const PhotoImg = styled.img`
 const AnswerHeading4 = styled.h4`
   display: block;
   margin: 5px;
+  font-size: 1.25em;
 `;
 
 const AnswerHeading5 = styled.h5`
   display: inline-block;
   margin: 5px;
+  font-size: 1.1em;
 `;
 
 const AnswerText = styled.span`
   margin: 5px;
-  font-size: 1rem;
   font-style: italic;
+  font-size: .8em;
 `;
 
 const NoSelectedFiles = styled.p`
   margin: 5px;
+  font-size: .9em;
 `;

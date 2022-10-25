@@ -42,16 +42,18 @@ const QuestionEntry = ({ entry, name, query }) => {
       <QuestionEntryContainer>
         <QuestionEntryHeader>
           <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
-          <QuestionSubHeading>Helpful?</QuestionSubHeading>
-          {helpfulClicked
-            ? <HelpfulQ href="" onClick={e => e.preventDefault()}>Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
-            : <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
-          <QuestionSubHeading>|</QuestionSubHeading>
-          {reportClicked
-            ? <ReportQuestion href="" onClick={e => e.preventDefault()}>Reported</ReportQuestion>
-            : <ReportQuestion href="" onClick={handleReportQ}>Report Question</ReportQuestion>}
-          <QuestionSubHeading>|</QuestionSubHeading>
-          <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
+          <RightFloat>
+            <QuestionSubHeading>Helpful?</QuestionSubHeading>
+            {helpfulClicked
+              ? <HelpfulQ href="" onClick={e => e.preventDefault()}>Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
+              : <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
+            <QuestionSubHeading>|</QuestionSubHeading>
+            {reportClicked
+              ? <ReportQuestion href="" onClick={e => e.preventDefault()}>Reported</ReportQuestion>
+              : <ReportQuestion href="" onClick={handleReportQ}>Report Question</ReportQuestion>}
+            <QuestionSubHeading>|</QuestionSubHeading>
+            <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
+          </RightFloat>
         </QuestionEntryHeader>
         <AnswerBody>
           {Object.keys(entry.answers).length !== 0 && <AnswersList questionID={entry.question_id} answersList={answersList} setAnswersList={setAnswersList}></AnswersList>}
@@ -73,19 +75,30 @@ const QuestionEntryContainer = styled.div`
 const QuestionEntryHeader = styled.div`
   display: inline-block;
   padding: 5px;
+
 `;
 
 const QuestionHeading = styled.div`
   display: inline-flex;
   padding: 10px;
+  font-size: 1.25em;
 `;
 
 const QuestionSubHeading = styled.div`
   display: inline-flex;
   padding: 5px;
+  font-size: .8em;
+`;
+
+const RightFloat = styled.div`
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ReportQuestion = styled.a`
+  font-size: .8em;
 `;
 
 const AnswerBody = styled.div`
@@ -94,9 +107,11 @@ const AnswerBody = styled.div`
 `;
 
 const HelpfulQ = styled.a`
+  font-size: .8em;
 `;
 
 const AddAnswer = styled.a`
   padding: 5px;
   right: 0;
+  font-size: .8em;
 `;
