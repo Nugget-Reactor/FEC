@@ -3,46 +3,85 @@ import styled from 'styled-components';
 import { createStars } from '../../Tools/createStars';
 import axios from 'axios';
 import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
+import CharacteristicInput from './CharacteristicInput.jsx';
 
-const ModalForm = ({ productID, productName }) => {
+const ModalForm = ({ productID, productName, characteristicModel, closeModal, rerender }) => {
 
   const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(false);
   const summaryRef = useRef();
-  const bodyRef = useRef();
+  const [bodyText, setBodyText] = useState('');
   const nameRef = useRef();
   const emailRef = useRef();
   const photoRef = useRef();
+  const [tempPhoto, setTempPhoto] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
-
   useEffect(() => {
     photoRef.current = createCloudinaryWidget((url) => {
-      setPhotos([...photos, url]);
+      setTempPhoto(url);
     })
   }, []);
 
+  useEffect(() => {
+    if(tempPhoto) {
+      setPhotos([...photos, tempPhoto]);
+    }
+    if(photos.length === 4){
+      photoRef.current.close();
+    }
+  }, [tempPhoto]);
+
+  const deletePhoto = (idx) => {
+    let newPhotos = [...photos];
+    newPhotos.splice(idx, 1);
+    setPhotos(newPhotos);
+  }
   const createStarInput = () => {
     let meaning = '';
-    if(rating === 1) {
+    if(rating === '1') {
       meaning = 'Poor';
-    } else if (rating === 2) {
+    } else if (rating === '2') {
       meaning = 'Fair';
-    } else if (rating === 3) {
+    } else if (rating === '3') {
       meaning = 'Average';
-    } else if (rating === 4) {
+    } else if (rating === '4') {
       meaning = 'Good';
-    } else if (rating === 5) {
+    } else if (rating === '5') {
       meaning = 'Great';
     }
 
     let stars = createStars(rating).map((star, i) =>
-    <StarButton type="button" key={i} onClick={() => {
-      setRating(i+1)
-    }}>{star}</StarButton>);
+      <StarLabel key={i}>
+        <StarRadio type="radio" name="rating" value={i+1} onClick={()=>setRating(i+1)} required />
+        {star}
+      </StarLabel>
+    );
 
     stars.push(<Span key="6">{meaning}</Span>);
     return stars;
+  }
+
+  const createCharacteristicInput = () => {
+    let result = [];
+    for(let char in characteristicModel) {
+      result.push(<CharacteristicInput name={char} charID={characteristicModel[char].id} key={char} onChange={handleCharChange}/>)
+    }
+    return result;
+  }
+  const handleCharChange = (name, value) => {
+    let newChars = {...characteristics};
+    newChars[name] = value;
+    setCharacteristics(newChars);
+  }
+  const countBody = () => {
+    if(bodyText.length < 50) {
+      return 'Minimum required characters left: ' + (50 - bodyText.length);
+    } else if(bodyText.length === 1000) {
+      return 'Maximum characters reached';
+    } else {
+      return 'Minimum reached';
+    }
   }
 
   const handleSubmit = (e) => {
@@ -52,12 +91,16 @@ const ModalForm = ({ productID, productName }) => {
       product_id: productID,
       rating,
       summary: summaryRef.current.value,
-      body: bodyRef.current.value,
+      body: bodyText,
       recommend,
       name: nameRef.current.value,
       email: emailRef.current.value,
       photos,
       characteristics: {},
+    })
+    .then(res=> {
+      rerender();
+      closeModal();
     })
     .catch(err=>console.error(err));
   }
@@ -77,17 +120,17 @@ const ModalForm = ({ productID, productName }) => {
         <div>
           Do you recommend this product? <Required />
           <div>
-            <input onClick={()=>setRecommend(true)} id="yes" type="radio" name="recommend" value="yes"/>
+            <input onClick={()=>setRecommend(true)} id="yes" type="radio" name="recommend" value="yes" required/>
             <label htmlFor="yes">Yes</label>
           </div>
           <div>
-            <input onClick={()=>setRecommend(false)} id="no" type="radio" name="recommend" value="no"/>
+            <input onClick={()=>setRecommend(false)} id="no" type="radio" name="recommend" value="no" required/>
             <label htmlFor="no">No</label>
           </div>
         </div>
         <div>
           Characteristics <Required />
-
+          {createCharacteristicInput()}
         </div>
         <InputLabel>
           Add a headline
@@ -95,7 +138,8 @@ const ModalForm = ({ productID, productName }) => {
         </InputLabel>
         <InputLabel>
           <div>Add a written review <Required /></div>
-          <TextAreaInput required ref={bodyRef} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" ></TextAreaInput>
+          <TextAreaInput required value={bodyText} onChange={(e)=>setBodyText(e.target.value)} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" ></TextAreaInput>
+          <p>{countBody()}</p>
         </InputLabel>
         <InputLabel>
           <div>What is your nickname? <Required /></div>
@@ -107,11 +151,21 @@ const ModalForm = ({ productID, productName }) => {
           <TextInput required ref={emailRef} type="email" maxLength="60" placeholder="Example: jackson11@email.com" ></TextInput>
           <p>For authentication reasons, you will not be emailed</p>
         </InputLabel>
-        <InputLabel>
-          Add a photo URL
-          <button onClick={()=>photoRef.current.open()}></button>
-          {photos.length ? photos.map((photo, i)=><Thumbnail imgLink={photo} key={i}></Thumbnail>) : null}
-        </InputLabel>
+        <div>
+          Add a photo
+          <ThumbnailContainer>
+            {photos.length
+            ? photos.map((photo, i)=>
+            <div key={i} style={{position: "relative"}}>
+              <Thumbnail imgLink={photo} key={i}></Thumbnail>
+              <DeleteButton type="button" onClick={()=>deletePhoto(i)}>x</DeleteButton>
+            </div>)
+            : null}
+            {photos.length < 5
+            ? <AddImageButton type="button" onClick={()=>photoRef.current.open()}>+</AddImageButton>
+            :null}
+          </ThumbnailContainer>
+        </div>
       </ModalContent>
       <ModalFooter>
         <SubmitButton type="submit">Submit</SubmitButton>
@@ -125,8 +179,9 @@ const Form = styled.form`
   border-radius: 5px;
   box-shadow: rgba(112,128,175,0.2)0px 16px 24px 0px;
   width: 600px;
+  max-height: 90vh;
   background: white;
-
+  overflow:auto;
 `
 
 const ModalHeader = styled.div`
@@ -179,11 +234,9 @@ const TextAreaInput = styled.textarea`
   padding: 0.5rem;
   height: 200px;
 `
-const PhotoInput = styled.input`
-
-`
-const PhotoSubmit = styled.button`
-
+const ThumbnailContainer = styled.div`
+  display:flex;
+  gap: 10px;
 `
 const Thumbnail = styled.a`
   display: inline-block;
@@ -209,17 +262,43 @@ const Required = styled.span`
   }
 `
 
-const StarButton = styled.button`
-  border:none;
-  background:none;
-  cursor: pointer;
-  font-size: 2rem;
+const StarRadio = styled.input`
+  opacity: 0;
+  width: 1px;
+  position: fixed;
+`
+const StarLabel = styled.label`
+  cursor:pointer;
+  margin: 5px;
+  & *{
+    font-size: 1.5rem;
+  }
+`
+const AddImageButton = styled.button`
+  width: 100px;
+  height: 100px;
+  background: rgba(24, 220, 255,0.5);
+  border: 2px dashed rgba(23, 192, 235,1.0);
+  border-radius: 5px;
+  color: rgba(23, 192, 235,1.0);
+  font-size: 3rem;
 `
 
 const SubmitButton = styled.button`
   cursor: pointer;
   font-size: 1.25rem;
   margin: 5px;
+`
+
+const DeleteButton = styled.button`
+  cursor: pointer;
+  padding: 0 3px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background: lightgrey;
+  position: absolute;
+  top: -3px;
+  left: 93px;
 `
 
 export default ModalForm;

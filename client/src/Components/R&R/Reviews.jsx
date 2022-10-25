@@ -6,11 +6,10 @@ import ModalForm from './ModalForm.jsx';
 import Modal from './Modal.jsx';
 import Breakdown from './Breakdown.jsx';
 
-const Reviews = ({ productID, productName }) => {
+const Reviews = ({ productID, productName, currentMeta }) => {
 
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
-  const [metadata, setMetadata] = useState({});
   const [sort, setSort] = useState('relevant');
   const [currentCount, setCurrentCount] = useState(2);
   const [getCount, setGetCount] = useState(50);
@@ -18,6 +17,7 @@ const Reviews = ({ productID, productName }) => {
   const [totalCount, setTotalCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [filters, setFilters] = useState([]);
+  const [forceRerender, setForceRerender] = useState(false);
 
   //Set initial reviews list
   useEffect(() => {
@@ -28,7 +28,7 @@ const Reviews = ({ productID, productName }) => {
       })
       .catch(err => console.error(err));
     }
-  }, [productID, sort, getCount]);
+  }, [productID, sort, getCount, forceRerender]);
 
   //Set filtered reviews list
   useEffect(() => {
@@ -42,15 +42,8 @@ const Reviews = ({ productID, productName }) => {
     }
   }, [reviews, filters]);
 
-  //Set metadata and reset filters
+  //reset filters
   useEffect(() => {
-    if(productID !== undefined) {
-      axios.get(`/reviews/meta?product_id=${productID}`)
-      .then(res => {
-        setMetadata(res.data);
-      })
-      .catch(err => console.error(err));
-    }
     setFilters([]);
   }, [productID]);
 
@@ -59,19 +52,19 @@ const Reviews = ({ productID, productName }) => {
     let filteredTotal = 0;
 
     filters.forEach((filter) => {
-      filteredTotal += Number(metadata.ratings[filter]);
+      filteredTotal += Number(currentMeta.ratings[filter]);
     })
     setFilteredTotalCount(filteredTotal);
-  }, [metadata, filters]);
+  }, [currentMeta, filters, forceRerender]);
 
   //Set total reviews count
   useEffect(() => {
     let total = 0;
-    for(let count in metadata.ratings) {
-      total += Number(metadata.ratings[count]);
+    for(let count in currentMeta.ratings) {
+      total += Number(currentMeta.ratings[count]);
     }
     setTotalCount(total);
-  }, [metadata]);
+  }, [currentMeta, forceRerender]);
 
   const handleSort = (e) => {
     setSort(e.target.value);
@@ -100,12 +93,15 @@ const Reviews = ({ productID, productName }) => {
   const closeModal = () => {
     setShowModal(false);
   }
+  const rerender = () => {
+    setForceRerender(!forceRerender);
+  }
   return (
     <Layout>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
         <div style={{width: "500px"}}>
-          <Breakdown metadata={metadata} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
+          <Breakdown currentMeta={currentMeta} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
         </div>
         <div>
           <ReviewTitle data-testid="reviewTitle">{filteredTotalCount || totalCount} reviews, sorted by
@@ -121,7 +117,11 @@ const Reviews = ({ productID, productName }) => {
           <BigButton data-testid="addReviewButton" onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
         </div>
       </ColumnContainer>
-      {showModal ? <Modal closeModal={closeModal}><ModalForm productID={productID} productName={productName} /></Modal> : null}
+      {showModal
+      ? <Modal closeModal={closeModal}>
+        <ModalForm productID={productID} productName={productName} characteristicModel={currentMeta.characteristics} closeModal={closeModal} rerender={rerender} />
+      </Modal>
+      : null}
     </Layout>
   );
 }
