@@ -10,6 +10,7 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
+    setCurrCount(0);
     setTotalCount(questionsList.length);
   }, [questionsList]);
 
