@@ -52,10 +52,10 @@ const Tile = ({ review }) => {
       </ReviewBody>
       {review.recommend ? <div><i className="fa-solid fa-check"/> I recommend this product!</div> : null}
       {review.response
-      ? <div>
-        Response from seller
+      ? <SellerResponse>
+        <BoldText>Response from seller:</BoldText>
         <div>{review.response}</div>
-      </div>
+      </SellerResponse>
       : null}
 
       {review.photos.length
@@ -65,7 +65,7 @@ const Tile = ({ review }) => {
       </div> }
       {showImgModal
       ? <Modal closeModal={closeImgModal}>
-        <img src={currentImage} />
+        <ModalImg src={currentImage} />
       </Modal>
       : null}
 
@@ -107,7 +107,19 @@ const ReviewTitle = styled.h5`
 const ReviewBody = styled.p`
   word-break: break-word;
 `
-
+const SellerResponse = styled.div`
+  background-color: lightgrey;
+  padding: 15px;
+  margin 10px 0;
+`
+const BoldText = styled.div`
+  font-weight: 600;
+  margin-bottom: 10px;
+`
+const ModalImg = styled.img`
+  max-width: 70%;
+  max-height: 90%;
+`
 const Thumbnail = styled.a`
   display: inline-block;
   width: 100px;

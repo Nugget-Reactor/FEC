@@ -2,57 +2,59 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const CharacteristicInput = ({ name, charID, onChange }) => {
-  const [descriptions, setDescriptions] = useState({});
+  const [descriptions, setDescriptions] = useState([]);
+  const [choice, setChoice] = useState('None selected');
+
   useEffect(() => {
-    let desc = {};
+    let descs;
     if(name === 'Size') {
-      desc[1] = 'Too Small';
-      desc[5] = 'Too Big';
+      descs = ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'];
     } else if (name === 'Width') {
-      desc[1] = 'Too Narrow';
-      desc[5] = 'Too Wide';
+      descs = ['Too Narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too Wide'];
     } else if (name === 'Comfort') {
-      desc[1] = 'Uncomfortable';
-      desc[5] = 'Perfect';
+      descs = ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'];
     } else if (name === 'Quality') {
-      desc[1] = 'Poor';
-      desc[5] = 'Perfect';
+      descs = ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'];
     } else if (name === 'Length') {
-      desc[1] = 'Short';
-      desc[5] = 'Long';
+      descs = ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'];
     } else if (name === 'Fit') {
-      desc[1] = 'Tight';
-      desc[5] = 'Loose';
+      descs = ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'];
     }
-    setDescriptions(desc);
+    setDescriptions(descs);
   }, [])
+
+  const handleClick = (e) => {
+    onChange(name, e.target.value);
+    setChoice(descriptions[e.target.value - 1]);
+  }
 
   return(
     <div>
       <CharName>{name}</CharName>
+      <Choice>{choice}</Choice>
       <RadioContainer>
-        <LeftDescription>{descriptions[1]}</LeftDescription>
+        <LeftDescription>{descriptions[0]}</LeftDescription>
         <VerticalLabel>
-          <input type="radio" name={name} value={1} onChange={(e)=>onChange(name, e.target.value)}/>
+          <input type="radio" name={name} value={1} onChange={handleClick} required/>
           1
         </VerticalLabel>
         <VerticalLabel>
-          <input type="radio" name={name} value={2} onChange={(e)=>onChange(name, e.target.value)}/>
+          <input type="radio" name={name} value={2} onChange={handleClick} required/>
           2
         </VerticalLabel>
         <VerticalLabel>
-          <input type="radio" name={name} value={3} onChange={(e)=>onChange(name, e.target.value)}/>
+          <input type="radio" name={name} value={3} onChange={handleClick} required/>
           3
         </VerticalLabel>
         <VerticalLabel>
-          <input type="radio" name={name} value={4} onChange={(e)=>onChange(name, e.target.value)}/>
+          <input type="radio" name={name} value={4} onChange={handleClick} required/>
           4
         </VerticalLabel>
         <VerticalLabel>
-          <input type="radio" name={name} value={5} onChange={(e)=>onChange(name, e.target.value)}/>
+          <input type="radio" name={name} value={5} onChange={handleClick} required/>
           5
         </VerticalLabel>
-        <RightDescription>{descriptions[5]}</RightDescription>
+        <RightDescription>{descriptions[4]}</RightDescription>
       </RadioContainer>
     </div>
   );
@@ -62,7 +64,7 @@ const RadioContainer = styled.div`
   display:grid;
   grid-template-columns: 100px repeat(5, 1fr) 100px;
   justify-items:center;
-  margin: 0 5%;
+  margin: 0 5% 25px;
 `
 const VerticalLabel = styled.label`
   display:flex;
@@ -71,12 +73,18 @@ const VerticalLabel = styled.label`
   align-self:end;
 `
 const CharName = styled.h5`
-  margin: 2px 2px;
+  margin: 0 2px;
+`
+const Choice = styled.p`
+  margin: 0 auto;
+  width: fit-content;
 `
 const LeftDescription = styled.p`
   justify-self: end;
+  margin: 0;
 `
 const RightDescription = styled.p`
   justify-self: start;
+  margin: 0;
 `
 export default CharacteristicInput;

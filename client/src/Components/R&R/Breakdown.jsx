@@ -34,7 +34,12 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
   return(
     <div>
       <div>
-        {avgRating ? <span><BoldText>{avgRating}</BoldText> {createStars(avgRating)}</span> : <BoldText>No Reviews Yet</BoldText>}
+        {avgRating
+        ? <div>
+          <div><BoldText>{avgRating}</BoldText> {createStars(avgRating)}</div>
+          <div>{totalCount} total reviews</div>
+        </div>
+        : <BoldText>No Reviews Yet</BoldText>}
       </div>
       <div>
         {filters.length

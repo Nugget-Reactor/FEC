@@ -7,6 +7,7 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
 
   const [totalCount, setTotalCount] = useState(0);
   const [currCount, setCurrCount] = useState(0);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     setTotalCount(questionsList.length);
@@ -21,16 +22,16 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
 
   return (
     <QuestionListContainer>
-      <SearchQnA />
+      <SearchQnA query={query} setQuery={setQuery} />
       <QuestionListBody>
         {currCount < totalCount
           ? questionsList.map((question, index) => {
             if (index < currCount + 2) {
-              return <QuestionEntry entry={question} key={index} name={name} />;
+              return <QuestionEntry entry={question} key={index} name={name} query={query} />;
             }
           })
           : questionsList.map((question, index) => {
-            return <QuestionEntry entry={question} key={index} name={name} />;
+            return <QuestionEntry entry={question} key={index} name={name} query={query} />;
           })}
       </QuestionListBody>
       <QuestionListFooter>
@@ -68,6 +69,7 @@ const AddQButton = styled.button`
   font-weight: 700;
   font-size: 1rem;
   margin: 10px;
+  cursor: pointer;
 `;
 
 const MoreAnsweredButton = styled.button`
@@ -76,4 +78,5 @@ const MoreAnsweredButton = styled.button`
   font-weight: 700;
   font-size: 1rem;
   margin: 10px;
+  cursor: pointer;
 `;

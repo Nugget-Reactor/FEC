@@ -5,12 +5,12 @@ import axios from 'axios';
 import { createCloudinaryWidget } from '../../Tools/cloudWidget.js';
 import CharacteristicInput from './CharacteristicInput.jsx';
 
-const ModalForm = ({ productID, productName, characteristicModel }) => {
+const ModalForm = ({ productID, productName, characteristicModel, closeModal, rerender }) => {
 
   const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(false);
   const summaryRef = useRef();
-  const bodyRef = useRef();
+  const [bodyText, setBodyText] = useState('');
   const nameRef = useRef();
   const emailRef = useRef();
   const photoRef = useRef();
@@ -39,27 +39,29 @@ const ModalForm = ({ productID, productName, characteristicModel }) => {
   }
   const createStarInput = () => {
     let meaning = '';
-    if(rating === 1) {
+    if(rating === '1') {
       meaning = 'Poor';
-    } else if (rating === 2) {
+    } else if (rating === '2') {
       meaning = 'Fair';
-    } else if (rating === 3) {
+    } else if (rating === '3') {
       meaning = 'Average';
-    } else if (rating === 4) {
+    } else if (rating === '4') {
       meaning = 'Good';
-    } else if (rating === 5) {
+    } else if (rating === '5') {
       meaning = 'Great';
     }
 
     let stars = createStars(rating).map((star, i) =>
-    <StarButton type="button" key={i} onClick={() => {
-      setRating(i+1)
-    }}>{star}</StarButton>);
+      <StarLabel key={i}>
+        <StarRadio type="radio" name="rating" value={i+1} onClick={()=>setRating(i+1)} required />
+        {star}
+      </StarLabel>
+    );
 
     stars.push(<Span key="6">{meaning}</Span>);
     return stars;
   }
-  console.log(characteristics)
+
   const createCharacteristicInput = () => {
     let result = [];
     for(let char in characteristicModel) {
@@ -72,6 +74,15 @@ const ModalForm = ({ productID, productName, characteristicModel }) => {
     newChars[name] = value;
     setCharacteristics(newChars);
   }
+  const countBody = () => {
+    if(bodyText.length < 50) {
+      return 'Minimum required characters left: ' + (50 - bodyText.length);
+    } else if(bodyText.length === 1000) {
+      return 'Maximum characters reached';
+    } else {
+      return 'Minimum reached';
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,12 +91,16 @@ const ModalForm = ({ productID, productName, characteristicModel }) => {
       product_id: productID,
       rating,
       summary: summaryRef.current.value,
-      body: bodyRef.current.value,
+      body: bodyText,
       recommend,
       name: nameRef.current.value,
       email: emailRef.current.value,
       photos,
       characteristics: {},
+    })
+    .then(res=> {
+      rerender();
+      closeModal();
     })
     .catch(err=>console.error(err));
   }
@@ -105,11 +120,11 @@ const ModalForm = ({ productID, productName, characteristicModel }) => {
         <div>
           Do you recommend this product? <Required />
           <div>
-            <input onClick={()=>setRecommend(true)} id="yes" type="radio" name="recommend" value="yes"/>
+            <input onClick={()=>setRecommend(true)} id="yes" type="radio" name="recommend" value="yes" required/>
             <label htmlFor="yes">Yes</label>
           </div>
           <div>
-            <input onClick={()=>setRecommend(false)} id="no" type="radio" name="recommend" value="no"/>
+            <input onClick={()=>setRecommend(false)} id="no" type="radio" name="recommend" value="no" required/>
             <label htmlFor="no">No</label>
           </div>
         </div>
@@ -123,7 +138,8 @@ const ModalForm = ({ productID, productName, characteristicModel }) => {
         </InputLabel>
         <InputLabel>
           <div>Add a written review <Required /></div>
-          <TextAreaInput required ref={bodyRef} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" ></TextAreaInput>
+          <TextAreaInput required value={bodyText} onChange={(e)=>setBodyText(e.target.value)} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" ></TextAreaInput>
+          <p>{countBody()}</p>
         </InputLabel>
         <InputLabel>
           <div>What is your nickname? <Required /></div>
@@ -142,11 +158,11 @@ const ModalForm = ({ productID, productName, characteristicModel }) => {
             ? photos.map((photo, i)=>
             <div key={i} style={{position: "relative"}}>
               <Thumbnail imgLink={photo} key={i}></Thumbnail>
-              <DeleteButton onClick={()=>deletePhoto(i)}>x</DeleteButton>
+              <DeleteButton type="button" onClick={()=>deletePhoto(i)}>x</DeleteButton>
             </div>)
             : null}
             {photos.length < 5
-            ? <AddImageButton onClick={()=>photoRef.current.open()}>+</AddImageButton>
+            ? <AddImageButton type="button" onClick={()=>photoRef.current.open()}>+</AddImageButton>
             :null}
           </ThumbnailContainer>
         </div>
@@ -246,11 +262,17 @@ const Required = styled.span`
   }
 `
 
-const StarButton = styled.button`
-  border:none;
-  background:none;
-  cursor: pointer;
-  font-size: 2rem;
+const StarRadio = styled.input`
+  opacity: 0;
+  width: 1px;
+  position: fixed;
+`
+const StarLabel = styled.label`
+  cursor:pointer;
+  margin: 5px;
+  & *{
+    font-size: 1.5rem;
+  }
 `
 const AddImageButton = styled.button`
   width: 100px;

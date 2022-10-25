@@ -17,6 +17,7 @@ const Reviews = ({ productID, productName, currentMeta }) => {
   const [totalCount, setTotalCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [filters, setFilters] = useState([]);
+  const [forceRerender, setForceRerender] = useState(false);
 
   //Set initial reviews list
   useEffect(() => {
@@ -27,7 +28,7 @@ const Reviews = ({ productID, productName, currentMeta }) => {
       })
       .catch(err => console.error(err));
     }
-  }, [productID, sort, getCount]);
+  }, [productID, sort, getCount, forceRerender]);
 
   //Set filtered reviews list
   useEffect(() => {
@@ -54,7 +55,7 @@ const Reviews = ({ productID, productName, currentMeta }) => {
       filteredTotal += Number(currentMeta.ratings[filter]);
     })
     setFilteredTotalCount(filteredTotal);
-  }, [currentMeta, filters]);
+  }, [currentMeta, filters, forceRerender]);
 
   //Set total reviews count
   useEffect(() => {
@@ -63,7 +64,7 @@ const Reviews = ({ productID, productName, currentMeta }) => {
       total += Number(currentMeta.ratings[count]);
     }
     setTotalCount(total);
-  }, [currentMeta]);
+  }, [currentMeta, forceRerender]);
 
   const handleSort = (e) => {
     setSort(e.target.value);
@@ -92,6 +93,9 @@ const Reviews = ({ productID, productName, currentMeta }) => {
   const closeModal = () => {
     setShowModal(false);
   }
+  const rerender = () => {
+    setForceRerender(!forceRerender);
+  }
   return (
     <Layout>
       <h2>Ratings & Reviews</h2>
@@ -115,7 +119,7 @@ const Reviews = ({ productID, productName, currentMeta }) => {
       </ColumnContainer>
       {showModal
       ? <Modal closeModal={closeModal}>
-        <ModalForm productID={productID} productName={productName} characteristicModel={currentMeta.characteristics} />
+        <ModalForm productID={productID} productName={productName} characteristicModel={currentMeta.characteristics} closeModal={closeModal} rerender={rerender} />
       </Modal>
       : null}
     </Layout>

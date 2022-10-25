@@ -41,6 +41,7 @@ const ModalContainer = styled.div`
 `
 const CloseButton = styled.button`
   text-decoration: underline;
+  color: #fff;
   font-size: 2rem;
   border: none;
   background: none;
