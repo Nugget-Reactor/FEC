@@ -1,8 +1,11 @@
 .overview {
+  background: linear-gradient(to right,#beefed, #effbfb);
+}
+.gallery-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  padding: 0;
 }
 
 .break {
