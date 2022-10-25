@@ -73,12 +73,11 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
 export default RelatedItems;
 
 const RelatedItemsLayout = styled.div`
-// padding-top: 30px;
 `;
 
 const Heading = styled.div`
   margin: 0;
-  padding-top: 20px;
+  padding-top: 30px;
 
 `;
 
