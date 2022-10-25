@@ -5,9 +5,9 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   verbose: true,
-  moduleFileExtensions: ["js", "jsx"],
-  moduleDirectories: ["node_modules", "client/dist/src"],
+  moduleFileExtensions: ['js', 'jsx'],
+  moduleDirectories: ['node_modules', 'client/dist/src'],
   transform: {
-    "^.+\\.(js|jsx)$": "babel-jest",
+    '^.+\\.(js|jsx)$': 'babel-jest',
   },
 };
