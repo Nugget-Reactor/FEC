@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import OverviewApp from './Overview/OverviewApp.jsx';
 import Reviews from './R&R/Reviews.jsx';
@@ -17,6 +17,7 @@ const App = () => {
   const [currentRatings, setCurrentRatings] = useState({});
   const [currentOutfit, setCurrentOutfit] = useState({});
   const [allOutfits, setAllOutfits] = useState([]);
+  const reviewRef = useRef(null);
 
   useEffect(() => {
     // handleProductChange('40353'); //infinity stones
@@ -133,10 +134,10 @@ const App = () => {
 
   return (
     <div>
-      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} />
+      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef}/>
       <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} />
       <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit}/>
-      <Reviews productID={product.id} productName={product.name} />
+      <Reviews reviewRef={reviewRef} productID={product.id} productName={product.name} />
       <QnA product={product} />
     </div>
   );

@@ -19,8 +19,9 @@ const ImageMagnifier = ({src, width, height, magnifierHeight = 100, magnifierWid
         style={{ height: height,
           width: width,
           borderRadius: '10px',
-          objectFit: 'cover',
+          objectFit: 'contain',
           marginRight: '50px',
+          cursor: 'zoom-out',
           marginLeft: '20px'}}
         onMouseEnter={(e) => {
           // update image size and turn-on magnifier

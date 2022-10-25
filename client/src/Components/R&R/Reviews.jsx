@@ -6,7 +6,7 @@ import ModalForm from './ModalForm.jsx';
 import Modal from './Modal.jsx';
 import Breakdown from './Breakdown.jsx';
 
-const Reviews = ({ productID, productName }) => {
+const Reviews = ({ productID, productName, reviewRef }) => {
 
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
@@ -101,7 +101,7 @@ const Reviews = ({ productID, productName }) => {
     setShowModal(false);
   }
   return (
-    <Layout>
+    <Layout ref={reviewRef}>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
         <div style={{width: "500px"}}>

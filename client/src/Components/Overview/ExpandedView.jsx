@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import ZoomView from './ZoomView.jsx';
 import ImageMagnifier from './ZoomView.jsx';
 import {AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineExpand} from 'react-icons/ai';
 import './overview.css';
@@ -30,7 +29,7 @@ const ExpandedView = ({currentStyle, handleExpansion, slideNumber, nextSlide, pr
       }
       <div className="expanded-thumbnails">
         {
-          currentStyle.photos && currentStyle.photos.map((item, index) => {
+          currentStyle.photos && !zoomed && currentStyle.photos.map((item, index) => {
             return (
               <div className="thumbnail-container" key={index}>
                 <img
@@ -64,7 +63,7 @@ const ExpandedView = ({currentStyle, handleExpansion, slideNumber, nextSlide, pr
       {
         zoomed !== false &&
         <div className='zoom-container'>
-          <ImageMagnifier height='750px' width='100vh' src={currentStyle.photos[slideNumber].url} zoomed={zoomed} setZoomed={setZoomed}/>
+          <ImageMagnifier height='25.53125vw' width='25.53125vw' src={currentStyle.photos[slideNumber].url} zoomed={zoomed} setZoomed={setZoomed}/>
         </div>
       }
     </div>
