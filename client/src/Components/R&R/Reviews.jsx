@@ -97,6 +97,9 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
     setForceRerender(!forceRerender);
   }
   return (
+    <Background>
+
+
     <Layout ref={reviewRef}>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>
@@ -123,12 +126,15 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
       </Modal>
       : null}
     </Layout>
+    </Background>
   );
 }
 
+const Background = styled.div`
+  padding: 30px;
+  background: linear-gradient(to left, #FFAEBC, #ffebee)
+`
 const Layout = styled.div`
-  width: 75%;
-  margin: 0 auto;
 `
 
 const BigButton = styled.button`

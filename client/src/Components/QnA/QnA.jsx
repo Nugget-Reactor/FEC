@@ -35,5 +35,5 @@ const Heading2 = styled.h2`
 `;
 
 const QFeatureContainer = styled.div`
-  margin: 40px 100px;
+  margin: 40px 0;
 `;
