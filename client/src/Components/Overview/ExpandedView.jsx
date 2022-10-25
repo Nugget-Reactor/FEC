@@ -63,7 +63,7 @@ const ExpandedView = ({currentStyle, handleExpansion, slideNumber, nextSlide, pr
       {
         zoomed !== false &&
         <div className='zoom-container'>
-          <ImageMagnifier height='25.53125vw' width='25.53125vw' src={currentStyle.photos[slideNumber].url} zoomed={zoomed} setZoomed={setZoomed}/>
+          <ImageMagnifier height='75.82575173477255vh' width='25.53125vw' src={currentStyle.photos[slideNumber].url} zoomed={zoomed} setZoomed={setZoomed}/>
         </div>
       }
     </div>

@@ -64,6 +64,7 @@ const App = () => {
         }
       });
       if (!defaultStyle) {
+        setCurrentStyle(productStyles[0]);
         setCurrentOutfitStyle(productStyles[0]); //hopefully there are always styles
       }
     }
