@@ -20,9 +20,12 @@ const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => 
 export default Outfits;
 
 const OutfitsContainer = styled.div`
-  background-color: #B4F8C8;
-`
+// background-color: #B4F8C8; defce7 9df6b8
+background: linear-gradient(to left
+, #defce7, #B4F8C8 );
+`;
 const Heading = styled.div`
+padding-top: 20px;
 margin: 0;
 `;
 
@@ -31,4 +34,5 @@ const Carousel = styled.div`
   max-height: 100%;
   word-wrap: normal;
   overflow: hidden;
+  padding-bottom: 30px;
 `;

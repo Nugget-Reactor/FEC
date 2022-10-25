@@ -10,6 +10,9 @@ describe('Reviews component testing', () => {
   /*  beforeAll(() => {
      render(<Reviews />)
    }); */
+     beforeAll(() => {
+     render(<Reviews />)
+   });
   afterEach(cleanup);
 
   it('Reviews should render', async () => {
