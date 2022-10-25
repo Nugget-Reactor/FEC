@@ -24,7 +24,7 @@ const ProductInfo = ({ product, productStyles, currentStyle, handleStyleChange, 
   return (
     <div className="product-info-container">
       <span>{createStars(getAverage(productRatings))}
-        <span style={{cursor: 'pointer'}} onClick={() => reviewRef.current.scrollIntoView({behavior: 'smooth'})}>Read all reviews</span>
+        &nbsp;<span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={() => reviewRef.current.scrollIntoView({behavior: 'smooth'})}>Read all reviews</span>
       </span>
       <p className="product-category">{product.category}</p>
       <h1 className="product-name" style={{fontWeight: "600"}}>{product.name}</h1>
