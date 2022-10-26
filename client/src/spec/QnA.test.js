@@ -10,9 +10,12 @@ import { sampleQProduct } from './sampleData/QnA/sampleQuestionProduct.js';
 
 import QnA from '../Components/QnA/QnA.jsx';
 import QuestionsList from '../Components/QnA/QuestionsList.jsx';
-
-// import AnswerEntry from '../Components/QnA/AnswerEntry.jsx';
-// import AnswersList from '../Components/QnA/AnswersList.jsx';
+import Search from '../Components/QnA/SearchQnA.jsx';
+import QuestionEntry from '../Components/QnA/QuestionEntry.jsx';
+import AnswerEntry from '../Components/QnA/AnswerEntry.jsx';
+import AnswersList from '../Components/QnA/AnswersList.jsx';
+import QuestionModal from '../Components/QnA/QuestionModal.jsx';
+import AnswerModal from '../Components/QnA/AnswerModal.jsx';
 
 // console.log(sampleQuestion);
 // LOOK INTO WAITFOR
