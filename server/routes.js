@@ -26,4 +26,7 @@ router.put('/qa/questions/:question_id/report', controllers.qnas.reportQ);
 router.put('/qa/answers/:answer_id/helpful', controllers.qnas.markAHelpful);
 router.put('/qa/answers/:answer_id/report', controllers.qnas.reportA);
 
+//Tracker Route
+router.post('/interactions', controllers.tracker.addInteraction);
+
 module.exports = router;
