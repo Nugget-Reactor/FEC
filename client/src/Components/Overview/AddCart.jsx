@@ -24,6 +24,9 @@ const AddCart = ({ currentStyle }) => {
   }
 
   const handleSkuChange = (skuID) => {
+    if (skuID === 'Select Size') {
+      setCurrentSku({ sku_id: '', quantity: 0 });
+    }
     setMessage(false);
     availableSkus.forEach(sku => {
       if (sku.skuID === skuID) {
@@ -53,8 +56,8 @@ const AddCart = ({ currentStyle }) => {
       </select>
       <select className="quantity-selector"
         onChange={(e) => setCurrentQuantity(e.target.value)}>
-        <option defaultValue="none">-</option>
-        {(itterate.slice(0, currentSku.quantity)).map((number, index) => {
+        {currentSku.sku_id !== '' ? <option defaultValue="none">1</option> : <option defaultValue="none">-</option>}
+        {(itterate.slice(1, currentSku.quantity)).map((number, index) => {
           return <option value={number} key={index}>{number}</option>;
         })}
       </select>
