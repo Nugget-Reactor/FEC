@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import './overview.css';
-const { useState } = React;
+const { useState, useEffect } = React;
 
 
 const AddCart = ({ currentStyle }) => {
@@ -23,11 +23,17 @@ const AddCart = ({ currentStyle }) => {
     }
   }
 
+  useEffect(() => {
+    handleSkuChange('Select Size');
+  }, [currentStyle]);
+
   const handleSkuChange = (skuID) => {
     if (skuID === 'Select Size') {
       setCurrentSku({ sku_id: '', quantity: 0 });
+    } else {
+      setCurrentQuantity(1);
+      setMessage(false);
     }
-    setMessage(false);
     availableSkus.forEach(sku => {
       if (sku.skuID === skuID) {
         setCurrentSku({ sku_id: sku.skuID, quantity: sku.quantity });
@@ -56,7 +62,9 @@ const AddCart = ({ currentStyle }) => {
       </select>
       <select className="quantity-selector"
         onChange={(e) => setCurrentQuantity(e.target.value)}>
-        {currentSku.sku_id !== '' ? <option defaultValue="none">1</option> : <option defaultValue="none">-</option>}
+        {currentSku.sku_id !== '' ?
+          <option defaultValue={1}>1</option> :
+          <option defaultValue="none">-</option>}
         {(itterate.slice(1, currentSku.quantity)).map((number, index) => {
           return <option value={number} key={index}>{number}</option>;
         })}
