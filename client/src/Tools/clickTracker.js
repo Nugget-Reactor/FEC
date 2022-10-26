@@ -31,9 +31,9 @@ export const TrackerFunction = (element, widget) => {
     element: element.tagName,
     widget,
     time: (new Date()).toString()
-  }
-  console.log(interaction);
+  };
+  console.log('Click Metadata', interaction);
   axios.post('/interactions', interaction)
     .then(results => console.log('Successfully logged interaction'))
     .catch(err => console.error(err));
-}
+};
