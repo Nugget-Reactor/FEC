@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import List from './List.jsx';
 import ModalForm from './ModalForm.jsx';
 import Modal from './Modal.jsx';
 import Breakdown from './Breakdown.jsx';
+import { TrackerContext } from '../../Tools/clickTracker';
 
 const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
 
@@ -18,6 +19,7 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
   const [showModal, setShowModal] = useState(false);
   const [filters, setFilters] = useState([]);
   const [forceRerender, setForceRerender] = useState(false);
+  const tracker = useContext(TrackerContext);
 
   //Set initial reviews list
   useEffect(() => {
@@ -97,7 +99,7 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
     setForceRerender(!forceRerender);
   }
   return (
-    <Background>
+    <Background onClick={(e)=>tracker(e.target, 'Reviews')}>
     <Layout ref={reviewRef}>
       <h2>Ratings & Reviews</h2>
       <ColumnContainer>

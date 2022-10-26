@@ -8,6 +8,7 @@ import OutfitCollection from './RelatedItems/OutfitCollection.jsx';
 import QnA from './QnA/QnA.jsx';
 import axios from 'axios';
 import { createStars, getAverage } from '../Tools/createStars';
+import { TrackerContext, TrackerFunction } from '../Tools/clickTracker';
 
 const App = () => {
   const [product, setProduct] = useState({});
@@ -138,16 +139,17 @@ const App = () => {
   };
 
   return (
-    <AppStyling>
-      <GlobalStyle />
-      <StickyHeader><h1>Gnicchi</h1></StickyHeader>
-      <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
-      <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName} />
-      <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit} />
-      <QnA product={product} />
-      <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
-    </AppStyling>
-
+    <TrackerContext.Provider value={TrackerFunction}>
+      <AppStyling>
+        <GlobalStyle />
+        <StickyHeader><h1>Gnicchi</h1></StickyHeader>
+        <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
+        <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName} />
+        <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit} />
+        <QnA product={product} />
+        <Reviews reviewRef={reviewRef} currentMeta={currentMeta} productID={product.id} productName={product.name} />
+      </AppStyling>
+    </TrackerContext.Provider>
   );
 };
 

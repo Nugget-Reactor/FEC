@@ -58,7 +58,7 @@ const Tile = ({ review }) => {
       </SellerResponse>
       : null}
 
-      {review.photos.length
+      {review.photos.length > 0
       && <div>
         {review.photos.map(photo => {
         return <Thumbnail key={photo.id} imgLink={photo.url} onClick={()=>handleImgModal(photo.url)} />})}
@@ -70,7 +70,7 @@ const Tile = ({ review }) => {
       : null}
 
 
-      <div>
+      <InteractiveSpace>
         {!alreadyVoted
         ? <span>Helpful? <SmallButton onClick={voteHelpful}>Yes</SmallButton>({review.helpfulness})</span>
         : <ThanksMessage><i className="fa-solid fa-check"/> Thank you for your feedback!</ThanksMessage>}
@@ -78,7 +78,7 @@ const Tile = ({ review }) => {
         {!alreadyReported
         ? <SmallButton onClick={report}>Report</SmallButton>
         : <span>This review has been reported.</span>}
-      </div>
+      </InteractiveSpace>
 
     </TileStyle>
   );
@@ -93,6 +93,7 @@ const SmallButton = styled.button`
   text-decoration: underline;
   border: none;
   background: none;
+  font-size: inherit;
   color: ${props=>props.color};
   cursor: pointer;
 `
@@ -130,6 +131,10 @@ const Thumbnail = styled.a`
   background-size: cover;
   cursor: pointer;
   margin-right: 2px;
+`
+const InteractiveSpace = styled.div`
+  font-size:1rem;
+  margin: 2px 0;
 `
 const ThanksMessage = styled.span`
   color:green;
