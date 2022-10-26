@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Tools/cloudWidget.js</title>
+    <title>Code coverage report for Tools/clickTracker.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">Tools</a> cloudWidget.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">Tools</a> clickTracker.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
@@ -77,35 +77,35 @@
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">let createCloudinaryWidget = <span class="fstat-no" title="function not covered" >(c</span>b) =&gt; {
-<span class="cstat-no" title="statement not covered" >  return cloudinary.createUploadWidget(</span>
-    {
-      cloudName: 'dnrblvwyb',
-      uploadPreset: 'FEC_Project'
-    },
-<span class="fstat-no" title="function not covered" >    (e</span>rr, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >      if (!err &amp;&amp; res &amp;&amp; res.event === 'success') {</span>
-<span class="cstat-no" title="statement not covered" >        cb(res.info.secure_url);</span>
-      }
-    }
-  );
-};
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 &nbsp;
-module.exports.createCloudinaryWidget = createCloudinaryWidget;</pre></td></tr></table></pre>
+export const TrackerContext = React.createContext();
+export const TrackerFunction = <span class="fstat-no" title="function not covered" >(e</span>lement, widget) =&gt; {
+  let interaction = <span class="cstat-no" title="statement not covered" >{</span>
+    element: element.tagName,
+    widget,
+    time: (new Date()).toString()
+  };
+<span class="cstat-no" title="statement not covered" >  console.log('Click Metadata', interaction);</span>
+<span class="cstat-no" title="statement not covered" >  axios.post('/interactions', interaction)</span>
+    .then(<span class="fstat-no" title="function not covered" >re</span>sults =&gt; <span class="cstat-no" title="statement not covered" >console.log('Successfully logged interaction'))</span>
+    .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >console.error(err))</span>;
+};</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
