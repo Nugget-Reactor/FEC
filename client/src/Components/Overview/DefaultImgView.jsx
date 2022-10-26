@@ -4,18 +4,16 @@ import styled from 'styled-components';
 import {AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineExpand} from 'react-icons/ai';
 import './overview.css';
 
-const {useState, useEffect} = React;
+const {useState, useEffect, useRef} = React;
 
 const DefaultImageView = ({currentStyle, handleExpansion, slideNumber, nextSlide, prevSlide, setSlideNumber}) => {
-  // const [slideNumber, setSlideNumber] = useState(0);
+  const thumbnailRef = useRef(null);
 
-  // const nextSlide = () => {
-  //   setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
-  // };
-
-  // const prevSlide = () => {
-  //   setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
-  // };
+  // useEffect(() => {
+  //   if (thumbnailRef !== null) {
+  //     thumbnailRef.current.scrollIntoView({behavior: 'smooth'});
+  //   }
+  // }, [slideNumber]);
 
   return (
     <div className='gallery'>

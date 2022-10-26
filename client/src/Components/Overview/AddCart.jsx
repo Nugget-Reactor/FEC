@@ -9,6 +9,7 @@ const { useState } = React;
 const AddCart = ({ currentStyle }) => {
   const [currentSku, setCurrentSku] = useState({ sku_id: '', quantity: 0 });
   const [currentQuantity, setCurrentQuantity] = useState(0);
+  const [message, setMessage] = useState(false);
   const availableSkus = [];
   const currentSkus = currentStyle.skus;
   const itterate = Array.from({ length: 15 }, (v, k) => k + 1);
@@ -23,6 +24,7 @@ const AddCart = ({ currentStyle }) => {
   }
 
   const handleSkuChange = (skuID) => {
+    setMessage(false);
     availableSkus.forEach(sku => {
       if (sku.skuID === skuID) {
         setCurrentSku({ sku_id: sku.skuID, quantity: sku.quantity });
@@ -41,6 +43,7 @@ const AddCart = ({ currentStyle }) => {
 
   return (
     <div className="selectors-container">
+      {message ? <p style={{color: 'red', marginBottom: 0, paddingBottom: 0}}>Please select a size</p> : null}
       <select className="size-selector"
         onChange={(e) => handleSkuChange(e.target.value)}>
         <option defaultValue="none">Select Size</option>
