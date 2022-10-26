@@ -5,7 +5,7 @@ import React from 'react';
 import { render, screen, cleanup, waitFor, fireEvent, act } from '@testing-library/react';
 import axiosMock from 'axios';
 
-import { sampleProduct, sampleRelatedItems } from './sampleData/RelatedItems/sampleProduct.js';
+import { sampleProduct, sampleRelatedItems, noRelatedItems } from './sampleData/RelatedItems/sampleProduct.js';
 
 import RelatedItems from '../Components/RelatedItems/RelatedItems.jsx';
 import RelatedItemsCarousel from '../Components/RelatedItems/RelatedItemsCarousel.jsx';
@@ -35,4 +35,11 @@ describe('renders Related Items from Related Items Widget', () => {
   });
     expect(screen.getByText('Rita Hat')).toBeInTheDocument();
   })
+
+  it('"No Related Products" message should render when there are no Related Products for the Current Product', async () => {
+    act(() => {
+      const { getByText } = render(<RelatedItems product={noRelatedItems} />)
+    });
+      expect(screen.getByText('There are no Related Products for this item')).toBeInTheDocument();
+    })
 });
