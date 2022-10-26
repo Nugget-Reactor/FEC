@@ -2,7 +2,7 @@
  * @jest-environment jsdom
 */
 import React from 'react';
-import { render, screen, cleanup, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, cleanup, waitFor, fireEvent, act } from '@testing-library/react';
 import axiosMock from 'axios';
 
 import { sampleQuestion } from './sampleData/QnA/sampleQuestionData.js';
@@ -20,48 +20,43 @@ import AnswerModal from '../Components/QnA/AnswerModal.jsx';
 // console.log(sampleQuestion);
 // LOOK INTO WAITFOR
 
-describe('renders QnA Widget with Add Question button', () => {
+describe('renders QnA Widget', () => {
   afterEach(cleanup);
 
-  it('Questions widget should render with an add question button', () => {
+  it('Questions widget should render using passed down sample question', () => {
     const { getByTestId } = render(<QnA product={sampleQuestion} />);
 
     expect(screen.getByText(/Questions & Answers/i)).toBeInTheDocument();
+
+    // screen.debug();
+  });
+});
+
+describe('renders Questions List from QnA Widget', () => {
+  afterEach(cleanup);
+
+
+  it('Questions List should render', () => {
+    const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
+
+    expect(getByTestId('questions-list')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+
+  it('Questions List should render with more questions button', () => {
+    const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
+
+    expect(getByTestId('more-questions')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+
+  it('Questions List should render with add question button', () => {
+    const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
+
     expect(getByTestId('addq-button')).toBeInTheDocument();
 
     screen.debug();
   });
 });
-
-// describe('renders Questions List from QnA Widget', () => {
-//   afterEach(cleanup);
-
-//   it('Questions List should render', async () => {
-//     const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
-
-//     expect(screen.getAllByText(/Helpful/i)).toBeInTheDocument();
-//     expect(getByTestId('questions-list')).toBeInTheDocument();
-
-//     screen.debug();
-//   })
-// });
-
-// describe('true is truthy', () => {
-//   test('true is truthy', () => {
-//     expect(true).toBe(true);
-//   });
-// });
-
-/*
-it('renders Answer Entry component', () => {
-    render(<AnswerEntry entry={sampleQuestion.results[0].answers['3086367']} />);
-
-    const AnswerEntryElement = screen.getByTestId("answer-entry");
-    expect(AnswerEntryElement).toBeInTheDocument();
-    // screen.debug();
-  });
-
-  it('renders Answers List component', () => {
-    render(<AnswersList answersObj={sampleQuestion.results[0].answers} />);
-  });
-*/
