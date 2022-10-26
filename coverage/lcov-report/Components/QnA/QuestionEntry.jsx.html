@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">59.37% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/32</span>
+                <span class='fraction'>19/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">57.89% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>11/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">9.09% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>1/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">59.37% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/32</span>
+                <span class='fraction'>19/32</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -189,26 +189,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -217,9 +208,18 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -301,21 +301,21 @@ import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
 &nbsp;
-const QuestionEntry = <span class="fstat-no" title="function not covered" >({</span> entry, name, query }) =&gt; {
+const QuestionEntry = ({ entry, name, query }) =&gt; {
 &nbsp;
   // console.log('question entry', entry);
 &nbsp;
-  const [showAModal, setShowAModal] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [helpfulClicked, setHelpfulClicked] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [reportClicked, setReportClicked] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [answersList, setAnswersList] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+  const [showAModal, setShowAModal] = useState(false);
+  const [helpfulClicked, setHelpfulClicked] = useState(false);
+  const [reportClicked, setReportClicked] = useState(false);
+  const [answersList, setAnswersList] = useState([]);
 &nbsp;
-  const handleAddAnswer = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+  const handleAddAnswer = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >    setShowAModal(!showAModal);</span>
   };
 &nbsp;
-  const handleMarkHelpful = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+  const handleMarkHelpful = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >    axios.put(`/qa/questions/${entry.question_id}/helpful`)</span>
       .then(<span class="fstat-no" title="function not covered" >re</span>sults =&gt; {
@@ -324,7 +324,7 @@ const QuestionEntry = <span class="fstat-no" title="function not covered" >({</s
       .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >console.log('Error updating question helpfulness'))</span>;
   };
 &nbsp;
-  const handleReportQ = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+  const handleReportQ = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >    axios.put(`/qa/questions/${entry.question_id}/report`)</span>
       .then(<span class="fstat-no" title="function not covered" >re</span>sults =&gt; {
@@ -334,19 +334,19 @@ const QuestionEntry = <span class="fstat-no" title="function not covered" >({</s
   };
 &nbsp;
   // if entry.question body includes query context return this, else return null
-<span class="cstat-no" title="statement not covered" >  if (query.length &lt; 3 || query.length &gt;= 3 &amp;&amp; entry.question_body.includes(query)) {</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (query.length &lt; 3 || <span class="branch-1 cbranch-no" title="branch not covered" >query.length &gt;= 3 </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >entry.question_body.includes(query))</span> {
+    return (
       &lt;QuestionEntryContainer&gt;
         &lt;QuestionEntryHeader&gt;
           &lt;QuestionHeading&gt;&lt;b&gt;Q: {entry &amp;&amp; entry.question_body}&lt;/b&gt;&lt;/QuestionHeading&gt;
           &lt;RightFloat&gt;
             &lt;QuestionSubHeading&gt;Helpful?&lt;/QuestionSubHeading&gt;
             {helpfulClicked
-              ? &lt;HelpfulQ href="" onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >e.preventDefault()}</span>&gt;Yes ({entry &amp;&amp; entry.question_helpfulness + 1})&lt;/HelpfulQ&gt;
+              ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;HelpfulQ href="" onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >e.preventDefault()}</span>&gt;Yes ({entry &amp;&amp; entry.question_helpfulness + 1})&lt;/HelpfulQ&gt;</span>
               : &lt;HelpfulQ href="" onClick={handleMarkHelpful}&gt;Yes ({entry &amp;&amp; entry.question_helpfulness})&lt;/HelpfulQ&gt;}
             &lt;QuestionSubHeading&gt;|&lt;/QuestionSubHeading&gt;
             {reportClicked
-              ? &lt;ReportQuestion href="" onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >e.preventDefault()}</span>&gt;Reported&lt;/ReportQuestion&gt;
+              ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;ReportQuestion href="" onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >e.preventDefault()}</span>&gt;Reported&lt;/ReportQuestion&gt;</span>
               : &lt;ReportQuestion href="" onClick={handleReportQ}&gt;Report Question&lt;/ReportQuestion&gt;}
             &lt;QuestionSubHeading&gt;|&lt;/QuestionSubHeading&gt;
             &lt;AddAnswer href="" onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >handleAddAnswer(e)}</span>&gt;Add Answer&lt;/AddAnswer&gt;
@@ -354,7 +354,7 @@ const QuestionEntry = <span class="fstat-no" title="function not covered" >({</s
         &lt;/QuestionEntryHeader&gt;
         &lt;AnswerBody&gt;
           {Object.keys(entry.answers).length !== 0 &amp;&amp; &lt;AnswersList questionID={entry.question_id} answersList={answersList} setAnswersList={setAnswersList}&gt;&lt;/AnswersList&gt;}
-          {showAModal &amp;&amp; &lt;AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} questionID={entry.question_id} setAnswersList={setAnswersList}&gt;&lt;/AnswerModal&gt;}
+          {showAModal &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;AnswerModal showAModal={showAModal} setShowAModal={setShowAModal} questionBody={entry.question_body} questionName={name} questionID={entry.question_id} setAnswersList={setAnswersList}&gt;&lt;/AnswerModal&gt;}</span>
         &lt;/AnswerBody&gt;
       &lt;/QuestionEntryContainer&gt;
     );
@@ -418,7 +418,7 @@ const AddAnswer = styled.a`
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-26T05:37:09.119Z
+                at 2022-10-26T07:11:00.756Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
