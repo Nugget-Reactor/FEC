@@ -110,3 +110,25 @@ describe('renders Answer Entry in QnA Widget', () => {
     // screen.debug();
   });
 });
+
+describe('renders Answers List in QnA Widget', () => {
+  afterEach(cleanup);
+
+
+  it('Answers List should render', () => {
+    const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
+
+    expect(getByTestId('questions-list')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+
+  it('Answers List should render with ', () => {
+    const { getByTestId } = render(<AnswersList questionID={ } answersList={ } />);
+
+    expect(getByTestId('more-questions')).toBeInTheDocument();
+    expect(getByTestId('addq-button')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+});
