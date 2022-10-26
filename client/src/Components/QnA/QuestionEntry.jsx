@@ -42,7 +42,7 @@ const QuestionEntry = ({ entry, name, query }) => {
       <QuestionEntryContainer>
         <QuestionEntryHeader>
           <QuestionHeading><b>Q: {entry && entry.question_body}</b></QuestionHeading>
-          <RightFloat>
+          <RightFloat data-testid="question-headers">
             <QuestionSubHeading>Helpful?</QuestionSubHeading>
             {helpfulClicked
               ? <HelpfulQ href="" onClick={e => e.preventDefault()}>Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>

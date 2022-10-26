@@ -10,7 +10,7 @@ import { sampleQProduct } from './sampleData/QnA/sampleQuestionProduct.js';
 
 import QnA from '../Components/QnA/QnA.jsx';
 import QuestionsList from '../Components/QnA/QuestionsList.jsx';
-import Search from '../Components/QnA/SearchQnA.jsx';
+import SearchQnA from '../Components/QnA/SearchQnA.jsx';
 import QuestionEntry from '../Components/QnA/QuestionEntry.jsx';
 import AnswerEntry from '../Components/QnA/AnswerEntry.jsx';
 import AnswersList from '../Components/QnA/AnswersList.jsx';
@@ -32,7 +32,7 @@ describe('renders QnA Widget', () => {
   });
 });
 
-describe('renders Questions List from QnA Widget', () => {
+describe('renders Questions List in QnA Widget', () => {
   afterEach(cleanup);
 
 
@@ -44,19 +44,69 @@ describe('renders Questions List from QnA Widget', () => {
     // screen.debug();
   });
 
-  it('Questions List should render with more questions button', () => {
+  it('Questions List should render with more questions and add question buttons', () => {
     const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
 
     expect(getByTestId('more-questions')).toBeInTheDocument();
+    expect(getByTestId('addq-button')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+});
+
+describe('renders Search component in QnA Widget', () => {
+  afterEach(cleanup);
+
+  it('Search component should render with input field', () => {
+    const { getByTestId } = render(<SearchQnA query={''} />);
+
+    expect(getByTestId('search-qna')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+});
+
+describe('renders Questions Entry in QnA Widget', () => {
+  afterEach(cleanup);
+
+  it('Question Entry should render', () => {
+    const { getByTestId } = render(<QuestionEntry entry={sampleQuestion.results[0]} name={sampleQProduct.name} query={''} />);
+
+    expect(getByTestId('question-headers')).toBeInTheDocument();
 
     // screen.debug();
   });
 
-  it('Questions List should render with add question button', () => {
-    const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
+  it('Question Entry should render with headings on entry and load more answers link', () => {
+    const { getByTestId } = render(<QuestionEntry entry={sampleQuestion.results[0]} name={sampleQProduct.name} query={''} />);
 
-    expect(getByTestId('addq-button')).toBeInTheDocument();
+    expect(screen.getByText(/Helpful/i)).toBeInTheDocument();
+    expect(screen.getByText(/Yes/i)).toBeInTheDocument();
+    expect(screen.getByText(/Report Question/i)).toBeInTheDocument();
+    expect(screen.getByText(/LOAD MORE ANSWERS/i)).toBeInTheDocument();
 
-    screen.debug();
+    // screen.debug();
+  });
+});
+
+describe('renders Answer Entry in QnA Widget', () => {
+  afterEach(cleanup);
+
+  it('Answer Entry should render', () => {
+    const { getByTestId } = render(<AnswerEntry entry={sampleQuestion.results[0].answers[3086368]} />);
+
+    expect(getByTestId('answer-footer')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+
+  it('Answer Entry should render with headings on entry', () => {
+    const { getByTestId } = render(<AnswerEntry entry={sampleQuestion.results[0].answers[3086368]} />);
+
+    expect(screen.getByText(/Helpful/i)).toBeInTheDocument();
+    expect(screen.getByText(/Yes/i)).toBeInTheDocument();
+    expect(screen.getByText(/Report Answer/i)).toBeInTheDocument();
+
+    // screen.debug();
   });
 });

@@ -11,6 +11,7 @@ const SearchQnA = ({ query, setQuery }) => {
         onChange={e => {
           setQuery(e.target.value);
         }}
+        data-testid="search-qna"
       />
       <SearchIcon className="fa-solid fa-magnifying-glass"></SearchIcon>
     </SearchContainer>
