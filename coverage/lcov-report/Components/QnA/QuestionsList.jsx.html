@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">85% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/20</span>
+                <span class='fraction'>17/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/20</span>
+                <span class='fraction'>17/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -151,32 +151,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,17 +251,17 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) =&gt;
       &lt;SearchQnA query={query} setQuery={setQuery} /&gt;
       &lt;QuestionListBody&gt;
         {currCount &lt; totalCount
-          ? <span class="branch-0 cbranch-no" title="branch not covered" >questionsList.map(<span class="fstat-no" title="function not covered" >(q</span>uestion, index) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if (index &lt; currCount + 2) {</span>
-<span class="cstat-no" title="statement not covered" >              return &lt;QuestionEntry entry={question} key={index} name={name} query={query} /&gt;;</span>
+          ? questionsList.map((question, index) =&gt; {
+            if (index &lt; currCount + 2) {
+              return &lt;QuestionEntry entry={question} key={index} name={name} query={query} /&gt;;
             }
           })
-          : questionsList.map(<span class="fstat-no" title="function not covered" >(q</span>uestion, index) =&gt; {
-<span class="cstat-no" title="statement not covered" >            return &lt;QuestionEntry entry={question} key={index} name={name} query={query} /&gt;;</span>
+          : questionsList.map((question, index) =&gt; {
+            return &lt;QuestionEntry entry={question} key={index} name={name} query={query} /&gt;;
           })}
       &lt;/QuestionListBody&gt;
       &lt;QuestionListFooter&gt;
-        {currCount &lt; totalCount &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;MoreAnsweredButton onClick={handleMoreAs} data-testid="more-questions"&gt;MORE ANSWERED QUESTIONS&lt;/MoreAnsweredButton&gt;}</span>
+        {currCount &lt; totalCount &amp;&amp; &lt;MoreAnsweredButton onClick={handleMoreAs} data-testid="more-questions"&gt;MORE ANSWERED QUESTIONS&lt;/MoreAnsweredButton&gt;}
         &lt;AddQButton onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setShowQModal(!showQModal)}</span> data-testid="addq-button"&gt;ADD A QUESTION +&lt;/AddQButton&gt;
       &lt;/QuestionListFooter&gt;
     &lt;/QuestionListContainer&gt;
@@ -313,7 +313,7 @@ const MoreAnsweredButton = styled.button`
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-26T05:37:09.119Z
+                at 2022-10-26T07:11:00.756Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
