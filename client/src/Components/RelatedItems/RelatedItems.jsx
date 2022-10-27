@@ -75,6 +75,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
 export default RelatedItems;
 
 const RelatedItemsLayout = styled.div`
+  background-color: white;
 `;
 
 const Heading = styled.div`
