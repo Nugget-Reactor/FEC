@@ -17,9 +17,11 @@ const Modal = ({ closeModal, children }) => {
     }
     let rootApp = document.getElementById('root');
     rootApp.style.overflow = 'hidden';
+    // document.body.style.overflow= 'hidden';
     document.addEventListener('keydown', escModal, false);
     return ()=> {
-      rootApp.style.overflow = 'auto';
+      rootApp.style.overflow = '';
+      // document.body.style.overflow= 'unset';
       document.removeEventListener('keydown', escModal, false);
     }
   }, []);
