@@ -183,7 +183,7 @@ const StickyHeader = styled.div`
   background: linear-gradient(to bottom, #fdf5e7, #FBE7C6);
   height: 75px;
   top: 0;
-  z-index: 5;
+  z-index: 15;
 `;
 
 export default App;
