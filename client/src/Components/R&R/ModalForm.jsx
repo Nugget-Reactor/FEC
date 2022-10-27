@@ -21,6 +21,9 @@ const ModalForm = ({ productID, productName, characteristicModel, closeModal, re
     photoRef.current = createCloudinaryWidget((url) => {
       setTempPhoto(url);
     })
+    return () => {
+      document.querySelector("iframe").remove();
+    };
   }, []);
 
   useEffect(() => {
