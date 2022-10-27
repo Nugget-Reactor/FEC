@@ -27,8 +27,8 @@ const App = () => {
     // handleProductChange('40351'); //infinity stones in related items
     // handleProductChange('40566');
     // handleProductChange('40649'); //40345
-    handleProductChange('40348'); // contains some items with no image and no price - also 3 from infinity stones
-    // handleProductChange('41197');
+    // handleProductChange('40348'); // contains some items with no image and no price - also 3 from infinity stones
+    handleProductChange('41197');
     // handleProductChange('40480');
     // handleProductChange('40344');
   }, []);
@@ -183,7 +183,7 @@ const StickyHeader = styled.div`
   background: linear-gradient(to bottom, #fdf5e7, #FBE7C6);
   height: 75px;
   top: 0;
-  z-index: 5;
+  z-index: 15;
 `;
 
 export default App;

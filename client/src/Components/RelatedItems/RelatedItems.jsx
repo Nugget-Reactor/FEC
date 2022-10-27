@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
 import CompareModal from './CompareModal.jsx';
 import CompareModalTable from './CompareModalTable.jsx';
+import { TrackerContext } from '../../Tools/clickTracker';
 
 const RelatedItems = ({ product, handleProductChange, currentMeta, productName }) => {
   const [characteristics, setCharacteristics] = useState([]);
@@ -15,6 +16,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   const [relatedCharacteristics, setRelatedCharacteristics] = useState({});
   const [showCompareModal, setShowCompareModal] = useState(false);
   const [relatedName, setRelatedName] = useState('');
+  const tracker = useContext(TrackerContext);
 
   useEffect(() => {
     setNoneRelated('');
@@ -58,12 +60,12 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   };
 
   return (
-    <RelatedItemsLayout>
+    <RelatedItemsLayout onClick={(e)=>tracker(e.target, 'Related Products')}>
       {showCompareModal ? <CompareModal closeModal={closeModal} productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} /> : null}
       <Heading>
-        <h2>Related Products</h2>
+        <h2 data-testid="related-products-header">Related Products</h2>
       </Heading>
-      <Carousel>
+      <Carousel data-testid="related-items-carousel">
         <AnyRelatedItems/>
       </Carousel>
     </RelatedItemsLayout>
