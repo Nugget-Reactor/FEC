@@ -36,7 +36,7 @@ const AnswerEntry = ({ entry }) => {
             return <Image src={photo.url} key={index}></Image>;
           })}
       </PhotoContainer>
-      <AnswerListFooter>
+      <AnswerListFooter data-testid="answer-footer">
         <AnswerListDiv>by {entry.answerer_name}, {format(parseISO(entry.date), 'MMMM dd, yyy')}</AnswerListDiv>
         <AnswerListDiv> | </AnswerListDiv>
         <AnswerListDiv>Helpful?</AnswerListDiv>

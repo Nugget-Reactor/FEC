@@ -39,7 +39,7 @@ const AnswersList = ({ questionID, answersList, setAnswersList }) => {
   };
 
   return (
-    <AnswersContainer>
+    <AnswersContainer data-testid="answers-list">
       {showLoadMore && answersList
         ? answersList.map((answer, index) => {
           if (index < 2) {
