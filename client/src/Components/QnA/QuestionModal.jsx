@@ -93,7 +93,7 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
           </i></InputNote>
         </QuestionBody>
         <QuestionBody>
-          <SubmitButton onClick={handleSubmitQ}>Submit Question</SubmitButton>
+          <SubmitButton onClick={handleSubmitQ} data-testid="qmodal-submit">Submit Question</SubmitButton>
         </QuestionBody>
       </QuestionForm>
     </QuestionContainer>

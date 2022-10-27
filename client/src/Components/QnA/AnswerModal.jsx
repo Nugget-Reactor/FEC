@@ -25,6 +25,9 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
     photoRef.current = createCloudinaryWidget((url) => {
       setTempPhoto(url);
     });
+    return () => {
+      document.querySelector('iframe').remove();
+    };
   }, []);
 
   useEffect(() => {

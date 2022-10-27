@@ -8,6 +8,7 @@ import axiosMock from 'axios';
 import { sampleQuestion } from './sampleData/QnA/sampleQuestionData.js';
 import { sampleQProduct } from './sampleData/QnA/sampleQuestionProduct.js';
 import { sampleAnswer } from './sampleData/QnA/sampleAnswerData.js';
+import { createCloudinaryWidget } from '../Tools/cloudWidget.js';
 
 import QnA from '../Components/QnA/QnA.jsx';
 import QuestionsList from '../Components/QnA/QuestionsList.jsx';
@@ -25,7 +26,7 @@ describe('renders QnA Widget', () => {
   afterEach(cleanup);
 
   it('Questions widget should render using passed down sample question', () => {
-    const { getByTestId } = render(<QnA product={sampleQuestion} />);
+    const { getByTestId } = render(<QnA product={sampleQProduct} />);
 
     expect(screen.getByText(/Questions & Answers/i)).toBeInTheDocument();
 
@@ -124,7 +125,7 @@ describe('renders Answers List in QnA Widget', () => {
     // screen.debug();
   });
 
-  it('Answers List should render with ', () => {
+  it('Answers List should render with LOAD MORE ANSWERS link', () => {
     const { getByTestId } = render(<AnswersList questionID={sampleQuestion.results[0].question_id} answersList={sampleAnswer.results} setAnswersList={() => { }} />);
 
     expect(screen.getByText(/LOAD MORE ANSWERS/i)).toBeInTheDocument();
@@ -132,3 +133,39 @@ describe('renders Answers List in QnA Widget', () => {
     // screen.debug();
   });
 });
+
+describe('renders Question Modal', () => {
+  afterEach(cleanup);
+
+  it('Question modal should render ask your question form', () => {
+    const { getByTestId } = render(<QuestionModal productID={sampleQProduct.id} name={sampleQProduct.name} />);
+
+    expect(screen.getByText(/Ask Your Question/i)).toBeInTheDocument();
+
+    // screen.debug();
+  });
+
+  it('Question modal should render form input labels and submit button', () => {
+    const { getByTestId } = render(<QuestionModal productID={sampleQProduct.id} name={sampleQProduct.name} />);
+
+    expect(screen.getByText(/What is your Nickname/i)).toBeInTheDocument();
+    expect(screen.getByText(/Your Email/i)).toBeInTheDocument();
+    expect(getByTestId('qmodal-submit')).toBeInTheDocument();
+
+    // screen.debug();
+  });
+});
+
+// describe('renders Answer Modal', () => {
+//   afterEach(cleanup);
+
+//   act(() => {
+//     it('Answer modal should render enter your question form', () => {
+//       const { getByTestId } = render(<AnswerModal questionBody={sampleQuestion.results[0].question_body} questionName={sampleQProduct.name} questionID={sampleQuestion.results[0].question_id} />);
+
+//     });
+//   });
+//   expect(screen.getByText(/Submit Your Answer/i)).toBeInTheDocument();
+
+//   screen.debug();
+// });
