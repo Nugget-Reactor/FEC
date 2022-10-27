@@ -94,7 +94,7 @@
   font-size: 2rem;
   color: #525252;
   background-color: white;
-  z-index: 10;
+  z-index: 5;
   cursor: pointer;
   user-select: none;
 }
@@ -108,7 +108,7 @@
   right: 260px;
   font-size: 2rem;
   color: #525252;
-  z-index: 10;
+  z-index: 5;
   cursor: pointer;
   user-select: none;
 }
