@@ -152,7 +152,7 @@ describe('renders Question Modal', () => {
     expect(screen.getByText(/Your Email/i)).toBeInTheDocument();
     expect(getByTestId('qmodal-submit')).toBeInTheDocument();
 
-    // screen.debug();
+    screen.debug();
   });
 });
 
