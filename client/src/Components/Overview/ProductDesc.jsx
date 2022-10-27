@@ -3,10 +3,10 @@ import './overview.css';
 
 const {useState, useEffect} = React;
 
-const ProductDescription = ({product}) => {
+const ProductDescription = ({product, expanded}) => {
   return (
-    <div className='product-desc-container'>
-      <p>{product.slogan}</p>
+    <div className={!expanded ? 'product-desc-container' : 'product-desc-container-expanded'} >
+      <p style={{fontWeight: 'bold'}}>{product.slogan}</p>
       <p>{product.description}</p>
     </div>
 

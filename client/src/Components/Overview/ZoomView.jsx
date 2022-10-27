@@ -9,7 +9,7 @@ const ImageMagnifier = ({src, width, height, magnifierHeight = 100, magnifierWid
     <div
       onClick={() => setZoomed(false)}
       style={{
-        position: "relative",
+        position: 'relative',
         height: height,
         width: width
       }}
