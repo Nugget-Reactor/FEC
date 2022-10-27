@@ -1,34 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1666762629206" clover="3.2.0">
-  <project timestamp="1666762629206" name="All files">
-    <metrics statements="833" coveredstatements="325" conditionals="339" coveredconditionals="65" methods="223" coveredmethods="30" elements="1395" coveredelements="420" complexity="0" loc="833" ncloc="833" packages="9" files="35" classes="35"/>
+<coverage generated="1666892360656" clover="3.2.0">
+  <project timestamp="1666892360656" name="All files">
+    <metrics statements="881" coveredstatements="365" conditionals="365" coveredconditionals="101" methods="243" coveredmethods="45" elements="1489" coveredelements="511" complexity="0" loc="881" ncloc="881" packages="9" files="39" classes="39"/>
     <package name="Components.Overview">
-      <metrics statements="43" coveredstatements="16" conditionals="57" coveredconditionals="18" methods="20" coveredmethods="4"/>
-      <file name="DefaultImgView.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/Overview/DefaultImgView.jsx">
+      <metrics statements="91" coveredstatements="55" conditionals="83" coveredconditionals="53" methods="40" coveredmethods="19"/>
+      <file name="AddCart.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/AddCart.jsx">
+        <metrics statements="31" coveredstatements="21" conditionals="16" coveredconditionals="7" methods="11" coveredmethods="6"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="60" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="24" type="cond" truecount="3" falsecount="1"/>
+        <line num="20" count="24" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="24" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+      </file>
+      <file name="DefaultImgView.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/DefaultImgView.jsx">
         <metrics statements="9" coveredstatements="6" conditionals="18" coveredconditionals="15" methods="6" coveredmethods="3"/>
         <line num="7" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="29" count="6" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="29" count="12" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="45" count="6" type="stmt"/>
+        <line num="45" count="12" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
       </file>
-      <file name="ExpandedView.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/Overview/ExpandedView.jsx">
-        <metrics statements="9" coveredstatements="2" conditionals="26" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="ExpandedView.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/ExpandedView.jsx">
+        <metrics statements="9" coveredstatements="6" conditionals="26" coveredconditionals="21" methods="6" coveredmethods="3"/>
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
+        <line num="51" count="6" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
       </file>
-      <file name="ImageGallery.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/Overview/ImageGallery.jsx">
+      <file name="ImageGallery.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/ImageGallery.jsx">
         <metrics statements="8" coveredstatements="6" conditionals="8" coveredconditionals="3" methods="3" coveredmethods="1"/>
         <line num="10" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
@@ -39,7 +73,33 @@
         <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="23" count="1" type="stmt"/>
       </file>
-      <file name="ZoomView.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/Overview/ZoomView.jsx">
+      <file name="ProductDesc.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/ProductDesc.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="ProductInfo.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/ProductInfo.jsx">
+        <metrics statements="10" coveredstatements="8" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="3"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+      <file name="StyleSelector.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/StyleSelector.jsx">
+        <metrics statements="4" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="2"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="1" falsecount="1"/>
+      </file>
+      <file name="ZoomView.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/Overview/ZoomView.jsx">
         <metrics statements="17" coveredstatements="2" conditionals="5" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="cond" truecount="0" falsecount="3"/>
@@ -62,7 +122,7 @@
     </package>
     <package name="Components.QnA">
       <metrics statements="249" coveredstatements="84" conditionals="69" coveredconditionals="4" methods="74" coveredmethods="5"/>
-      <file name="AnswerEntry.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/AnswerEntry.jsx">
+      <file name="AnswerEntry.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/AnswerEntry.jsx">
         <metrics statements="25" coveredstatements="9" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -90,7 +150,7 @@
         <line num="87" count="1" type="stmt"/>
         <line num="90" count="1" type="stmt"/>
       </file>
-      <file name="AnswerModal.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/AnswerModal.jsx">
+      <file name="AnswerModal.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/AnswerModal.jsx">
         <metrics statements="88" coveredstatements="22" conditionals="18" coveredconditionals="0" methods="21" coveredmethods="0"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -181,7 +241,7 @@
         <line num="279" count="1" type="stmt"/>
         <line num="285" count="1" type="stmt"/>
       </file>
-      <file name="AnswersList.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/AnswersList.jsx">
+      <file name="AnswersList.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/AnswersList.jsx">
         <metrics statements="19" coveredstatements="3" conditionals="8" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="7" count="1" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -203,7 +263,7 @@
         <line num="61" count="1" type="stmt"/>
         <line num="67" count="1" type="stmt"/>
       </file>
-      <file name="QnA.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/QnA.jsx">
+      <file name="QnA.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/QnA.jsx">
         <metrics statements="13" coveredstatements="9" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="2"/>
         <line num="11" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
@@ -219,7 +279,7 @@
         <line num="36" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
       </file>
-      <file name="QuestionEntry.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/QuestionEntry.jsx">
+      <file name="QuestionEntry.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/QuestionEntry.jsx">
         <metrics statements="32" coveredstatements="10" conditionals="19" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="7" count="1" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
@@ -254,7 +314,7 @@
         <line num="109" count="1" type="stmt"/>
         <line num="113" count="1" type="stmt"/>
       </file>
-      <file name="QuestionModal.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/QuestionModal.jsx">
+      <file name="QuestionModal.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/QuestionModal.jsx">
         <metrics statements="46" coveredstatements="12" conditionals="8" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="5" count="1" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -303,7 +363,7 @@
         <line num="168" count="1" type="stmt"/>
         <line num="172" count="1" type="stmt"/>
       </file>
-      <file name="QuestionsList.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/QuestionsList.jsx">
+      <file name="QuestionsList.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/QuestionsList.jsx">
         <metrics statements="20" coveredstatements="14" conditionals="6" coveredconditionals="2" methods="6" coveredmethods="2"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -326,7 +386,7 @@
         <line num="66" count="1" type="stmt"/>
         <line num="75" count="1" type="stmt"/>
       </file>
-      <file name="SearchQnA.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/QnA/SearchQnA.jsx">
+      <file name="SearchQnA.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/QnA/SearchQnA.jsx">
         <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -338,7 +398,7 @@
     </package>
     <package name="Components.R&R">
       <metrics statements="311" coveredstatements="93" conditionals="118" coveredconditionals="6" methods="84" coveredmethods="4"/>
-      <file name="Breakdown.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/Breakdown.jsx">
+      <file name="Breakdown.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/Breakdown.jsx">
         <metrics statements="25" coveredstatements="11" conditionals="20" coveredconditionals="2" methods="6" coveredmethods="2"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
@@ -366,7 +426,7 @@
         <line num="67" count="1" type="stmt"/>
         <line num="71" count="1" type="stmt"/>
       </file>
-      <file name="CharacterTile.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/CharacterTile.jsx">
+      <file name="CharacterTile.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/CharacterTile.jsx">
         <metrics statements="38" coveredstatements="5" conditionals="20" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -407,7 +467,7 @@
         <line num="79" count="1" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
       </file>
-      <file name="CharacteristicInput.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/CharacteristicInput.jsx">
+      <file name="CharacteristicInput.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/CharacteristicInput.jsx">
         <metrics statements="27" coveredstatements="7" conditionals="12" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -437,7 +497,7 @@
         <line num="82" count="1" type="stmt"/>
         <line num="86" count="1" type="stmt"/>
       </file>
-      <file name="Characteristics.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/Characteristics.jsx">
+      <file name="Characteristics.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/Characteristics.jsx">
         <metrics statements="7" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -447,14 +507,14 @@
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
       </file>
-      <file name="List.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/List.jsx">
+      <file name="List.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/List.jsx">
         <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
       </file>
-      <file name="Modal.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/Modal.jsx">
+      <file name="Modal.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/Modal.jsx">
         <metrics statements="13" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -470,7 +530,7 @@
         <line num="28" count="1" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
       </file>
-      <file name="ModalForm.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/ModalForm.jsx">
+      <file name="ModalForm.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/ModalForm.jsx">
         <metrics statements="85" coveredstatements="17" conditionals="22" coveredconditionals="0" methods="21" coveredmethods="0"/>
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -558,7 +618,7 @@
         <line num="287" count="1" type="stmt"/>
         <line num="293" count="1" type="stmt"/>
       </file>
-      <file name="RatingFilter.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/RatingFilter.jsx">
+      <file name="RatingFilter.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/RatingFilter.jsx">
         <metrics statements="11" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -572,7 +632,7 @@
         <line num="35" count="1" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
       </file>
-      <file name="Reviews.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/Reviews.jsx">
+      <file name="Reviews.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/Reviews.jsx">
         <metrics statements="62" coveredstatements="30" conditionals="16" coveredconditionals="4" methods="19" coveredmethods="1"/>
         <line num="10" count="1" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
@@ -637,7 +697,7 @@
         <line num="158" count="1" type="stmt"/>
         <line num="161" count="1" type="stmt"/>
       </file>
-      <file name="Tile.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/R&R/Tile.jsx">
+      <file name="Tile.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/R&R/Tile.jsx">
         <metrics statements="39" coveredstatements="12" conditionals="20" coveredconditionals="0" methods="15" coveredmethods="0"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -682,7 +742,7 @@
     </package>
     <package name="Components.RelatedItems">
       <metrics statements="180" coveredstatements="93" conditionals="78" coveredconditionals="28" methods="37" coveredmethods="14"/>
-      <file name="CompareModal.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/RelatedItems/CompareModal.jsx">
+      <file name="CompareModal.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/RelatedItems/CompareModal.jsx">
         <metrics statements="12" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -697,7 +757,7 @@
         <line num="21" count="0" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="CompareModalTable.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/RelatedItems/CompareModalTable.jsx">
+      <file name="CompareModalTable.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/RelatedItems/CompareModalTable.jsx">
         <metrics statements="48" coveredstatements="11" conditionals="24" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -748,7 +808,7 @@
         <line num="131" count="1" type="stmt"/>
         <line num="138" count="1" type="stmt"/>
       </file>
-      <file name="RelatedItem.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/RelatedItems/RelatedItem.jsx">
+      <file name="RelatedItem.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/RelatedItems/RelatedItem.jsx">
         <metrics statements="54" coveredstatements="49" conditionals="28" coveredconditionals="21" methods="9" coveredmethods="7"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="24" type="stmt"/>
@@ -805,7 +865,7 @@
         <line num="174" count="1" type="stmt"/>
         <line num="180" count="1" type="stmt"/>
       </file>
-      <file name="RelatedItems.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/RelatedItems/RelatedItems.jsx">
+      <file name="RelatedItems.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/RelatedItems/RelatedItems.jsx">
         <metrics statements="36" coveredstatements="4" conditionals="10" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -844,7 +904,7 @@
         <line num="78" count="1" type="stmt"/>
         <line num="84" count="1" type="stmt"/>
       </file>
-      <file name="RelatedItemsCarousel.jsx" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Components/RelatedItems/RelatedItemsCarousel.jsx">
+      <file name="RelatedItemsCarousel.jsx" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Components/RelatedItems/RelatedItemsCarousel.jsx">
         <metrics statements="30" coveredstatements="27" conditionals="14" coveredconditionals="7" methods="11" coveredmethods="7"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
@@ -879,8 +939,8 @@
       </file>
     </package>
     <package name="Tools">
-      <metrics statements="43" coveredstatements="32" conditionals="17" coveredconditionals="9" methods="8" coveredmethods="3"/>
-      <file name="clickTracker.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Tools/clickTracker.js">
+      <metrics statements="43" coveredstatements="33" conditionals="17" coveredconditionals="10" methods="8" coveredmethods="3"/>
+      <file name="clickTracker.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Tools/clickTracker.js">
         <metrics statements="7" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="4" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
@@ -890,7 +950,7 @@
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
       </file>
-      <file name="cloudWidget.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Tools/cloudWidget.js">
+      <file name="cloudWidget.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Tools/cloudWidget.js">
         <metrics statements="5" coveredstatements="2" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -898,63 +958,63 @@
         <line num="9" count="0" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
       </file>
-      <file name="createStars.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/Tools/createStars.js">
-        <metrics statements="31" coveredstatements="28" conditionals="12" coveredconditionals="9" methods="3" coveredmethods="3"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="24" type="stmt"/>
-        <line num="6" count="24" type="stmt"/>
-        <line num="8" count="24" type="stmt"/>
+      <file name="createStars.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/Tools/createStars.js">
+        <metrics statements="31" coveredstatements="29" conditionals="12" coveredconditionals="10" methods="3" coveredmethods="3"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="25" type="stmt"/>
+        <line num="6" count="25" type="stmt"/>
+        <line num="8" count="25" type="stmt"/>
         <line num="9" count="102" type="stmt"/>
         <line num="10" count="102" type="stmt"/>
         <line num="11" count="102" type="stmt"/>
-        <line num="13" count="24" type="cond" truecount="1" falsecount="1"/>
-        <line num="14" count="0" type="stmt"/>
+        <line num="13" count="25" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="16" count="24" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="21" count="24" type="stmt"/>
-        <line num="22" count="24" type="stmt"/>
-        <line num="25" count="24" type="stmt"/>
-        <line num="26" count="24" type="stmt"/>
-        <line num="27" count="24" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="25" type="stmt"/>
+        <line num="22" count="25" type="stmt"/>
+        <line num="25" count="25" type="stmt"/>
+        <line num="26" count="25" type="stmt"/>
+        <line num="27" count="25" type="cond" truecount="2" falsecount="0"/>
         <line num="28" count="6" type="stmt"/>
-        <line num="29" count="18" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="19" type="cond" truecount="1" falsecount="1"/>
         <line num="30" count="0" type="stmt"/>
-        <line num="31" count="18" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="19" type="cond" truecount="1" falsecount="1"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="35" count="24" type="stmt"/>
-        <line num="36" count="120" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="25" type="stmt"/>
+        <line num="36" count="125" type="cond" truecount="2" falsecount="0"/>
         <line num="37" count="66" type="stmt"/>
-        <line num="38" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="59" type="cond" truecount="2" falsecount="0"/>
         <line num="39" count="6" type="stmt"/>
         <line num="40" count="6" type="stmt"/>
-        <line num="42" count="48" type="stmt"/>
-        <line num="45" count="24" type="stmt"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="60" count="120" type="stmt"/>
+        <line num="42" count="53" type="stmt"/>
+        <line num="45" count="25" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="60" count="125" type="stmt"/>
       </file>
     </package>
     <package name="spec">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="styleMock.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/spec/styleMock.js">
+      <file name="styleMock.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/spec/styleMock.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
     </package>
     <package name="spec.sampleData.Overview">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="sampleStyle.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/spec/sampleData/Overview/sampleStyle.js">
+      <file name="sampleStyle.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/spec/sampleData/Overview/sampleStyle.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
     </package>
     <package name="spec.sampleData.QnA">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="sampleQuestionData.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/spec/sampleData/QnA/sampleQuestionData.js">
+      <file name="sampleQuestionData.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/spec/sampleData/QnA/sampleQuestionData.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="410" count="1" type="stmt"/>
       </file>
-      <file name="sampleQuestionProduct.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/spec/sampleData/QnA/sampleQuestionProduct.js">
+      <file name="sampleQuestionProduct.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/spec/sampleData/QnA/sampleQuestionProduct.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
@@ -962,7 +1022,7 @@
     </package>
     <package name="spec.sampleData.RelatedItems">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="sampleProduct.js" path="/Users/curtiswang/projects/Hack Reactor/Immersive/FEC/client/src/spec/sampleData/RelatedItems/sampleProduct.js">
+      <file name="sampleProduct.js" path="/home/ahanafy/hackreactor/FEC/FEC/client/src/spec/sampleData/RelatedItems/sampleProduct.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>

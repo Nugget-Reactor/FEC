@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/9</span>
+                <span class='fraction'>6/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">80.76% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>21/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/9</span>
+                <span class='fraction'>6/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -150,7 +150,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,7 +160,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -171,25 +171,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -224,9 +224,9 @@ import './overview.css';
 &nbsp;
 const {useState, useEffect} = React;
 &nbsp;
-const ExpandedView = <span class="fstat-no" title="function not covered" >({</span>currentStyle, handleExpansion, slideNumber, nextSlide, prevSlide, setSlideNumber}) =&gt; {
+const ExpandedView = ({currentStyle, handleExpansion, slideNumber, nextSlide, prevSlide, setSlideNumber}) =&gt; {
   // const [slideNumber, setSlideNumber] = useState(0);
-  const [zoomed, setZoomed] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const [zoomed, setZoomed] = useState(false);
 &nbsp;
   // const nextSlide = () =&gt; {
   //   setSlideNumber(slideNumber === currentStyle.photos.length - 1 ? 0 : slideNumber + 1);
@@ -236,24 +236,24 @@ const ExpandedView = <span class="fstat-no" title="function not covered" >({</sp
   //   setSlideNumber(slideNumber === 0 ? currentStyle.photos.length - 1 : slideNumber - 1);
   // };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className='expanded-gallery'&gt;
-      {currentStyle.photos !== undefined &amp;&amp; slideNumber !== 0 &amp;&amp; !zoomed &amp;&amp;
-      &lt;AiOutlineArrowLeft className="expanded-left-arrow" onClick={prevSlide}/&gt;
+      {currentStyle.photos !== undefined &amp;&amp; slideNumber !== 0 &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >!zoomed </span>&amp;&amp;
+<span class="branch-3 cbranch-no" title="branch not covered" >      &lt;AiOutlineArrowLeft className="expanded-left-arrow" onClick={prevSlide}/&gt;</span>
       }
       {currentStyle.photos !== undefined &amp;&amp; slideNumber !== currentStyle.photos.length - 1 &amp;&amp; !zoomed &amp;&amp;
       &lt;AiOutlineArrowRight className="expanded-right-arrow" onClick={nextSlide}/&gt;
       }
       &lt;div className="expanded-thumbnails"&gt;
         {
-          currentStyle.photos &amp;&amp; !zoomed &amp;&amp; currentStyle.photos.map(<span class="fstat-no" title="function not covered" >(i</span>tem, index) =&gt; {
-<span class="cstat-no" title="statement not covered" >            return (</span>
+          currentStyle.photos &amp;&amp; !zoomed &amp;&amp; currentStyle.photos.map((item, index) =&gt; {
+            return (
               &lt;div className="thumbnail-container" key={index}&gt;
                 &lt;img
                   onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setSlideNumber(index)}</span>
                   className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'}
                   key={index}
-                  src={item.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg': item.url}&gt;
+                  src={item.url === null ? <span class="branch-0 cbranch-no" title="branch not covered" >'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg':</span> item.url}&gt;
                 &lt;/img&gt;
               &lt;/div&gt;
             );
@@ -264,22 +264,22 @@ const ExpandedView = <span class="fstat-no" title="function not covered" >({</sp
       &lt;div&gt;&lt;AiOutlineExpand className="expanded-expand-button" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleExpansion()}</span>/&gt;&lt;/div&gt;
       }
       {
-        currentStyle.photos &amp;&amp; !zoomed &amp;&amp; currentStyle.photos.map(<span class="fstat-no" title="function not covered" >(s</span>lide, index) =&gt; {
-<span class="cstat-no" title="statement not covered" >          return (</span>
+        currentStyle.photos &amp;&amp; !zoomed &amp;&amp; currentStyle.photos.map((slide, index) =&gt; {
+          return (
             &lt;div className="expanded-image-container"
               key={index}&gt;
               {index === slideNumber &amp;&amp;
               (&lt;img key={index}
                 onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setZoomed(!zoomed)}</span>
                 className='expanded-image'
-                src={slide.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' : slide.url} alt=''/&gt;)}
+                src={slide.url === null ? <span class="branch-0 cbranch-no" title="branch not covered" >'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' </span>: slide.url} alt=''/&gt;)}
             &lt;/div&gt;
           );
         })
       }
       {
         zoomed !== false &amp;&amp;
-        &lt;div className='zoom-container'&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;div className='zoom-container'&gt;</span>
           &lt;ImageMagnifier height='75.82575173477255vh' width='25.53125vw' src={currentStyle.photos[slideNumber].url} zoomed={zoomed} setZoomed={setZoomed}/&gt;
         &lt;/div&gt;
       }
@@ -298,7 +298,7 @@ export default ExpandedView;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-26T05:37:09.119Z
+                at 2022-10-27T17:39:20.579Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
