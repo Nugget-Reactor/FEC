@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const OutfitButtonCard = ({addOutfit}) => {
 
   return (
-    <OutfitButtonLi>
+    <OutfitButtonLi data-testid="add-to-outfit-button">
       <HolderDiv>
         <CardSquare>
           <AddButton onClick={(event) => addOutfit()}>+</AddButton>

@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import OutfitsCarousel from './OutfitsCarousel.jsx';
+import { TrackerContext } from '../../Tools/clickTracker';
+
 
 const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => { //it will need handleclick to change page to that item
+  const tracker = useContext(TrackerContext);
 
   return (
-    <OutfitsContainer>
+    <OutfitsContainer onClick={(e)=>tracker(e.target, 'Your Outfit')}>
       <Heading>
         <h2>Your Outfit</h2>
       </Heading>
