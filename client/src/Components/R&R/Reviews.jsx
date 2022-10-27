@@ -115,7 +115,9 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
           <List reviews={filteredReviews} currentCount={currentCount} />
 
           {reviews.length > currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
-          <BigButton data-testid="addReviewButton" onClick={() => setShowModal(true)}>ADD A REVIEW +</BigButton>
+          <BigButton data-testid="addReviewButton" onClick={() => {
+            setShowModal(true);
+          }}>ADD A REVIEW +</BigButton>
         </ReviewContainer>
       </ColumnContainer>
       {showModal
