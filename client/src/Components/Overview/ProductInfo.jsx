@@ -29,7 +29,7 @@ const ProductInfo = ({ product, productStyles, currentStyle, handleStyleChange, 
       <p className="product-category">{product.category}</p>
       <h1 className="product-name" style={{fontWeight: "600"}}>{product.name}</h1>
       {currentStyle.sale_price !== null ?
-        <p style={{ color: 'red' }}>${currentStyle.sale_price}
+        <p style={{ color: 'red' }}>${currentStyle.sale_price}&nbsp;
           <span style={{ color: 'black', textDecoration: 'line-through' }}>${currentStyle.original_price}</span>
         </p> :
         <p>${currentStyle.original_price}</p>}

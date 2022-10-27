@@ -29,7 +29,7 @@ const OverviewApp = ({ product, productStyles, currentStyle, handleStyleChange, 
         <ProductInfo product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
         }
       </div>
-      <ProductDescription product={product}/>
+      <ProductDescription product={product} expanded={expanded}/>
     </div>
   );
 };
