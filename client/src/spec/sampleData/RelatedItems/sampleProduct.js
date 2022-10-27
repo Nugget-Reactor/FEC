@@ -23,7 +23,43 @@ module.exports = {
       }
     ]
   },
-
+  modalInfo: {
+    productName: 'Libbie Backpack',
+    relatedCharacteristics: {
+      "Fit": {
+        "id": 138369,
+        "value": "3.0000000000000000"
+      },
+      "Length": {
+        "id": 138370,
+        "value": "2.6470588235294118"
+      },
+      "Comfort": {
+        "id": 138371,
+        "value": "2.7058823529411765"
+      },
+      "Quality": {
+        "id": 138372,
+        "value": "2.6470588235294118"
+      }
+    },
+    relatedName: 'Lambert Slacks',
+    currentCharacteristics: {
+      "Quality": {
+        "id": 138109,
+        "value": "3.2333333333333333"
+      }
+    }
+  },
+  oneOutfit: {
+    id: 40350,
+    regPrice: "120.00",
+    salePrice: null,
+    ratings: "3.5",
+    name: "Blues Suede Shoes",
+    category: "Dress Shoes",
+    currentPhotoURL: "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+  },
   noRelatedItems: {
     "id": 40353,
     "campus": "hr-rfp",

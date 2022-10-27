@@ -35,9 +35,8 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
     }
   }, [currentIndex, outfits]);
 
-  let OutfitsRenderMap = () => { //this is not firing off
+  let OutfitsRenderMap = () => {
     if (outfits.length > 0) {
-      // console.log('outfits in OutfitsCarousel', outfits);
 
       var currentThree = outfits.slice(currentIndex, currentIndex + 3);
       return <>{currentThree.map((currentItem) =>
@@ -50,7 +49,7 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   };
 
   let RightButton = ({isVisible}) => {
-    return RightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-outfit-carousel-button"></RightArrow> : null;
+    return RightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}></RightArrow> : null;
   };
 
   return (

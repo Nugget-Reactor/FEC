@@ -43,7 +43,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   }, [product]);
 
   const AnyRelatedItems = () => {
-    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange} isModalVisible={isModalVisible} /> : <h1>{noneRelated}</h1>;
+    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange} isModalVisible={isModalVisible} /> : <h1 data-testid="no-related-products-header">{noneRelated}</h1>;
   };
 
   const closeModal = () => {
@@ -63,7 +63,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
     <RelatedItemsLayout onClick={(e)=>tracker(e.target, 'Related Products')}>
       {showCompareModal ? <CompareModal closeModal={closeModal} productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} /> : null}
       <Heading>
-        <h2>Related Products</h2>
+        <h2 data-testid="related-products-header">Related Products</h2>
       </Heading>
       <Carousel>
         <AnyRelatedItems/>

@@ -5,23 +5,30 @@ import React from 'react';
 import { render, screen, cleanup, waitFor, fireEvent, act } from '@testing-library/react';
 import axiosMock from 'axios';
 
-import { sampleProduct, sampleRelatedItems, noRelatedItems } from './sampleData/RelatedItems/sampleProduct.js';
+import { sampleProduct, sampleRelatedItems, noRelatedItems, modalInfo, oneOutfit } from './sampleData/RelatedItems/sampleProduct.js';
 
 import RelatedItems from '../Components/RelatedItems/RelatedItems.jsx';
 import RelatedItemsCarousel from '../Components/RelatedItems/RelatedItemsCarousel.jsx';
 import RelatedItem from '../Components/RelatedItems/RelatedItem.jsx';
+import OutfitCollection from '../Components/RelatedItems/OutfitCollection.jsx';
+import OutfitsCarousel from '../Components/RelatedItems/OutfitsCarousel.jsx';
+import SingleOutfit from '../Components/RelatedItems/SingleOutfit.jsx';
+import OutfitButtonCard from '../Components/RelatedItems/OutfitButtonCard.jsx';
+import CompareModal from '../Components/RelatedItems/CompareModal.jsx';
+import CompareModalTable from '../Components/RelatedItems/CompareModalTable.jsx';
+
 
 
 describe('renders Related Items from Related Items Widget', () => {
   afterEach(cleanup);
 
-  // it('Related Items Widget should render', async () => {
-  //   act(() => {
-  //   const { getByTestId, getByText } = render(<RelatedItems product={sampleProduct} />)
-  //   });
+  it('Related Items Widget should render', async () => {
+    act(() => {
+    const { getByTestId } = render(<RelatedItems product={sampleProduct} />)
+    });
 
-  //   expect(screen.getByText('Related Items')).toBeInTheDocument();
-  // })
+    expect(screen.getByTestId('related-products-header')).toBeInTheDocument();
+  })
 
   it('Related Items Carousel right button should render when there are more than 4 items in the relatedItems prop', async () => {
       const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
@@ -36,10 +43,60 @@ describe('renders Related Items from Related Items Widget', () => {
     expect(screen.getByText('Rita Hat')).toBeInTheDocument();
   })
 
-  it('"No Related Products" message should render when there are no Related Products for the Current Product', async () => {
+});
+
+
+describe('Renders OutFit Button Card', () => {
+  afterEach(cleanup);
+
+it('should render the OutfitButton Card', async () => {
+  act(() => {
+    const { getByText } = render(<OutfitButtonCard />)
+  });
+    expect(screen.getByText('Add Current Product to your Outfit')).toBeInTheDocument();
+  })
+});
+
+describe('Renders OutFit module', () => {
+  afterEach(cleanup);
+
+  it('should render the Outfit Collection', async () => {
     act(() => {
-      const { getByText } = render(<RelatedItems product={noRelatedItems} />)
+      const { getByText } = render(<OutfitCollection />)
     });
-      expect(screen.getByText('There are no Related Products for this item')).toBeInTheDocument();
-    })
+      expect(screen.getByText('Your Outfit')).toBeInTheDocument();
+  })
+
+});
+
+describe('Renders Comparing Modal', () => {
+  afterEach(cleanup);
+
+  it('should render the Comparing Modal', async () => {
+    act(() => {
+      var { productName, relatedCharacteristics, currentCharacteristics, relatedName } = modalInfo;
+      const { getByText } = render(<CompareModal  productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} />)
+    });
+      expect(screen.getByText('Libbie Backpack')).toBeInTheDocument();
+  })
+
+  it('should render the Comparing Modal Table', async () => {
+    act(() => {
+      var { productName, relatedCharacteristics, currentCharacteristics, relatedName } = modalInfo;
+      const { getByText } = render(<CompareModalTable  productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} />)
+    });
+      expect(screen.getByText('COMPARING')).toBeInTheDocument();
+  })
+});
+
+describe('Renders Single Outfit', () => {
+  afterEach(cleanup);
+
+  it('should render an Outfit Card', async () => {
+    act(() => {
+      const { getByText } = render(<SingleOutfit outfit={oneOutfit}/>)
+    });
+      expect(screen.getByText('Blues Suede Shoes')).toBeInTheDocument();
+  })
+
 });
