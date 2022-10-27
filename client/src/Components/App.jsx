@@ -155,23 +155,24 @@ const App = () => {
 
 const GlobalStyle = createGlobalStyle`
   body{
-    background: linear-gradient(#FFAEBC, #A0E7E5 );
     margin: 0;
-    overflow: hidden;
+    overflow:hidden;
   }
   #root{
     overflow: auto;
     height: 100vh;
+    width: 100%;
     max-height: 5000px;
   }
 `;
 
-const AppStyling = styled.div`
+
+  const AppStyling = styled.div`
   font-family: 'Work Sans', sans-serif;
   font-size: 1.25rem;
   word-break: break-word;
-  margin: 0 13%;
-  background: #fff;
+  padding: 0 13%;
+  background: linear-gradient(#FFAEBC, #A0E7E5);
 
   & h1 {
     letter-spacing: -1px;
