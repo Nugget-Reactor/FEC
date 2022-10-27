@@ -7,6 +7,7 @@ import axiosMock from 'axios';
 
 import { sampleQuestion } from './sampleData/QnA/sampleQuestionData.js';
 import { sampleQProduct } from './sampleData/QnA/sampleQuestionProduct.js';
+import { sampleAnswer } from './sampleData/QnA/sampleAnswerData.js';
 
 import QnA from '../Components/QnA/QnA.jsx';
 import QuestionsList from '../Components/QnA/QuestionsList.jsx';
@@ -116,18 +117,17 @@ describe('renders Answers List in QnA Widget', () => {
 
 
   it('Answers List should render', () => {
-    const { getByTestId } = render(<QuestionsList questionsList={sampleQuestion.results} name={sampleQProduct.name} />);
+    const { getByTestId } = render(<AnswersList questionID={sampleQuestion.results[0].question_id} answersList={sampleAnswer.results} setAnswersList={() => { }} />);
 
-    expect(getByTestId('questions-list')).toBeInTheDocument();
+    expect(getByTestId('answers-list')).toBeInTheDocument();
 
     // screen.debug();
   });
 
   it('Answers List should render with ', () => {
-    const { getByTestId } = render(<AnswersList questionID={ } answersList={ } />);
+    const { getByTestId } = render(<AnswersList questionID={sampleQuestion.results[0].question_id} answersList={sampleAnswer.results} setAnswersList={() => { }} />);
 
-    expect(getByTestId('more-questions')).toBeInTheDocument();
-    expect(getByTestId('addq-button')).toBeInTheDocument();
+    expect(screen.getByText(/LOAD MORE ANSWERS/i)).toBeInTheDocument();
 
     // screen.debug();
   });
