@@ -43,7 +43,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   }, [product]);
 
   const AnyRelatedItems = () => {
-    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange} isModalVisible={isModalVisible} /> : <h1 data-testid="no-related-products-header">{noneRelated}</h1>;
+    return noneRelated.length === 0 ? <RelatedItemsCarousel relatedItems={relatedItems} handleProductChange={handleProductChange} isModalVisible={isModalVisible} /> : <h1>{noneRelated}</h1>;
   };
 
   const closeModal = () => {
@@ -65,7 +65,7 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
       <Heading>
         <h2 data-testid="related-products-header">Related Products</h2>
       </Heading>
-      <Carousel>
+      <Carousel data-testid="related-items-carousel">
         <AnyRelatedItems/>
       </Carousel>
     </RelatedItemsLayout>

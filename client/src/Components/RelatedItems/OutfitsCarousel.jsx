@@ -53,7 +53,7 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   };
 
   return (
-    <OutfitContainer>
+    <OutfitContainer data-testid="outfit-carousel">
       <OutfitWrapper>
         <LeftButton isVisible={leftButtonVisible}/>
         <OutfitContentWrapper>

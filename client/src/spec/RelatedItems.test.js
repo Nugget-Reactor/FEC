@@ -22,7 +22,7 @@ import CompareModalTable from '../Components/RelatedItems/CompareModalTable.jsx'
 describe('renders Related Items from Related Items Widget', () => {
   afterEach(cleanup);
 
-  it('Related Items Widget should render', async () => {
+  it('Related Products Widget should render', async () => {
     act(() => {
     const { getByTestId } = render(<RelatedItems product={sampleProduct} />)
     });
@@ -30,32 +30,39 @@ describe('renders Related Items from Related Items Widget', () => {
     expect(screen.getByTestId('related-products-header')).toBeInTheDocument();
   })
 
-  it('Related Items Carousel right button should render when there are more than 4 items in the relatedItems prop', async () => {
+  it('Related Products Carousel should render', async () => {
+    const { getByTestId } = render(<RelatedItems product={sampleProduct} />)
+
+    expect(getByTestId('related-items-carousel')).toBeInTheDocument();
+  })
+
+  it('Related Products Carousel Container should render', async () => {
+    const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
+
+    expect(getByTestId('related-items-container')).toBeInTheDocument();
+  })
+
+  it('Related Products Carousel right button should render when there are more than 4 items in the relatedItems prop', async () => {
       const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
 
     expect(getByTestId('right-carousel-button')).toBeInTheDocument();
   })
 
-  it('Related Items Product Name should render', async () => {
+  it('Related Products Product Name should render', async () => {
   act(() => {
     const { getByText } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
   });
     expect(screen.getByText('Rita Hat')).toBeInTheDocument();
   })
 
+  it('Related Items Carousel right button should render when there are more than 4 items in the relatedItems prop', async () => {
+    const { getByTestId } = render(<RelatedItemsCarousel relatedItems={sampleRelatedItems} />)
+
+  expect(getByTestId('right-carousel-button')).toBeInTheDocument();
+})
+
 });
 
-
-describe('Renders OutFit Button Card', () => {
-  afterEach(cleanup);
-
-it('should render the OutfitButton Card', async () => {
-  act(() => {
-    const { getByText } = render(<OutfitButtonCard />)
-  });
-    expect(screen.getByText('Add Current Product to your Outfit')).toBeInTheDocument();
-  })
-});
 
 describe('Renders OutFit module', () => {
   afterEach(cleanup);
@@ -64,9 +71,28 @@ describe('Renders OutFit module', () => {
     act(() => {
       const { getByText } = render(<OutfitCollection />)
     });
-      expect(screen.getByText('Your Outfit')).toBeInTheDocument();
+    expect(screen.getByText('Your Outfit')).toBeInTheDocument();
   })
 
+  it('should render "Your Outfit" Carousel', async () => {
+    const { getByTestId } = render(<OutfitsCarousel relatedItems={sampleRelatedItems} />)
+
+    expect(getByTestId('outfit-carousel')).toBeInTheDocument();
+  })
+
+  it('should render the OutfitButton Card', async () => {
+    act(() => {
+      const { getByText } = render(<OutfitButtonCard />)
+    });
+      expect(screen.getByText('Add Current Product to your Outfit')).toBeInTheDocument();
+  })
+
+  it('should render an Outfit Card', async () => {
+    act(() => {
+      const { getByText } = render(<SingleOutfit outfit={oneOutfit}/>)
+    });
+      expect(screen.getByText('Blues Suede Shoes')).toBeInTheDocument();
+  })
 });
 
 describe('Renders Comparing Modal', () => {
@@ -89,14 +115,3 @@ describe('Renders Comparing Modal', () => {
   })
 });
 
-describe('Renders Single Outfit', () => {
-  afterEach(cleanup);
-
-  it('should render an Outfit Card', async () => {
-    act(() => {
-      const { getByText } = render(<SingleOutfit outfit={oneOutfit}/>)
-    });
-      expect(screen.getByText('Blues Suede Shoes')).toBeInTheDocument();
-  })
-
-});

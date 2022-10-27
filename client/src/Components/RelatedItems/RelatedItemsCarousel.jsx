@@ -45,7 +45,7 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible
 
   return (
     <div>
-      <RIContainer>
+      <RIContainer data-testid="related-items-container">
         <RIWrapper>
           <LeftButton isVisible={leftButtonVisible}/>
           <RIContentWrapper>
