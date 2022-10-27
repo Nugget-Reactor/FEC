@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-
 const Modal = ({ closeModal, children }) => {
   const escModal = (e) => {
     if(e.key === 'Escape'){
+      document.body.style.overflow = 'unset';
       closeModal();
     }
   }
   useEffect(() => {
+    console.log('in effect');
     document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', escModal, false);
     return ()=> {
+      console.log('out effect')
       document.body.style.overflow = 'unset';
       document.removeEventListener('keydown', escModal, false);
     }
