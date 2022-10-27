@@ -2,22 +2,28 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Modal = ({ closeModal, children }) => {
-  const escModal = (e) => {
-    if(e.key === 'Escape'){
-      document.body.style.overflow = 'unset';
-      closeModal();
-    }
-  }
+
+
   useEffect(() => {
-    console.log('in effect');
-    document.body.style.overflow = 'hidden';
+    const escModal = (e) => {
+      if(e.key === 'Escape'){
+        closeModal();
+        // Cloudinary Widget breaks the esc key and causes overflow to stay hidden
+        // Need to unset overflow every time esc is pressed
+        /* setTimeout(() => {
+          document.body.style.overflow = 'unset';
+        }, 150); */
+      }
+    }
+    let rootApp = document.getElementById('root');
+    rootApp.style.overflow = 'hidden';
     document.addEventListener('keydown', escModal, false);
     return ()=> {
-      console.log('out effect')
-      document.body.style.overflow = 'unset';
+      rootApp.style.overflow = 'auto';
       document.removeEventListener('keydown', escModal, false);
     }
   }, []);
+
 
   return(
     <ModalContainer>
