@@ -37,5 +37,5 @@ const Heading2 = styled.h2`
 `;
 
 const QFeatureContainer = styled.div`
-
+  background-color: white;
 `;

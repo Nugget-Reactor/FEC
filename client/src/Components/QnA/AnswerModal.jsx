@@ -17,8 +17,18 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
   const [currImg, setCurrImg] = useState(null);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => document.body.style.overflow = 'unset';
+    const escModal = (e) => {
+      if (e.key === 'Escape') {
+        setShowAModal(!showAModal);
+      }
+    };
+    let rootApp = document.getElementById('root');
+    rootApp.style.overflow = 'hidden';
+    document.addEventListener('keydown', escModal, false);
+    return () => {
+      rootApp.style.overflow = '';
+      document.removeEventListener('keydown', escModal, false);
+    };
   }, []);
 
   useEffect(() => {

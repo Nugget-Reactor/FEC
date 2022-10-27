@@ -9,8 +9,18 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
   const emailRef = useRef(null);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => document.body.style.overflow = 'unset';
+    const escModal = (e) => {
+      if (e.key === 'Escape') {
+        setShowQModal(!showQModal);
+      }
+    };
+    let rootApp = document.getElementById('root');
+    rootApp.style.overflow = 'hidden';
+    document.addEventListener('keydown', escModal, false);
+    return () => {
+      rootApp.style.overflow = '';
+      document.removeEventListener('keydown', escModal, false);
+    };
   }, []);
 
   const validateForm = () => {
