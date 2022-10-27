@@ -157,6 +157,12 @@ const GlobalStyle = createGlobalStyle`
   body{
     background: linear-gradient(#FFAEBC, #A0E7E5 );
     margin: 0;
+    overflow: hidden;
+  }
+  #root{
+    overflow: auto;
+    height: 100vh;
+    max-height: 5000px;
   }
 `;
 
