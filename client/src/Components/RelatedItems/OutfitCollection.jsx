@@ -5,7 +5,7 @@ import OutfitsCarousel from './OutfitsCarousel.jsx';
 import { TrackerContext } from '../../Tools/clickTracker';
 
 
-const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => { //it will need handleclick to change page to that item
+const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => {
   const tracker = useContext(TrackerContext);
 
   return (
@@ -23,7 +23,6 @@ const Outfits = ({handleProductChange, addOutfit, allOutfits, removeOutfit}) => 
 export default Outfits;
 
 const OutfitsContainer = styled.div`
-// background-color: #B4F8C8; defce7 9df6b8
 background: linear-gradient(to left
 , #defce7, #B4F8C8 );
 `;

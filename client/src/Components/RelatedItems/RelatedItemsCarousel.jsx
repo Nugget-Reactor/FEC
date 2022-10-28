@@ -6,8 +6,6 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible
   const [currentIndex, setCurrentIndex] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
-  // console.log('currentMeta', currentMeta);
-  // console.log('productName', productName);
 
   useEffect(() => {
     setCurrentIndex(0);

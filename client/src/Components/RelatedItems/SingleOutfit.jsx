@@ -28,11 +28,11 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
     }
   };
 
-  const conditionalRatings = () => { //if no ratings, do not render any stars business doc says if no reviews?
+  const conditionalRatings = () => { //if no ratings, do not render any stars
     if (outfit.ratings > 0) {
       return <div>{createStars(outfit.ratings)}</div>;
     } else {
-      return <div></div>; //change this to blank if no stars, set default size
+      return <div></div>; //blank if no stars
     }
   };
 
@@ -111,7 +111,7 @@ const DefaultImage = styled.img` // image itself fits image div
   object-fit: cover;
 `;
 
-const ActionButtonOutfit = styled.button`  //the X
+const ActionButtonOutfit = styled.button`  //the 'X'
   z-index: 1;
   // padding: .2em .4em;
   width: 1.7em;
