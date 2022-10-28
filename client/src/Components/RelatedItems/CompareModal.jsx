@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CompareModalTable from './CompareModalTable.jsx'; //
+import App from '../App.jsx'; //
+
 
 const CompareModal = ({closeModal, productName, relatedCharacteristics, currentCharacteristics, relatedName}) => {
   const escModal = (e) => {
@@ -10,10 +12,18 @@ const CompareModal = ({closeModal, productName, relatedCharacteristics, currentC
   };
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
+    // document.addEventListener('keydown', escModal, false);
+    // return () => {
+    //   document.body.style.overflow = 'unset';
+    //   document.removeEventListener('keydown', escModal, false);
+    // };
+
+    let rootApp = document.getElementById('root');
+    rootApp.style.overflow = 'hidden';
     document.addEventListener('keydown', escModal, false);
-    return () => {
-      document.body.style.overflow = 'unset';
+    return ()=> {
+      rootApp.style.overflow = 'auto';
       document.removeEventListener('keydown', escModal, false);
     };
   }, []);

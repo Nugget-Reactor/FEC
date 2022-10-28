@@ -72,4 +72,3 @@ const ActionText = styled.h1`
   word-wrap: normal;
   text-align: center;
 `;
-
