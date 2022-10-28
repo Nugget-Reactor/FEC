@@ -33,7 +33,7 @@ const CharacteristicInput = ({ name, charID, onChange }) => {
       <CharName>{name}</CharName>
       <Choice>{choice}</Choice>
       <RadioContainer>
-        <LeftDescription>{descriptions[0]}</LeftDescription>
+        <LeftDescription data-testid="leftDescription">{descriptions[0]}</LeftDescription>
         <VerticalLabel>
           <input type="radio" name={name} value={1} onChange={handleClick} required/>
           1
@@ -54,7 +54,7 @@ const CharacteristicInput = ({ name, charID, onChange }) => {
           <input type="radio" name={name} value={5} onChange={handleClick} required/>
           5
         </VerticalLabel>
-        <RightDescription>{descriptions[4]}</RightDescription>
+        <RightDescription data-testid="rightDescription">{descriptions[4]}</RightDescription>
       </RadioContainer>
     </div>
   );
