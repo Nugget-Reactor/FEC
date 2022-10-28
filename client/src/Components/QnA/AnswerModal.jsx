@@ -9,7 +9,6 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
   const answerRef = useRef(null);
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
-
   const [photos, setPhotos] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
   const [tempPhoto, setTempPhoto] = useState(null);
@@ -102,8 +101,8 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
 
   return (
     <AnswerContainer>
-      <CloseBtn onClick={() => setShowAModal(!showAModal)} className="fa-solid fa-x"></CloseBtn>
       <AnswerForm>
+        <CloseBtn onClick={() => setShowAModal(!showAModal)} className="fa-solid fa-x"></CloseBtn>
         <AnswerHeading4>Submit Your Answer</AnswerHeading4>
         <AnswerHeading5>{questionName}: {questionBody}</AnswerHeading5>
         <FormDiv>
@@ -221,9 +220,8 @@ const AddPhotos = styled.input`
 `;
 
 const CloseBtn = styled.i`
-  position: fixed;
-  top: 0vh;
-  right: 0vw;
+  display: flex;
+  justify-content: flex-end;
   z-index: 1;
   padding: 5px;
 `;

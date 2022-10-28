@@ -3,15 +3,19 @@ import QuestionEntry from './QuestionEntry.jsx';
 import SearchQnA from './SearchQnA.jsx';
 import styled from 'styled-components';
 
-const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
+const QuestionsList = ({ questionsList, name, showQModal, setShowQModal, newProduct }) => {
 
   const [totalCount, setTotalCount] = useState(0);
   const [currCount, setCurrCount] = useState(0);
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    setCurrCount(0);
-    setTotalCount(questionsList.length);
+    if (newProduct) {
+      setTotalCount(questionsList.length);
+    } else {
+      setCurrCount(0);
+      setTotalCount(questionsList.length);
+    }
   }, [questionsList]);
 
   const handleMoreAs = (e) => {
@@ -23,18 +27,15 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal }) => {
     <QuestionListContainer data-testid="questions-list">
       <SearchQnA query={query} setQuery={setQuery} />
       <QuestionListBody>
-        {currCount < totalCount
-          ? questionsList.map((question, index) => {
+        {(currCount < totalCount || currCount === totalCount || currCount === totalCount + 1) &&
+          questionsList.map((question, index) => {
             if (index < currCount + 2) {
               return <QuestionEntry entry={question} key={index} name={name} query={query} />;
             }
-          })
-          : questionsList.map((question, index) => {
-            return <QuestionEntry entry={question} key={index} name={name} query={query} />;
           })}
       </QuestionListBody>
       <QuestionListFooter>
-        {currCount < totalCount && <MoreAnsweredButton onClick={handleMoreAs} data-testid="more-questions">MORE ANSWERED QUESTIONS</MoreAnsweredButton>}
+        {(currCount < totalCount) && <MoreQuestions onClick={handleMoreAs} data-testid="more-questions">MORE ANSWERED QUESTIONS</MoreQuestions>}
         <AddQButton onClick={() => setShowQModal(!showQModal)} data-testid="addq-button">ADD A QUESTION +</AddQButton>
       </QuestionListFooter>
     </QuestionListContainer>
@@ -72,7 +73,7 @@ const AddQButton = styled.button`
   cursor: pointer;
 `;
 
-const MoreAnsweredButton = styled.button`
+const MoreQuestions = styled.button`
   border-radius: 0;
   padding: 15px;
   font-weight: 700;
