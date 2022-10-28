@@ -81,11 +81,3 @@ const MoreQuestions = styled.button`
   margin: 10px;
   cursor: pointer;
 `;
-/*
-{(currCount < totalCount || currCount === totalCount || currCount === totalCount + 1) &&
-          questionsList.map((question, index) => {
-            if (index < currCount + 2) {
-              return <QuestionEntry entry={question} key={index} name={name} query={query} />;
-            }
-          })}
-*/
