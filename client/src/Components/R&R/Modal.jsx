@@ -20,12 +20,11 @@ const Modal = ({ closeModal, children }) => {
     // document.body.style.overflow= 'hidden';
     document.addEventListener('keydown', escModal, false);
     return ()=> {
-      rootApp.style.overflow = '';
+      rootApp.style.overflow = 'auto';
       // document.body.style.overflow= 'unset';
       document.removeEventListener('keydown', escModal, false);
     }
   }, []);
-
 
   return(
     <ModalContainer>

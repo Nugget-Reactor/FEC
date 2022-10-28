@@ -9,7 +9,7 @@
     "client-dev": "webpack --mode development --watch",
     "server-dev": "nodemon server/index.js",
     "build": "webpack --mode production",
-    "deploy": "webpack --mode production && node server/index.js"
+    "deploy": "webpack --mode production && nodemon server/index.js"
   },
   "repository": {
     "type": "git",

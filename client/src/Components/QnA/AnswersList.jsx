@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
 import AnswerEntry from './AnswerEntry.jsx';
 
 const AnswersList = ({ questionID, answersList, setAnswersList }) => {
@@ -24,14 +23,6 @@ const AnswersList = ({ questionID, answersList, setAnswersList }) => {
   useEffect(() => {
     setShowLoadMore(!showLoadMore);
   }, []);
-
-  // const answersArr = [];
-  // for (let key in answersObj) {
-  //   answersArr.push(answersObj[key]);
-  // }
-  // answersArr.sort((a, b) => {
-  //   return b.helpfulness - a.helpfulness;
-  // });
 
   const handleLoadMoreAs = (e) => {
     e.preventDefault();

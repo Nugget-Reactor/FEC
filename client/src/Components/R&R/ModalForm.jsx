@@ -22,7 +22,7 @@ const ModalForm = ({ productID, productName, characteristicModel, closeModal, re
       setTempPhoto(url);
     })
     return () => {
-      document.querySelector("iframe").remove();
+      document.querySelector("iframe")?.remove();
     };
   }, []);
 
@@ -116,7 +116,7 @@ const ModalForm = ({ productID, productName, characteristicModel, closeModal, re
         </div>
       </ModalHeader>
       <ModalContent>
-        <label >Overall Rating <Required/></label>
+        <label>Overall Rating <Required/></label>
         <div>
           {createStarInput()}
         </div>
