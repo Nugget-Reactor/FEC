@@ -12,22 +12,21 @@ const CompareModal = ({closeModal, productName, relatedCharacteristics, currentC
   };
 
   useEffect(() => {
-    App.style.overflow = 'hidden';
-    App.addEventListener('keydown', escModal, false);
-    return () => {
-      App.style.overflow = 'unset';
-      App.removeEventListener('keydown', escModal, false);
+    // document.body.style.overflow = 'hidden';
+    // document.addEventListener('keydown', escModal, false);
+    // return () => {
+    //   document.body.style.overflow = 'unset';
+    //   document.removeEventListener('keydown', escModal, false);
+    // };
+
+    let rootApp = document.getElementById('root');
+    rootApp.style.overflow = 'hidden';
+    document.addEventListener('keydown', escModal, false);
+    return ()=> {
+      rootApp.style.overflow = '';
+      document.removeEventListener('keydown', escModal, false);
     };
   }, []);
-
-  // useEffect(() => {
-  //   document.body.style.overflow = 'hidden';
-  //   document.addEventListener('keydown', escModal, false);
-  //   return () => {
-  //     document.body.style.overflow = 'unset';
-  //     document.removeEventListener('keydown', escModal, false);
-  //   };
-  // }, []);
 
   return (
     <CompareModalContainer onClick={closeModal}>
