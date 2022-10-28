@@ -25,7 +25,7 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
     let filters = [];
     if(currentMeta.ratings) {
       for(let i = 5; i >= 1; i--) {
-        filters.push(<RatingFilter rating={currentMeta.ratings[i]} totalCount={totalCount} starValue={i} modifyFilters={modifyFilters} key={i} />);
+        filters.push(<RatingFilter ratingCount={currentMeta.ratings[i]} totalCount={totalCount} starValue={i} modifyFilters={modifyFilters} key={i} />);
       }
     }
     return filters;
