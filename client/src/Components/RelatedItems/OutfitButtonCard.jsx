@@ -8,7 +8,7 @@ const OutfitButtonCard = ({addOutfit}) => {
     <OutfitButtonLi data-testid="add-to-outfit-button">
       <HolderDiv>
         <CardSquare>
-          <AddButton onClick={(event) => addOutfit()}>+</AddButton>
+          <AddButton aria-label="add-to-outfit-button" onClick={(event) => addOutfit()}>+</AddButton>
         </CardSquare>
         <ActionText>Add Current Product to your Outfit</ActionText>
       </HolderDiv>

@@ -45,11 +45,11 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   };
 
   let LeftButton = ({isVisible}) => {
-    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
+    return leftButtonVisible ? <LeftArrow aria-label="left-outfit-carousel-button" onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
   };
 
   let RightButton = ({isVisible}) => {
-    return RightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}></RightArrow> : null;
+    return RightButtonVisible ? <RightArrow aria-label="right-outfit-carousel-button" onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}></RightArrow> : null;
   };
 
   return (
