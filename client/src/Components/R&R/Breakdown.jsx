@@ -32,18 +32,18 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
   }
 
   return(
-    <BreakdownContainer>
+    <div>
       <div>
         {avgRating
         ? <div>
-          <div><BoldText>{avgRating}</BoldText> {createStars(avgRating)}</div>
+          <div><BoldText data-testid="avgRating">{avgRating}</BoldText> {createStars(avgRating)}</div>
           <div>{totalCount} total reviews</div>
         </div>
-        : <BoldText>No Reviews Yet</BoldText>}
+        : <BoldText data-testid="noReviews">No Reviews Yet</BoldText>}
       </div>
       <div>
         {filters.length
-        ? <div>Filtered by star rating(s): {filters.sort().map((filter, i)=>{
+        ? <div data-testid="currentFilters">Filtered by star rating(s): {filters.sort().map((filter, i)=>{
           if(i > 0) {
             return ', '+filter;
           }
@@ -58,12 +58,10 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
         {avgRating ? `${getRecommendedRate()}% of reviews recommend this product` : null}
       </div>
       <Characteristics chars={currentMeta.characteristics} />
-    </BreakdownContainer>
+    </div>
   );
 }
 
-const BreakdownContainer = styled.div`
-`
 const BoldText = styled.span`
   font-size: 2rem;
   font-weight: 600;
