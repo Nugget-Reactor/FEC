@@ -28,9 +28,9 @@ const App = () => {
     // handleProductChange('40566');
     // handleProductChange('40649'); //40345
     // handleProductChange('40348'); // contains some items with no image and no price - also 3 from infinity stones
-    handleProductChange('41197');
+    // handleProductChange('41197');
     // handleProductChange('40480');
-    // handleProductChange('40344');
+    handleProductChange('40344');
   }, []);
 
   useEffect(() => {
@@ -167,7 +167,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
-  const AppStyling = styled.div`
+const AppStyling = styled.div`
   font-family: 'Work Sans', sans-serif;
   font-size: 1.25rem;
   word-break: break-word;
