@@ -23,7 +23,7 @@ const CompareModal = ({closeModal, productName, relatedCharacteristics, currentC
     rootApp.style.overflow = 'hidden';
     document.addEventListener('keydown', escModal, false);
     return ()=> {
-      rootApp.style.overflow = '';
+      rootApp.style.overflow = 'auto';
       document.removeEventListener('keydown', escModal, false);
     };
   }, []);
