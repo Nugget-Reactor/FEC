@@ -25,25 +25,25 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
     let filters = [];
     if(currentMeta.ratings) {
       for(let i = 5; i >= 1; i--) {
-        filters.push(<RatingFilter rating={currentMeta.ratings[i]} totalCount={totalCount} starValue={i} modifyFilters={modifyFilters} key={i} />);
+        filters.push(<RatingFilter ratingCount={currentMeta.ratings[i]} totalCount={totalCount} starValue={i} modifyFilters={modifyFilters} key={i} />);
       }
     }
     return filters;
   }
 
   return(
-    <BreakdownContainer>
+    <div>
       <div>
         {avgRating
         ? <div>
-          <div><BoldText>{avgRating}</BoldText> {createStars(avgRating)}</div>
+          <div><BoldText data-testid="avgRating">{avgRating}</BoldText> {createStars(avgRating)}</div>
           <div>{totalCount} total reviews</div>
         </div>
-        : <BoldText>No Reviews Yet</BoldText>}
+        : <BoldText data-testid="noReviews">No Reviews Yet</BoldText>}
       </div>
       <div>
         {filters.length
-        ? <div>Filtered by star rating(s): {filters.sort().map((filter, i)=>{
+        ? <div data-testid="currentFilters">Filtered by star rating(s): {filters.sort().map((filter, i)=>{
           if(i > 0) {
             return ', '+filter;
           }
@@ -58,12 +58,10 @@ const Breakdown = ({ currentMeta, totalCount, filters, modifyFilters }) => {
         {avgRating ? `${getRecommendedRate()}% of reviews recommend this product` : null}
       </div>
       <Characteristics chars={currentMeta.characteristics} />
-    </BreakdownContainer>
+    </div>
   );
 }
 
-const BreakdownContainer = styled.div`
-`
 const BoldText = styled.span`
   font-size: 2rem;
   font-weight: 600;

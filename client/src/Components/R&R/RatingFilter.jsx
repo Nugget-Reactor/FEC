@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const RatingFilter = ({rating, starValue, totalCount, modifyFilters}) => {
+const RatingFilter = ({ratingCount, starValue, totalCount, modifyFilters}) => {
 
   const getPercentage = () => {
-    if(rating && totalCount){
-      return Number(rating)/totalCount * 100;
+    if(ratingCount && totalCount){
+      return Number(ratingCount)/totalCount * 100;
     }
     return 0;
   }
@@ -14,7 +14,7 @@ const RatingFilter = ({rating, starValue, totalCount, modifyFilters}) => {
     <SelectableDiv onClick={()=>modifyFilters(starValue)}>
       <RatingSpan>{starValue} stars</RatingSpan>
       <RatingBar fill={getPercentage(starValue)} />
-      <span>{rating}</span>
+      <span>{ratingCount ? ratingCount : 0}</span>
     </SelectableDiv>
   );
 }
