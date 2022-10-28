@@ -62,8 +62,8 @@ const QuestionModal = ({ productID, name, showQModal, setShowQModal, questions, 
 
   return (
     <QuestionContainer>
-      <CloseBtn onClick={() => setShowQModal(!showQModal)} className="fa-solid fa-x"></CloseBtn>
       <QuestionForm>
+        <CloseBtn onClick={() => setShowQModal(!showQModal)} className="fa-solid fa-x"></CloseBtn>
         <Heading4>Ask Your Question</Heading4>
         <Heading5>About the <i>{name}</i></Heading5>
         <QuestionBody>
@@ -149,9 +149,8 @@ const QuestionForm = styled.form`
 `;
 
 const CloseBtn = styled.i`
-  position: fixed;
-  top: 0vh;
-  right: 0vw;
+  display: flex;
+  justify-content: flex-end;
   z-index: 201;
   padding: 5px;
 `;
