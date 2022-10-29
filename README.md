@@ -43,7 +43,7 @@
 
 ## About The Project
 
-<img src="./client/src/assets/HomepagePic.png" alt="Screen capture of the homepage">
+<img src="./client/src/assets/HomepagePic.png" alt="Screen capture of the homepage" width="720" height="auto" >
 
 ---
 Our team was tasked with creating a mock front-end webstore using a provided black box database. Main features of the website include the product overview section, related products & your outfit section, questions & answers section, and th ratings & reviews section. We go into detail about each of these website features below.
@@ -52,11 +52,11 @@ Our team was tasked with creating a mock front-end webstore using a provided bla
 
 The main entry point of the page, this section shows the current product, and allows the user to browse through photos of the product, zoom in on the photos, look at the product's different styles, see the prices and description, and add the product to their cart.
 
-<img src="./client/src/assets/image_gallery.gif" alt="Gif of the image gallery in overview widget">
+<img src="./client/src/assets/image_gallery.gif" alt="Gif of the image gallery in overview widget" width="720" height="auto" >
 
 The Overview's current product informs all of the other widgets and changes based on the user's selection in the Related Products & "Your Outfit" widget, and the user's selection in the style selector component.
 
-<img src="./client/src/assets/style_selector.gif" alt="Gif of the style selector in overview widget">
+<img src="./client/src/assets/style_selector.gif" alt="Gif of the style selector in overview widget" width="720" height="auto" >
 
 The version of the cart in this repo is for demo purposes only, but it could be modified for functionality.
 
@@ -67,25 +67,28 @@ Section of site where product collections are displayed:<br>
   second: a carousel of the user's own selected products that they add to or remove from their "Outfit" collection if they choose.<br>
 <img src="./client/src/assets/OutfitAddRemove.gif" alt="Gif of adding a product to and removing a product from the 'Your Outfit' carousel"><br>
 By clicking on the Related Product of their choice, the user navigates to that product's page. This action updates all other widgets to display the data for the product selected.<br>
-<img src="./client/src/assets/RelatedChangeProduct.gif" alt="Gif of changing the current product by clicking on a related product card">
+<img src="./client/src/assets/RelatedChangeProduct.gif" alt="Gif of changing the current product by clicking on a related product card"><br>
 The action button on each Related Product's card shows a Comparing modal that displays the current product's characteristics next to those of that particular related product. <br>
 <img src="./client/src/assets/RelatedProductNavCompare.gif" alt="Gif of the navigation for the Related Products carousel and Comparing Modal">
 
 ### Questions & Answers
 
 Section of store webpage for users to ask and answer questions regarding a certain product. Users will see up to 2 questions with up to 2 answers each loaded by default and depending on how many questions & answers there are.
+
 ---
 <p align="center">
-<img src="./client/src/assets/qna-search.gif" alt="Gif of the search in questions & answers widget">
+<img src="./client/src/assets/qna-search.gif" alt="Gif of the search in questions & answers widget" >
 </p>
 
 At the top of the section there is a search bar to filter the list of questions based on user input, and the filtering of the list only takes place after at least 3 characters have been input, resetting to original list if there are less than 3 characters input.
+
 ---
 <p align="center">
-<img src="./client/src/assets/QnAList.gif" alt="Gif of the list in questions & answers widget">
+<img src="./client/src/assets/QnaList.gif" alt="Gif of the list in questions & answers widget">
 </p>
 
 Users can also extend the questions list using the more questions button which will add 2 questions to the end of the list and disappear if there are no more questions to load. The see more answers link should extend to show all answers and change text to collapse list when fully extended, and reset back to the condensed list when collapse list is clicked. Within the list users can mark questions or answers as helpful and report them to remove unhelpful questions/answers from the list.
+
 ---
 <p align="center">
 <img src="./client/src/assets/ModalUpload.gif" alt="Gif of the upload modal in questions & answers widget">
@@ -96,21 +99,20 @@ To add a question or answer, modals will popup when the respective button/link i
 ### Ratings & Reviews
 
 This widget contains three main parts. The left-hand side shows the overall rating, as well as a breakdown of the ratings from all the reviews. Clicking on a rating allows the user to filter reviews by that star value. This section also shows the average scores for different characteristics of the item.
-<img src="./client/src/assets/breakdownDemo.gif" alt="Gif of the reviews widget">
+<img src="./client/src/assets/breakdownDemo.gif" alt="Gif of the reviews widget" width="720" height="auto" >
 
 The right-hand side shows a list of reviews that can be sorted in three different ways. Each review can be given a helpful vote or be reported. If a review has pictures, the user can click on a thumbnail to open the image in a modal.
-<img src="./client/src/assets/reviewsDemo.gif" alt="Gif of the reviews widget">
+<img src="./client/src/assets/reviewsDemo.gif" alt="Gif of the reviews widget" width="720" height="auto" >
 
 Finally, users have the ability to add new reviews to products by filling out a review form which opens in a modal. The user can give their rating, score different characteristics, add extra info and up to five images.
-<img src="./client/src/assets/InputForm.gif" alt="Gif of the new reviews form">
+<img src="./client/src/assets/InputForm.gif" alt="Gif of the new reviews form" width="720" height="auto" >
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-* [![React][React.js]][React-url]
-* React
 * Express
+* React
 * Node
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -122,7 +124,6 @@ To get a local copy of Gnicchi up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * node
 * npm
   ```sh
@@ -131,24 +132,43 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+*Requires a Hack Reactor accepted email to access the API*
+1. Get a Github Personal Access Token from [https://github.com/settings/tokens][https://github.com/settings/tokens]
+2. Fork the repo
+3. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/Nugget-Reactor/FEC.git
    ```
-3. Install NPM packages
+4. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+5. Copy the exampleConfig.js and rename it config.js
+6. Enter your API key in `server/Controllers/env/config.js`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   'Authorization': 'INSERT GIT KEY HERE'
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Meet the team:
-  Jonah Choi, Ahmed Hanafy, Tessa Thornberry, and Curtis Wang.
 
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
+<p>
+  :mortar_board: <i>All participants in this project are students in the Hack Reactor Bootcamp</a> <b>@</b> <a href="https://www.hackreactor.com/coding-bootcamp">Hack Reactor</a></i> <br> <br>
+
+  :boy: <b>Jonah Choi</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/jonah-choii/">@jonah-choii</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/jonahchoi">@jonahchoi</a> <br>
+
+  :boy: <b>Ahmed Hanafy</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedIn: <a>reethu.navale@mail.concordia.ca</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/reethunavale">@AhmedHanafy9</a> <br>
+
+  :woman: <b>Tessa Thornberry</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedIn: <a>m_afzali93@yahoo.com</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/MahsaAfzali">@MahsaAfzali</a> <br>
+
+  :boy: <b>Curtis Wang</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/curtis-wang-25350975/">@curtis-wang</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/cwang1014">@cwang1014</a> <br>
+</p>
