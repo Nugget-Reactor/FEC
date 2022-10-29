@@ -24,11 +24,11 @@ const App = () => {
 
   useEffect(() => {
     // handleProductChange('40353'); //infinity stones
-    // handleProductChange('40351'); //infinity stones in related items
+    handleProductChange('40351'); //infinity stones in related items
     // handleProductChange('40566');
     // handleProductChange('40649'); //40345
     // handleProductChange('40348'); // contains some items with no image and no price - also 3 from infinity stones
-    handleProductChange('40344');
+    // handleProductChange('41197');
     // handleProductChange('40480');
     // handleProductChange('40344');
   }, []);

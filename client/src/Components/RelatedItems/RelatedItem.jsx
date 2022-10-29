@@ -54,7 +54,7 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      return <RelatedDefaultImage src={currentPhotoURL} />;
+      return <RelatedDefaultImage aria-label="${relatedItem.name}" src={currentPhotoURL} />;
     } else {
       return <NoPhotoDiv><NoPhotoH1><div>Photo</div><div>Coming</div><div>Soon!</div></NoPhotoH1></NoPhotoDiv>;
     }
@@ -121,6 +121,8 @@ const NoPhotoH1 = styled.h1`
 `;
 
 const RelatedItemListItem = styled.li` //the related items card itself
+box-shadow: 20px 25px 25px gray; //sc-gGvHcT
+
   cursor: pointer;
   list-style-type: none;
   display: inline-block;
@@ -149,6 +151,7 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonRelated = styled.button` // the star
+box-shadow: 15px 15px 25px gray; //20px 25px 25px
   z-index: 1;
   padding-top: 5px;
   padding-bottom: 5px;
