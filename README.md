@@ -23,9 +23,9 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#related-products-&amp;-your-outfit">Related Products & Your Outfit</a></li>
-        <li><a href="#questions-M%26M-answers">Questions & Answers</a></li>
-        <li><a href="#ratings-\&-reviews">Ratings & Reviews</a></li>
+        <li><a href="#related-products-your-outfit">Related Products & Your Outfit</a></li>
+        <li><a href="#questions">Questions & Answers</a></li>
+        <li><a href="#ratings-reviews">Ratings & Reviews</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
