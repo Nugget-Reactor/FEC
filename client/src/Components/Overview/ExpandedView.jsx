@@ -31,7 +31,7 @@ const ExpandedView = ({currentStyle, handleExpansion, slideNumber, nextSlide, pr
                   onClick={() => setSlideNumber(index)}
                   className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'}
                   key={index}
-                  src={item.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg': item.url}>
+                  src={item.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg': item.url} alt='product thumbnail'>
                 </img>
               </div>
             );
@@ -47,16 +47,16 @@ const ExpandedView = ({currentStyle, handleExpansion, slideNumber, nextSlide, pr
               <img key={index}
                 onClick={() => setZoomed(!zoomed)}
                 className='expanded-image'
-                src={slide.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' : slide.url} alt=''/>
-                {!zoomed &&
+                src={slide.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' : slide.url} alt='product image'/>
+              {!zoomed &&
                 <div><AiOutlineExpand className="expanded-expand-button" onClick={() => handleExpansion()}/></div>
-                }
-                {currentStyle.photos !== undefined && slideNumber !== 0 && !zoomed &&
-      <AiOutlineArrowLeft className="expanded-left-arrow" onClick={prevSlide}/>
-      }
-      {currentStyle.photos !== undefined && slideNumber !== currentStyle.photos.length - 1 && !zoomed &&
-      <AiOutlineArrowRight className="expanded-right-arrow" onClick={nextSlide}/>
-      }
+              }
+              {currentStyle.photos !== undefined && slideNumber !== 0 && !zoomed &&
+              <AiOutlineArrowLeft className="expanded-left-arrow" onClick={prevSlide}/>
+              }
+              {currentStyle.photos !== undefined && slideNumber !== currentStyle.photos.length - 1 && !zoomed &&
+              <AiOutlineArrowRight className="expanded-right-arrow" onClick={nextSlide}/>
+              }
             </div>
           );
         })

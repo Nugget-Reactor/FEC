@@ -52,12 +52,11 @@ Our team was tasked with creating a mock front-end webstore using a provided bla
 
 The main entry point of the page, this section shows the current product, and allows the user to browse through photos of the product, zoom in on the photos, look at the product's different styles, see the prices and description, and add the product to their cart.
 
-<img src="./client/src/assets/image_navigation_gif.gif" alt="Gif of the image gallery in overview widget">
+<img src="./client/src/assets/image_gallery.gif" alt="Gif of the image gallery in overview widget">
 
-The Overview's current product informs all of the other widgets and changes based on the user's selection in the Related Products & "Your Outfit" widget.
-The user is also able to change between different product styles using the style selector.
+The Overview's current product informs all of the other widgets and changes based on the user's selection in the Related Products & "Your Outfit" widget, and the user's selection in the style selector component.
 
-<img src="./client/src/assets/style_selector_gif.gif" alt="Gif of the style selector in overview widget">
+<img src="./client/src/assets/style_selector.gif" alt="Gif of the style selector in overview widget">
 
 The version of the cart in this repo is for demo purposes only, but it could be modified for functionality.
 
