@@ -28,11 +28,11 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
     }
   };
 
-  const conditionalRatings = () => { //if no ratings, do not render any stars business doc says if no reviews?
+  const conditionalRatings = () => { //if no ratings, do not render any stars
     if (outfit.ratings > 0) {
       return <div>{createStars(outfit.ratings)}</div>;
     } else {
-      return <div></div>; //change this to blank if no stars, set default size
+      return <div></div>; //blank if no stars
     }
   };
 
@@ -84,8 +84,8 @@ const NoPhotoH1 = styled.h1`
 `;
 
 const OutfitItemListItem = styled.li` //the Outfit items card itself
+  box-shadow: 20px 25px 25px gray;
   cursor: pointer;
-  // list-style-type: none;
   display: inline-block;
   border-radius: 3px;
   margin: .8em; //outside borders
@@ -111,7 +111,8 @@ const DefaultImage = styled.img` // image itself fits image div
   object-fit: cover;
 `;
 
-const ActionButtonOutfit = styled.button`  //the X
+const ActionButtonOutfit = styled.button`  //the 'X'
+box-shadow: 5px 5px 20px black;
   z-index: 1;
   // padding: .2em .4em;
   width: 1.7em;

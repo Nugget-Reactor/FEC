@@ -8,7 +8,7 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
   useEffect(() => { //organize table data
     var tableObject = {};
     var tableArray = [];
-    if (Object.keys(currentCharacteristics).length > 0) { //sort characeristics in an object product first
+    if (Object.keys(currentCharacteristics).length > 0) { //sort characteristics in an object product first
       for (var prodKeys in currentCharacteristics) {
         tableObject[prodKeys] = [];
         tableObject[prodKeys].push(currentCharacteristics[prodKeys].value);
@@ -25,11 +25,11 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
       }
     }
 
-    for (var key in tableObject) { //assemble characteristics into array table mapping format
+    for (var key in tableObject) { //assemble characteristics into array table-mapping format
       var rowArray = [];
       var bothNull = false;
       if (tableObject[key][0] === null && tableObject[key][1] === null ||
-        tableObject[key].length === 1 && tableObject[key][0] === null) { //to eliminate when characteristic only has an ID but null value
+        tableObject[key].length === 1 && tableObject[key][0] === null) { //to identify when characteristic only has an ID, but only 'null' values
         bothNull = true;
       }
 
@@ -40,7 +40,6 @@ const CompareModalTable = ({productName, relatedCharacteristics, currentCharacte
         tableArray.push(rowArray);
       }
     }
-    // console.log(tableArray);
     setTableData(tableArray);
   }, []);
 
@@ -129,7 +128,7 @@ const CenterColumn = styled.th`  //to fix product value columns as same width
 `;
 
 const TableBody = styled.tbody`
-max-height: 25vh; //items DO become scrollable if characteristics are longer than parent
+max-height: 25vh; //items DO become scrollable if characteristics are longer than parent or window is zoomed in
 display: block;
 font-size: larger;
 overflow-y: auto;

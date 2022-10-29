@@ -6,8 +6,6 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible
   const [currentIndex, setCurrentIndex] = useState(0);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
-  // console.log('currentMeta', currentMeta);
-  // console.log('productName', productName);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -36,11 +34,11 @@ const RelatedItemsCarousel = ({relatedItems, handleProductChange, isModalVisible
   };
 
   let LeftButton = ({isVisible}) => {
-    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
+    return leftButtonVisible ? <LeftArrow aria-label="left-related-products-carousel-button" onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
   };
 
   let RightButton = ({isVisible}) => {
-    return rightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-carousel-button"></RightArrow> : null;
+    return rightButtonVisible ? <RightArrow aria-label="right-related-products-carousel-button" onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)} data-testid="right-carousel-button"></RightArrow> : null;
   };
 
   return (

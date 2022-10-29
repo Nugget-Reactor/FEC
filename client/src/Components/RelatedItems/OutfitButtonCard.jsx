@@ -8,7 +8,7 @@ const OutfitButtonCard = ({addOutfit}) => {
     <OutfitButtonLi data-testid="add-to-outfit-button">
       <HolderDiv>
         <CardSquare>
-          <AddButton onClick={(event) => addOutfit()}>+</AddButton>
+          <AddButton aria-label="add-to-outfit-button" onClick={(event) => addOutfit()}>+</AddButton>
         </CardSquare>
         <ActionText>Add Current Product to your Outfit</ActionText>
       </HolderDiv>
@@ -20,6 +20,7 @@ export default OutfitButtonCard;
 
 
 const OutfitButtonLi = styled.li` //the Outfit items card itself
+box-shadow: 20px 25px 25px gray;
 cursor: pointer;
 display: inline-block;
 border-radius: 3px;
@@ -54,7 +55,7 @@ const AddButton = styled.button`
 cursor: pointer;
 font-size: 8em;
 text-align: center;
-background: white;
+background: none;
 padding-top: 30%;
 border: none;
 top: 40%;
