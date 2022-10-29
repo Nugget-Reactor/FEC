@@ -49,7 +49,7 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
     <OutfitItemListItem >
       <OutfitImageDiv >
         {conditionalPhoto()}
-        <ActionButtonOutfit onClick={(event) => removeOutfit(outfit.id)}></ActionButtonOutfit>
+        <ActionButtonOutfit aria-label="remove-product-from-your-outift" onClick={(event) => removeOutfit(outfit.id)}></ActionButtonOutfit>
       </OutfitImageDiv>
       <h5>{outfit.category}</h5>
       <h4>{outfit.name}</h4>
