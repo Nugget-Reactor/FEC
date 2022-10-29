@@ -32,7 +32,7 @@ const DefaultImageView = ({currentStyle, handleExpansion, slideNumber, nextSlide
                 <img onClick={() => setSlideNumber(index)}
                   className={index === slideNumber ? 'thumbnail-active' : 'thumbnail'}
                   key={index}
-                  src={item.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg': item.url}>
+                  src={item.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg': item.url} alt='product thumbnail'>
                 </img>
               </div>
             );
@@ -48,7 +48,7 @@ const DefaultImageView = ({currentStyle, handleExpansion, slideNumber, nextSlide
               (<img key={index}
                 onClick={() => handleExpansion()}
                 className='image'
-                src={slide.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' : slide.url} alt=''/>)}
+                src={slide.url === null ? 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg' : slide.url} alt='product image'/>)}
             </div>
           );
         })
