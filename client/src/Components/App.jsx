@@ -192,6 +192,7 @@ const StickyHeader = styled.div`
   height: 75px;
   top: 0;
   z-index: 15;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 `;
 
 export default App;

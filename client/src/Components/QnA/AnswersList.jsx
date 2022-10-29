@@ -40,7 +40,7 @@ const AnswersList = ({ questionID, answersList, setAnswersList }) => {
         : answersList.map((answer, index) => {
           return <AnswerEntry entry={answer} key={index} />;
         })}
-      {showLoadMore
+      {showLoadMore & answersList.length > 2
         ? <LoadMoreAnswers href="" onClick={handleLoadMoreAs} aria-label="load-more-answers">LOAD MORE ANSWERS</LoadMoreAnswers>
         : <LoadMoreAnswers href="" onClick={handleLoadMoreAs} aria-label="collapse-list">COLLAPSE LIST</LoadMoreAnswers>}
     </AnswersContainer>
