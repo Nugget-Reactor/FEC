@@ -23,9 +23,9 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#related-products-&amp;-your-outfit">Related Products & Your Outfit</a></li>
-        <li><a href="#questions-M%26M-answers">Questions & Answers</a></li>
-        <li><a href="#ratings-\&-reviews">Ratings & Reviews</a></li>
+        <li><a href="#related-products--your-outfit">Related Products & Your Outfit</a></li>
+        <li><a href="#questions--answers">Questions & Answers</a></li>
+        <li><a href="#ratings--reviews">Ratings & Reviews</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -42,7 +42,9 @@
 
 ## About The Project
 
-<img src="./client/src/assets/HomepagePic.png" alt="Screen capture of the homepage" width="720" height="auto" >
+<p align="center">
+  <img src="./client/src/assets/HomepagePic.png" alt="Screen capture of the homepage" width="720" height="auto" >
+</p>
 
 ---
 Our team was tasked with creating a mock front-end webstore using a provided black box database. Main features of the website include the product overview section, related products & your outfit section, questions & answers section, and th ratings & reviews section. We go into detail about each of these website features below.
@@ -54,6 +56,8 @@ The main entry point of the page, this section shows the current product, and al
 <p align="center">
   <img src="./client/src/assets/image_gallery.gif" alt="Gif of the image gallery in overview widget" width="720" height="auto" >
 </p>
+
+---
 
 The Overview's current product informs all of the other widgets and changes based on the user's selection in the Related Products & "Your Outfit" widget, and the user's selection in the style selector component.
 
@@ -76,18 +80,18 @@ This is the section of site where product collections are displayed:<br><br>
 <p align="center">
   <img src="./client/src/assets/OutfitAddRemove.gif" alt="Gif of adding a product to and removing a product from the 'Your Outfit' carousel" width="720" height="auto" >
 </p>
-<br>
+
 ---
 
 By clicking on the Related Product of their choice, the user navigates to that product's page. This action updates all other widgets to display the data for the product selected.<br>
 <p align="center">
   <img src="./client/src/assets/RelatedChangeProduct.gif" alt="Gif of changing the current product by clicking on a related product card" width="720" height="auto" >
-</p><br>
+</p>
 ---
 
-The action button on each Related Product's card shows a Comparing modal that displays the current product's characteristics next to those of that particular related product. <br>
----
+The action button on each Related Product's card shows a Comparing modal that displays the current product's characteristics next to those of that particular related product.
 
+---
 <p align="center">
   <img src="./client/src/assets/RelatedProductNavCompare.gif" alt="Gif of the navigation for the Related Products carousel and Comparing Modal" width="720" height="auto" >
 </p>
