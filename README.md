@@ -23,9 +23,9 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#related-products-&-your-outfit">Related Products & Your Outfit</a></li>
-        <li><a href="#questions-&-answers">Question & Answers</a></li>
-        <li><a href="#ratings-&-reviews">Ratings & Reviews</a></li>
+        <li><a href="#related-products-&amp;-your-outfit">Related Products & Your Outfit</a></li>
+        <li><a href="#questions-M%26M-answers">Questions & Answers</a></li>
+        <li><a href="#ratings-\&-reviews">Ratings & Reviews</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -63,6 +63,8 @@ The Overview's current product informs all of the other widgets and changes base
 
 The version of the cart in this repo is for demo purposes only, but it could be modified for functionality.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Related Products & Your Outfit
 
 This is the section of site where product collections are displayed:<br><br>
@@ -70,21 +72,27 @@ This is the section of site where product collections are displayed:<br><br>
   second: a carousel of the user's own selected products that they add to or remove from their "Outfit" collection if they choose.<br>
 
 ---
+
 <p align="center">
   <img src="./client/src/assets/OutfitAddRemove.gif" alt="Gif of adding a product to and removing a product from the 'Your Outfit' carousel" width="720" height="auto" >
 </p>
 <br>
 ---
+
 By clicking on the Related Product of their choice, the user navigates to that product's page. This action updates all other widgets to display the data for the product selected.<br>
 <p align="center">
   <img src="./client/src/assets/RelatedChangeProduct.gif" alt="Gif of changing the current product by clicking on a related product card" width="720" height="auto" >
 </p><br>
 ---
+
 The action button on each Related Product's card shows a Comparing modal that displays the current product's characteristics next to those of that particular related product. <br>
 ---
+
 <p align="center">
   <img src="./client/src/assets/RelatedProductNavCompare.gif" alt="Gif of the navigation for the Related Products carousel and Comparing Modal" width="720" height="auto" >
 </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Questions & Answers
 
@@ -110,6 +118,8 @@ To add a question or answer, modals will popup when the respective button/link i
 <p align="center">
   <img src="./client/src/assets/ModalUpload.gif" alt="Gif of the upload modal in questions & answers widget" width="720" height="auto">
 </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Ratings & Reviews
 
@@ -200,3 +210,5 @@ To get a local copy of Gnicchi up and running follow these simple steps.
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/curtis-wang-25350975/">@curtis-wang</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/cwang1014">@cwang1014</a> <br>
 </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
