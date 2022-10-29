@@ -151,7 +151,7 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonRelated = styled.button` // the star
-box-shadow: 15px 15px 25px gray; //20px 25px 25px
+box-shadow: 5px 5px 20px black; //20px 25px 25px
   z-index: 1;
   padding-top: 5px;
   padding-bottom: 5px;

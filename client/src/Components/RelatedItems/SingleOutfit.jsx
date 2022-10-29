@@ -84,8 +84,8 @@ const NoPhotoH1 = styled.h1`
 `;
 
 const OutfitItemListItem = styled.li` //the Outfit items card itself
+  box-shadow: 20px 25px 25px gray;
   cursor: pointer;
-  // list-style-type: none;
   display: inline-block;
   border-radius: 3px;
   margin: .8em; //outside borders
@@ -112,6 +112,7 @@ const DefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonOutfit = styled.button`  //the 'X'
+box-shadow: 5px 5px 20px black;
   z-index: 1;
   // padding: .2em .4em;
   width: 1.7em;
