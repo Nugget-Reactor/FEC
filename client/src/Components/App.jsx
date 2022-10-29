@@ -168,7 +168,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
-  const AppStyling = styled.div`
+const AppStyling = styled.div`
   font-family: 'Work Sans', sans-serif;
   font-size: 1.25rem;
   word-break: break-word;

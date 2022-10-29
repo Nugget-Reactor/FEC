@@ -22,7 +22,7 @@ const SingleOutfit = ({outfit, handleProductChange, removeOutfit}) => {
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      return <DefaultImage src={currentPhotoURL} onClick={(event) => { handleProductChange(outfit.id); }}/>;
+      return <DefaultImage aria-label={outfit.name} src={currentPhotoURL} onClick={(event) => { handleProductChange(outfit.id); }}/>;
     } else {
       return <NoPhotoDiv onClick={(event) => { handleProductChange(outfit.id); }}><NoPhotoH1><div>Photo</div><div>Coming</div><div>Soon!</div></NoPhotoH1></NoPhotoDiv>;
     }
@@ -138,7 +138,7 @@ const SaleAndStrikeBlock = styled.div`
 
 const SalePricing = styled.div`
   display: inline-flex;
-  color: red;
+  color: #c00;
   margin-right: 5px;
 `;
 
