@@ -142,7 +142,7 @@ const App = () => {
     <TrackerContext.Provider value={TrackerFunction}>
       <AppStyling>
         <GlobalStyle />
-        <StickyHeader><h1>Gnicchi</h1></StickyHeader>
+        <StickyHeader><img src="../assets/Gnicchi-transparent.png" alt="Gnicchi Logo" height="70px" /></StickyHeader>
         <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
         <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName} />
         <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit} />
