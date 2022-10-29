@@ -9,6 +9,7 @@ import QnA from './QnA/QnA.jsx';
 import axios from 'axios';
 import { createStars, getAverage } from '../Tools/createStars';
 import { TrackerContext, TrackerFunction } from '../Tools/clickTracker';
+import logo from '../assets/Gnicchi-transparent.png';
 
 const App = () => {
   const [product, setProduct] = useState({});
@@ -142,7 +143,7 @@ const App = () => {
     <TrackerContext.Provider value={TrackerFunction}>
       <AppStyling>
         <GlobalStyle />
-        <StickyHeader><h1>Gnicchi</h1></StickyHeader>
+        <StickyHeader><img src={logo} alt="Gnicchi Logo" height="70px" /></StickyHeader>
         <OverviewApp product={product} productStyles={productStyles} currentStyle={currentStyle} handleStyleChange={handleStyleChange} reviewRef={reviewRef} />
         <RelatedItems product={product} productStyles={productStyles} handleProductChange={handleProductChange} currentMeta={currentMeta} productName={productName} />
         <OutfitCollection handleProductChange={handleProductChange} addOutfit={addOutfit} allOutfits={allOutfits} removeOutfit={removeOutfit} />
