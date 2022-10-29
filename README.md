@@ -43,7 +43,7 @@
 ## About The Project
 
 <p align="center">
-  <img src="./client/src/assets/HomepagePic.png" alt="Screen capture of the homepage" width="720" height="auto" >
+  <img src="./client/src/assets/Homepage.png" alt="Screen capture of the homepage" width="720" height="auto" >
 </p>
 
 ---
