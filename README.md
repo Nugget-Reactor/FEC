@@ -102,21 +102,23 @@ Section of store webpage for users to ask and answer questions regarding a certa
 
 At the top of the section there is a search bar to filter the list of questions based on user input, and the filtering of the list only takes place after at least 3 characters have been input, resetting to original list if there are less than 3 characters input.
 
----
 <p align="center">
   <img src="./client/src/assets/qna-search.gif" alt="Gif of the search in questions & answers widget" width="720" height="auto">
 </p>
 
+---
+
 Users can also extend the questions list using the more questions button which will add 2 questions to the end of the list and disappear if there are no more questions to load. The see more answers link should extend to show all answers and change text to collapse list when fully extended, and reset back to the condensed list when collapse list is clicked. Within the list users can mark questions or answers as helpful and report them to remove unhelpful questions/answers from the list.
 
----
+
 <p align="center">
   <img src="./client/src/assets/QnaList.gif" alt="Gif of the list in questions & answers widget" width="720" height="auto">
 </p>
 
+---
+
 To add a question or answer, modals will popup when the respective button/link is clicked that opens a form for user to input their question or answer. The form will validate inputs to ensure mandatory fields are filled in, emails are entered in the correct format, and not more than 5 photos are uploaded. If it passes the validation check the form inputs will be coalesced and posted to the black box and returned on any subsequent gets of the respective list.
 
----
 <p align="center">
   <img src="./client/src/assets/ModalUpload.gif" alt="Gif of the upload modal in questions & answers widget" width="720" height="auto">
 </p>
