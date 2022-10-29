@@ -33,7 +33,7 @@ const AnswerEntry = ({ entry }) => {
         {!entry.photos.length
           ? null
           : entry.photos.map((photo, index) => {
-            return <Image src={photo.url} key={index}></Image>;
+            return <Image src={photo.url} key={index} alt="answer-entry-photo"></Image>;
           })}
       </PhotoContainer>
       <AnswerListFooter data-testid="answer-footer">
@@ -41,12 +41,12 @@ const AnswerEntry = ({ entry }) => {
         <AnswerListDiv> | </AnswerListDiv>
         <AnswerListDiv>Helpful?</AnswerListDiv>
         {helpfulClicked
-          ? <AddAnswer href="" onClick={e => e.preventDefault()}>Yes ({entry.helpfulness + 1})</AddAnswer>
-          : <AddAnswer href="" onClick={handleMarkAHelpful}>Yes ({entry.helpfulness})</AddAnswer>}
+          ? <AddAnswer href="" onClick={e => e.preventDefault()} aria-label="answer-is-helpful">Yes ({entry.helpfulness + 1})</AddAnswer>
+          : <AddAnswer href="" onClick={handleMarkAHelpful} aria-label="answer-helpful">Yes ({entry.helpfulness})</AddAnswer>}
         <AnswerListDiv> | </AnswerListDiv>
         {reportClicked
-          ? <ReportAnswer href="" onClick={e => e.preventDefault()}>Reported</ReportAnswer>
-          : <ReportAnswer href="" onClick={handleReportA}>Report Answer</ReportAnswer>}
+          ? <ReportAnswer href="" onClick={e => e.preventDefault()} aria-label="reported-answer">Reported</ReportAnswer>
+          : <ReportAnswer href="" onClick={handleReportA} aria-label="report-answer">Report Answer</ReportAnswer>}
       </AnswerListFooter>
     </AnswerEntryContainer>
   );

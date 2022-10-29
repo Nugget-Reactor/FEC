@@ -23,18 +23,18 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
 
   //Set initial reviews list
   useEffect(() => {
-    if(productID !== undefined) {
+    if (productID !== undefined) {
       axios.get(`/reviews?product_id=${productID}&sort=${sort}&count=${getCount}`)
-      .then(res => {
-        setReviews(res.data.results)
-      })
-      .catch(err => console.error(err));
+        .then(res => {
+          setReviews(res.data.results)
+        })
+        .catch(err => console.error(err));
     }
   }, [productID, sort, getCount, forceRerender]);
 
   //Set filtered reviews list
   useEffect(() => {
-    if(filters.length > 0) {
+    if (filters.length > 0) {
       let filtered = reviews.filter((review) => {
         return filters.includes(review.rating);
       })
@@ -62,7 +62,7 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
   //Set total reviews count
   useEffect(() => {
     let total = 0;
-    for(let count in currentMeta.ratings) {
+    for (let count in currentMeta.ratings) {
       total += Number(currentMeta.ratings[count]);
     }
     setTotalCount(total);
@@ -73,19 +73,19 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
   }
 
   const handleMoreReviews = () => {
-    if(currentCount >= getCount) {
+    if (currentCount >= getCount) {
       setGetCount(getCount + 50);
     }
     setCurrentCount(currentCount + 2);
   }
 
   const modifyFilters = (starValue) => {
-    if(!starValue) {
+    if (!starValue) {
       setFilters([]);
     } else {
       setFilters(previousFilters => {
-        if(previousFilters.includes(starValue)){
-          return previousFilters.filter(value=> value!==starValue);
+        if (previousFilters.includes(starValue)) {
+          return previousFilters.filter(value => value !== starValue);
         } else {
           return [...previousFilters, starValue];
         }
@@ -99,45 +99,46 @@ const Reviews = ({ productID, productName, currentMeta, reviewRef }) => {
     setForceRerender(!forceRerender);
   }
   return (
-    <Background onClick={(e)=>tracker(e.target, 'Reviews')}>
-    <Layout ref={reviewRef}>
-      <h2>Ratings & Reviews</h2>
-      <ColumnContainer>
-        <Breakdown currentMeta={currentMeta} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
-        <ReviewContainer>
-          <ReviewTitle data-testid="reviewTitle">{filteredTotalCount || totalCount} reviews, sorted by
-            <Dropdown value={sort} onChange={handleSort}>
-              <option value='relevant'>relevance</option>
-              <option value='helpful'>most helpful</option>
-              <option value='newest'>newest</option>
-            </Dropdown>
-          </ReviewTitle>
-          <List reviews={filteredReviews} currentCount={currentCount} />
+    <Background onClick={(e) => tracker(e.target, 'Reviews')}>
+      <Layout ref={reviewRef}>
+        <h2>Ratings & Reviews</h2>
+        <ColumnContainer>
+          <Breakdown currentMeta={currentMeta} totalCount={totalCount} filters={filters} modifyFilters={modifyFilters} />
+          <ReviewContainer>
+            <ReviewTitle data-testid="reviewTitle">{filteredTotalCount || totalCount} reviews, sorted by
+              <Dropdown value={sort} onChange={handleSort}>
+                <option value='relevant'>relevance</option>
+                <option value='helpful'>most helpful</option>
+                <option value='newest'>newest</option>
+              </Dropdown>
+            </ReviewTitle>
+            <List reviews={filteredReviews} currentCount={currentCount} />
 
-          {reviews.length > currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
-          <BigButton data-testid="addReviewButton" onClick={() => {
-            setShowModal(true);
-          }}>ADD A REVIEW +</BigButton>
-        </ReviewContainer>
-      </ColumnContainer>
-      {showModal
-      ? <Modal closeModal={closeModal}>
-        <ModalForm productID={productID} productName={productName} characteristicModel={currentMeta.characteristics} closeModal={closeModal} rerender={rerender} />
-      </Modal>
-      : null}
-    </Layout>
+            {reviews.length > currentCount ? <BigButton onClick={handleMoreReviews}>MORE REVIEWS</BigButton> : null}
+            <BigButton data-testid="addReviewButton" onClick={() => {
+              setShowModal(true);
+            }}>ADD A REVIEW +</BigButton>
+          </ReviewContainer>
+        </ColumnContainer>
+        {showModal
+          ? <Modal closeModal={closeModal}>
+            <ModalForm productID={productID} productName={productName} characteristicModel={currentMeta.characteristics} closeModal={closeModal} rerender={rerender} />
+          </Modal>
+          : null}
+      </Layout>
     </Background>
   );
 }
 
 const Background = styled.div`
   background: linear-gradient(to left, #FFAEBC, #ffebee);
-
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `
 const Layout = styled.div`
   margin: 30px 0;
   padding: 1px 30px;
   background-color: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `
 
 const BigButton = styled.button`

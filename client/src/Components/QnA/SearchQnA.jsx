@@ -38,6 +38,6 @@ const Input = styled.input`
 const SearchIcon = styled.i`
   position: relative;
   top: 0;
-  right: 3%;
+  right: 2%;
   z-index: 1;
 `;

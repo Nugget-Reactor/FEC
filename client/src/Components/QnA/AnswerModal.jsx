@@ -118,7 +118,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
         {showPreview && photos.length > 0
           ? <PhotosList>{photos.map((photo, index) => {
             return (
-              <PhotoEntry key={index} onClick={(e) => handleImgModal(e, photo)}>
+              <PhotoEntry key={index} onClick={(e) => handleImgModal(e, photo)} alt="answer-modal-photo">
                 {showImgModal
                   ? <ImgModalContainer onClick={e => setShowImgModal(!showImgModal)}><ImgModal src={currImg}></ImgModal></ImgModalContainer>
                   : null}
@@ -155,7 +155,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
             photoRef.current.open();
             setShowPreview(true);
           }}>Upload Your Photos</AnswerFormPhotos>
-          <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
+          <AnswerFormSubmit onClick={handleSubmitA} aria-label="submit-answer-button">Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>
     </AnswerContainer>
