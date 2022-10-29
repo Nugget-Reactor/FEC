@@ -72,6 +72,7 @@ const ClearButton = styled.button`
   text-decoration: underline;
   display: block;
   color:blue;
+  cursor: pointer;
 `
 
 export default Breakdown;
