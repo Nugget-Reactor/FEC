@@ -51,6 +51,9 @@ Our team was tasked with creating a mock front-end webstore using a provided bla
 ### Overview
 
 The main entry point of the page, this section shows the current product, and allows the user to browse through photos of the product, zoom in on the photos, look at the product's different styles, see the prices and description, and add the product to their cart. The Overview's current product informs all of the other widgets and changes based on the user's selection in the Related Products & "Your Outfit" widget.
+<img src="./client/src/assets/image_navigation_gif.gif" alt="Gif of the image gallery navigation in the overview widget">
+<img src="./client/src/assets/style_selector_gif.gif" alt="Gif of the search in questions & answers widget">
+
 
 The version of the cart in this repo is for demo purposes only, but it could be modified for functionality.
 
