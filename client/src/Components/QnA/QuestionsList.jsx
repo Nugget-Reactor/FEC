@@ -35,8 +35,8 @@ const QuestionsList = ({ questionsList, name, showQModal, setShowQModal, newProd
           })}
       </QuestionListBody>
       <QuestionListFooter>
-        {(currCount < totalCount) && <MoreQuestions onClick={handleMoreAs} data-testid="more-questions">MORE ANSWERED QUESTIONS</MoreQuestions>}
-        <AddQButton onClick={() => setShowQModal(!showQModal)} data-testid="addq-button">ADD A QUESTION +</AddQButton>
+        {(currCount < totalCount) && <MoreQuestions onClick={handleMoreAs} data-testid="more-questions" aria-label="more-questions-button">MORE QUESTIONS</MoreQuestions>}
+        <AddQButton onClick={() => setShowQModal(!showQModal)} data-testid="addq-button" aria-label="add-question-button">ADD A QUESTION +</AddQButton>
       </QuestionListFooter>
     </QuestionListContainer>
   );
@@ -71,6 +71,7 @@ const AddQButton = styled.button`
   font-size: 1rem;
   margin: 10px;
   cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 const MoreQuestions = styled.button`
@@ -80,4 +81,5 @@ const MoreQuestions = styled.button`
   font-size: 1rem;
   margin: 10px;
   cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;

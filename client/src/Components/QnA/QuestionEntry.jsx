@@ -45,14 +45,14 @@ const QuestionEntry = ({ entry, name, query }) => {
           <RightFloat data-testid="question-headers">
             <QuestionSubHeading>Helpful?</QuestionSubHeading>
             {helpfulClicked
-              ? <HelpfulQ href="" onClick={e => e.preventDefault()}>Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
-              : <HelpfulQ href="" onClick={handleMarkHelpful}>Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
+              ? <HelpfulQ href="" onClick={e => e.preventDefault()} aria-label="question-is-helpful">Yes ({entry && entry.question_helpfulness + 1})</HelpfulQ>
+              : <HelpfulQ href="" onClick={handleMarkHelpful} aria-label="question-helpful">Yes ({entry && entry.question_helpfulness})</HelpfulQ>}
             <QuestionSubHeading>|</QuestionSubHeading>
             {reportClicked
-              ? <ReportQuestion href="" onClick={e => e.preventDefault()}>Reported</ReportQuestion>
-              : <ReportQuestion href="" onClick={handleReportQ}>Report Question</ReportQuestion>}
+              ? <ReportQuestion href="" onClick={e => e.preventDefault()} aria-label="reported-question">Reported</ReportQuestion>
+              : <ReportQuestion href="" onClick={handleReportQ} aria-label="report-question">Report Question</ReportQuestion>}
             <QuestionSubHeading>|</QuestionSubHeading>
-            <AddAnswer href="" onClick={e => handleAddAnswer(e)}>Add Answer</AddAnswer>
+            <AddAnswer href="" onClick={e => handleAddAnswer(e)} aria-label="add-answer">Add Answer</AddAnswer>
           </RightFloat>
         </QuestionEntryHeader>
         <AnswerBody>

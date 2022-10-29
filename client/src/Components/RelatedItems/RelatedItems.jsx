@@ -56,13 +56,13 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
   };
 
   return (
-    <RelatedItemsLayout onClick={(e)=>tracker(e.target, 'Related Products')}>
+    <RelatedItemsLayout onClick={(e) => tracker(e.target, 'Related Products')}>
       {showCompareModal ? <CompareModal closeModal={closeModal} productName={productName} relatedCharacteristics={relatedCharacteristics} currentCharacteristics={currentCharacteristics} relatedName={relatedName} /> : null}
       <Heading>
         <h2 data-testid="related-products-header">Related Products</h2>
       </Heading>
       <Carousel data-testid="related-items-carousel">
-        <AnyRelatedItems/>
+        <AnyRelatedItems />
       </Carousel>
     </RelatedItemsLayout>
   );
@@ -72,6 +72,7 @@ export default RelatedItems;
 
 const RelatedItemsLayout = styled.div`
   background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 const Heading = styled.div`
