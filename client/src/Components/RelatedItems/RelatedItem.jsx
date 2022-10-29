@@ -42,7 +42,6 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
   /** to set default photo and default price for related items card **/
   useEffect(() => {
     if (currentStyle.photos && currentStyle.photos[0]) { //render photos conditionally to no image found if null
-      console.log(currentStyle.photos);
       setCurrentPhotoURL(currentStyle.photos[0].url);
     } else {
       setCurrentPhotoURL(null);
