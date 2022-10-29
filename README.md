@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://github.com/Nugget-Reactor/FEC">
-    <img src="./client/src/assets/Gnicchi.png" alt="Logo" width="80" height="80">
+    <img src="./client/src/assets/Gnicchi.png" alt="Logo" width="200" height="auto">
   </a>
 <h3 align="center">Gnicchi</h3>
   <p align="center">
