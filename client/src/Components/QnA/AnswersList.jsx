@@ -41,8 +41,8 @@ const AnswersList = ({ questionID, answersList, setAnswersList }) => {
           return <AnswerEntry entry={answer} key={index} />;
         })}
       {showLoadMore
-        ? <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>LOAD MORE ANSWERS</LoadMoreAnswers>
-        : <LoadMoreAnswers href="" onClick={handleLoadMoreAs}>COLLAPSE LIST</LoadMoreAnswers>}
+        ? <LoadMoreAnswers href="" onClick={handleLoadMoreAs} aria-label="load-more-answers">LOAD MORE ANSWERS</LoadMoreAnswers>
+        : <LoadMoreAnswers href="" onClick={handleLoadMoreAs} aria-label="collapse-list">COLLAPSE LIST</LoadMoreAnswers>}
     </AnswersContainer>
   );
 };
