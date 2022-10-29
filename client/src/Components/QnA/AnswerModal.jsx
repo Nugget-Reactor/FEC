@@ -155,7 +155,7 @@ const AnswerModal = ({ showAModal, setShowAModal, questionBody, questionName, qu
             photoRef.current.open();
             setShowPreview(true);
           }}>Upload Your Photos</AnswerFormPhotos>
-          <AnswerFormSubmit onClick={handleSubmitA}>Submit Answer</AnswerFormSubmit>
+          <AnswerFormSubmit onClick={handleSubmitA} aria-label="submit-answer-button">Submit Answer</AnswerFormSubmit>
         </FormFooter>
       </AnswerForm>
     </AnswerContainer>
