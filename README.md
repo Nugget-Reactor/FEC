@@ -75,8 +75,6 @@ This is the section of site where product collections are displayed:<br><br>
   first: a carousel of products that are related to the current product,<br>
   second: a carousel of the user's own selected products that they add to or remove from their "Outfit" collection if they choose.<br>
 
----
-
 <p align="center">
   <img src="./client/src/assets/OutfitAddRemove.gif" alt="Gif of adding a product to and removing a product from the 'Your Outfit' carousel" width="720" height="auto" >
 </p>
@@ -87,11 +85,11 @@ By clicking on the Related Product of their choice, the user navigates to that p
 <p align="center">
   <img src="./client/src/assets/RelatedChangeProduct.gif" alt="Gif of changing the current product by clicking on a related product card" width="720" height="auto" >
 </p>
+
 ---
 
 The action button on each Related Product's card shows a Comparing modal that displays the current product's characteristics next to those of that particular related product.
 
----
 <p align="center">
   <img src="./client/src/assets/RelatedProductNavCompare.gif" alt="Gif of the navigation for the Related Products carousel and Comparing Modal" width="720" height="auto" >
 </p>
