@@ -43,7 +43,7 @@
 
 ## About The Project
 
-<img src="https://github.com/Nugget-Reactor/FEC/client/src/assets/HomepagePic.png">
+<img src="/client/src/assets/HomepagePic.png">
 
 ---
 Our team was tasked with creating a mock front-end webstore using a provided black box database. Main features of the website include a product overview section, a related products & your outfit section, a questions & answers section, and a ratings & reviews section. We go into detail about each of these website features below.
@@ -70,8 +70,8 @@ Users can also extend the questions list using the more questions button which w
 
 ### Ratings & Reviews
 
-<img src="https://github.com/Nugget-Reactor/FEC/client/src/assets/Reviews.gif">
-<img src="https://github.com/Nugget-Reactor/FEC/client/src/assets/InputForm.gif">
+<img src="/client/src/assets/Reviews.gif">
+<img src="./client/src/assets/InputForm.gif">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
