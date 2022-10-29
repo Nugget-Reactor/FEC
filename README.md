@@ -62,11 +62,14 @@ The version of the cart in this repo is for demo purposes only, but it could be 
 
 ### Related Products & "Your Outfit"
 
-Section of site where product collections are displayed:
-  first: a carousel of products that are related to the current product, and
-  second: a carousel of their own selected products that they add to or remove from their "Outfit" collection if they choose.
-By clicking on the Related Product of their choice, the user navigates to that product's page. This action updates all other widgets to display the data for the product selected.
-The action button on each Related Product's card shows a Comparing modal that displays the current product's characteristics next to those of that particular related product.
+Section of site where product collections are displayed:<br>
+  first: a carousel of products that are related to the current product,<br>
+  second: a carousel of the user's own selected products that they add to or remove from their "Outfit" collection if they choose.<br>
+<img src="./client/src/assets/OutfitAddRemove.gif" alt="Gif of adding a product to and removing a product from the 'Your Outfit' carousel"><br>
+By clicking on the Related Product of their choice, the user navigates to that product's page. This action updates all other widgets to display the data for the product selected.<br>
+<img src="./client/src/assets/RelatedChangeProduct.gif" alt="Gif of changing the current product by clicking on a related product card">
+The action button on each Related Product's card shows a Comparing modal that displays the current product's characteristics next to those of that particular related product. <br>
+<img src="./client/src/assets/RelatedProductNavCompare.gif" alt="Gif of the navigation for the Related Products carousel and Comparing Modal">
 
 ### Questions & Answers
 

@@ -27,13 +27,10 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
           if (results.data.length === 0) {
             setNoneRelated('There are no Related Products for this item');
           } else {
-            for (var i = 0; i < results.data.length - 1; i++) {
-              var sliced = results.data.slice(i + 1);
-              if (results.data[i].id === product.id) { //eliminates product appearing in own related items
-                results.data.splice(i, 1);
-              }
-            }
-            setRelatedItems(results.data);
+            var noDuplicates = results.data.filter(relatedObj => {
+              return relatedObj.id !== product.id; //if related id does NOT match product id, pass it on
+            });
+            setRelatedItems(noDuplicates);
           }
 
         })
@@ -52,7 +49,6 @@ const RelatedItems = ({ product, handleProductChange, currentMeta, productName }
 
   const isModalVisible = (event, relatedChar, relName) => {
     event.preventDefault();
-    // console.log('relatedChar', relatedChar);
     setRelatedCharacteristics(relatedChar);
     setRelatedName(relName);
     setShowCompareModal(true);

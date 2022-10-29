@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import CompareModalTable from './CompareModalTable.jsx'; //
-import App from '../App.jsx'; //
+import CompareModalTable from './CompareModalTable.jsx';
+import App from '../App.jsx';
 
 
 const CompareModal = ({closeModal, productName, relatedCharacteristics, currentCharacteristics, relatedName}) => {
@@ -12,13 +12,6 @@ const CompareModal = ({closeModal, productName, relatedCharacteristics, currentC
   };
 
   useEffect(() => {
-    // document.body.style.overflow = 'hidden';
-    // document.addEventListener('keydown', escModal, false);
-    // return () => {
-    //   document.body.style.overflow = 'unset';
-    //   document.removeEventListener('keydown', escModal, false);
-    // };
-
     let rootApp = document.getElementById('root');
     rootApp.style.overflow = 'hidden';
     document.addEventListener('keydown', escModal, false);
