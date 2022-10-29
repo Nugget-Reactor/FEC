@@ -37,9 +37,11 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
 
   }, []);
 
+
+
   /** to set default photo and default price for related items card **/
   useEffect(() => {
-    if (currentStyle.photos && currentStyle.photos[0]) { //render photos conditionally to no image found notice if null
+    if (currentStyle.photos && currentStyle.photos[0]) { //render photos conditionally to no image found if null
       setCurrentPhotoURL(currentStyle.photos[0].url);
     } else {
       setCurrentPhotoURL(null);
@@ -54,7 +56,7 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      return <RelatedDefaultImage aria-label="${relatedItem.name}" src={currentPhotoURL} />;
+      return <RelatedDefaultImage aria-label={relatedItem.name} src={currentPhotoURL} />;
     } else {
       return <NoPhotoDiv><NoPhotoH1><div>Photo</div><div>Coming</div><div>Soon!</div></NoPhotoH1></NoPhotoDiv>;
     }
@@ -176,7 +178,7 @@ const SaleAndStrikeBlock = styled.div`
 
 const SalePricing = styled.div`
   display: inline-flex;
-  color: red;
+  color: #c00;
   margin-right: 5px;
 `;
 
