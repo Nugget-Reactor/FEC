@@ -54,7 +54,7 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
 
   const conditionalPhoto = () => {
     if (typeof currentPhotoURL === 'string') {
-      return <RelatedDefaultImage src={currentPhotoURL} />;
+      return <RelatedDefaultImage aria-label="${relatedItem.name}" src={currentPhotoURL} />;
     } else {
       return <NoPhotoDiv><NoPhotoH1><div>Photo</div><div>Coming</div><div>Soon!</div></NoPhotoH1></NoPhotoDiv>;
     }
@@ -80,10 +80,10 @@ const RelatedItem = ({relatedItem, handleProductChange, isModalVisible}) => {
   // need action button to look better/be more accessible, and be functional => Compare modal
   // may need to pass up related item characteristics OR pass down product characteristicsRelated onClick={(event) => compareChar(relatedItem.idRelated>
   return (
-    <RelatedItemListItem onClick={(event) => { handleProductChange(relatedItem.id); }}>
+    <RelatedItemListItem aria-label="select-related-product"onClick={(event) => { handleProductChange(relatedItem.id); }}>
       <RelatedImageDiv>
         {conditionalPhoto()}
-        <ActionButtonRelated onClick={(event) => {
+        <ActionButtonRelated aria-label="compare-products-button" onClick={(event) => {
           event.stopPropagation(); //stops product card click from registering
           // event.preventDefault(); //tried this to stop cards from re-rendering
           isModalVisible(event, relatedCharacteristics, relatedItem.name); //send current characteristics up to RelatedItems
@@ -121,6 +121,8 @@ const NoPhotoH1 = styled.h1`
 `;
 
 const RelatedItemListItem = styled.li` //the related items card itself
+box-shadow: 20px 25px 25px gray; //sc-gGvHcT
+
   cursor: pointer;
   list-style-type: none;
   display: inline-block;
@@ -149,6 +151,7 @@ const RelatedDefaultImage = styled.img` // image itself fits image div
 `;
 
 const ActionButtonRelated = styled.button` // the star
+box-shadow: 5px 5px 20px black; //20px 25px 25px
   z-index: 1;
   padding-top: 5px;
   padding-bottom: 5px;

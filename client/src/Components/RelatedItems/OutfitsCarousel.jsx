@@ -9,7 +9,7 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
   const [outfits, setOutfits] = useState([]);
 
-  /**to get outfits when updated - only currently seems to work by doing the windlow local storage parse here rather than setting to allOutfits. possible a simple alert might do the trick as well**/
+  /**to get outfits when updated - only currently seems to work by doing the window local storage parse here rather than setting to allOutfits. Possibly sending any new value for this prop, as a simple alert, might do the trick just as well **/
   useEffect(() => {
     setCurrentIndex(0);
     if (window.localStorage.outfits) {
@@ -45,11 +45,11 @@ const OutfitsCarousel = ({handleProductChange, addOutfit, allOutfits, removeOutf
   };
 
   let LeftButton = ({isVisible}) => {
-    return leftButtonVisible ? <LeftArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
+    return leftButtonVisible ? <LeftArrow aria-label="left-outfit-carousel-button" onClick={(event) => setCurrentIndex(prevIndex => prevIndex - 1)}></LeftArrow> : null;
   };
 
   let RightButton = ({isVisible}) => {
-    return RightButtonVisible ? <RightArrow onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}></RightArrow> : null;
+    return RightButtonVisible ? <RightArrow aria-label="right-outfit-carousel-button" onClick={(event) => setCurrentIndex(prevIndex => prevIndex + 1)}></RightArrow> : null;
   };
 
   return (
