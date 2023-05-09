@@ -207,7 +207,7 @@ To get a local copy of Gnicchi up and running follow these simple steps.
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/reethunavale">@AhmedHanafy9</a> <br>
 
   :woman: <b>Tessa Thornberry</b> <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/theresa-thornberry/">@theresa-thornberry</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/tessaathornberry/">@tessathornberry</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/tessathornberry">@tessathornberry</a> <br>
 
   :boy: <b>Curtis Wang</b> <br>
